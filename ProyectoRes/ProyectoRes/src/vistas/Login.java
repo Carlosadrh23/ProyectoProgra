@@ -21,6 +21,8 @@ import javax.swing.Box;
 import javax.swing.JEditorPane;
 import javax.swing.JProgressBar;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -72,6 +74,7 @@ public class Login {
 		
 		
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 1150, 799);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -87,12 +90,12 @@ public class Login {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/imagenes/botella3.png")));
-		lblNewLabel_1.setBounds(537, -13, 159, 190);
+		lblNewLabel_1.setBounds(523, 0, 159, 190);
 		panel.add(lblNewLabel_1);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(149, 53, 61));
-		panel_1.setBounds(349, 272, 454, 379);
+		panel_1.setBounds(338, 272, 454, 379);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -103,7 +106,7 @@ public class Login {
 		panel_1.add(lblNewLabel_2);
 		
 		txtAdministrador = new JTextField("Administrador");
-		txtAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtAdministrador.setFont(new Font("Inter", Font.PLAIN, 16));
 		txtAdministrador.setBackground(new Color(255, 255, 162));
 		txtAdministrador.setBounds(50, 67, 353, 50);
 		panel_1.add(txtAdministrador);
@@ -112,13 +115,17 @@ public class Login {
 		txtAdministrador.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(Login.class.getResource("/imagenes/candado3.png")));
-		lblNewLabel_3.setBounds(49, 179, 98, 60);
+		lblNewLabel_3.setBounds(68, 184, 65, 41);
+		ImageIcon portada1 =new ImageIcon("img/candado4.png");
+        Image portada2= portada1.getImage();
+        Image portada3=portada2.getScaledInstance(65, 41,Image.SCALE_SMOOTH);
+        lblNewLabel_3 .setIcon(new ImageIcon(portada3));
 		panel_1.add(lblNewLabel_3);
 		
 		textField_1 = new JTextField();
 		textField_1.setBackground(new Color(255, 255, 149));
 		textField_1.setBounds(50, 179, 353, 50);
+		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
