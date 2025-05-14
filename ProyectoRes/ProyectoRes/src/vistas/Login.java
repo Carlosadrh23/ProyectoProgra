@@ -50,10 +50,12 @@ public class Login {
 			}
 		});
 	}
-
+	
+	
 	/**
 	 * Create the application.
 	 */
+	    
 	public Login() {
 		
 		try {
@@ -83,32 +85,38 @@ public class Login {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("PUNTO Y COMIDA");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel.setForeground(new Color(149, 53, 61));
-		lblNewLabel.setBounds(474, 165, 279, 61);
+		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 20));
+		lblNewLabel.setForeground(new Color(130, 48, 56));
+		lblNewLabel.setBounds(472, 200, 279, 61);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/imagenes/botella3.png")));
-		lblNewLabel_1.setBounds(523, 0, 159, 190);
+		lblNewLabel_1.setBounds(515, 21, 91, 137);
+		ImageIcon p1 =new ImageIcon("img/botella.png");
+        Image p2= p1.getImage();
+        Image p3=p2.getScaledInstance(91, 137,Image.SCALE_SMOOTH);
+        lblNewLabel_1 .setIcon(new ImageIcon(p3));
 		panel.add(lblNewLabel_1);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(149, 53, 61));
-		panel_1.setBounds(338, 272, 454, 379);
+		RoundedPanel panel_1 = new RoundedPanel(15);//redondeado de esquina
+		panel_1.setBackground(new Color(130, 48, 56));
+		panel_1.setBounds(333, 296, 454, 411);
 		panel.add(panel_1);
-		panel_1.setLayout(null);
 		
-		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(Login.class.getResource("/imagenes/admis.png")));
-		lblNewLabel_2.setBounds(68, 67, 91, 50);
+        
+        JLabel lblNewLabel_2 = new JLabel("");
+        lblNewLabel_2.setBounds(68, 76, 56, 34);
+		ImageIcon b1 =new ImageIcon("img/admin4.png");
+        Image b2= b1.getImage();
+        Image b3=b2.getScaledInstance(56, 34,Image.SCALE_SMOOTH);
+        panel_1.setLayout(null);
+        lblNewLabel_2 .setIcon(new ImageIcon(b3));
 		panel_1.add(lblNewLabel_2);
 		
 		txtAdministrador = new JTextField("Administrador");
-		txtAdministrador.setFont(new Font("Inter", Font.PLAIN, 16));
-		txtAdministrador.setBackground(new Color(255, 255, 162));
 		txtAdministrador.setBounds(50, 67, 353, 50);
+		txtAdministrador.setFont(new Font("Inter", Font.PLAIN, 16));
+		txtAdministrador.setBackground(new Color(242, 255, 168));
 		panel_1.add(txtAdministrador);
 		txtAdministrador.setEditable(false);
 		txtAdministrador.setHorizontalAlignment(JTextField.CENTER);
@@ -116,26 +124,28 @@ public class Login {
 		
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setBounds(68, 184, 65, 41);
-		ImageIcon portada1 =new ImageIcon("img/candado4.png");
+		ImageIcon portada1 =new ImageIcon("img/candado1.png");
         Image portada2= portada1.getImage();
         Image portada3=portada2.getScaledInstance(65, 41,Image.SCALE_SMOOTH);
         lblNewLabel_3 .setIcon(new ImageIcon(portada3));
 		panel_1.add(lblNewLabel_3);
 		
 		textField_1 = new JTextField();
-		textField_1.setBackground(new Color(255, 255, 149));
 		textField_1.setBounds(50, 179, 353, 50);
+		textField_1.setBackground(new Color(242, 255, 168));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Iniciar sesión");
+		btnNewButton.setBounds(168, 280, 109, 50);
 		btnNewButton.setFont(new Font("Inter", Font.PLAIN, 12));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(0, 168, 0));
-		btnNewButton.setBounds(172, 280, 105, 46);
+		btnNewButton.setForeground(new Color(242, 255, 168));
+		btnNewButton.setBackground(new Color(32, 175, 44));
 		panel_1.add(btnNewButton);
+		
+		
 		
 		
 	}

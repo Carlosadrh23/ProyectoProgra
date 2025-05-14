@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Comedor {
+public class Menu {
 
 	private JFrame frame;
 
@@ -23,7 +23,7 @@ public class Comedor {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Comedor window = new Comedor();
+					Menu window = new Menu();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class Comedor {
 	/**
 	 * Create the application.
 	 */
-	public Comedor() {
+	public Menu() {
 		initialize();
 	}
 
@@ -89,33 +89,15 @@ public class Comedor {
 		btnNewButton_4.setBounds(909, 0, 227, 49);
 		panel.add(btnNewButton_4);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(259, 253, 240, 192);
-		ImageIcon p1 =new ImageIcon("img/cuenta.png");
-        Image p2= p1.getImage();
-        Image p3=p2.getScaledInstance(234, 192,Image.SCALE_SMOOTH);
-        lblNewLabel .setIcon(new ImageIcon(p3));
-		panel.add(lblNewLabel);
 		
-		JButton btnNewButton_5 = new JButton("Abrir cuenta");
-		btnNewButton_5.setBackground(new Color(217, 217, 217));
-		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 13));
-		btnNewButton_5.setBounds(259, 447, 240, 49);
-		panel.add(btnNewButton_5);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(660, 253, 234, 192);
-		ImageIcon portada1 =new ImageIcon("img/consulcuent.png");
-        Image portada2= portada1.getImage();
-        Image portada3=portada2.getScaledInstance(234, 192,Image.SCALE_SMOOTH);
-        lblNewLabel_1 .setIcon(new ImageIcon(portada3));
-		panel.add(lblNewLabel_1);
 		
-		JButton btnNewButton_6 = new JButton("Consultar cuenta");
-		btnNewButton_6.setBackground(new Color(217, 217, 217));
-		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 13));
-		btnNewButton_6.setBounds(660, 447, 234, 49);
-		panel.add(btnNewButton_6);
+		
+		
+		
+		
+	
+
 	}
 
 }
