@@ -1,20 +1,18 @@
 package vistas;
 
+import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class SeleccionDeCantidad {
+public class SeleccionDeBebida {
 
 	private JFrame frame;
 
@@ -25,7 +23,7 @@ public class SeleccionDeCantidad {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SeleccionDeCantidad window = new SeleccionDeCantidad();
+					SeleccionDeBebida window = new SeleccionDeBebida();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +35,7 @@ public class SeleccionDeCantidad {
 	/**
 	 * Create the application.
 	 */
-	public SeleccionDeCantidad() {
+	public SeleccionDeBebida() {
 		initialize();
 	}
 
@@ -63,32 +61,44 @@ public class SeleccionDeCantidad {
 		lblNewLabel.setBounds(135, 10, 281, 30);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Seleccióna la cantidad");
+		JLabel lblNewLabel_1 = new JLabel("Seleccióne el refresco");
 		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(193, 63, 161, 13);
 		panel.add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("-");
+		JButton btnNewButton = new JButton("");
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setBounds(67, 117, 68, 59);
+		ImageIcon b1 =new ImageIcon("img/CocaColaLogo.png");
+        Image b2= b1.getImage();
+        Image b3=b2.getScaledInstance(68, 59,Image.SCALE_SMOOTH);
+        btnNewButton .setIcon(new ImageIcon(b3));
 		panel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("1");
+		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton_1.setBackground(new Color(255, 255, 255));
 		btnNewButton_1.setBounds(235, 117, 68, 59);
+		ImageIcon c1 =new ImageIcon("img/SpriteLogo.png");
+        Image c2= c1.getImage();
+        Image c3=c2.getScaledInstance(68, 59,Image.SCALE_SMOOTH);
+        btnNewButton_1 .setIcon(new ImageIcon(c3));
 		panel.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("+");
+		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton_2.setBackground(new Color(255, 255, 255));
 		btnNewButton_2.setBounds(406, 117, 68, 59);
+		ImageIcon d1 =new ImageIcon("img/MundetLogo.png");
+        Image d2= d1.getImage();
+        Image d3=d2.getScaledInstance(68, 59,Image.SCALE_SMOOTH);
+        btnNewButton_2 .setIcon(new ImageIcon(d3));
 		panel.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("CANCELAR");
 		btnNewButton_3.setBackground(new Color(255, 255, 255));
-		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 9));
+		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_3.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewButton_3.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -116,4 +126,5 @@ public class SeleccionDeCantidad {
         btnNewButton_4 .setIcon(new ImageIcon(portada3));
 		panel.add(btnNewButton_4);
 	}
+
 }

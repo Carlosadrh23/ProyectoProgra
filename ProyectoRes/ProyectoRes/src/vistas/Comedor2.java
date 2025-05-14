@@ -128,7 +128,7 @@ public class Comedor2 {
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnNewButton_5 = new JButton("ACEPTAR");
+		JButton btnNewButton_5 = new JButton("CANCELAR");
 		btnNewButton_5.setBackground(new Color(255, 255, 255));
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_5.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -137,13 +137,13 @@ public class Comedor2 {
 		btnNewButton_5.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_5.setIconTextGap(1);
 		btnNewButton_5.setBounds(139, 181, 103, 49);
-		ImageIcon portada1 =new ImageIcon("img/aceptar.png");
+		ImageIcon portada1 =new ImageIcon("img/cancelar.png");
         Image portada2= portada1.getImage();
         Image portada3=portada2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
         btnNewButton_5 .setIcon(new ImageIcon(portada3));
 		panel_1.add(btnNewButton_5);
 		
-		JButton btnNewButton_6 = new JButton("CANCELAR");
+		JButton btnNewButton_6 = new JButton("ACEPTAR");
 		btnNewButton_6.setBackground(new Color(255, 255, 255));
 		btnNewButton_6.setFont(new Font("Ineter", Font.BOLD, 10));
 		btnNewButton_6.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -152,7 +152,7 @@ public class Comedor2 {
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
 		btnNewButton_6.setBounds(294, 181, 95, 49);
-		ImageIcon p1 =new ImageIcon("img/cancelar.png");
+		ImageIcon p1 =new ImageIcon("img/aceptar.png");
         Image p2= p1.getImage();
         Image p3=p2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
         btnNewButton_6 .setIcon(new ImageIcon(p3));
