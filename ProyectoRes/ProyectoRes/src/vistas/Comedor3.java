@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -96,7 +97,7 @@ public class Comedor3 {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBorder(new MatteBorder(0, 4, 0, 0, Color.BLACK));
+		panel_1.setBorder(new MatteBorder(0, 1, 0, 0, Color.BLACK));
 		panel_1.setBounds(315, 136, 838, 591);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -131,13 +132,15 @@ public class Comedor3 {
 		btnNewButton_9.setBounds(280, 88, 260, 88);
 		panel_1.add(btnNewButton_9);
 		
-		JPanel panel_2 = new JPanel();
+		RoundedPanel panel_2 = new RoundedPanel(20);
 		panel_2.setBackground(new Color(217, 217, 217));
+		Border borde = BorderFactory.createLineBorder(Color.BLACK, 0);
+        panel_2.setBorder(borde);
 		panel_2.setBounds(56, 243, 704, 338);
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JButton btnNewButton_10 = new JButton("HAMBURGUESA COMO COMBO CLÁSICO");
+		JButton btnNewButton_10 = new JButton("HAMBURGUESA\r\n COMO\r\n COMBO CLÁSICO");
 		btnNewButton_10.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_10.setHorizontalTextPosition(SwingConstants.LEFT);
 		btnNewButton_10.setVerticalTextPosition(SwingConstants.CENTER);
