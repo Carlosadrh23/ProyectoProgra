@@ -1,4 +1,4 @@
-package vistas;
+/*package vistas;
 
 import java.awt.EventQueue;
 
@@ -14,9 +14,7 @@ public class HistorialyConsulta {
 
 	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -30,17 +28,13 @@ public class HistorialyConsulta {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+	
 	public HistorialyConsulta() {
 		initialize();
 		
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
@@ -49,7 +43,7 @@ public class HistorialyConsulta {
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 10, 235, 62);
+		panel.setBounds(619, 10, 236, 62);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -69,38 +63,31 @@ public class HistorialyConsulta {
 		
 	
 	}
-}
-/*
- * package vistas;
-								mire que para llamar a esta clase la tenia que convertir a jpanel 
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Color;
+}*/
+
+package vistas;
+
+import javax.swing.*;
+import java.awt.*;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class HistorialyConsulta extends JPanel {
-
     public HistorialyConsulta() {
-        setLayout(null);
-        setBounds(0, 50, 1150, 749); 
+        setLayout(new GridLayout(2, 1));  // 2 filas, 1 columna, que ocupa todo el panel
 
-        JPanel panel = new JPanel();
-        panel.setBounds(10, 10, 235, 62);
-        add(panel);
-        panel.setLayout(null);
+        JButton btnHistorial = new JButton("Historial de factura");
+        btnHistorial.setForeground(Color.WHITE);
+        btnHistorial.setBackground(new Color(170, 170, 170));
+        btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
+        add(btnHistorial);
 
-        JButton btnNewButton = new JButton("Historial de factura");
-        btnNewButton.setForeground(new Color(255, 255, 255));
-        btnNewButton.setBackground(new Color(170, 170, 170));
-        btnNewButton.setFont(new Font("Inter", Font.BOLD, 14));
-        btnNewButton.setBounds(0, 0, 235, 31);
-        panel.add(btnNewButton);
-
-        JButton btnNewButton_1 = new JButton("Consulta de cuenta");
-        btnNewButton_1.setForeground(new Color(255, 255, 255));
-        btnNewButton_1.setBackground(new Color(170, 170, 170));
-        btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 14));
-        btnNewButton_1.setBounds(0, 29, 235, 31);
-        panel.add(btnNewButton_1);
+        JButton btnConsulta = new JButton("Consulta de cuenta");
+        btnConsulta.setForeground(Color.WHITE);
+        btnConsulta.setBackground(new Color(170, 170, 170));
+        btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
+        add(btnConsulta);
     }
-}*/
+}
+

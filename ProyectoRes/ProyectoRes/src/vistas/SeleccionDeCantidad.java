@@ -89,12 +89,17 @@ public class SeleccionDeCantidad {
 		JButton btnNewButton_3 = new JButton("CANCELAR");
 		btnNewButton_3.setBackground(new Color(255, 255, 255));
 		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 9));
+		
+		btnNewButton_3.setFocusPainted(false);
+		btnNewButton_3.setContentAreaFilled(true);
+		
 		btnNewButton_3.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewButton_3.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_3.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_3.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_3.setIconTextGap(1);
 		btnNewButton_3.setBounds(146, 224, 92, 49);
+		
 		ImageIcon a1 =new ImageIcon("img/cancelar.png");
         Image a2= a1.getImage();
         Image a3=a2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
@@ -104,12 +109,17 @@ public class SeleccionDeCantidad {
 		JButton btnNewButton_4 = new JButton("ACEPTAR");
 		btnNewButton_4.setBackground(new Color(255, 255, 255));
 		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 9));
+		//QUITA EL BORDE DE LA IMAGEN
+		btnNewButton_4.setFocusPainted(false);
+		btnNewButton_4.setContentAreaFilled(true);
+		//TEXTO ABAJO DE LA IMAGEN
 		btnNewButton_4.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewButton_4.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_4.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		//IMAGEN
 		ImageIcon portada1 =new ImageIcon("img/aceptar.png");
         Image portada2= portada1.getImage();
         Image portada3=portada2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);

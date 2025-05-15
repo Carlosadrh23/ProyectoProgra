@@ -99,7 +99,7 @@ public class SeleccionDeBebida {
 		JButton btnNewButton_3 = new JButton("CANCELAR");
 		btnNewButton_3.setBackground(new Color(255, 255, 255));
 		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 10));
-		btnNewButton_3.setVerticalTextPosition(SwingConstants.BOTTOM); //ESTE ES PARA PONER EL TEXTO EN LA PARTE DE ABAJO
+		btnNewButton_3.setVerticalTextPosition(SwingConstants.BOTTOM); //ESTE ES PARA PONER EL TEXTO EN LA PARTE DE ABAJO de la imagen
 		btnNewButton_3.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_3.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_3.setVerticalAlignment(SwingConstants.CENTER);
@@ -114,7 +114,7 @@ public class SeleccionDeBebida {
 		JButton btnNewButton_4 = new JButton("ACEPTAR");
 		btnNewButton_4.setBackground(new Color(255, 255, 255));
 		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 9));
-		btnNewButton_4.setVerticalTextPosition(SwingConstants.BOTTOM);	//ESTE ES PARA PONER EL TEXTO EN LA PARTE DE ABAJO
+		btnNewButton_4.setVerticalTextPosition(SwingConstants.BOTTOM);	//ESTE ES PARA PONER EL TEXTO EN LA PARTE DE ABAJO de la imagen
 		btnNewButton_4.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_4.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);

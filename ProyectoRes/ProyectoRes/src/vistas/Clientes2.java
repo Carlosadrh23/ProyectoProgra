@@ -2,10 +2,12 @@ package vistas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,9 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class Clientes2 {
 
@@ -45,15 +50,16 @@ public class Clientes2 {
 	 * Create the application.
 	 */
 	public Clientes2() {
-		initialize();
-		/*try {
+		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  
-            UIManager.put("TextComponent.arc", 20);//textfield redondeadas
-            UIManager.put("Buttom.arc", 700); // Esquinas redondeadas
+            UIManager.put("TextComponent.arc", 20);//textfield redondeado
+            UIManager.put("Buttom.arc", 200); // Esquinas redondeadas
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		*/
+		
+		initialize();
+		
 		
 	}
 
@@ -143,6 +149,13 @@ public class Clientes2 {
         Image b3=b2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
         btnNewButton_6 .setIcon(new ImageIcon(b3));
 		panel.add(btnNewButton_6);
+
+		JLabel icono = new JLabel();
+		ImageIcon iconoImg = new ImageIcon("img/lupa.png");
+		Image imagen = iconoImg.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		icono.setIcon(new ImageIcon(imagen));
+		icono.setBounds(5, 5, 30, 30); // posición dentro del panel
+		panel.add(icono);
 		
 		textField_1 = new JTextField();
 		textField_1.setBackground(new Color(190, 190, 190));
@@ -152,12 +165,7 @@ public class Clientes2 {
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(371, 150, 45, 43);
-		ImageIcon a1 =new ImageIcon("img/lupa.png");
-        Image a2= a1.getImage();
-        Image a3=a2.getScaledInstance(123, 200,Image.SCALE_SMOOTH);
-		panel.add(lblNewLabel_1);
+	
 		
 		JButton btnNewButton_7 = new JButton("BORRAR");
 		btnNewButton_7.setBackground(new Color(190, 190, 190));
@@ -175,13 +183,57 @@ public class Clientes2 {
         btnNewButton_7 .setIcon(new ImageIcon(c3));
 		panel.add(btnNewButton_7);
 		
-		table = new JTable();
-		table.setToolTipText("");
-		table.setSurrendersFocusOnKeystroke(true);
-		table.setBounds(80, 249, 968, 439);
-		panel.add(table);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(140, 296, 795, 260);
+		panel.add(scrollPane);
 		
-		
-		
+
+		String[] columnas = {"ID cliente", "Nombre", "RFC"};
+		String[][] datos = {
+			{"C7283945", "Laura Fernanda Mendoza Ruiz", "LOPR8402"},
+			{"C1038472", "Esteban Ríos Calderón", "XACM7501"},
+			{"C5892371", "Camila Duarte Sánchez", "RODJ9011"},
+			{"C2947103", "Marcos Antonio Salgado Varela", "TEAG8010"},
+			{"C6739201", "Tomás Eduardo Aguirre Morales", "FAGM8512"},
+			{"C3478120", "Valeria Ponce Rodríguez", "VELD9203"},
+			{"C9012843", "Rafael Ibáñez Castillo", "NOMI9302"},
+			{"C7653902", "Diego Aranda Gutiérrez", "ZULM8701"}
+		};
+
+		table = new JTable(datos, columnas) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table.setFont(new Font("Inter", Font.PLAIN, 14)); //son para la fuente , mostrar las lineas , color y altura
+		table.setRowHeight(30);
+		table.setShowGrid(true);
+		table.setGridColor(Color.BLACK);
+		table.getTableHeader().setReorderingAllowed(false);
+
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		for (int i = 0; i < table.getColumnCount(); i++) {
+			table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+		}
+
+		JTableHeader header = table.getTableHeader();
+		header.setFont(new Font("Inter", Font.BOLD, 14));
+		header.setDefaultRenderer(new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value,
+								boolean isSelected, boolean hasFocus, int row, int column) {
+				JLabel label = new JLabel(value.toString(), JLabel.CENTER);
+				label.setFont(new Font("Inter", Font.BOLD, 14));
+				label.setBackground(new Color(220, 220, 220));
+				label.setOpaque(true);
+				label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				return label;
+			}
+		});
+		//scroll la barra
+		scrollPane.setViewportView(table);
 	}
-}
+
+	}

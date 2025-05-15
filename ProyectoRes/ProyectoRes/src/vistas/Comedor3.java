@@ -140,7 +140,7 @@ public class Comedor3 {
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JButton btnNewButton_10 = new JButton("HAMBURGUESA\r\n COMO\r\n COMBO CLÁSICO");
+		JButton btnNewButton_10 = new JButton("<html><div style='text-align:center;'>HAMBURGUESA COMBO CLÁSICO<br><br></div></html>");
 		btnNewButton_10.setBackground(new Color(255, 255, 255));
 		btnNewButton_10.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_10.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -153,8 +153,9 @@ public class Comedor3 {
         btnNewButton_10 .setIcon(new ImageIcon(p3));
 		panel_2.add(btnNewButton_10);
 		
-		JButton btnNewButton_11 = new JButton("HAMBURGUESA CON CHAMPIÑÓN COMBO");
+		JButton btnNewButton_11 = new JButton("<html><div style='text-align:center;'>HAMBURGUESA CON CHAMPIÑÓN COMBO<br><br></div></html>");
 		btnNewButton_11.setBackground(new Color(255, 255, 255));
+		btnNewButton_11.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_11.setHorizontalTextPosition(SwingConstants.LEFT);
 		btnNewButton_11.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_11.setIconTextGap(20);
@@ -165,8 +166,9 @@ public class Comedor3 {
         btnNewButton_11 .setIcon(new ImageIcon(a3));
 		panel_2.add(btnNewButton_11);
 		
-		JButton btnNewButton_12 = new JButton("HAMBURGUESA HAWAIANA COMBO");
+		JButton btnNewButton_12 = new JButton("<html><div style='text-align:center;'>HAMBURGUESA HAWAIANA COMBO<br><br></div></html>");
 		btnNewButton_12.setBackground(new Color(255, 255, 255));
+		btnNewButton_12.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_12.setHorizontalTextPosition(SwingConstants.LEFT);
 		btnNewButton_12.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_12.setIconTextGap(20);

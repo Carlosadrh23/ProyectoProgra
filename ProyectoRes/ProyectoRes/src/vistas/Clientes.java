@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class Clientes {
 
@@ -81,20 +83,27 @@ public class Clientes {
 		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton_3.setBounds(677, 0, 234, 49);
 		panel.add(btnNewButton_3);
-		
-	/*	JPanel panelContenido = new JPanel(); aqui intente llamar al panel de la clase histarial y consulta 
-		panelContenido.setBounds(677, 50, 234, 50); 
-		panelContenido.setLayout(null);
-		panel.add(panelContenido);
+
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
+		JPanel panelContenido = new JPanel();
+		panelContenido.setBounds(677, 49, 234, 65);
 		panelContenido.setLayout(new BorderLayout());
-		panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+		panelContenido.setVisible(false);
+		panelContenido.setOpaque(false);
+		panel.add(panelContenido);
+
 		btnNewButton_3.addActionListener(e -> {
-		    panelContenido.removeAll();
-		    panelContenido.add(new HistorialyConsulta());
+		    if (panelContenido.isVisible()) {
+		        panelContenido.setVisible(false);
+		        panelContenido.removeAll();
+		    } else {
+		        panelContenido.removeAll();
+		        panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+		        panelContenido.setVisible(true);
+		    }
 		    panelContenido.revalidate();
 		    panelContenido.repaint();
-		});*/
-		
+		});
 		
 		JButton btnNewButton_4 = new JButton("Usuarios");
 		btnNewButton_4.setForeground(new Color(255, 255, 255));
