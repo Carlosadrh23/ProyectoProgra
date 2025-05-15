@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 
-public class Comedor3 {
+public class AbrirCuenta2 {
 
 	private JFrame frame;
 
@@ -28,7 +28,7 @@ public class Comedor3 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Comedor3 window = new Comedor3();
+					AbrirCuenta2 window = new AbrirCuenta2();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class Comedor3 {
 	/**
 	 * Create the application.
 	 */
-	public Comedor3() {
+	public AbrirCuenta2() {
 		initialize();
 	}
 

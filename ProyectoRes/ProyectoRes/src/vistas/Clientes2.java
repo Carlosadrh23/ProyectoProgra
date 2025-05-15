@@ -150,12 +150,12 @@ public class Clientes2 {
         btnNewButton_6 .setIcon(new ImageIcon(b3));
 		panel.add(btnNewButton_6);
 
-		JLabel icono = new JLabel();
-		ImageIcon iconoImg = new ImageIcon("img/lupa.png");
-		Image imagen = iconoImg.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-		icono.setIcon(new ImageIcon(imagen));
-		icono.setBounds(5, 5, 30, 30); // posición dentro del panel
-		panel.add(icono);
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(371, 150, 45, 43);
+		ImageIcon a1 =new ImageIcon("img/lupa.png");
+        Image a2= a1.getImage();
+        Image a3=a2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
+		panel.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
 		textField_1.setBackground(new Color(190, 190, 190));
