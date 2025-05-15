@@ -44,8 +44,8 @@ public class Comedor {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
+		frame.setAlwaysOnTop(true);
 		frame.setBounds(100, 100, 1150, 799);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

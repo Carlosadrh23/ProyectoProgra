@@ -1,5 +1,5 @@
 package vistas;
-
+					//esta clase fue para hacer el panel con esquinas redondas
 
 	import javax.swing.*;
 	import java.awt.*;

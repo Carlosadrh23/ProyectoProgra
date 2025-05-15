@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Menu {
+public class Clientes {
 
 	private JFrame frame;
 
@@ -23,7 +23,7 @@ public class Menu {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Menu window = new Menu();
+					Clientes window = new Clientes();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class Menu {
 	/**
 	 * Create the application.
 	 */
-	public Menu() {
+	public Clientes() {
 		initialize();
 	}
 
@@ -44,8 +44,8 @@ public class Menu {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
+		frame.setAlwaysOnTop(true);
 		frame.setBounds(100, 100, 1150, 799);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -72,7 +72,7 @@ public class Menu {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
-		btnNewButton_2.setBounds(452, 0, 234, 49);
+		btnNewButton_2.setBounds(452, 0, 227, 49);
 		panel.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -82,6 +82,20 @@ public class Menu {
 		btnNewButton_3.setBounds(677, 0, 234, 49);
 		panel.add(btnNewButton_3);
 		
+	/*	JPanel panelContenido = new JPanel(); aqui intente llamar al panel de la clase histarial y consulta 
+		panelContenido.setBounds(677, 50, 234, 50); 
+		panelContenido.setLayout(null);
+		panel.add(panelContenido);
+		panelContenido.setLayout(new BorderLayout());
+		panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+		btnNewButton_3.addActionListener(e -> {
+		    panelContenido.removeAll();
+		    panelContenido.add(new HistorialyConsulta());
+		    panelContenido.revalidate();
+		    panelContenido.repaint();
+		});*/
+		
+		
 		JButton btnNewButton_4 = new JButton("Usuarios");
 		btnNewButton_4.setForeground(new Color(255, 255, 255));
 		btnNewButton_4.setBackground(new Color(50, 98, 115));
@@ -89,15 +103,32 @@ public class Menu {
 		btnNewButton_4.setBounds(909, 0, 227, 49);
 		panel.add(btnNewButton_4);
 		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(259, 253, 240, 192);
+		ImageIcon p1 =new ImageIcon("img/cuenta.png");
+        Image p2= p1.getImage();
+        Image p3=p2.getScaledInstance(234, 192,Image.SCALE_SMOOTH);
+        lblNewLabel .setIcon(new ImageIcon(p3));
+		panel.add(lblNewLabel);
 		
+		JButton btnNewButton_5 = new JButton("Abrir cuenta");
+		btnNewButton_5.setBackground(new Color(217, 217, 217));
+		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 13));
+		btnNewButton_5.setBounds(259, 447, 240, 49);
+		panel.add(btnNewButton_5);
 		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(660, 253, 234, 192);
+		ImageIcon portada1 =new ImageIcon("img/consulcuent.png");
+        Image portada2= portada1.getImage();
+        Image portada3=portada2.getScaledInstance(234, 192,Image.SCALE_SMOOTH);
+        lblNewLabel_1 .setIcon(new ImageIcon(portada3));
+		panel.add(lblNewLabel_1);
 		
-		
-		
-		
-		
-	
-
+		JButton btnNewButton_6 = new JButton("Consultar cuenta");
+		btnNewButton_6.setBackground(new Color(217, 217, 217));
+		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 13));
+		btnNewButton_6.setBounds(660, 447, 234, 49);
+		panel.add(btnNewButton_6);
 	}
-
 }
