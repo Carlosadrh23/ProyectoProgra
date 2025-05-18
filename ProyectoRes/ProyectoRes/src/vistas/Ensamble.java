@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Comedor {
+public class Ensamble {
 
 	private JFrame frame;
 
@@ -23,7 +23,7 @@ public class Comedor {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Comedor window = new Comedor();
+					Ensamble window = new Ensamble();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class Comedor {
 	/**
 	 * Create the application.
 	 */
-	public Comedor() {
+	public Ensamble() {
 		initialize();
 	}
 
@@ -48,87 +48,95 @@ public class Comedor {
 		frame.setAlwaysOnTop(true);
 		frame.setBounds(100, 100, 1150, 799);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 215));
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		// boton de comedor
+		
 		JButton btnNewButton = new JButton("Comedor");
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.setBounds(0, 0, 234, 49);
-		btnNewButton.setFocusPainted(false);
-		btnNewButton.setContentAreaFilled(true);
 		panel.add(btnNewButton);
-		// boton de ensamble
+		
 		JButton btnNewButton_1 = new JButton("Ensamble");
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(50, 98, 115));
 		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 15));
-		btnNewButton_1.setBounds(230, 0, 234, 49);
-		btnNewButton_1.setFocusPainted(false);
-		btnNewButton_1.setContentAreaFilled(true);
+		btnNewButton_1.setBounds(226, 0, 227, 49);
 		panel.add(btnNewButton_1);
-		// boton de inventario
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
+				JPanel panelContenido = new JPanel();
+				panelContenido.setBounds(226, 49, 227, 65);
+				panelContenido.setLayout(new BorderLayout());
+				panelContenido.setVisible(false);
+				panelContenido.setOpaque(false);
+				panel.add(panelContenido);
+
+				btnNewButton_1.addActionListener(e -> {
+				    if (panelContenido.isVisible()) {
+				        panelContenido.setVisible(false);
+				        panelContenido.removeAll();
+				    } else {
+				        panelContenido.removeAll();
+				        panelContenido.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				        panelContenido.setVisible(true);
+				    }
+				    panelContenido.revalidate();
+				    panelContenido.repaint();
+				});
+		
 		JButton btnNewButton_2 = new JButton("Inventario");
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
-		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
-		btnNewButton_2.setBounds(462, 0, 209, 49);
-		btnNewButton_2.setFocusPainted(false);
-		btnNewButton_2.setContentAreaFilled(true);
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.setBounds(452, 0, 227, 49);
 		panel.add(btnNewButton_2);
-		// boton de clientes
+		
 		JButton btnNewButton_3 = new JButton("Clientes");
 		btnNewButton_3.setForeground(new Color(255, 255, 255));
 		btnNewButton_3.setBackground(new Color(50, 98, 115));
 		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 15));
-		btnNewButton_3.setBounds(669, 0, 234, 49);
-		btnNewButton_3.setFocusPainted(false);
-		btnNewButton_3.setContentAreaFilled(true);
+		btnNewButton_3.setBounds(677, 0, 234, 49);
 		panel.add(btnNewButton_3);
-		// boton de usuarios
+
+	
+		
 		JButton btnNewButton_4 = new JButton("Usuarios");
 		btnNewButton_4.setForeground(new Color(255, 255, 255));
 		btnNewButton_4.setBackground(new Color(50, 98, 115));
 		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 15));
-		btnNewButton_4.setBounds(902, 0, 234, 49);
-		btnNewButton_4.setFocusPainted(false);
-		btnNewButton_4.setContentAreaFilled(true);
+		btnNewButton_4.setBounds(909, 0, 227, 49);
 		panel.add(btnNewButton_4);
-
+		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(259, 253, 240, 192);
-		ImageIcon p1 = new ImageIcon("img/cuenta.png");
-		Image p2 = p1.getImage();
-		Image p3 = p2.getScaledInstance(234, 192, Image.SCALE_SMOOTH);
-		lblNewLabel.setIcon(new ImageIcon(p3));
+		ImageIcon p1 =new ImageIcon("img/cuenta.png");
+        Image p2= p1.getImage();
+        Image p3=p2.getScaledInstance(234, 192,Image.SCALE_SMOOTH);
+        lblNewLabel .setIcon(new ImageIcon(p3));
 		panel.add(lblNewLabel);
-
+		
 		JButton btnNewButton_5 = new JButton("Abrir cuenta");
 		btnNewButton_5.setBackground(new Color(217, 217, 217));
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 13));
 		btnNewButton_5.setBounds(259, 447, 240, 49);
-		btnNewButton_5.setFocusPainted(false);
-		btnNewButton_5.setContentAreaFilled(true);
 		panel.add(btnNewButton_5);
-
+		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(660, 253, 234, 192);
-		ImageIcon portada1 = new ImageIcon("img/consulcuent.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(234, 192, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(portada3));
+		ImageIcon portada1 =new ImageIcon("img/consulcuent.png");
+        Image portada2= portada1.getImage();
+        Image portada3=portada2.getScaledInstance(234, 192,Image.SCALE_SMOOTH);
+        lblNewLabel_1 .setIcon(new ImageIcon(portada3));
 		panel.add(lblNewLabel_1);
-
+		
 		JButton btnNewButton_6 = new JButton("Consultar cuenta");
 		btnNewButton_6.setBackground(new Color(217, 217, 217));
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 13));
 		btnNewButton_6.setBounds(660, 447, 234, 49);
-		btnNewButton_6.setFocusPainted(false);
-		btnNewButton_6.setContentAreaFilled(true);
 		panel.add(btnNewButton_6);
 	}
 

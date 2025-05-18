@@ -49,7 +49,7 @@ public class AbrirCuenta2 {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setAlwaysOnTop(true);
+		frame.setAlwaysOnTop(false);
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1150, 799);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

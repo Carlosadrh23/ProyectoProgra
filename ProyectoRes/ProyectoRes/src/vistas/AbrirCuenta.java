@@ -59,40 +59,50 @@ public class AbrirCuenta {
 		panel.setBackground(new Color(255, 255, 215));
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
+		//boton de comedor
 		JButton btnNewButton = new JButton("Comedor");
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.setBounds(0, 0, 234, 49);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(true);
 		panel.add(btnNewButton);
-		
+		//boton de ensamble
 		JButton btnNewButton_1 = new JButton("Ensamble");
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(50, 98, 115));
 		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton_1.setBounds(230, 0, 234, 49);
+		btnNewButton_1.setFocusPainted(false);
+		btnNewButton_1.setContentAreaFilled(true);
 		panel.add(btnNewButton_1);
-		
+		//boton de inventario
 		JButton btnNewButton_2 = new JButton("Inventario");
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton_2.setBounds(462, 0, 209, 49);
+		btnNewButton_2.setFocusPainted(false);
+		btnNewButton_2.setContentAreaFilled(true);
 		panel.add(btnNewButton_2);
-		
+		//boton de clientes
 		JButton btnNewButton_3 = new JButton("Clientes");
 		btnNewButton_3.setForeground(new Color(255, 255, 255));
 		btnNewButton_3.setBackground(new Color(50, 98, 115));
 		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton_3.setBounds(669, 0, 234, 49);
+		btnNewButton_3.setFocusPainted(false);
+		btnNewButton_3.setContentAreaFilled(true);
 		panel.add(btnNewButton_3);
-		
+		//boton de usuarios
 		JButton btnNewButton_4 = new JButton("Usuarios");
 		btnNewButton_4.setForeground(new Color(255, 255, 255));
 		btnNewButton_4.setBackground(new Color(50, 98, 115));
 		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton_4.setBounds(902, 0, 234, 49);
+		btnNewButton_4.setFocusPainted(false);
+		btnNewButton_4.setContentAreaFilled(true);
 		panel.add(btnNewButton_4);
 		
 		JPanel panel_1 = new JPanel();
@@ -137,6 +147,8 @@ public class AbrirCuenta {
 		btnNewButton_5.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_5.setIconTextGap(1);
 		btnNewButton_5.setBounds(139, 181, 103, 49);
+		btnNewButton_5.setFocusPainted(false);
+		btnNewButton_5.setContentAreaFilled(true);
 		ImageIcon portada1 =new ImageIcon("img/cancelar.png");
         Image portada2= portada1.getImage();
         Image portada3=portada2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
@@ -152,6 +164,8 @@ public class AbrirCuenta {
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
 		btnNewButton_6.setBounds(294, 181, 95, 49);
+		btnNewButton_6.setFocusPainted(false);
+		btnNewButton_6.setContentAreaFilled(true);
 		ImageIcon p1 =new ImageIcon("img/aceptar.png");
         Image p2= p1.getImage();
         Image p3=p2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);

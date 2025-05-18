@@ -121,10 +121,13 @@ public class Login {
 		txtAdministrador.setEditable(false);
 		txtAdministrador.setHorizontalAlignment(JTextField.CENTER);
 		txtAdministrador.setColumns(10);
+		txtAdministrador.setBorder(BorderFactory.createEmptyBorder());
+		txtAdministrador.setOpaque(true);
+		txtAdministrador.setFocusable(false);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setBounds(68, 184, 65, 41);
-		ImageIcon portada1 =new ImageIcon("img/candado1.png");
+		ImageIcon portada1 =new ImageIcon("img/candado_1.png");
         Image portada2= portada1.getImage();
         Image portada3=portada2.getScaledInstance(65, 41,Image.SCALE_SMOOTH);
         lblNewLabel_3 .setIcon(new ImageIcon(portada3));

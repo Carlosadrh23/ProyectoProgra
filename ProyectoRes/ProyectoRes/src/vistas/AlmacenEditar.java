@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -20,11 +22,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
 
-public class Clientes2 {
-
+public class AlmacenEditar {
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -37,7 +36,7 @@ public class Clientes2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Clientes2 window = new Clientes2();
+					AlmacenEditar window = new AlmacenEditar();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,18 +48,15 @@ public class Clientes2 {
 	/**
 	 * Create the application.
 	 */
-	public Clientes2() {
+	public AlmacenEditar() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  
-            UIManager.put("TextComponent.arc", 20);//textfield redondeado
-            UIManager.put("Buttom.arc", 200); // Esquinas redondeadas
+            UIManager.put("TextComponent.arc", 30);//textfield redondeadas
+            UIManager.put("Buttom.arc", 700); // Esquinas redondeadas
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		
 		initialize();
-		
-		
 	}
 
 	/**
@@ -78,6 +74,7 @@ public class Clientes2 {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		// Botones del menú superior
 		JButton btnNewButton = new JButton("Comedor");
 		btnNewButton.setBounds(0, 0, 234, 49);
 		btnNewButton.setForeground(new Color(255, 255, 255));
@@ -113,11 +110,12 @@ public class Clientes2 {
 		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 15));
 		panel.add(btnNewButton_4);
 		
-		JLabel lblNewLabel = new JLabel("CONSULTA DE CLIENTES");
-		lblNewLabel.setBounds(441, 81, 256, 25);
+		JLabel lblNewLabel = new JLabel("ALMACEN");
+		lblNewLabel.setBounds(517, 82, 256, 25);
 		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 20));
 		panel.add(lblNewLabel);
 		
+		//Boton añadir
 		JButton btnNewButton_5 = new JButton("AÑADIR");
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_5.setBackground(new Color(190, 190, 190));
@@ -134,6 +132,7 @@ public class Clientes2 {
         btnNewButton_5.setIcon(new ImageIcon(d3));
 		panel.add(btnNewButton_5);
 		
+		//Botton editar
 		JButton btnNewButton_6 = new JButton("EDITAR");
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_6.setBackground(new Color(190, 190, 190));
@@ -149,21 +148,18 @@ public class Clientes2 {
         Image b3=b2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
         btnNewButton_6 .setIcon(new ImageIcon(b3));
 		panel.add(btnNewButton_6);
-
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(371, 150, 45, 43);
-		ImageIcon a1 =new ImageIcon("img/lupa.png");
-        Image a2= a1.getImage();
-        Image a3=a2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
-		panel.add(lblNewLabel_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setBackground(new Color(190, 190, 190));
+
+		ImageIcon lupaIcon = new ImageIcon("img/lupa.png");
+		Image lupaImg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+
+		textField_1 = new Lupa(lupaImg);
 		textField_1.setBounds(357, 150, 263, 43);
-		panel.add(textField_1);
+		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		textField_1.setColumns(10);
+		panel.add(textField_1);
 		
 	
 		
@@ -183,30 +179,32 @@ public class Clientes2 {
         btnNewButton_7 .setIcon(new ImageIcon(c3));
 		panel.add(btnNewButton_7);
 		
+		//crea la barra
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(140, 296, 795, 260);
 		panel.add(scrollPane);
 		
 
-		String[] columnas = {"ID cliente", "Nombre", "RFC"};
+		String[] columnas = {"Código", "Descripción", "Existencia", "U.M.", "Costo"};
 		String[][] datos = {
-			{"C7283945", "Laura Fernanda Mendoza Ruiz", "LOPR8402"},
-			{"C1038472", "Esteban Ríos Calderón", "XACM7501"},
-			{"C5892371", "Camila Duarte Sánchez", "RODJ9011"},
-			{"C2947103", "Marcos Antonio Salgado Varela", "TEAG8010"},
-			{"C6739201", "Tomás Eduardo Aguirre Morales", "FAGM8512"},
-			{"C3478120", "Valeria Ponce Rodríguez", "VELD9203"},
-			{"C9012843", "Rafael Ibáñez Castillo", "NOMI9302"},
-			{"C7653902", "Diego Aranda Gutiérrez", "ZULM8701"}
+			{"ING001", "Carne molida de res", "43", "KG", "$105"},
+			{"ING002", "Pan para hamburguesa", "20", "paq c/8", "$75"},
+			{"ING003", "Lechuga", "90", "Pieza", "$25"},
+			{"ING004", "Tomate", "25", "Kg", "$35"},
+			{"ING005", "Cebolla", "25", "Kg", "$60"},
+			{"ING006", "Pepinillos", "15", "Kg", "$45"},
+			{"ING007", "Papa blanca", "50", "Kg", "$45"},
+			{"ING008", "Refresco Coca Cola Regular", "200", "L", "$19"}
 		};
-
 		table = new JTable(datos, columnas) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		        return false;
+		    }
 		};
-		table.setFont(new Font("Inter", Font.PLAIN, 14)); //son para la fuente , mostrar las lineas , color y altura
+		table.setAutoCreateRowSorter(true); 
+
+		table.setFont(new Font("Inter", Font.PLAIN, 14)); //son para la fuente , mostrar las lineas , color y al
 		table.setRowHeight(30);
 		table.setShowGrid(true);
 		table.setGridColor(Color.BLACK);
@@ -218,22 +216,21 @@ public class Clientes2 {
 			table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		}
 
-		JTableHeader header = table.getTableHeader();
-		header.setFont(new Font("Inter", Font.BOLD, 14));
-		header.setDefaultRenderer(new DefaultTableCellRenderer() {
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value,
-								boolean isSelected, boolean hasFocus, int row, int column) {
-				JLabel label = new JLabel(value.toString(), JLabel.CENTER);
-				label.setFont(new Font("Inter", Font.BOLD, 14));
-				label.setBackground(new Color(220, 220, 220));
-				label.setOpaque(true);
-				label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-				return label;
-			}
+		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+		    @Override
+		    public Component getTableCellRendererComponent(JTable table, Object value,
+		            boolean isSelected, boolean hasFocus, int row, int column) {
+
+		        JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		        label.setHorizontalAlignment(SwingConstants.CENTER);
+		        label.setFont(new Font("Inter", Font.BOLD, 14));
+		        label.setBackground(new Color(220, 220, 220));
+		        label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		        return label;
+		    }
 		});
-		//scroll la barra
 		scrollPane.setViewportView(table);
-	}
+
 
 	}
+}
