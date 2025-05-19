@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -15,23 +17,21 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class AñadirPlatillo {
+public class AñadirPlatillo6 {
 
 	private JFrame frame;
 	private JTextField TextField;
-
+	private JTextField textField;
+	private JTextField textField_1;
 	/**
 	 * Launch the application.
 	 */
@@ -39,7 +39,7 @@ public class AñadirPlatillo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AñadirPlatillo window = new AñadirPlatillo();
+					AñadirPlatillo6 window = new AñadirPlatillo6();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class AñadirPlatillo {
 	/**
 	 * Create the application.
 	 */
-	public AñadirPlatillo() {
+	public AñadirPlatillo6() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  
             UIManager.put("TextComponent.arc", 10);//textfield redondeadas
@@ -127,7 +127,7 @@ public class AñadirPlatillo {
 		panel_1.add(lblNewLabel);
 		
 		//segundo panel    ,       el roundpanel espara hacer las esquinas redondas
-		RoundedPanel panel_2 = new RoundedPanel(20) {
+		RoundedPanel panel_2 = new RoundedPanel(20){
         
           protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -147,16 +147,16 @@ public class AñadirPlatillo {
         panel_1.add(panel_2);
         panel_2.setLayout(null);
         
-		TextField = new JTextField("BUSCAR");
+		TextField = new JTextField("Tomate");
 		TextField.setBackground(new Color(237, 237, 237));
-		TextField.setFont(new Font("Inter", Font.BOLD, 10));
-		TextField.setForeground(Color.GRAY);
+		TextField.setFont(new Font("Inter", Font.BOLD, 20));
+		TextField.setForeground(Color.BLACK);
 		TextField.setBounds(35, 47, 223, 40);
 		panel_2.add(TextField);
 		TextField.setColumns(10);
 
 		// HACE QUE SE BORRE EL BUSCAR AL ESCRIBIR EN EL TEXTFIELD
-		final String placeholder = "BUSCAR";
+		final String placeholder = "Tomate";
 		TextField.addFocusListener(new FocusAdapter() {
 		   
 		    public void focusGained(FocusEvent e) {
@@ -169,7 +169,7 @@ public class AñadirPlatillo {
 		    public void focusLost(FocusEvent e) {
 		        if (TextField.getText().isEmpty()) {
 		            TextField.setText(placeholder);
-		            TextField.setForeground(Color.GRAY);
+		            TextField.setForeground(Color.BLACK);
 		        }
 		    }
 		});
@@ -201,6 +201,78 @@ public class AñadirPlatillo {
 		lblNewLabel_4.setBounds(643, 36, 55, 13);
 		panel_2.add(lblNewLabel_4);
 		
+		JLabel lblNewLabel_5 = new JLabel("Tocino");
+		lblNewLabel_5.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_5.setBounds(402, 59, 85, 13);
+		panel_2.add(lblNewLabel_5);
+		
+		textField = new JTextField();
+		textField.setBackground(new Color(237, 237, 237));
+		textField.setToolTipText("");
+		textField.setText("0.70");
+		textField.setFont(new Font("Inter", Font.PLAIN, 13));
+		textField.setBounds(498, 57, 63, 19);
+		textField.setHorizontalAlignment(JTextField.CENTER);
+		panel_2.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_6 = new JLabel("KG.");
+		lblNewLabel_6.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_6.setBounds(585, 63, 31, 13);
+		panel_2.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("$120");
+		lblNewLabel_7.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_7.setBounds(643, 63, 31, 13);
+		panel_2.add(lblNewLabel_7);
+		
+		JButton btnNewButton_8 = new JButton("");
+		btnNewButton_8.setFont(new Font("Inter", Font.PLAIN, 10));
+		btnNewButton_8.setBounds(693, 51, 28, 31);
+		ImageIcon c1 = new ImageIcon("img/borrar2.png");
+		Image c2 = c1.getImage();
+		Image c3 = c2.getScaledInstance(28, 31, Image.SCALE_SMOOTH);
+		btnNewButton_8.setIcon(new ImageIcon(c3));
+		btnNewButton_8.setBorderPainted(false);
+		btnNewButton_8.setFocusPainted(false);
+		btnNewButton_8.setContentAreaFilled(true);
+		panel_2.add(btnNewButton_8);
+		
+		JLabel lblNewLabel_8 = new JLabel("Tomate");
+		lblNewLabel_8.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_8.setBounds(402, 97, 83, 13);
+		panel_2.add(lblNewLabel_8);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("0.20");
+		textField_1.setBackground(new Color(237, 237, 237));
+		textField_1.setFont(new Font("Inter", Font.PLAIN, 13));
+		textField_1.setBounds(498, 94, 63, 19);
+		textField_1.setHorizontalAlignment(JTextField.CENTER);
+		panel_2.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblNewLabel_9 = new JLabel("KG.");
+		lblNewLabel_9.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_9.setBounds(588, 97, 31, 13);
+		panel_2.add(lblNewLabel_9);
+		
+		JLabel lblNewLabel_10 = new JLabel("$45");
+		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_10.setBounds(643, 97, 31, 13);
+		panel_2.add(lblNewLabel_10);
+		
+		JButton btnNewButton_9 = new JButton("");
+		btnNewButton_9.setBounds(693, 85, 28, 31);
+		ImageIcon d1 = new ImageIcon("img/borrar2.png");
+		Image d2 = d1.getImage();
+		Image d3 = d2.getScaledInstance(28, 31, Image.SCALE_SMOOTH);
+		btnNewButton_9.setIcon(new ImageIcon(d3));
+		btnNewButton_9.setBorderPainted(false);
+		btnNewButton_9.setFocusPainted(false);
+		btnNewButton_9.setContentAreaFilled(true);
+		panel_2.add(btnNewButton_9);
+		
 		//boton cancelar
 		JButton btnNewButton_6 = new JButton("CANCELAR");
 		btnNewButton_6.addActionListener(new ActionListener() {
@@ -208,7 +280,7 @@ public class AñadirPlatillo {
 			}
 		});
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
-		btnNewButton_6.setBounds(311, 422, 85, 60);
+		btnNewButton_6.setBounds(301, 422, 85, 60);
 		btnNewButton_6.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewButton_6.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_6.setHorizontalAlignment(SwingConstants.CENTER);
@@ -225,7 +297,7 @@ public class AñadirPlatillo {
 		//boton aceptar
 		JButton btnNewButton_7 = new JButton("ACEPTAR");
 		btnNewButton_7.setFont(new Font("Inter", Font.BOLD, 9));
-		btnNewButton_7.setBounds(435, 422, 85, 60);
+		btnNewButton_7.setBounds(420, 422, 85, 60);
 		btnNewButton_7.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
@@ -239,6 +311,6 @@ public class AñadirPlatillo {
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
 		
-		
 	}
+
 }

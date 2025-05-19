@@ -50,14 +50,13 @@ public class AlertaMenuAdmin {
 		frame = new JFrame();
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(true);
-		
-		frame.setBounds(100, 100, 1150, 799);
+		frame.setBounds(198, 76, 526, 320);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(313, 90, 545, 320);
+		panel.setBounds(0, 0, 526, 291);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 

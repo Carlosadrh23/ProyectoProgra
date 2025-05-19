@@ -52,7 +52,7 @@ public class Inventario {
 	public Inventario() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  
-            UIManager.put("TextComponent.arc", 10);//textfield redondeadas
+            UIManager.put("TextComponent.arc", 50);//textfield redondeadas
             UIManager.put("Buttom.arc", 700); // Esquinas redondeadas
         } catch (Exception ex) {
             ex.printStackTrace();

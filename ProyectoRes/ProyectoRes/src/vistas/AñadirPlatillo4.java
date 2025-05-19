@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -15,23 +17,20 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class AñadirPlatillo {
+public class AñadirPlatillo4 {
 
 	private JFrame frame;
 	private JTextField TextField;
-
+	private JTextField textField;
 	/**
 	 * Launch the application.
 	 */
@@ -39,7 +38,7 @@ public class AñadirPlatillo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AñadirPlatillo window = new AñadirPlatillo();
+					AñadirPlatillo4 window = new AñadirPlatillo4();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +50,7 @@ public class AñadirPlatillo {
 	/**
 	 * Create the application.
 	 */
-	public AñadirPlatillo() {
+	public AñadirPlatillo4() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  
             UIManager.put("TextComponent.arc", 10);//textfield redondeadas
@@ -201,6 +200,43 @@ public class AñadirPlatillo {
 		lblNewLabel_4.setBounds(643, 36, 55, 13);
 		panel_2.add(lblNewLabel_4);
 		
+		JLabel lblNewLabel_5 = new JLabel("Tocino");
+		lblNewLabel_5.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_5.setBounds(402, 59, 85, 13);
+		panel_2.add(lblNewLabel_5);
+		
+		textField = new JTextField();
+		textField.setBackground(new Color(237, 237, 237));
+		textField.setToolTipText("");
+		textField.setText("100\r\n");
+		textField.setFont(new Font("Inter", Font.PLAIN, 13));
+		textField.setBounds(498, 57, 63, 19);
+		textField.setHorizontalAlignment(JTextField.CENTER);
+		panel_2.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_6 = new JLabel("Gramos");
+		lblNewLabel_6.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_6.setBounds(578, 59, 55, 13);
+		panel_2.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("$120");
+		lblNewLabel_7.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_7.setBounds(653, 59, 31, 13);
+		panel_2.add(lblNewLabel_7);
+		
+		JButton btnNewButton_8 = new JButton("");
+		btnNewButton_8.setFont(new Font("Inter", Font.PLAIN, 10));
+		btnNewButton_8.setBounds(693, 51, 28, 31);
+		ImageIcon c1 = new ImageIcon("img/borrar2.png");
+		Image c2 = c1.getImage();
+		Image c3 = c2.getScaledInstance(28, 31, Image.SCALE_SMOOTH);
+		btnNewButton_8.setIcon(new ImageIcon(c3));
+		btnNewButton_8.setBorderPainted(false);
+		btnNewButton_8.setFocusPainted(false);
+		btnNewButton_8.setContentAreaFilled(true);
+		panel_2.add(btnNewButton_8);
+		
 		//boton cancelar
 		JButton btnNewButton_6 = new JButton("CANCELAR");
 		btnNewButton_6.addActionListener(new ActionListener() {
@@ -208,7 +244,7 @@ public class AñadirPlatillo {
 			}
 		});
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
-		btnNewButton_6.setBounds(311, 422, 85, 60);
+		btnNewButton_6.setBounds(301, 422, 85, 60);
 		btnNewButton_6.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewButton_6.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_6.setHorizontalAlignment(SwingConstants.CENTER);
@@ -225,7 +261,7 @@ public class AñadirPlatillo {
 		//boton aceptar
 		JButton btnNewButton_7 = new JButton("ACEPTAR");
 		btnNewButton_7.setFont(new Font("Inter", Font.BOLD, 9));
-		btnNewButton_7.setBounds(435, 422, 85, 60);
+		btnNewButton_7.setBounds(420, 422, 85, 60);
 		btnNewButton_7.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
@@ -238,7 +274,6 @@ public class AñadirPlatillo {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
-		
 		
 	}
 }

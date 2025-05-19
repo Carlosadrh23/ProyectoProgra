@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -15,23 +17,19 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class AñadirPlatillo {
+public class AñadirPlatillo3 {
 
 	private JFrame frame;
 	private JTextField TextField;
-
 	/**
 	 * Launch the application.
 	 */
@@ -39,7 +37,7 @@ public class AñadirPlatillo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AñadirPlatillo window = new AñadirPlatillo();
+					AñadirPlatillo3 window = new AñadirPlatillo3();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +49,7 @@ public class AñadirPlatillo {
 	/**
 	 * Create the application.
 	 */
-	public AñadirPlatillo() {
+	public AñadirPlatillo3() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  
             UIManager.put("TextComponent.arc", 10);//textfield redondeadas
@@ -127,7 +125,7 @@ public class AñadirPlatillo {
 		panel_1.add(lblNewLabel);
 		
 		//segundo panel    ,       el roundpanel espara hacer las esquinas redondas
-		RoundedPanel panel_2 = new RoundedPanel(20) {
+		RoundedPanel panel_2 = new RoundedPanel(20){
         
           protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -147,33 +145,31 @@ public class AñadirPlatillo {
         panel_1.add(panel_2);
         panel_2.setLayout(null);
         
-		TextField = new JTextField("BUSCAR");
+		TextField = new JTextField("Tocino");
 		TextField.setBackground(new Color(237, 237, 237));
-		TextField.setFont(new Font("Inter", Font.BOLD, 10));
-		TextField.setForeground(Color.GRAY);
+		TextField.setFont(new Font("Inter", Font.BOLD, 15));
+		TextField.setForeground(Color.BLACK);
 		TextField.setBounds(35, 47, 223, 40);
 		panel_2.add(TextField);
 		TextField.setColumns(10);
-
-		// HACE QUE SE BORRE EL BUSCAR AL ESCRIBIR EN EL TEXTFIELD
-		final String placeholder = "BUSCAR";
+		
+		final String placeholder = "Tocino";
 		TextField.addFocusListener(new FocusAdapter() {
-		   
-		    public void focusGained(FocusEvent e) {
-		        if (TextField.getText().equals(placeholder)) {
-		            TextField.setText("");
-		            TextField.setForeground(Color.BLACK);
-		        }
-		    }
-		    
-		    public void focusLost(FocusEvent e) {
-		        if (TextField.getText().isEmpty()) {
-		            TextField.setText(placeholder);
-		            TextField.setForeground(Color.GRAY);
-		        }
-		    }
-		});
 
+			public void focusGained(FocusEvent e) {
+				if (TextField.getText().equals(placeholder)) {
+					TextField.setText("");
+					TextField.setForeground(Color.BLACK);
+				}
+			}
+
+			public void focusLost(FocusEvent e) {
+				if (TextField.getText().isEmpty()) {
+					TextField.setText(placeholder);
+					TextField.setForeground(Color.BLACK);
+				}
+			}
+		});
 		
 		JButton btnNewButton_5 = new JButton("Añadir");
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
@@ -239,6 +235,6 @@ public class AñadirPlatillo {
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
 		
-		
 	}
+
 }

@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -27,9 +28,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import javax.swing.JTable;
 
-public class AñadirPlatillo2 {
+public class AñadirPlatillo5 {
 
 	private JFrame frame;
 	private JTable table;
@@ -42,7 +42,7 @@ public class AñadirPlatillo2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AñadirPlatillo2 window = new AñadirPlatillo2();
+					AñadirPlatillo5 window = new AñadirPlatillo5();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +54,7 @@ public class AñadirPlatillo2 {
 	/**
 	 * Create the application.
 	 */
-	public AñadirPlatillo2() {
+	public AñadirPlatillo5() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 10);// textfield redondeadas
@@ -145,29 +145,75 @@ public class AñadirPlatillo2 {
 		panel_2.setForeground(new Color(128, 128, 128));
 		panel_2.setBackground(Color.WHITE);
 		panel_2.setBounds(41, 76, 731, 321);
-		panel_2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
+		panel_2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));//crea la line del borde
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
-
+		
+		//texto de Descripcióno
 		JLabel lblNewLabel_1 = new JLabel("Descripción");
 		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 15));
 		lblNewLabel_1.setBounds(392, 36, 116, 13);
 		panel_2.add(lblNewLabel_1);
-
+		
+		//texto de cantidad
 		JLabel lblNewLabel_2 = new JLabel("Cantidad");
 		lblNewLabel_2.setFont(new Font("Inter", Font.BOLD, 15));
 		lblNewLabel_2.setBounds(498, 36, 85, 13);
 		panel_2.add(lblNewLabel_2);
 
+		//texto de u.m
 		JLabel lblNewLabel_3 = new JLabel("U.M.");
 		lblNewLabel_3.setFont(new Font("Inter", Font.BOLD, 15));
 		lblNewLabel_3.setBounds(588, 36, 45, 13);
 		panel_2.add(lblNewLabel_3);
 
+		//texto de costo
 		JLabel lblNewLabel_4 = new JLabel("Costo");
 		lblNewLabel_4.setFont(new Font("Inter", Font.BOLD, 15));
 		lblNewLabel_4.setBounds(643, 36, 55, 13);
 		panel_2.add(lblNewLabel_4);
+		
+		//texto de tocino
+		JLabel lblNewLabel_5 = new JLabel("Tocino");
+		lblNewLabel_5.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_5.setBounds(402, 59, 85, 13);
+		panel_2.add(lblNewLabel_5);
+		
+		//texto de la cantidad
+		textField = new JTextField();
+		textField.setBackground(new Color(237, 237, 237));
+		textField.setToolTipText("");
+		textField.setText("100\r\n");
+		textField.setFont(new Font("Inter", Font.PLAIN, 13));
+		textField.setBounds(498, 57, 63, 19);
+		textField.setHorizontalAlignment(JTextField.CENTER);
+		panel_2.add(textField);
+		textField.setColumns(10);
+		
+		//texto del gramos
+		JLabel lblNewLabel_6 = new JLabel("Gramos");
+		lblNewLabel_6.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_6.setBounds(578, 59, 55, 13);
+		panel_2.add(lblNewLabel_6);
+		
+		//texto del precio
+		JLabel lblNewLabel_7 = new JLabel("$120");
+		lblNewLabel_7.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_7.setBounds(653, 59, 31, 13);
+		panel_2.add(lblNewLabel_7);
+		
+		//boton de borrar
+		JButton btnNewButton_8 = new JButton("");
+		btnNewButton_8.setFont(new Font("Inter", Font.PLAIN, 10));
+		btnNewButton_8.setBounds(693, 51, 28, 31);
+		ImageIcon c1 = new ImageIcon("img/borrar2.png");
+		Image c2 = c1.getImage();
+		Image c3 = c2.getScaledInstance(28, 31, Image.SCALE_SMOOTH);
+		btnNewButton_8.setIcon(new ImageIcon(c3));
+		btnNewButton_8.setBorderPainted(false);
+		btnNewButton_8.setFocusPainted(false);
+		btnNewButton_8.setContentAreaFilled(true);
+		panel_2.add(btnNewButton_8);
 
 		// Datos y columnas
 		String[] columnas = { "Código", "Descripción" };
@@ -203,7 +249,7 @@ public class AñadirPlatillo2 {
 			table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		}
 
-		// Header personalizado
+		
 		JTableHeader header = table.getTableHeader();
 		header.setFont(new Font("Inter", Font.BOLD, 14));
 		header.setDefaultRenderer(new DefaultTableCellRenderer() {
@@ -279,4 +325,5 @@ public class AñadirPlatillo2 {
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
 	}
+
 }

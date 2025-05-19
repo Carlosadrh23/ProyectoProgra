@@ -45,13 +45,13 @@ public class AlertaCambiosGuardados {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setAlwaysOnTop(true);
-		frame.setBounds(100, 100, 1150, 799);
+		frame.setBounds(198, 76, 526, 320);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(198, 76, 526, 291);
+		panel.setBounds(0, 0, 526, 291);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -67,5 +67,7 @@ public class AlertaCambiosGuardados {
 		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 13));
 		lblNewLabel_1.setBounds(170, 158, 201, 23);
 		panel.add(lblNewLabel_1);
+		
+		
 	}
 }
