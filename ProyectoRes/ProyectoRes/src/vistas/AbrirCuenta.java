@@ -44,8 +44,6 @@ public class AbrirCuenta {
 	 */
 	public AbrirCuenta() {
 		initialize();
-		frame.setLocationRelativeTo(null); // ← Centra la ventana
-		frame.setVisible(true); 
 		
 	}
 
