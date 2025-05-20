@@ -10,6 +10,7 @@ import java.awt.Image;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -44,6 +45,7 @@ public class AlmacenEditar {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the application.
@@ -183,7 +185,6 @@ public class AlmacenEditar {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(140, 296, 795, 260);
 		panel.add(scrollPane);
-		
 
 		String[] columnas = {"Código", "Descripción", "Existencia", "U.M.", "Costo"};
 		String[][] datos = {
@@ -196,15 +197,22 @@ public class AlmacenEditar {
 			{"ING007", "Papa blanca", "50", "Kg", "$45"},
 			{"ING008", "Refresco Coca Cola Regular", "200", "L", "$19"}
 		};
-		table = new JTable(datos, columnas) {
-		    @Override
-		    public boolean isCellEditable(int row, int column) {
-		        return false;
-		    }
-		};
-		table.setAutoCreateRowSorter(true); 
 
-		table.setFont(new Font("Inter", Font.PLAIN, 14)); //son para la fuente , mostrar las lineas , color y al
+		// Creamos la tabla permitiendo editar solo la columna "U.M."
+		table = new JTable(datos, columnas) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return column == 3; // Solo se puede editar la columna "U.M."
+			}
+		};
+
+		// Editor de celda tipo JComboBox para la columna "U.M."
+		String[] unidades = {"Kg", "Pieza", "L", "paq c/8"};
+		JComboBox<String> comboBoxUM = new JComboBox<>(unidades);
+		table.getColumnModel().getColumn(3).setCellEditor(new javax.swing.DefaultCellEditor(comboBoxUM));
+
+		table.setRowSorter(null);
+		table.setFont(new Font("Inter", Font.PLAIN, 14));
 		table.setRowHeight(30);
 		table.setShowGrid(true);
 		table.setGridColor(Color.BLACK);
@@ -217,20 +225,19 @@ public class AlmacenEditar {
 		}
 
 		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
-		    @Override
-		    public Component getTableCellRendererComponent(JTable table, Object value,
-		            boolean isSelected, boolean hasFocus, int row, int column) {
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value,
+					boolean isSelected, boolean hasFocus, int row, int column) {
 
-		        JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-		        label.setHorizontalAlignment(SwingConstants.CENTER);
-		        label.setFont(new Font("Inter", Font.BOLD, 14));
-		        label.setBackground(new Color(220, 220, 220));
-		        label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		        return label;
-		    }
+				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				label.setHorizontalAlignment(SwingConstants.CENTER);
+				label.setFont(new Font("Inter", Font.BOLD, 14));
+				label.setBackground(new Color(220, 220, 220));
+				label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				return label;
+			}
 		});
+
 		scrollPane.setViewportView(table);
-
-
 	}
 }
