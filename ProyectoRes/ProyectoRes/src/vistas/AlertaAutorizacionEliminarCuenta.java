@@ -14,12 +14,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class AlertaMenuAdmin {
-
+public class AlertaAutorizacionEliminarCuenta {
 
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
+
 	/**
 	 * Launch the application.
 	 */
@@ -27,7 +27,7 @@ public class AlertaMenuAdmin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AlertaMenuAdmin window = new AlertaMenuAdmin();
+					AlertaAutorizacionEliminarCuenta window = new AlertaAutorizacionEliminarCuenta();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class AlertaMenuAdmin {
 	/**
 	 * Create the application.
 	 */
-	public AlertaMenuAdmin() {
+	public AlertaAutorizacionEliminarCuenta() {
 		initialize();
 	}
 
@@ -50,16 +50,21 @@ public class AlertaMenuAdmin {
 		frame = new JFrame();
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
-		frame.setBounds(198, 76, 526, 320);
+		
+		frame.setBounds(0, 0, 545, 320);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 526, 291);
+		panel.setBounds(0, 0, 545, 320);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
+		JLabel lblNewLabel = new JLabel("Autorización para eliminar cuenta");
+		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 16));
+		lblNewLabel.setBounds(130, 30, 346, 30);
+		panel.add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("CANCELAR");
 		btnNewButton.setBackground(new Color(255, 255, 255));
@@ -94,7 +99,7 @@ public class AlertaMenuAdmin {
 		btnNewButton_1.setFocusPainted(false);
 		btnNewButton_1.setContentAreaFilled(true);
 		panel.add(btnNewButton_1);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(162, 106, 44, 25);
 		ImageIcon b1 = new ImageIcon("img/admin4.png");
@@ -132,6 +137,7 @@ public class AlertaMenuAdmin {
 		textField_1.setColumns(10);
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		panel.add(textField_1);
+		
 	}
 
 }

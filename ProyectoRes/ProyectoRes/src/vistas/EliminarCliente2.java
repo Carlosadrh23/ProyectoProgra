@@ -20,7 +20,7 @@ import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-public class EliminarCuenta2 {
+public class EliminarCliente2 {
 
 	private JFrame frame;
 	private JTextField txtAlejandro;
@@ -48,7 +48,7 @@ public class EliminarCuenta2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EliminarCuenta2 window = new EliminarCuenta2();
+					EliminarCliente2 window = new EliminarCliente2();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +60,7 @@ public class EliminarCuenta2 {
 	/**
 	 * Create the application.
 	 */
-	public EliminarCuenta2() {
+	public EliminarCliente2() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  
             UIManager.put("TextComponent.arc", 5);//textfield redondeadas

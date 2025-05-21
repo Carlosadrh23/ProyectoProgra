@@ -87,7 +87,7 @@ public class Usuario {
 		btnNewButton_4.setBounds(909, 0, 227, 49);
 		panel.add(btnNewButton_4);
 		
-		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN USUARIOS
 		JPanel panelContenido = new JPanel();
 		panelContenido.setBounds(909, 49, 227, 49);
 		panelContenido.setLayout(new BorderLayout());
