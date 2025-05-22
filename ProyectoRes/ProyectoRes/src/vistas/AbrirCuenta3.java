@@ -202,14 +202,14 @@ public class AbrirCuenta3 {
 		scrollPane.setBounds(57, 246, 703, 220); // tabla ajustada
 		panel_1.add(scrollPane);
 
-		// AGREGAR FILA
+		
 		modelo.addRow(new Object[] { "1", "SKU09", "Hamburguesa clásica combo CH", "$150" });
 
-		// Ttotal debajo de la tabla
+		
 		JLabel lblTotal = new JLabel("Total");
 		lblTotal.setFont(new Font("Inter", Font.BOLD, 15));
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTotal.setBounds(57, 464, 524, 30); // Alineado con columna de descripción
+		lblTotal.setBounds(57, 464, 524, 30); 
 		lblTotal.setHorizontalAlignment(JLabel.CENTER);
 		lblTotal.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		lblTotal.setOpaque(true);
@@ -222,14 +222,14 @@ public class AbrirCuenta3 {
 		lblTotalValor.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		lblTotalValor.setOpaque(true);
 		lblTotalValor.setBackground(new Color(220, 220, 220));
-		lblTotalValor.setBounds(580, 464, 180, 30); // Abarca la última celda como en la imagen
+		lblTotalValor.setBounds(580, 464, 180, 30); 
 		panel_1.add(lblTotalValor);
 
 		JButton btnNewButton_10 = new JButton("<html><div style='text-align:left;'>ENVIAR<br>PEDIDO</div></html>");
 		btnNewButton_10.setFont(new Font("Inter", Font.PLAIN, 10));
 		btnNewButton_10.setBackground(new Color(190, 190, 190));
 		btnNewButton_10.setBounds(215, 537, 120, 44);
-		// Ajustes para imagen a la izquierda y texto a la derecha
+		// imagen a la izquierda y texto a la derecha
 		btnNewButton_10.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnNewButton_10.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_10.setHorizontalAlignment(SwingConstants.LEFT);

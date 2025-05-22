@@ -91,7 +91,6 @@ public class BuscarPorProducto {
             {"SKU13", "Hamburguesa con champiñon combo", "$150"},
             {"SKU14", "Hamburguesa hawaiana combo", "$150"},
             {"SKU15", "Hamburguesa BBQ", "$150"},
-            {"SKU16", "Hamburguesa sencilla", "$150"},
         };
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
@@ -103,7 +102,7 @@ public class BuscarPorProducto {
 		table.getTableHeader().setReorderingAllowed(false);
 
      
-        // ScrollPane con scroll siempre visible
+        // ScrollPane 
         JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBounds(20, 73, 500, 150);
         panel.add(scrollPane);
