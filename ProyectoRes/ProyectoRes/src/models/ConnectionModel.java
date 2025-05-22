@@ -9,12 +9,12 @@ import java.sql.Statement;
 public class ConnectionModel {
 
 	public ConnectionModel() {
-		String query = "select * from users";
+		String query = "select * from usuarios";
 		Connection conn = null;
 		Statement stmt = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/testpro", "root", "yellow");
+			conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3779414", "sql3779414", "mteKJLYjrB");
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {

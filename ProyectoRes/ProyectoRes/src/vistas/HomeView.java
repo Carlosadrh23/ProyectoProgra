@@ -477,11 +477,7 @@ public class HomeView {
 		btnNewButton_8.setBounds(0, 88, 281, 88);
 		panel_1.add(btnNewButton_8);
 		
-		JButton btnNewButton_9 = new JButton("COMBOS");
-		btnNewButton_9.setFont(new Font("Inter", Font.BOLD, 17));
-		btnNewButton_9.setBackground(new Color(215, 224, 166));
-		btnNewButton_9.setBounds(280, 88, 260, 88);
-		panel_1.add(btnNewButton_9);
+		
 		
 		RoundedPanel panel_2 = new RoundedPanel(20);
 		panel_2.setBackground(new Color(217, 217, 217));
@@ -491,44 +487,8 @@ public class HomeView {
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JButton btnNewButton_10 = new JButton("<html><div style='text-align:center;'>HAMBURGUESA COMBO CLÁSICO<br><br></div></html>");
-		btnNewButton_10.setBackground(new Color(255, 255, 255));
-		btnNewButton_10.setFont(new Font("Inter", Font.BOLD, 10));
-		btnNewButton_10.setHorizontalTextPosition(SwingConstants.LEFT);
-		btnNewButton_10.setVerticalTextPosition(SwingConstants.CENTER);
-		btnNewButton_10.setIconTextGap(20);
-		btnNewButton_10.setBounds(0, 0, 244, 90);
-		ImageIcon p1 =new ImageIcon("img/hamburguesa1.png");
-        Image p2= p1.getImage();
-        Image p3=p2.getScaledInstance(50, 90,Image.SCALE_SMOOTH);
-        btnNewButton_10 .setIcon(new ImageIcon(p3));
-		panel_2.add(btnNewButton_10);
 		
-		JButton btnNewButton_11 = new JButton("<html><div style='text-align:center;'>HAMBURGUESA CON CHAMPIÑÓN COMBO<br><br></div></html>");
-		btnNewButton_11.setBackground(new Color(255, 255, 255));
-		btnNewButton_11.setFont(new Font("Inter", Font.BOLD, 10));
-		btnNewButton_11.setHorizontalTextPosition(SwingConstants.LEFT);
-		btnNewButton_11.setVerticalTextPosition(SwingConstants.CENTER);
-		btnNewButton_11.setIconTextGap(20);
-		btnNewButton_11.setBounds(237, 0, 244, 90);
-		ImageIcon a1 =new ImageIcon("img/hamburguesa2.png");
-        Image a2= a1.getImage();
-        Image a3=a2.getScaledInstance(50, 90,Image.SCALE_SMOOTH);
-        btnNewButton_11 .setIcon(new ImageIcon(a3));
-		panel_2.add(btnNewButton_11);
 		
-		JButton btnNewButton_12 = new JButton("<html><div style='text-align:center;'>HAMBURGUESA HAWAIANA COMBO<br><br></div></html>");
-		btnNewButton_12.setBackground(new Color(255, 255, 255));
-		btnNewButton_12.setFont(new Font("Inter", Font.BOLD, 10));
-		btnNewButton_12.setHorizontalTextPosition(SwingConstants.LEFT);
-		btnNewButton_12.setVerticalTextPosition(SwingConstants.CENTER);
-		btnNewButton_12.setIconTextGap(20);
-		btnNewButton_12.setBounds(479, 0, 225, 90);
-		ImageIcon b1 =new ImageIcon("img/hamburguesa3.png");
-        Image b2= b1.getImage();
-        Image b3=p2.getScaledInstance(50, 90,Image.SCALE_SMOOTH);
-        btnNewButton_12 .setIcon(new ImageIcon(b3));
-		panel_2.add(btnNewButton_12);
 		
 		JButton btnNewButton_13 = new JButton("Buscar por producto");
 		btnNewButton_13.setFont(new Font("Inter", Font.BOLD, 12));
