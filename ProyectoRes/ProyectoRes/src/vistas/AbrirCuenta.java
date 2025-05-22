@@ -117,6 +117,8 @@ public class AbrirCuenta {
 		lblNewLabel.setBounds(202, 10, 138, 43);
 		panel_1.add(lblNewLabel);
 		
+		
+		
 		JLabel lblNewLabel_1 = new JLabel("MESA:");
 		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 18));
 		lblNewLabel_1.setBounds(79, 74, 95, 49);
@@ -174,5 +176,7 @@ public class AbrirCuenta {
         Image p3=p2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
         btnNewButton_6 .setIcon(new ImageIcon(p3));
 		panel_1.add(btnNewButton_6);
+		 
+		
 	}
 }

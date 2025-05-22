@@ -5,12 +5,17 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import controllers.HomeController;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -125,7 +130,15 @@ public class Clientes {
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 13));
 		btnNewButton_5.setBounds(259, 447, 240, 49);
 		panel.add(btnNewButton_5);
-		
+		btnNewButton_5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.abrirCuenta();
+			}
+		});
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(660, 253, 234, 192);
 		ImageIcon portada1 =new ImageIcon("img/consulcuent.png");

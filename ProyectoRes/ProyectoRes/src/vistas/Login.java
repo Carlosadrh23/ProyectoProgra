@@ -15,6 +15,8 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.ui.FlatUIUtils;
 import com.formdev.flatlaf.util.UIScale;
 
+import controllers.HomeController;
+
 import javax.swing.ImageIcon;
 import java.awt.Component;
 import javax.swing.Box;
@@ -149,7 +151,16 @@ public class Login {
 		panel_1.add(btnNewButton);
 		
 		
-		
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc= new HomeController();
+				cc.comedor();
+			}
+		});
 		
 	}
 }
