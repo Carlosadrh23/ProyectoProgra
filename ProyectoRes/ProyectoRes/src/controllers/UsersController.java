@@ -5,7 +5,7 @@ import java.util.List;
 
 import models.User;
 import models.UsersModel;
-import views.UsersView;
+import viewscopy.UsersView;
 
 public class UsersController {
 	

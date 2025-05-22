@@ -1,6 +1,6 @@
 package controllers;
 
-import vistas.Clientes;
+
 import vistas.HomeView;
 
 public class HomeController {
@@ -13,11 +13,11 @@ public class HomeController {
 	
 	public void comedor()
 	{
-		vista.comedor();
+		vista.Comedor();
 	}
 	public void abrirCuenta()
 	{
-		vista.clientes();
+		vista.AbrirCuenta();
 	}
 
 }
