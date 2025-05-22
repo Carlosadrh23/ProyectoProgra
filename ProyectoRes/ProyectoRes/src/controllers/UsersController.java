@@ -5,7 +5,7 @@ import java.util.List;
 
 import models.User;
 import models.UsersModel;
-import viewscopy.UsersView;
+import vistas.UsersView;
 
 public class UsersController {
 	
@@ -23,15 +23,15 @@ public class UsersController {
 		
 		usuarios = um.getAll();
 
-		vista.index(usuarios);
+		vista.Usuario(usuarios);
 		
 	}
 	
-	public void update(int id) {
+	/*public void update(int id) {
 		
 		UsersModel um = new UsersModel();
 		User myUser = um.get(id);
 		vista.update(myUser);
-	}
+	} */
 
 }

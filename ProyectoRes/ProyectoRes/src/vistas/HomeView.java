@@ -120,6 +120,16 @@ public class HomeView {
 		btnNewButton_5.setFocusPainted(false);
 		btnNewButton_5.setContentAreaFilled(true);
 		panel.add(btnNewButton_5);
+		btnNewButton_5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm= new HomeController();
+				hm.abrirCuenta();
+			}
+		});
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(660, 253, 234, 192);
@@ -374,7 +384,17 @@ public class HomeView {
         Image p3=p2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
         btnNewButton_6 .setIcon(new ImageIcon(p3));
 		panel_1.add(btnNewButton_6);
-		 
+		frame.setVisible(true);
+		btnNewButton_6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm= new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		
 	}
 	public void AbrirCuenta2() {
@@ -522,7 +542,8 @@ public class HomeView {
         btnNewButton_13 .setIcon(new ImageIcon(c3));
 		btnNewButton_13.setBounds(36, 227, 227, 64);
 		panel.add(btnNewButton_13);
-		
+		frame.setVisible(true);
+
 
 	}
 	public void AbrirCuenta3() {
@@ -761,6 +782,7 @@ public class HomeView {
 		panel.add(btnNewButton_13);
 		btnNewButton_13.setFocusPainted(false);
 		btnNewButton_13.setContentAreaFilled(true);
+		frame.setVisible(true);
 
 	}
 	public void AlmacenEditar() {
@@ -946,6 +968,8 @@ public class HomeView {
 		});
 
 		scrollPane.setViewportView(table);
+		frame.setVisible(true);
+
 	}
 	public void AñadirPlatillo() {
 		try {
@@ -1128,7 +1152,8 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
-		
+		frame.setVisible(true);
+
 		
 	}
 	public void AñadirPlatillo2() {
@@ -1349,6 +1374,8 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
+		frame.setVisible(true);
+
 	}
 	public void AñadirPlatillo3() {
 		try {
@@ -1529,7 +1556,8 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
-		
+		frame.setVisible(true);
+
 	}
 	public void AñadirPlatillo4() {
 		try {
@@ -1749,7 +1777,8 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
-		
+		frame.setVisible(true);
+
 	}
 	public void AñadirPlatillo5() {
 		try {
@@ -2015,6 +2044,8 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
+		frame.setVisible(true);
+
 	}
 	public void AñadirPlatillo6() {
 		try {
@@ -3034,7 +3065,8 @@ public class HomeView {
 		chckbxNewCheckBox_1.setBounds(232, 458, 93, 21);
 		panel_1.add(chckbxNewCheckBox_1);
 		
-		
+		frame.setVisible(true);
+
 		
 	}
 	public void EditarCliente() {
@@ -3407,7 +3439,8 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
-		
+		frame.setVisible(true);
+
 		
 	}
 	public void EliminarCliente() {
@@ -3781,7 +3814,8 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
-		
+		frame.setVisible(true);
+
 	}
 	public void EliminarCliente2() {
 		try {
@@ -4170,6 +4204,7 @@ public class HomeView {
 		btnNewButton_5.setFocusPainted(false);
 		btnNewButton_5.setContentAreaFilled(true);
 		panel.add(btnNewButton_5);
+		frame.setVisible(true);
 
 	
 	}
@@ -4383,6 +4418,7 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel.add(btnNewButton_7);
+		frame.setVisible(true);
 
 	}
 	public void Ensamble() {
@@ -4482,6 +4518,8 @@ public class HomeView {
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 13));
 		btnNewButton_6.setBounds(660, 447, 234, 49);
 		panel.add(btnNewButton_6);
+		frame.setVisible(true);
+
 	}
 	 public void EnsambledeplatilloyConsultarMenu() {
 		 JFrame	frame = new JFrame();
@@ -4505,6 +4543,8 @@ public class HomeView {
 	        btnConsulta.setBackground(new Color(170, 170, 170));
 	        btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
 	        panel.add(btnConsulta);
+			frame.setVisible(true);
+
 	    }
 	 public void HistorialDeFacturacion() {
 			try {
@@ -4685,6 +4725,8 @@ public class HomeView {
 			JScrollPane scrollPane = new JScrollPane(table);
 			scrollPane.setBounds(167, 224, 744, 270); // ajusta dimensiones según tu layout
 			panel.add(scrollPane);
+			frame.setVisible(true);
+
 		}
 	 public void HistorialyConsulta() {
 		 JFrame	frame = new JFrame();
@@ -4707,6 +4749,8 @@ public class HomeView {
 	        btnConsulta.setBackground(new Color(170, 170, 170));
 	        btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
 	        panel.add(btnConsulta);
+			frame.setVisible(true);
+
 	    }
 	 public void IngresarNuevaOrden() {
 			try {
@@ -4920,6 +4964,8 @@ public class HomeView {
 			btnNewButton_7.setFocusPainted(false);
 			btnNewButton_7.setContentAreaFilled(true);
 			panel.add(btnNewButton_7);
+			frame.setVisible(true);
+
 		}
 	 public void Inventario() {
 			try {
@@ -5097,6 +5143,8 @@ public class HomeView {
 			});
 			//scroll la barra
 			scrollPane.setViewportView(table);
+			frame.setVisible(true);
+
 		}
 		public void menu() {
 			try {
@@ -5271,6 +5319,8 @@ public class HomeView {
 			});
 			//scroll la barra
 			scrollPane.setViewportView(table);
+			frame.setVisible(true);
+
 		}
 		class RoundedPanel extends JPanel {
 		    private int cornerRadius;
@@ -5382,6 +5432,8 @@ public class HomeView {
 	        Image portada3=portada2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
 	        btnNewButton_4 .setIcon(new ImageIcon(portada3));
 			panel.add(btnNewButton_4);
+			frame.setVisible(true);
+
 		}
 		public void SeleccionDeCantidad() {
 			
@@ -5471,6 +5523,8 @@ public class HomeView {
 	        Image portada3=portada2.getScaledInstance(35, 35,Image.SCALE_SMOOTH);
 	        btnNewButton_4 .setIcon(new ImageIcon(portada3));
 			panel.add(btnNewButton_4);
+			frame.setVisible(true);
+
 		}
 		public void Ticket() {
 			
@@ -5632,6 +5686,8 @@ public class HomeView {
 			lblNewLabel_26.setBounds(335, 535, 45, 13);
 			lblNewLabel_26.setHorizontalAlignment(JLabel.CENTER);
 			panel.add(lblNewLabel_26);
+			frame.setVisible(true);
+
 		}
 		public void AlertaAutorizacion() {
 			
@@ -5725,6 +5781,8 @@ public class HomeView {
 			textField_1.setColumns(10);
 			textField_1.setHorizontalAlignment(JTextField.CENTER);
 			panel.add(textField_1);
+			frame.setVisible(true);
+
 		}
 		public void AlertaAutorizacionEliminarCuenta() {
 			
@@ -5818,7 +5876,8 @@ public class HomeView {
 			textField_1.setColumns(10);
 			textField_1.setHorizontalAlignment(JTextField.CENTER);
 			panel.add(textField_1);
-			
+			frame.setVisible(true);
+
 		}
 		public void AlertaCambiosGuardados() {
 			
@@ -5847,7 +5906,8 @@ public class HomeView {
 			lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 13));
 			lblNewLabel_1.setBounds(170, 158, 201, 23);
 			panel.add(lblNewLabel_1);
-			
+			frame.setVisible(true);
+
 			
 		}
 		public void AlertaCuentaEliminada() {
@@ -5879,6 +5939,8 @@ public class HomeView {
 			panel.setLayout(null);
 			lblNewLabel_1.setIcon(new ImageIcon(a3));
 			panel.add(lblNewLabel_1);
+			frame.setVisible(true);
+
 		}
 		public void AlertaMenuAdmin() {
 			
@@ -5967,6 +6029,8 @@ public class HomeView {
 			textField_1.setColumns(10);
 			textField_1.setHorizontalAlignment(JTextField.CENTER);
 			panel.add(textField_1);
+			frame.setVisible(true);
+
 		}
 		public void AlertaSeAgotaronExistencias() {
 			
@@ -6037,7 +6101,8 @@ public class HomeView {
 			txtrSeAgotaronLas.setEditable(false);
 			txtrSeAgotaronLas.setFocusable(false);
 			panel.add(txtrSeAgotaronLas);
-			
+			frame.setVisible(true);
+
 		}
 		public void AvisoDeFaltadeExistencia() {
 			
@@ -6104,5 +6169,7 @@ public class HomeView {
 	        Image b3=b2.getScaledInstance(75, 70,Image.SCALE_SMOOTH);
 	        lblNewLabel_1 .setIcon(new ImageIcon(b3));
 			panel.add(lblNewLabel_1);
+			frame.setVisible(true);
+
 		}
 }

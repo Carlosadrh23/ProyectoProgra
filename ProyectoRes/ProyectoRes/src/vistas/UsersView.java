@@ -3,6 +3,7 @@ package vistas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,7 +14,7 @@ public class UsersView {
 	
 	
 	}
-	public void Usuario() {
+	public void Usuario(List usuarios) {
 		
 		JFrame	frame = new JFrame();
 		frame.setResizable(false);
