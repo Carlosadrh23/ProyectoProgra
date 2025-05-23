@@ -34,7 +34,7 @@ public class AuthModel {
 	        rs = stmt.executeQuery();
 
 	        if (rs.next()) {
-	       //	  String passwordHash = rs.getString("password_hash");
+	       //	  String passwordHash = rs.getString("password");
 	       //       if (BCrypt.checkpw(password, passwordHash))
 	        	//Se implementara al añadir el registro
 	            return true; 

@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class ConnectionModel {
 
 	public ConnectionModel() {
-		String query = "select * from usuarios";
+		String query = "select * from usuario";
 		Connection conn = null;
 		Statement stmt = null;
 		try {

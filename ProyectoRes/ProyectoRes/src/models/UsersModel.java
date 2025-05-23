@@ -70,7 +70,7 @@ public class UsersModel {
 	public User get(int id_Target)
 	{
 		
-		String query = "select * from usuarios where id = "+id_Target;
+		String query = "select * from usuario where id = "+id_Target;
 		Connection conn = null;
 		Statement stmt = null;
 		User myuser = null;
@@ -117,7 +117,7 @@ public class UsersModel {
 	
 	public boolean remove(int id) {
 		
-		String query = "DELETE FROM usuarios WHERE `users`.`id` ="+id;
+		String query = "DELETE FROM usuario WHERE `users`.`id` ="+id;
 		Connection conn = null;
 		Statement stmt = null;
 		try {
@@ -145,7 +145,7 @@ public class UsersModel {
 	}
 
 	public void addUser(String nombre,String email,String role,String phone) {
-	 String query = "INSERT INTO usuarios (name, email, role, phone) VALUES (?, ?, ?, ?)";
+	 String query = "INSERT INTO usuario (name, email, role, phone) VALUES (?, ?, ?, ?)";
 	    try (Connection	conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3779414", "sql3779414", "mteKJLYjrB");
 	         PreparedStatement pstmt = conn.prepareStatement(query)) {
 	        
@@ -160,7 +160,7 @@ public class UsersModel {
 	    }
 }
 	public void update(int id, String name, String email, String role, String phone) {
-	    String query = "UPDATE usuarios SET name=?, email=?, role=?, phone=? WHERE id=?";
+	    String query = "UPDATE usuario SET name=?, email=?, role=?, phone=? WHERE id=?";
 	    
 	    try (Connection conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3779414", "sql3779414", "mteKJLYjrB");
 	         PreparedStatement pstmt = conn.prepareStatement(query)) {
