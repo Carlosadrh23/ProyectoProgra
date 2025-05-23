@@ -65,6 +65,15 @@ public class HomeController {
 	{
 		vista.AñadirPlatillo();
 	}
+	public void AlmacenEditar() 
+	{
+		vista.AlmacenEditar();
+	}
+	public void AñadirIngrediente() 
+	{
+		vista.AñadirIngrediente();
+	}
+	
 	
 
 }

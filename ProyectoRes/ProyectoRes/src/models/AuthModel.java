@@ -20,7 +20,7 @@ public class AuthModel {
 	}
 	
 	public boolean login(String password) {
-	    String query = "SELECT * FROM usuario WHERE password_hash = ?";
+	    String query = "SELECT * FROM usuario WHERE password = ?";
 	    Connection conn = null;
 	    PreparedStatement stmt = null;
 	    ResultSet rs = null;

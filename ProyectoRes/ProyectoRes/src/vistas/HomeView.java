@@ -41,39 +41,41 @@ import com.formdev.flatlaf.FlatLightLaf;
 import controllers.AuthController;
 import controllers.HomeController;
 import viewscopy.EnsambledeplatilloyConsultarMenu;
-
+import viewscopy.HistorialyConsulta;
+import viewscopy.RoundedPanel;
 
 public class HomeView {
 	public HomeView() {
 
 	}
+
 	public class EnsambledeplatilloyConsultarMenu extends JPanel {
 		private JFrame ownerFrame; // Variable para guardar la referencia al JFrame
 
-	    public EnsambledeplatilloyConsultarMenu(JFrame frame) { // Constructor modificado
-	        this.ownerFrame = frame;
-	        setLayout(new GridLayout(2, 1));  // 2 filas, 1 columna, que ocupa todo el panel
+		public EnsambledeplatilloyConsultarMenu(JFrame frame) { // Constructor modificado
+			this.ownerFrame = frame;
+			setLayout(new GridLayout(2, 1)); // 2 filas, 1 columna, que ocupa todo el panel
 
-	        JButton btnHistorial = new JButton("Ensamble de platillos");
-	        btnHistorial.setForeground(Color.WHITE);
-	        btnHistorial.setBackground(new Color(170, 170, 170));
-	        btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
-	        btnHistorial.addActionListener(new ActionListener() {
-				
+			JButton btnHistorial = new JButton("Ensamble de platillos");
+			btnHistorial.setForeground(Color.WHITE);
+			btnHistorial.setBackground(new Color(170, 170, 170));
+			btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
+			btnHistorial.addActionListener(new ActionListener() {
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					
+
 				}
 			});
-	        add(btnHistorial);
+			add(btnHistorial);
 
-	        JButton btnConsulta = new JButton("Consultar menú");
-	        btnConsulta.setForeground(Color.WHITE);
-	        btnConsulta.setBackground(new Color(170, 170, 170));
-	        btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
-	        btnConsulta.addActionListener(new ActionListener() {
-				
+			JButton btnConsulta = new JButton("Consultar menú");
+			btnConsulta.setForeground(Color.WHITE);
+			btnConsulta.setBackground(new Color(170, 170, 170));
+			btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
+			btnConsulta.addActionListener(new ActionListener() {
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
@@ -82,24 +84,24 @@ public class HomeView {
 					cc.menu();
 				}
 			});
-	        add(btnConsulta);
-	    }
+			add(btnConsulta);
+		}
 	}
-	
+
 	public class HistorialyConsulta extends JPanel {
-		 private JFrame ownerFrame; // Variable para guardar la referencia al JFrame
+		private JFrame ownerFrame; // Variable para guardar la referencia al JFrame
 
-		    public HistorialyConsulta(JFrame frame) { // Constructor modificado
-		        this.ownerFrame = frame;
-	    	
-	        setLayout(new GridLayout(2, 1));  // 2 filas, 1 columna, que ocupa todo el panel
+		public HistorialyConsulta(JFrame frame) { // Constructor modificado
+			this.ownerFrame = frame;
 
-	        JButton btnHistorial = new JButton("Historial de factura");
-	        btnHistorial.setForeground(Color.WHITE);
-	        btnHistorial.setBackground(new Color(170, 170, 170));
-	        btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
-	        btnHistorial.addActionListener(new ActionListener() {
-				
+			setLayout(new GridLayout(2, 1)); // 2 filas, 1 columna, que ocupa todo el panel
+
+			JButton btnHistorial = new JButton("Historial de factura");
+			btnHistorial.setForeground(Color.WHITE);
+			btnHistorial.setBackground(new Color(170, 170, 170));
+			btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
+			btnHistorial.addActionListener(new ActionListener() {
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
@@ -108,14 +110,14 @@ public class HomeView {
 					cc.HistorialDeFacturacion();
 				}
 			});
-	        add(btnHistorial);
+			add(btnHistorial);
 
-	        JButton btnConsulta = new JButton("Consulta de clientes");
-	        btnConsulta.setForeground(Color.WHITE); 
-	        btnConsulta.setBackground(new Color(170, 170, 170));
-	        btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
-	        btnConsulta.addActionListener(new ActionListener() {
-				
+			JButton btnConsulta = new JButton("Consulta de clientes");
+			btnConsulta.setForeground(Color.WHITE);
+			btnConsulta.setBackground(new Color(170, 170, 170));
+			btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
+			btnConsulta.addActionListener(new ActionListener() {
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
@@ -124,34 +126,34 @@ public class HomeView {
 					cc.ConsultaDeClientes();
 				}
 			});
-	        add(btnConsulta);
-	    }
+			add(btnConsulta);
+		}
 	}
-	
+
 	public class UsuarioCerrarSesion extends JPanel {
 		private JFrame ownerFrame; // Variable para guardar la referencia al JFrame
 
-	    public UsuarioCerrarSesion(JFrame frame) { // Constructor modificado
-	        this.ownerFrame = frame;
-	        setLayout(new GridLayout(1, 1));  // 1 filas, 1 columna, que ocupa todo el panel
+		public UsuarioCerrarSesion(JFrame frame) { // Constructor modificado
+			this.ownerFrame = frame;
+			setLayout(new GridLayout(1, 1)); // 1 filas, 1 columna, que ocupa todo el panel
 
-	        JButton btnHistorial = new JButton("Cerrar sesión");
-	        btnHistorial.setForeground(Color.WHITE);
-	        btnHistorial.setBackground(new Color(170, 170, 170));
-	        btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
-	        btnHistorial.addActionListener(new ActionListener() {
-				
+			JButton btnHistorial = new JButton("Cerrar sesión");
+			btnHistorial.setForeground(Color.WHITE);
+			btnHistorial.setBackground(new Color(170, 170, 170));
+			btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
+			btnHistorial.addActionListener(new ActionListener() {
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					frame.dispose();
-					AuthController app = new AuthController(); 
+					AuthController app = new AuthController();
 					app.login();
 				}
 			});
-	        add(btnHistorial);
+			add(btnHistorial);
 
-	    }
+		}
 	}
 
 	public void Comedor() {
@@ -173,7 +175,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -217,7 +219,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -284,8 +286,8 @@ public class HomeView {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(259, 253, 240, 192);
 		ImageIcon p1 = new ImageIcon(getClass().getResource("/img/cuenta.png"));
-        Image imagen = p1.getImage().getScaledInstance(234, 192, Image.SCALE_SMOOTH);
-        lblNewLabel.setIcon(new ImageIcon(imagen));
+		Image imagen = p1.getImage().getScaledInstance(234, 192, Image.SCALE_SMOOTH);
+		lblNewLabel.setIcon(new ImageIcon(imagen));
 		panel.add(lblNewLabel);
 
 		JButton btnNewButton_5 = new JButton("Abrir cuenta");
@@ -309,8 +311,8 @@ public class HomeView {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(660, 253, 234, 192);
 		ImageIcon p2 = new ImageIcon(getClass().getResource("/img/consulcuent.png"));
-        Image imagen2 = p2.getImage().getScaledInstance(234, 192, Image.SCALE_SMOOTH);
-        lblNewLabel_1.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = p2.getImage().getScaledInstance(234, 192, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen2));
 		panel.add(lblNewLabel_1);
 
 		JButton btnNewButton_6 = new JButton("Consultar cuenta");
@@ -320,11 +322,11 @@ public class HomeView {
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		btnNewButton_6.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			
+
 				frame.dispose();
 				HomeController cc = new HomeController();
 				cc.ConsultaDeCuenta();
@@ -355,7 +357,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -399,7 +401,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -467,8 +469,8 @@ public class HomeView {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(259, 253, 240, 192);
 		ImageIcon p = new ImageIcon(getClass().getResource("/img/cuenta.png"));
-        Image imagen = p.getImage().getScaledInstance(234, 192, Image.SCALE_SMOOTH);
-        lblNewLabel.setIcon(new ImageIcon(imagen));
+		Image imagen = p.getImage().getScaledInstance(234, 192, Image.SCALE_SMOOTH);
+		lblNewLabel.setIcon(new ImageIcon(imagen));
 		panel.add(lblNewLabel);
 
 		JButton btnNewButton_5 = new JButton("Abrir cuenta");
@@ -555,7 +557,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -667,8 +669,8 @@ public class HomeView {
 		btnNewButton_5.setFocusPainted(false);
 		btnNewButton_5.setContentAreaFilled(true);
 		ImageIcon p = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = p.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_5.setIcon(new ImageIcon(imagen));
+		Image imagen = p.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_5.setIcon(new ImageIcon(imagen));
 		panel_1.add(btnNewButton_5);
 
 		JButton btnNewButton_6 = new JButton("ACEPTAR");
@@ -683,8 +685,8 @@ public class HomeView {
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		ImageIcon p1 = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen1 = p1.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen1));
+		Image imagen1 = p1.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen1));
 		panel_1.add(btnNewButton_6);
 		frame.setVisible(true);
 		btnNewButton_6.addActionListener(new ActionListener() {
@@ -754,7 +756,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -865,8 +867,8 @@ public class HomeView {
 		btnNewButton_13.setIconTextGap(20);
 		btnNewButton_13.setBackground(new Color(217, 217, 217));
 		ImageIcon p = new ImageIcon(getClass().getResource("/img/lupa.png"));
-        Image imagen = p.getImage().getScaledInstance(50, 64, Image.SCALE_SMOOTH);
-        btnNewButton_13.setIcon(new ImageIcon(imagen));
+		Image imagen = p.getImage().getScaledInstance(50, 64, Image.SCALE_SMOOTH);
+		btnNewButton_13.setIcon(new ImageIcon(imagen));
 		btnNewButton_13.setBounds(36, 227, 227, 64);
 		panel.add(btnNewButton_13);
 		frame.setVisible(true);
@@ -927,7 +929,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -1113,8 +1115,8 @@ public class HomeView {
 		btnNewButton_10.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton_10.setIconTextGap(10); // espacio entre imagen y texto
 		ImageIcon p = new ImageIcon(getClass().getResource("/img/enviar.png"));
-        Image imagen = p.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-        btnNewButton_10.setIcon(new ImageIcon(imagen));
+		Image imagen = p.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		btnNewButton_10.setIcon(new ImageIcon(imagen));
 		btnNewButton_10.setFocusPainted(false);
 		btnNewButton_10.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_10);
@@ -1128,8 +1130,8 @@ public class HomeView {
 		btnNewButton_11.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton_11.setIconTextGap(1); // espacio entre imagen y texto
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen1 = a.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-        btnNewButton_11.setIcon(new ImageIcon(imagen1));
+		Image imagen1 = a.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		btnNewButton_11.setIcon(new ImageIcon(imagen1));
 		btnNewButton_11.setFocusPainted(false);
 		btnNewButton_11.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_11);
@@ -1145,8 +1147,8 @@ public class HomeView {
 		btnNewButton_12.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_12.setHorizontalAlignment(SwingConstants.LEFT);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/enviarycobrar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_12.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_12.setIcon(new ImageIcon(imagen2));
 		btnNewButton_12.setIconTextGap(20); // espacio entre imagen y texto
 		panel_1.add(btnNewButton_12);
 		btnNewButton_12.setFocusPainted(false);
@@ -1159,8 +1161,8 @@ public class HomeView {
 		btnNewButton_13.setIconTextGap(20);
 		btnNewButton_13.setBackground(new Color(217, 217, 217));
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/lupa.png"));
-        Image imagen3 = c.getImage().getScaledInstance(50, 64, Image.SCALE_SMOOTH);
-        btnNewButton_13.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(50, 64, Image.SCALE_SMOOTH);
+		btnNewButton_13.setIcon(new ImageIcon(imagen3));
 		btnNewButton_13.setBounds(36, 227, 227, 64);
 		panel.add(btnNewButton_13);
 		btnNewButton_13.setFocusPainted(false);
@@ -1196,7 +1198,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -1240,7 +1242,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -1321,11 +1323,19 @@ public class HomeView {
 		btnNewButton_5.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_5.setIconTextGap(1);
 		btnNewButton_5.setBounds(80, 150, 85, 49);
-		ImageIcon d1 = new ImageIcon("img/añadir.png");
-		Image d2 = d1.getImage();
-		Image d3 = d2.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-		btnNewButton_5.setIcon(new ImageIcon(d3));
+		ImageIcon a5 = new ImageIcon(getClass().getResource("/img/añadir.png"));
+		Image imagen71 = a5.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_5.setIcon(new ImageIcon(imagen71));
 		panel.add(btnNewButton_5);
+		btnNewButton_5.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.AñadirIngrediente();
+			}
+		});
 
 		// Botton editar
 		JButton btnNewButton_6 = new JButton("EDITAR");
@@ -1337,10 +1347,10 @@ public class HomeView {
 		btnNewButton_6.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
-		btnNewButton_6.setBounds(199, 150, 85, 49);	
+		btnNewButton_6.setBounds(199, 150, 85, 49);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/lapiz.png"));
-        Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen));
 		panel.add(btnNewButton_6);
 
 		ImageIcon lupaIcon = new ImageIcon("/img/lupa.png");
@@ -1364,10 +1374,10 @@ public class HomeView {
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
 		btnNewButton_7.setBounds(963, 150, 85, 49);
-		
+
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/borrar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_7);
 
 		// crea la barra
@@ -1456,7 +1466,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -1500,7 +1510,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -1658,7 +1668,7 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				HomeController cc = new HomeController();
-				cc.menu(); 
+				cc.menu();
 			}
 		});
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
@@ -1667,10 +1677,10 @@ public class HomeView {
 		btnNewButton_6.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_6.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_6.setIconTextGap(1);		
+		btnNewButton_6.setIconTextGap(1);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
@@ -1685,8 +1695,8 @@ public class HomeView {
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen1 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen1));
+		Image imagen1 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen1));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
@@ -1721,7 +1731,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -1765,7 +1775,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -1967,10 +1977,10 @@ public class HomeView {
 		btnNewButton_6.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_6.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_6.setIconTextGap(1);		
+		btnNewButton_6.setIconTextGap(1);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
@@ -1983,10 +1993,10 @@ public class HomeView {
 		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_7.setIconTextGap(1);		
+		btnNewButton_7.setIconTextGap(1);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen2));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
@@ -2021,7 +2031,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -2065,7 +2075,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -2228,10 +2238,10 @@ public class HomeView {
 		btnNewButton_6.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_6.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_6.setIconTextGap(1);		
+		btnNewButton_6.setIconTextGap(1);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
@@ -2244,10 +2254,10 @@ public class HomeView {
 		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_7.setIconTextGap(1);		
+		btnNewButton_7.setIconTextGap(1);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen2));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
@@ -2282,7 +2292,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -2326,7 +2336,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -2505,11 +2515,11 @@ public class HomeView {
 
 		JButton btnNewButton_8 = new JButton("");
 		btnNewButton_8.setFont(new Font("Inter", Font.PLAIN, 10));
-		btnNewButton_8.setBounds(693, 51, 28, 31);		
+		btnNewButton_8.setBounds(693, 51, 28, 31);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/borrar2.png"));
-        Image imagen = a.getImage().getScaledInstance(28, 31, Image.SCALE_SMOOTH);
-        btnNewButton_8.setIcon(new ImageIcon(imagen));
-        btnNewButton_8.setBorderPainted(false);
+		Image imagen = a.getImage().getScaledInstance(28, 31, Image.SCALE_SMOOTH);
+		btnNewButton_8.setIcon(new ImageIcon(imagen));
+		btnNewButton_8.setBorderPainted(false);
 		btnNewButton_8.setFocusPainted(false);
 		btnNewButton_8.setContentAreaFilled(true);
 		panel_2.add(btnNewButton_8);
@@ -2526,10 +2536,10 @@ public class HomeView {
 		btnNewButton_6.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_6.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_6.setIconTextGap(1);		
+		btnNewButton_6.setIconTextGap(1);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen2));		
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
@@ -2542,10 +2552,10 @@ public class HomeView {
 		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_7.setIconTextGap(1);	
+		btnNewButton_7.setIconTextGap(1);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
@@ -2614,7 +2624,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -2769,10 +2779,10 @@ public class HomeView {
 		// boton de borrar
 		JButton btnNewButton_8 = new JButton("");
 		btnNewButton_8.setFont(new Font("Inter", Font.PLAIN, 10));
-		btnNewButton_8.setBounds(693, 51, 28, 31);		
+		btnNewButton_8.setBounds(693, 51, 28, 31);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/borrar2.png"));
-        Image imagen = a.getImage().getScaledInstance(28, 31, Image.SCALE_SMOOTH);
-        btnNewButton_8.setIcon(new ImageIcon(imagen));		
+		Image imagen = a.getImage().getScaledInstance(28, 31, Image.SCALE_SMOOTH);
+		btnNewButton_8.setIcon(new ImageIcon(imagen));
 		btnNewButton_8.setBorderPainted(false);
 		btnNewButton_8.setFocusPainted(false);
 		btnNewButton_8.setContentAreaFilled(true);
@@ -2862,8 +2872,8 @@ public class HomeView {
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen2));	
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
@@ -2876,10 +2886,10 @@ public class HomeView {
 		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_7.setIconTextGap(1);		
+		btnNewButton_7.setIconTextGap(1);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen3));	
+		Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
@@ -2948,7 +2958,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -3127,10 +3137,10 @@ public class HomeView {
 
 		JButton btnNewButton_8 = new JButton("");
 		btnNewButton_8.setFont(new Font("Inter", Font.PLAIN, 10));
-		btnNewButton_8.setBounds(693, 51, 28, 31);		
+		btnNewButton_8.setBounds(693, 51, 28, 31);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/borrar2.png"));
-        Image imagen = a.getImage().getScaledInstance(28, 31, Image.SCALE_SMOOTH);
-        btnNewButton_8.setIcon(new ImageIcon(imagen));	
+		Image imagen = a.getImage().getScaledInstance(28, 31, Image.SCALE_SMOOTH);
+		btnNewButton_8.setIcon(new ImageIcon(imagen));
 		btnNewButton_8.setBorderPainted(false);
 		btnNewButton_8.setFocusPainted(false);
 		btnNewButton_8.setContentAreaFilled(true);
@@ -3163,8 +3173,8 @@ public class HomeView {
 		JButton btnNewButton_9 = new JButton("");
 		btnNewButton_9.setBounds(693, 85, 28, 31);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/borrar2.png"));
-        Image imagen2 = b.getImage().getScaledInstance(28, 31, Image.SCALE_SMOOTH);
-        btnNewButton_9.setIcon(new ImageIcon(imagen2));	
+		Image imagen2 = b.getImage().getScaledInstance(28, 31, Image.SCALE_SMOOTH);
+		btnNewButton_9.setIcon(new ImageIcon(imagen2));
 		btnNewButton_9.setBorderPainted(false);
 		btnNewButton_9.setFocusPainted(false);
 		btnNewButton_9.setContentAreaFilled(true);
@@ -3199,10 +3209,10 @@ public class HomeView {
 		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_7.setIconTextGap(1);		
+		btnNewButton_7.setIconTextGap(1);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen3));	
+		Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
@@ -3333,7 +3343,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -3412,13 +3422,13 @@ public class HomeView {
 		btnNewButton_5.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_5.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_5.setIconTextGap(1);
-		btnNewButton_5.setBounds(80, 150, 85, 49);	
+		btnNewButton_5.setBounds(80, 150, 85, 49);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/añadir.png"));
-        Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_5.setIcon(new ImageIcon(imagen));
-        
-        btnNewButton_5.addActionListener(new ActionListener() {
-			
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_5.setIcon(new ImageIcon(imagen));
+
+		btnNewButton_5.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -3427,7 +3437,7 @@ public class HomeView {
 				cc.AltaDeClientes();
 			}
 		});
-        
+
 		panel.add(btnNewButton_5);
 
 		JButton btnNewButton_6 = new JButton("EDITAR");
@@ -3441,11 +3451,11 @@ public class HomeView {
 		btnNewButton_6.setIconTextGap(1);
 		btnNewButton_6.setBounds(199, 150, 85, 49);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lapiz.png"));
-        Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen2));	
-        
-        btnNewButton_6.addActionListener(new ActionListener() {
-			
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen2));
+
+		btnNewButton_6.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -3454,7 +3464,7 @@ public class HomeView {
 				cc.EditarCliente();
 			}
 		});
-        
+
 		panel.add(btnNewButton_6);
 
 		ImageIcon lupaIcon = new ImageIcon("/img/lupa.png");
@@ -3477,10 +3487,10 @@ public class HomeView {
 		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
-		btnNewButton_7.setBounds(963, 150, 85, 49);	
+		btnNewButton_7.setBounds(963, 150, 85, 49);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/borrar.png"));
-        Image imagen3 = c.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen3));	
+		Image imagen3 = c.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		panel.add(btnNewButton_7);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -3554,7 +3564,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -3598,7 +3608,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -3684,11 +3694,11 @@ public class HomeView {
 		btnNewButton_5.setIconTextGap(1);
 		// IMAGEN
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/mesa.png"));
-        Image imagen = a.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
-        btnNewButton_5.setIcon(new ImageIcon(imagen));
-        
-        btnNewButton_5.addActionListener(new ActionListener() {
-			
+		Image imagen = a.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
+		btnNewButton_5.setIcon(new ImageIcon(imagen));
+
+		btnNewButton_5.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -3715,11 +3725,11 @@ public class HomeView {
 		btnNewButton_6.setIconTextGap(1);
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/mesa.png"));
-        Image imagen2 = b.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen2));
-        
-        btnNewButton_6.addActionListener(new ActionListener() {
-			
+		Image imagen2 = b.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen2));
+
+		btnNewButton_6.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -3746,11 +3756,11 @@ public class HomeView {
 		btnNewButton_7.setIconTextGap(1);
 		// IMAGEN
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/mesa.png"));
-        Image imagen3 = c.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen3));
-        
-        btnNewButton_7.addActionListener(new ActionListener() {
-			
+		Image imagen3 = c.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen3));
+
+		btnNewButton_7.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -3777,11 +3787,11 @@ public class HomeView {
 		btnNewButton_8.setIconTextGap(1);
 		// IMAGEN
 		ImageIcon d = new ImageIcon(getClass().getResource("/img/mesa.png"));
-        Image imagen4 = d.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
-        btnNewButton_8.setIcon(new ImageIcon(imagen4));
-        
-        btnNewButton_8.addActionListener(new ActionListener() {
-			
+		Image imagen4 = d.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
+		btnNewButton_8.setIcon(new ImageIcon(imagen4));
+
+		btnNewButton_8.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -3821,7 +3831,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -3865,7 +3875,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -4211,8 +4221,8 @@ public class HomeView {
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
@@ -4227,8 +4237,8 @@ public class HomeView {
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen2));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
@@ -4275,7 +4285,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -4319,7 +4329,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -4668,13 +4678,13 @@ public class HomeView {
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
-		
+
 		btnNewButton_6.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -4683,7 +4693,7 @@ public class HomeView {
 				cc.ConsultaDeClientes();
 			}
 		});
-		
+
 		panel_1.add(btnNewButton_6);
 
 		// boton aceptar
@@ -4696,8 +4706,8 @@ public class HomeView {
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen2));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
@@ -4732,7 +4742,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -4776,7 +4786,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -5127,8 +5137,8 @@ public class HomeView {
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
@@ -5143,8 +5153,8 @@ public class HomeView {
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen2));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
@@ -5179,7 +5189,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -5223,7 +5233,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -5574,8 +5584,8 @@ public class HomeView {
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
@@ -5590,8 +5600,8 @@ public class HomeView {
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen2));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
@@ -5605,8 +5615,8 @@ public class HomeView {
 		btnNewButton_5.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_5.setIconTextGap(10);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/lupa.png"));
-        Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_5.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_5.setIcon(new ImageIcon(imagen3));
 		btnNewButton_5.setFocusPainted(false);
 		btnNewButton_5.setContentAreaFilled(true);
 		panel.add(btnNewButton_5);
@@ -5640,7 +5650,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -5684,7 +5694,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -5847,8 +5857,8 @@ public class HomeView {
 		btnNewButton_5.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_5.setIconTextGap(10);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar2.png"));
-        Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_5.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_5.setIcon(new ImageIcon(imagen));
 		btnNewButton_5.setFocusPainted(false);
 		btnNewButton_5.setContentAreaFilled(true);
 		btnNewButton_5.setFocusPainted(false);
@@ -5865,8 +5875,8 @@ public class HomeView {
 		btnNewButton_6.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(10);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lupa.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel.add(btnNewButton_6);
@@ -5880,8 +5890,8 @@ public class HomeView {
 		btnNewButton_7.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(10);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/impresora.png"));
-        Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen3));	
+		Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		btnNewButton_7.setFocusPainted(false);
@@ -5911,7 +5921,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -5955,7 +5965,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -6023,8 +6033,8 @@ public class HomeView {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(259, 253, 240, 192);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cuenta.png"));
-        Image imagen = a.getImage().getScaledInstance(234, 192, Image.SCALE_SMOOTH);
-        lblNewLabel.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(234, 192, Image.SCALE_SMOOTH);
+		lblNewLabel.setIcon(new ImageIcon(imagen));
 		panel.add(lblNewLabel);
 
 		JButton btnNewButton_5 = new JButton("Abrir cuenta");
@@ -6036,8 +6046,8 @@ public class HomeView {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(660, 253, 234, 192);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/consulcuent.png"));
-        Image imagen2 = b.getImage().getScaledInstance(234, 192, Image.SCALE_SMOOTH);
-        lblNewLabel_1.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(234, 192, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen2));
 		panel.add(lblNewLabel_1);
 
 		JButton btnNewButton_6 = new JButton("Consultar cuenta");
@@ -6048,8 +6058,6 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-
-	
 
 	public void HistorialDeFacturacion() {
 		try {
@@ -6079,7 +6087,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -6123,7 +6131,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -6205,8 +6213,8 @@ public class HomeView {
 		btnNewButton_5.setIconTextGap(1);
 		btnNewButton_5.setBounds(80, 150, 85, 49);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/añadir.png"));
-        Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_5.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_5.setIcon(new ImageIcon(imagen));
 		panel.add(btnNewButton_5);
 
 		// Botton editar
@@ -6221,8 +6229,8 @@ public class HomeView {
 		btnNewButton_6.setIconTextGap(1);
 		btnNewButton_6.setBounds(199, 150, 85, 49);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lapiz.png"));
-        Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_6);
 
 		ImageIcon lupaIcon = new ImageIcon("/img/lupa.png");
@@ -6247,8 +6255,8 @@ public class HomeView {
 		btnNewButton_7.setIconTextGap(1);
 		btnNewButton_7.setBounds(963, 150, 85, 49);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/borrar.png"));
-        Image imagen3 = c.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		panel.add(btnNewButton_7);
 
 		String[] columnas = { "RFC", "NOMBRE", "IMPORTE" };
@@ -6304,8 +6312,6 @@ public class HomeView {
 
 	}
 
-	
-
 	public void IngresarNuevaOrden() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -6333,7 +6339,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -6377,7 +6383,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -6541,8 +6547,8 @@ public class HomeView {
 		btnNewButton_5.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_5.setIconTextGap(10);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar2.png"));
-        Image imagen = a.getImage().getScaledInstance(40,40, Image.SCALE_SMOOTH);
-        btnNewButton_5.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_5.setIcon(new ImageIcon(imagen));
 		btnNewButton_5.setFocusPainted(false);
 		btnNewButton_5.setContentAreaFilled(true);
 		btnNewButton_5.setFocusPainted(false);
@@ -6559,8 +6565,8 @@ public class HomeView {
 		btnNewButton_6.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(10);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lupa.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel.add(btnNewButton_6);
@@ -6574,8 +6580,8 @@ public class HomeView {
 		btnNewButton_7.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(10);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/impresora.png"));
-        Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		btnNewButton_7.setFocusPainted(false);
@@ -6613,7 +6619,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -6656,16 +6662,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
-		
+
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -6739,9 +6745,18 @@ public class HomeView {
 		btnNewButton_5.setIconTextGap(1);
 		btnNewButton_5.setBounds(80, 150, 85, 49);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/añadir.png"));
-        Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_5.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_5.setIcon(new ImageIcon(imagen));
 		panel.add(btnNewButton_5);
+		btnNewButton_5.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.AñadirIngrediente();
+			}
+		});
 
 		// Botton editar
 		JButton btnNewButton_6 = new JButton("EDITAR");
@@ -6755,13 +6770,27 @@ public class HomeView {
 		btnNewButton_6.setIconTextGap(1);
 		btnNewButton_6.setBounds(199, 150, 85, 49);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lapiz.png"));
-        Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_6);
+		btnNewButton_6.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.AlmacenEditar();
+
+			}
+		});
 		ImageIcon lupaIcon = new ImageIcon("/img/lupa.png");
 		Image lupaImg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 
+		/*
+		 * ImageIcon lupaIcona = new ImageIcon(getClass().getResource("/img/lupa.png"));
+		 * Image lupaImg = lupaIcona.getImage().getScaledInstance(30, 30,
+		 * Image.SCALE_SMOOTH); textField_1.setIcon(new ImageIcon(lupaImg));
+		 */
 		Lupa textField_1 = new Lupa(lupaImg);
 		textField_1.setBounds(357, 150, 263, 43);
 		textField_1.setBackground(new Color(190, 190, 190));
@@ -6781,8 +6810,8 @@ public class HomeView {
 		btnNewButton_7.setIconTextGap(1);
 		btnNewButton_7.setBounds(963, 150, 85, 49);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/borrar.png"));
-        Image imagen3 = c.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		panel.add(btnNewButton_7);
 
 		// crea la barra
@@ -6856,121 +6885,120 @@ public class HomeView {
 		panel.setLayout(null);
 
 		// boton de comedor
-				JButton btnNewButton = new JButton("Comedor");
-				btnNewButton.setBounds(0, 0, 234, 49);
-				btnNewButton.setForeground(new Color(255, 255, 255));
-				btnNewButton.setBackground(new Color(50, 98, 115));
-				btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
-				btnNewButton.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						frame.dispose();
-						HomeController hm = new HomeController();
-						hm.abrirCuenta2();
-					}
-				});
-				panel.add(btnNewButton);
-				
-				JButton btnNewButton_1 = new JButton("Ensamble");
-				btnNewButton_1.setBounds(226, 0, 227, 49);
-				btnNewButton_1.setForeground(new Color(255, 255, 255));
-				btnNewButton_1.setBackground(new Color(50, 98, 115));
-				btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 15));
-				panel.add(btnNewButton_1);
-				// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
-						JPanel panelContenido1 = new JPanel();
-						panelContenido1.setBounds(230, 49, 225, 65);
-						panelContenido1.setLayout(new BorderLayout());
-						panelContenido1.setVisible(false);
-						panelContenido1.setOpaque(false);
-						panel.add(panelContenido1);
+		JButton btnNewButton = new JButton("Comedor");
+		btnNewButton.setBounds(0, 0, 234, 49);
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(50, 98, 115));
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
 
-						btnNewButton_1.addActionListener(e -> {
-						    if (panelContenido1.isVisible()) {
-						        panelContenido1.setVisible(false);
-						        panelContenido1.removeAll();
-						    } else {
-						        panelContenido1.removeAll();
-						        panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
-						        panelContenido1.setVisible(true);
-						    }
-						    panelContenido1.revalidate();
-						    panelContenido1.repaint();
-						});
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
+		panel.add(btnNewButton);
 
-				
-				JButton btnNewButton_2 = new JButton("Inventario");
-				btnNewButton_2.setBounds(452, 0, 227, 49);
-				btnNewButton_2.setForeground(new Color(255, 255, 255));
-				btnNewButton_2.setBackground(new Color(50, 98, 115));
-				btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
-				btnNewButton_2.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						frame.dispose();
-						HomeController cc = new HomeController();
-						cc.Inventario();
-					}
-				});
-				panel.add(btnNewButton_2);
-				
-				JButton btnNewButton_3 = new JButton("Clientes");
-				btnNewButton_3.setBounds(677, 0, 234, 49);
-				btnNewButton_3.setForeground(new Color(255, 255, 255));
-				btnNewButton_3.setBackground(new Color(50, 98, 115));
-				btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 15));
-				panel.add(btnNewButton_3);
-				// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
-						JPanel panelContenido = new JPanel();
-						panelContenido.setBounds(677, 49, 234, 65);
-						panelContenido.setLayout(new BorderLayout());
-						panelContenido.setVisible(false);
-						panelContenido.setOpaque(false);
-						panel.add(panelContenido);
+		JButton btnNewButton_1 = new JButton("Ensamble");
+		btnNewButton_1.setBounds(226, 0, 227, 49);
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(50, 98, 115));
+		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 15));
+		panel.add(btnNewButton_1);
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
+		JPanel panelContenido1 = new JPanel();
+		panelContenido1.setBounds(230, 49, 225, 65);
+		panelContenido1.setLayout(new BorderLayout());
+		panelContenido1.setVisible(false);
+		panelContenido1.setOpaque(false);
+		panel.add(panelContenido1);
 
-						btnNewButton_3.addActionListener(e -> {
-						    if (panelContenido.isVisible()) {
-						        panelContenido.setVisible(false);
-						        panelContenido.removeAll();
-						    } else {
-						        panelContenido.removeAll();
-						        panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
-						        panelContenido.setVisible(true);
-						    }
-						    panelContenido.revalidate();
-						    panelContenido.repaint();
-						});
+		btnNewButton_1.addActionListener(e -> {
+			if (panelContenido1.isVisible()) {
+				panelContenido1.setVisible(false);
+				panelContenido1.removeAll();
+			} else {
+				panelContenido1.removeAll();
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
+				panelContenido1.setVisible(true);
+			}
+			panelContenido1.revalidate();
+			panelContenido1.repaint();
+		});
 
-				JButton btnNewButton_4 = new JButton("Usuarios");
-				btnNewButton_4.setBounds(909, 0, 227, 49);
-				btnNewButton_4.setForeground(new Color(255, 255, 255));
-				btnNewButton_4.setBackground(new Color(50, 98, 115));
-				btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 15));
-				panel.add(btnNewButton_4);
-				// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN USUARIOS
-						JPanel panelContenido2 = new JPanel();
-						panelContenido2.setBounds(909, 49, 227, 49);
-						panelContenido2.setLayout(new BorderLayout());
-						panelContenido2.setVisible(false);
-						panelContenido2.setOpaque(false);
-						panel.add(panelContenido2);
+		JButton btnNewButton_2 = new JButton("Inventario");
+		btnNewButton_2.setBounds(452, 0, 227, 49);
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setBackground(new Color(50, 98, 115));
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
 
-						btnNewButton_4.addActionListener(e -> {
-							if (panelContenido2.isVisible()) {
-								panelContenido2.setVisible(false);
-								panelContenido2.removeAll();
-							} else {
-								panelContenido2.removeAll();
-								panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
-								panelContenido2.setVisible(true);
-							}
-							panelContenido2.revalidate();
-							panelContenido2.repaint();
-						});
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
+		panel.add(btnNewButton_2);
+
+		JButton btnNewButton_3 = new JButton("Clientes");
+		btnNewButton_3.setBounds(677, 0, 234, 49);
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setBackground(new Color(50, 98, 115));
+		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 15));
+		panel.add(btnNewButton_3);
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
+		JPanel panelContenido = new JPanel();
+		panelContenido.setBounds(677, 49, 234, 65);
+		panelContenido.setLayout(new BorderLayout());
+		panelContenido.setVisible(false);
+		panelContenido.setOpaque(false);
+		panel.add(panelContenido);
+
+		btnNewButton_3.addActionListener(e -> {
+			if (panelContenido.isVisible()) {
+				panelContenido.setVisible(false);
+				panelContenido.removeAll();
+			} else {
+				panelContenido.removeAll();
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
+				panelContenido.setVisible(true);
+			}
+			panelContenido.revalidate();
+			panelContenido.repaint();
+		});
+
+		JButton btnNewButton_4 = new JButton("Usuarios");
+		btnNewButton_4.setBounds(909, 0, 227, 49);
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
+		btnNewButton_4.setBackground(new Color(50, 98, 115));
+		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 15));
+		panel.add(btnNewButton_4);
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN USUARIOS
+		JPanel panelContenido2 = new JPanel();
+		panelContenido2.setBounds(909, 49, 227, 49);
+		panelContenido2.setLayout(new BorderLayout());
+		panelContenido2.setVisible(false);
+		panelContenido2.setOpaque(false);
+		panel.add(panelContenido2);
+
+		btnNewButton_4.addActionListener(e -> {
+			if (panelContenido2.isVisible()) {
+				panelContenido2.setVisible(false);
+				panelContenido2.removeAll();
+			} else {
+				panelContenido2.removeAll();
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
+				panelContenido2.setVisible(true);
+			}
+			panelContenido2.revalidate();
+			panelContenido2.repaint();
+		});
 
 		JLabel lblNewLabel = new JLabel("MENÚ");
 		lblNewLabel.setBounds(530, 82, 256, 25);
@@ -6988,11 +7016,11 @@ public class HomeView {
 		btnNewButton_5.setIconTextGap(1);
 		btnNewButton_5.setBounds(80, 150, 85, 49);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/añadir.png"));
-        Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_5.setIcon(new ImageIcon(imagen));
-        
-        btnNewButton_5.addActionListener(new ActionListener() {
-			
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_5.setIcon(new ImageIcon(imagen));
+
+		btnNewButton_5.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -7014,8 +7042,8 @@ public class HomeView {
 		btnNewButton_6.setIconTextGap(1);
 		btnNewButton_6.setBounds(199, 150, 85, 49);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lapiz.png"));
-        Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_6);
 
 		ImageIcon lupaIcon = new ImageIcon("/img/lupa.png");
@@ -7040,8 +7068,8 @@ public class HomeView {
 		btnNewButton_7.setIconTextGap(1);
 		btnNewButton_7.setBounds(963, 150, 85, 49);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/borrar.png"));
-        Image imagen3 = c.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		panel.add(btnNewButton_7);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -7149,8 +7177,8 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setBounds(67, 117, 68, 59);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/CocaColaLogo.png"));
-        Image imagen = a.getImage().getScaledInstance(68, 59, Image.SCALE_SMOOTH);
-        btnNewButton.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(68, 59, Image.SCALE_SMOOTH);
+		btnNewButton.setIcon(new ImageIcon(imagen));
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("");
@@ -7158,8 +7186,8 @@ public class HomeView {
 		btnNewButton_1.setBackground(new Color(255, 255, 255));
 		btnNewButton_1.setBounds(235, 117, 68, 59);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/SpriteLogo.png"));
-        Image imagen2 = b.getImage().getScaledInstance(68, 59, Image.SCALE_SMOOTH);
-        btnNewButton_1.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(68, 59, Image.SCALE_SMOOTH);
+		btnNewButton_1.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("");
@@ -7167,8 +7195,8 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(255, 255, 255));
 		btnNewButton_2.setBounds(406, 117, 68, 59);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/MundetLogo.png"));
-        Image imagen3 = c.getImage().getScaledInstance(68, 59, Image.SCALE_SMOOTH);
-        btnNewButton_2.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(68, 59, Image.SCALE_SMOOTH);
+		btnNewButton_2.setIcon(new ImageIcon(imagen3));
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("CANCELAR");
@@ -7182,8 +7210,8 @@ public class HomeView {
 		btnNewButton_3.setIconTextGap(1);
 		btnNewButton_3.setBounds(146, 224, 92, 49);
 		ImageIcon d = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen4 = d.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_3.setIcon(new ImageIcon(imagen4));
+		Image imagen4 = d.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_3.setIcon(new ImageIcon(imagen4));
 		panel.add(btnNewButton_3);
 
 		JButton btnNewButton_4 = new JButton("ACEPTAR");
@@ -7197,8 +7225,8 @@ public class HomeView {
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
 		ImageIcon e = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen5 = e.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_4.setIcon(new ImageIcon(imagen5));
+		Image imagen5 = e.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_4.setIcon(new ImageIcon(imagen5));
 		panel.add(btnNewButton_4);
 		frame.setVisible(true);
 
@@ -7268,8 +7296,8 @@ public class HomeView {
 		btnNewButton_3.setBounds(146, 224, 92, 49);
 		// imagen
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_3.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_3.setIcon(new ImageIcon(imagen));
 		panel.add(btnNewButton_3);
 
 		JButton btnNewButton_4 = new JButton("ACEPTAR");
@@ -7287,8 +7315,8 @@ public class HomeView {
 		btnNewButton_4.setBounds(295, 224, 92, 49);
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_4.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_4.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_4);
 		frame.setVisible(true);
 
@@ -7308,8 +7336,8 @@ public class HomeView {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(150, 0, 71, 88);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/logo2.png"));
-        Image imagen = a.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        lblNewLabel.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		lblNewLabel.setIcon(new ImageIcon(imagen));
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("PUNTO Y COMIDA");
@@ -7489,8 +7517,8 @@ public class HomeView {
 		btnNewButton.setIconTextGap(1);
 		btnNewButton.setBounds(153, 224, 92, 49);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton.setIcon(new ImageIcon(imagen));
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setContentAreaFilled(true);
 		panel.add(btnNewButton);
@@ -7505,8 +7533,8 @@ public class HomeView {
 		btnNewButton_1.setIconTextGap(1);
 		btnNewButton_1.setBounds(304, 225, 92, 49);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_1.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_1.setIcon(new ImageIcon(imagen2));
 		btnNewButton_1.setFocusPainted(false);
 		btnNewButton_1.setContentAreaFilled(true);
 		panel.add(btnNewButton_1);
@@ -7514,8 +7542,8 @@ public class HomeView {
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(162, 106, 44, 25);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/admin4.png"));
-        Image imagen3 = c.getImage().getScaledInstance(44, 25, Image.SCALE_SMOOTH);
-        lblNewLabel_2.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(44, 25, Image.SCALE_SMOOTH);
+		lblNewLabel_2.setIcon(new ImageIcon(imagen3));
 		panel.add(lblNewLabel_2);
 
 		JTextField textField = new JTextField("Administrador");
@@ -7533,8 +7561,8 @@ public class HomeView {
 		JLabel lblNewLabel_1 = new JLabel(""); // imagen del candado
 		lblNewLabel_1.setBounds(161, 165, 45, 30);
 		ImageIcon d = new ImageIcon(getClass().getResource("/img/candado_1.png"));
-        Image imagen4 = d.getImage().getScaledInstance(44, 30, Image.SCALE_SMOOTH);
-        lblNewLabel_1.setIcon(new ImageIcon(imagen4));
+		Image imagen4 = d.getImage().getScaledInstance(44, 30, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen4));
 		panel.add(lblNewLabel_1);
 
 		JTextField textField_1 = new JTextField();
@@ -7579,8 +7607,8 @@ public class HomeView {
 		btnNewButton.setIconTextGap(1);
 		btnNewButton.setBounds(153, 224, 92, 49);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton.setIcon(new ImageIcon(imagen));
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setContentAreaFilled(true);
 		panel.add(btnNewButton);
@@ -7595,8 +7623,8 @@ public class HomeView {
 		btnNewButton_1.setIconTextGap(1);
 		btnNewButton_1.setBounds(304, 225, 92, 49);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_1.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_1.setIcon(new ImageIcon(imagen2));
 		btnNewButton_1.setFocusPainted(false);
 		btnNewButton_1.setContentAreaFilled(true);
 		panel.add(btnNewButton_1);
@@ -7604,8 +7632,8 @@ public class HomeView {
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(162, 106, 44, 25);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/admin4.png"));
-        Image imagen3 = c.getImage().getScaledInstance(44, 25, Image.SCALE_SMOOTH);
-        lblNewLabel_2.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(44, 25, Image.SCALE_SMOOTH);
+		lblNewLabel_2.setIcon(new ImageIcon(imagen3));
 		panel.add(lblNewLabel_2);
 
 		JTextField textField = new JTextField("Administrador");
@@ -7623,8 +7651,8 @@ public class HomeView {
 		JLabel lblNewLabel_1 = new JLabel(""); // imagen del candado
 		lblNewLabel_1.setBounds(161, 165, 45, 30);
 		ImageIcon d = new ImageIcon(getClass().getResource("/img/candado_1.png"));
-        Image imagen4 = d.getImage().getScaledInstance(44, 30, Image.SCALE_SMOOTH);
-        lblNewLabel_1.setIcon(new ImageIcon(imagen4));
+		Image imagen4 = d.getImage().getScaledInstance(44, 30, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen4));
 		panel.add(lblNewLabel_1);
 
 		JTextField textField_1 = new JTextField();
@@ -7656,8 +7684,8 @@ public class HomeView {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(213, 76, 103, 72);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/guardado.png"));
-        Image imagen = a.getImage().getScaledInstance(103, 72, Image.SCALE_SMOOTH);
-        lblNewLabel.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(103, 72, Image.SCALE_SMOOTH);
+		lblNewLabel.setIcon(new ImageIcon(imagen));
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Cambios guardados con éxito");
@@ -7692,8 +7720,8 @@ public class HomeView {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(222, 68, 128, 97);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/borrar2.png"));
-        Image imagen = a.getImage().getScaledInstance(80, 120, Image.SCALE_SMOOTH);
-        lblNewLabel_1.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(80, 120, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel.add(lblNewLabel_1);
 		frame.setVisible(true);
 
@@ -7724,8 +7752,8 @@ public class HomeView {
 		btnNewButton.setIconTextGap(1);
 		btnNewButton.setBounds(153, 224, 92, 49);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton.setIcon(new ImageIcon(imagen));
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setContentAreaFilled(true);
 		panel.add(btnNewButton);
@@ -7740,8 +7768,8 @@ public class HomeView {
 		btnNewButton_1.setIconTextGap(1);
 		btnNewButton_1.setBounds(304, 225, 92, 49);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_1.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_1.setIcon(new ImageIcon(imagen2));
 		btnNewButton_1.setFocusPainted(false);
 		btnNewButton_1.setContentAreaFilled(true);
 		panel.add(btnNewButton_1);
@@ -7749,8 +7777,8 @@ public class HomeView {
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(162, 106, 44, 25);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/admin4.png"));
-        Image imagen3 = c.getImage().getScaledInstance(44, 25, Image.SCALE_SMOOTH);
-        lblNewLabel_2.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(44, 25, Image.SCALE_SMOOTH);
+		lblNewLabel_2.setIcon(new ImageIcon(imagen3));
 		panel.add(lblNewLabel_2);
 
 		JTextField textField = new JTextField("Administrador");
@@ -7768,8 +7796,8 @@ public class HomeView {
 		JLabel lblNewLabel_1 = new JLabel(""); // imagen del candado
 		lblNewLabel_1.setBounds(161, 165, 45, 30);
 		ImageIcon d = new ImageIcon(getClass().getResource("/img/candado_1.png"));
-        Image imagen4 = d.getImage().getScaledInstance(44, 30, Image.SCALE_SMOOTH);
-        lblNewLabel_1.setIcon(new ImageIcon(imagen4));
+		Image imagen4 = d.getImage().getScaledInstance(44, 30, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen4));
 		panel.add(lblNewLabel_1);
 
 		JTextField textField_1 = new JTextField();
@@ -7801,8 +7829,8 @@ public class HomeView {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(202, 60, 103, 72);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/alerta.png"));
-        Image imagen = a.getImage().getScaledInstance(103, 72, Image.SCALE_SMOOTH);
-        lblNewLabel.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(103, 72, Image.SCALE_SMOOTH);
+		lblNewLabel.setIcon(new ImageIcon(imagen));
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_2 = new JLabel("Hamburguesa clásica combo");
@@ -7820,8 +7848,8 @@ public class HomeView {
 		btnNewButton.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton.setIconTextGap(1);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton.setIcon(new ImageIcon(imagen2));
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setContentAreaFilled(true);
 		panel.add(btnNewButton);
@@ -7836,8 +7864,8 @@ public class HomeView {
 		btnNewButton_1.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_1.setIconTextGap(1);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_1.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_1.setIcon(new ImageIcon(imagen3));
 		btnNewButton_1.setFocusPainted(false);
 		btnNewButton_1.setContentAreaFilled(true);
 		panel.add(btnNewButton_1);
@@ -7883,8 +7911,8 @@ public class HomeView {
 		btnNewButton.setIconTextGap(1);
 		btnNewButton.setBounds(153, 224, 92, 49);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton.setIcon(new ImageIcon(imagen));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton.setIcon(new ImageIcon(imagen));
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("ACEPTAR");
@@ -7897,8 +7925,8 @@ public class HomeView {
 		btnNewButton_1.setIconTextGap(1);
 		btnNewButton_1.setBounds(304, 225, 92, 49);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_1.setIcon(new ImageIcon(imagen2));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_1.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_1);
 
 		JTextArea txtrSe = new JTextArea();
@@ -7912,9 +7940,268 @@ public class HomeView {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(232, 50, 75, 70);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/alerta.png"));
-        Image imagen3 = c.getImage().getScaledInstance(75, 70, Image.SCALE_SMOOTH);
-        lblNewLabel_1.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(75, 70, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen3));
 		panel.add(lblNewLabel_1);
+		frame.setVisible(true);
+
+	}
+
+	public void AñadirIngrediente() {
+		try {
+			UIManager.setLookAndFeel(new FlatLightLaf());
+			UIManager.put("TextComponent.arc", 10);// textfield redondeadas
+			UIManager.put("Buttom.arc", 700); // Esquinas redondeadas
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		JFrame frame = new JFrame();
+		frame.setResizable(false);
+		frame.setAlwaysOnTop(true);
+		frame.setBounds(100, 100, 1150, 799);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 215));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+
+		// boton de comedor
+		JButton btnNewButton = new JButton("Comedor");
+		btnNewButton.setBounds(0, 0, 234, 49);
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(50, 98, 115));
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		panel.add(btnNewButton);
+
+		JButton btnNewButton_1 = new JButton("Ensamble");
+		btnNewButton_1.setBounds(226, 0, 227, 49);
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(50, 98, 115));
+		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 15));
+		panel.add(btnNewButton_1);
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
+		JPanel panelContenido1 = new JPanel();
+		panelContenido1.setBounds(230, 49, 225, 65);
+		panelContenido1.setLayout(new BorderLayout());
+		panelContenido1.setVisible(false);
+		panelContenido1.setOpaque(false);
+		panel.add(panelContenido1);
+
+		btnNewButton_1.addActionListener(e -> {
+			if (panelContenido1.isVisible()) {
+				panelContenido1.setVisible(false);
+				panelContenido1.removeAll();
+			} else {
+				panelContenido1.removeAll();
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
+				panelContenido1.setVisible(true);
+			}
+			panelContenido1.revalidate();
+			panelContenido1.repaint();
+		});
+
+		JButton btnNewButton_2 = new JButton("Inventario");
+		btnNewButton_2.setBounds(452, 0, 227, 49);
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setBackground(new Color(50, 98, 115));
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		panel.add(btnNewButton_2);
+
+		JButton btnNewButton_3 = new JButton("Clientes");
+		btnNewButton_3.setBounds(677, 0, 234, 49);
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setBackground(new Color(50, 98, 115));
+		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 15));
+		panel.add(btnNewButton_3);
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
+		JPanel panelContenido = new JPanel();
+		panelContenido.setBounds(677, 49, 234, 65);
+		panelContenido.setLayout(new BorderLayout());
+		panelContenido.setVisible(false);
+		panelContenido.setOpaque(false);
+		panel.add(panelContenido);
+
+		btnNewButton_3.addActionListener(e -> {
+			if (panelContenido.isVisible()) {
+				panelContenido.setVisible(false);
+				panelContenido.removeAll();
+			} else {
+				panelContenido.removeAll();
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
+				panelContenido.setVisible(true);
+			}
+			panelContenido.revalidate();
+			panelContenido.repaint();
+		});
+
+		JButton btnNewButton_4 = new JButton("Usuarios");
+		btnNewButton_4.setBounds(909, 0, 227, 49);
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
+		btnNewButton_4.setBackground(new Color(50, 98, 115));
+		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 15));
+		panel.add(btnNewButton_4);
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN USUARIOS
+		JPanel panelContenido2 = new JPanel();
+		panelContenido2.setBounds(909, 49, 227, 49);
+		panelContenido2.setLayout(new BorderLayout());
+		panelContenido2.setVisible(false);
+		panelContenido2.setOpaque(false);
+		panel.add(panelContenido2);
+
+		btnNewButton_4.addActionListener(e -> {
+			if (panelContenido2.isVisible()) {
+				panelContenido2.setVisible(false);
+				panelContenido2.removeAll();
+			} else {
+				panelContenido2.removeAll();
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
+				panelContenido2.setVisible(true);
+			}
+			panelContenido2.revalidate();
+			panelContenido2.repaint();
+		});
+
+		RoundedPanel panel_1 = new RoundedPanel(20);
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(167, 108, 798, 509);
+		Border borde = BorderFactory.createLineBorder(Color.BLACK, 0);
+		panel_1.setBorder(borde);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Añadir ingrediente");
+		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 20));
+		lblNewLabel.setBounds(316, 24, 198, 25);
+		panel_1.add(lblNewLabel);
+
+		RoundedPanel panel_2 = new RoundedPanel(20);
+		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBounds(50, 73, 691, 318);
+		panel_1.add(panel_2);
+		panel_2.setLayout(null);
+
+		JLabel lblNewLabel_1 = new JLabel("Código de platillo:");
+		lblNewLabel_1.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_1.setBounds(22, 31, 130, 22);
+		panel_2.add(lblNewLabel_1);
+
+		JLabel lblNewLabel_2 = new JLabel("ING0674");
+		lblNewLabel_2.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_2.setBounds(151, 31, 100, 22);
+		panel_2.add(lblNewLabel_2);
+
+		JLabel lblNewLabel_3 = new JLabel("IVA 16%");
+		lblNewLabel_3.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_3.setBounds(392, 31, 53, 19);
+		panel_2.add(lblNewLabel_3);
+
+		JCheckBox chckbxNewCheckBox = new JCheckBox("");
+		chckbxNewCheckBox.setBackground(new Color(255, 255, 255));
+		chckbxNewCheckBox.setBounds(451, 33, 21, 21);
+		panel_2.add(chckbxNewCheckBox);
+
+		JLabel lblNewLabel_4 = new JLabel("IEPS");
+		lblNewLabel_4.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_4.setBounds(488, 31, 53, 22);
+		panel_2.add(lblNewLabel_4);
+
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("");
+		chckbxNewCheckBox_1.setBackground(new Color(255, 255, 255));
+		chckbxNewCheckBox_1.setBounds(525, 33, 26, 21);
+		panel_2.add(chckbxNewCheckBox_1);
+
+		JLabel lblNewLabel_5 = new JLabel("Exenta IVA");
+		lblNewLabel_5.setFont(new Font("Inter", Font.PLAIN, 12));
+		lblNewLabel_5.setBounds(557, 33, 65, 20);
+		panel_2.add(lblNewLabel_5);
+
+		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("");
+		chckbxNewCheckBox_2.setBackground(new Color(255, 255, 255));
+		chckbxNewCheckBox_2.setBounds(628, 33, 26, 21);
+		panel_2.add(chckbxNewCheckBox_2);
+
+		JLabel lblNewLabel_6 = new JLabel("Descripción:");
+		lblNewLabel_6.setFont(new Font("Inter", Font.PLAIN, 15));
+		lblNewLabel_6.setBounds(22, 82, 117, 13);
+		panel_2.add(lblNewLabel_6);
+
+		JTextField txtTocinoAhumado = new JTextField();
+		txtTocinoAhumado.setText("Tocino ahumado");
+		txtTocinoAhumado.setFont(new Font("Inter", Font.PLAIN, 13));
+		txtTocinoAhumado.setBackground(new Color(237, 237, 237));
+		txtTocinoAhumado.setBounds(124, 81, 207, 19);
+		txtTocinoAhumado.setHorizontalAlignment(JTextField.CENTER);
+		panel_2.add(txtTocinoAhumado);
+		txtTocinoAhumado.setColumns(10);
+
+		JLabel lblNewLabel_7 = new JLabel("Ensamble:");
+		lblNewLabel_7.setBackground(new Color(255, 255, 255));
+		lblNewLabel_7.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_7.setBounds(557, 85, 97, 20);
+		panel_2.add(lblNewLabel_7);
+
+		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("");
+		chckbxNewCheckBox_3.setBounds(628, 84, 26, 21);
+		panel_2.add(chckbxNewCheckBox_3);
+
+		JLabel lblNewLabel_8 = new JLabel("U.M.");
+		lblNewLabel_8.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_8.setBounds(22, 140, 65, 28);
+		panel_2.add(lblNewLabel_8);
+
+		String[] unidades = { "KG", "CAJA C/6 PZ", "PZ" };
+		JComboBox<String> comboBox = new JComboBox<>(unidades);
+		comboBox.setBounds(62, 145, 90, 21);
+		panel_2.add(comboBox);
+
+		JLabel lblNewLabel_9 = new JLabel("Costo:");
+		lblNewLabel_9.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_9.setBounds(217, 140, 53, 22);
+		panel_2.add(lblNewLabel_9);
+
+		JLabel lblNewLabel_10 = new JLabel("$120");
+		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 13));
+		lblNewLabel_10.setBounds(280, 140, 51, 22);
+		panel_2.add(lblNewLabel_10);
+
+		// boton cancelar
+		JButton btnNewButton_6 = new JButton("CANCELAR");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
+		btnNewButton_6.setBounds(301, 422, 85, 60);
+		btnNewButton_6.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_6.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_6.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_6.setIconTextGap(1);
+		ImageIcon c = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen3));
+		btnNewButton_6.setFocusPainted(false);
+		btnNewButton_6.setContentAreaFilled(true);
+		panel_1.add(btnNewButton_6);
+
+		// boton aceptar
+		JButton btnNewButton_7 = new JButton("ACEPTAR");
+		btnNewButton_7.setFont(new Font("Inter", Font.BOLD, 9));
+		btnNewButton_7.setBounds(420, 422, 85, 60);
+		btnNewButton_7.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_7.setIconTextGap(1);
+		ImageIcon d = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen4 = d.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen4));
+		btnNewButton_7.setFocusPainted(false);
+		btnNewButton_7.setContentAreaFilled(true);
+		panel_1.add(btnNewButton_7);
+
 		frame.setVisible(true);
 
 	}
