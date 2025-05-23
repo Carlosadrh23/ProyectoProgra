@@ -12,13 +12,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
 import controllers.HomeController;
+import models.AuthModel;
 import viewscopy.RoundedPanel;
 
 public class AuthView {
@@ -37,6 +40,7 @@ public void Login() {
 		
 		
 		JFrame	frame = new JFrame();
+		JPasswordField passwordField;
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1150, 799);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,13 +98,13 @@ public void Login() {
         lblNewLabel_3 .setIcon(new ImageIcon(portada3));
 		panel_1.add(lblNewLabel_3);
 		
-		JTextField	textField_1 = new JTextField();
-		textField_1.setBounds(50, 179, 353, 50);
-		textField_1.setBackground(new Color(242, 255, 168));
-		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
-		textField_1.setHorizontalAlignment(JTextField.CENTER);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(50, 179, 353, 50);
+		passwordField.setBackground(new Color(242, 255, 168));
+		passwordField.setFont(new Font("Inter", Font.PLAIN, 16));
+		passwordField.setHorizontalAlignment(JTextField.CENTER);
+		panel_1.add(passwordField);
+		passwordField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Iniciar sesión");
 		btnNewButton.setBounds(168, 280, 109, 50);
@@ -111,13 +115,49 @@ public void Login() {
 		
 		
 		btnNewButton.addActionListener(new ActionListener() {
-			
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				frame.dispose();
-				HomeController hm= new HomeController();
-				hm.comedor();
+				
+				String passText = new String(passwordField.getPassword());
+				Boolean flag1 = false;
+				
+				
+				if( passText.equals("")  ) {
+					
+					passwordField.setBorder(BorderFactory.createLineBorder(Color.red,2));
+					
+				}else {
+					
+					passwordField.setBorder(BorderFactory.createLineBorder(Color.green,2));
+					flag1 = true;
+				}
+				
+				
+				
+				
+				
+				
+				if(flag1) {
+					
+					AuthModel am = new AuthModel();
+					boolean is_login = am.login(passText);
+					
+					if(is_login) {
+						JOptionPane.showMessageDialog(null, "Bienvenido.");
+						
+						frame.dispose();
+						HomeController hc = new HomeController();
+						
+						hc.comedor();
+						
+					}else {
+						passwordField.setBorder(BorderFactory.createLineBorder(Color.red,2));
+						JOptionPane.showMessageDialog(null, "Error al acceder","verifique su información",JOptionPane.WARNING_MESSAGE);
+
+					}
+					
+					
+				}
+				
 			}
 		});
 		frame.setVisible(true);

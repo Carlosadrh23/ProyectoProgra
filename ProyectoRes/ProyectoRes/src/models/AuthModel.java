@@ -15,7 +15,7 @@ public class AuthModel {
 		
 	}
 	
-	public boolean login(String email,String password) {
+	public boolean login(String password) {
 		
 		String url = this.getClass().getResource("/files/users.txt").getPath();
 		BufferedReader reader;
@@ -29,11 +29,11 @@ public class AuthModel {
 		    String[] data = line.split(",");  
 		    line = reader.readLine();
 		    
-		    if(email.equals(data[2]) ) {
+		   
 				if(password.equals(data[3])) { 
 					return true; 
 				}
-			}
+			
 		    
 		   }
 
