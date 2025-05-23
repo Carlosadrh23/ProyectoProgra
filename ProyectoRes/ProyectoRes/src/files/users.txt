@@ -1,2 +1,0 @@
-jonathan,soto,jsoto@uabcs.mx,12345
-alfredo,adame,adame@gmail.com,12345

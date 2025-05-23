@@ -22,7 +22,7 @@ public class UsersModel {
 	public List getAll()
 	{
 		
-		String query = "select * from usuarios";
+		String query = "select * from usuario";
 		Connection conn = null;
 		Statement stmt = null;
 		try {
