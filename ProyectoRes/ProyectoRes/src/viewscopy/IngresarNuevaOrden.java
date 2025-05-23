@@ -1,4 +1,4 @@
-package viewscopy;
+  package viewscopy;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

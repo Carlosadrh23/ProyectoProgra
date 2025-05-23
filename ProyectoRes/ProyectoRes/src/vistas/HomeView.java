@@ -38,13 +38,120 @@ import javax.swing.table.JTableHeader;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import controllers.AuthController;
 import controllers.HomeController;
 import viewscopy.EnsambledeplatilloyConsultarMenu;
-import viewscopy.HistorialyConsulta;
+
 
 public class HomeView {
 	public HomeView() {
 
+	}
+	public class EnsambledeplatilloyConsultarMenu extends JPanel {
+		private JFrame ownerFrame; // Variable para guardar la referencia al JFrame
+
+	    public EnsambledeplatilloyConsultarMenu(JFrame frame) { // Constructor modificado
+	        this.ownerFrame = frame;
+	        setLayout(new GridLayout(2, 1));  // 2 filas, 1 columna, que ocupa todo el panel
+
+	        JButton btnHistorial = new JButton("Ensamble de platillos");
+	        btnHistorial.setForeground(Color.WHITE);
+	        btnHistorial.setBackground(new Color(170, 170, 170));
+	        btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
+	        btnHistorial.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+	        add(btnHistorial);
+
+	        JButton btnConsulta = new JButton("Consultar menú");
+	        btnConsulta.setForeground(Color.WHITE);
+	        btnConsulta.setBackground(new Color(170, 170, 170));
+	        btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
+	        btnConsulta.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					frame.dispose();
+					HomeController cc = new HomeController();
+					cc.menu();
+				}
+			});
+	        add(btnConsulta);
+	    }
+	}
+	
+	public class HistorialyConsulta extends JPanel {
+		 private JFrame ownerFrame; // Variable para guardar la referencia al JFrame
+
+		    public HistorialyConsulta(JFrame frame) { // Constructor modificado
+		        this.ownerFrame = frame;
+	    	
+	        setLayout(new GridLayout(2, 1));  // 2 filas, 1 columna, que ocupa todo el panel
+
+	        JButton btnHistorial = new JButton("Historial de factura");
+	        btnHistorial.setForeground(Color.WHITE);
+	        btnHistorial.setBackground(new Color(170, 170, 170));
+	        btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
+	        btnHistorial.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					frame.dispose();
+					HomeController cc = new HomeController();
+					cc.HistorialDeFacturacion();
+				}
+			});
+	        add(btnHistorial);
+
+	        JButton btnConsulta = new JButton("Consulta de clientes");
+	        btnConsulta.setForeground(Color.WHITE); 
+	        btnConsulta.setBackground(new Color(170, 170, 170));
+	        btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
+	        btnConsulta.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					frame.dispose();
+					HomeController cc = new HomeController();
+					cc.ConsultaDeClientes();
+				}
+			});
+	        add(btnConsulta);
+	    }
+	}
+	
+	public class UsuarioCerrarSesion extends JPanel {
+		private JFrame ownerFrame; // Variable para guardar la referencia al JFrame
+
+	    public UsuarioCerrarSesion(JFrame frame) { // Constructor modificado
+	        this.ownerFrame = frame;
+	        setLayout(new GridLayout(1, 1));  // 1 filas, 1 columna, que ocupa todo el panel
+
+	        JButton btnHistorial = new JButton("Cerrar sesión");
+	        btnHistorial.setForeground(Color.WHITE);
+	        btnHistorial.setBackground(new Color(170, 170, 170));
+	        btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
+	        btnHistorial.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					frame.dispose();
+					AuthController app = new AuthController(); 
+					app.login();
+				}
+			});
+	        add(btnHistorial);
+
+	    }
 	}
 
 	public void Comedor() {
@@ -65,6 +172,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -87,7 +204,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -99,6 +216,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -121,7 +248,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -148,7 +275,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -192,6 +319,17 @@ public class HomeView {
 		btnNewButton_6.setBounds(660, 447, 234, 49);
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
+		btnNewButton_6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.ConsultaDeCuenta();
+			}
+		});
 		panel.add(btnNewButton_6);
 		frame.setVisible(true);
 
@@ -216,6 +354,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -238,7 +386,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -250,6 +398,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -272,7 +430,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -299,7 +457,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -384,7 +542,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -396,6 +554,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -418,7 +586,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -445,7 +613,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -573,7 +741,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -585,6 +753,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -607,7 +785,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -634,7 +812,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -736,7 +914,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -748,6 +926,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -770,7 +958,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -797,7 +985,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -1007,6 +1195,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -1029,7 +1227,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -1041,6 +1239,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -1063,7 +1271,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -1090,7 +1298,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -1247,6 +1455,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -1269,7 +1487,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -1281,6 +1499,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -1303,7 +1531,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -1330,7 +1558,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -1428,6 +1656,9 @@ public class HomeView {
 		JButton btnNewButton_6 = new JButton("CANCELAR");
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.menu(); 
 			}
 		});
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
@@ -1489,6 +1720,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -1511,7 +1752,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -1523,6 +1764,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -1545,7 +1796,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -1572,7 +1823,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -1769,6 +2020,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -1791,7 +2052,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -1803,6 +2064,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -1825,7 +2096,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -1852,7 +2123,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -2010,6 +2281,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -2032,7 +2313,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -2044,6 +2325,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -2066,7 +2357,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -2093,7 +2384,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -2310,7 +2601,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -2322,6 +2613,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -2344,7 +2645,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -2371,7 +2672,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -2634,7 +2935,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -2646,6 +2947,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -2668,7 +2979,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -2695,7 +3006,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -2974,6 +3285,7 @@ public class HomeView {
 		frame.setAlwaysOnTop(true);
 		frame.setBounds(100, 100, 1150, 799);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 215));
@@ -3008,7 +3320,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -3020,6 +3332,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -3042,7 +3364,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -3069,7 +3391,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -3093,7 +3415,19 @@ public class HomeView {
 		btnNewButton_5.setBounds(80, 150, 85, 49);	
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/añadir.png"));
         Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-        btnNewButton_5.setIcon(new ImageIcon(imagen));	
+        btnNewButton_5.setIcon(new ImageIcon(imagen));
+        
+        btnNewButton_5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.AltaDeClientes();
+			}
+		});
+        
 		panel.add(btnNewButton_5);
 
 		JButton btnNewButton_6 = new JButton("EDITAR");
@@ -3109,6 +3443,18 @@ public class HomeView {
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lapiz.png"));
         Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
         btnNewButton_6.setIcon(new ImageIcon(imagen2));	
+        
+        btnNewButton_6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.EditarCliente();
+			}
+		});
+        
 		panel.add(btnNewButton_6);
 
 		ImageIcon lupaIcon = new ImageIcon("/img/lupa.png");
@@ -3194,6 +3540,7 @@ public class HomeView {
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1150, 799);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
@@ -3206,6 +3553,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -3228,7 +3585,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -3240,6 +3597,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -3262,7 +3629,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -3289,7 +3656,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -3318,7 +3685,18 @@ public class HomeView {
 		// IMAGEN
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/mesa.png"));
         Image imagen = a.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
-        btnNewButton_5.setIcon(new ImageIcon(imagen));		
+        btnNewButton_5.setIcon(new ImageIcon(imagen));
+        
+        btnNewButton_5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.IngresarnuevaCuenta();
+			}
+		});
 		panel.add(btnNewButton_5);
 
 		JButton btnNewButton_6 = new JButton("M2");
@@ -3338,7 +3716,18 @@ public class HomeView {
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/mesa.png"));
         Image imagen2 = b.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen2));	
+        btnNewButton_6.setIcon(new ImageIcon(imagen2));
+        
+        btnNewButton_6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.IngresarnuevaCuenta();
+			}
+		});
 		panel.add(btnNewButton_6);
 
 		JButton btnNewButton_7 = new JButton("M3");
@@ -3359,6 +3748,17 @@ public class HomeView {
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/mesa.png"));
         Image imagen3 = c.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
         btnNewButton_6.setIcon(new ImageIcon(imagen3));
+        
+        btnNewButton_7.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.IngresarnuevaCuenta();
+			}
+		});
 		panel.add(btnNewButton_7);
 
 		JButton btnNewButton_8 = new JButton("M4");
@@ -3379,6 +3779,17 @@ public class HomeView {
 		ImageIcon d = new ImageIcon(getClass().getResource("/img/mesa.png"));
         Image imagen4 = d.getImage().getScaledInstance(160, 140, Image.SCALE_SMOOTH);
         btnNewButton_8.setIcon(new ImageIcon(imagen4));
+        
+        btnNewButton_8.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.IngresarnuevaCuenta();
+			}
+		});
 		panel.add(btnNewButton_8);
 	}
 
@@ -3409,6 +3820,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -3431,7 +3852,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -3443,6 +3864,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -3465,7 +3896,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -3492,7 +3923,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -3767,6 +4198,9 @@ public class HomeView {
 		JButton btnNewButton_6 = new JButton("CANCELAR");
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.ConsultaDeClientes();
 			}
 		});
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
@@ -3840,6 +4274,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -3862,7 +4306,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -3874,6 +4318,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -3896,7 +4350,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -3923,7 +4377,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -4218,6 +4672,18 @@ public class HomeView {
         btnNewButton_6.setIcon(new ImageIcon(imagen));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
+		
+		btnNewButton_6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.ConsultaDeClientes();
+			}
+		});
+		
 		panel_1.add(btnNewButton_6);
 
 		// boton aceptar
@@ -4265,6 +4731,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -4287,7 +4763,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -4299,6 +4775,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -4321,7 +4807,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -4348,7 +4834,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -4692,6 +5178,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -4714,7 +5210,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -4726,6 +5222,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -4748,7 +5254,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -4775,7 +5281,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -5133,6 +5639,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -5155,7 +5671,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -5167,6 +5683,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -5189,7 +5715,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -5216,7 +5742,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -5384,6 +5910,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -5406,7 +5942,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -5418,6 +5954,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -5440,7 +5986,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -5467,7 +6013,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -5503,31 +6049,7 @@ public class HomeView {
 
 	}
 
-	public void EnsambledeplatilloyConsultarMenu() {
-		JFrame frame = new JFrame();
-		frame.setResizable(false);
-		frame.setAlwaysOnTop(true);
-		frame.setBounds(100, 100, 1150, 799);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-
-		panel.setLayout(new GridLayout(2, 1)); // 2 filas, 1 columna, que ocupa todo el panel
-
-		JButton btnHistorial = new JButton("Ensamble de platillos");
-		btnHistorial.setForeground(Color.WHITE);
-		btnHistorial.setBackground(new Color(170, 170, 170));
-		btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
-		panel.add(btnHistorial);
-
-		JButton btnConsulta = new JButton("Consultar menú");
-		btnConsulta.setForeground(Color.WHITE);
-		btnConsulta.setBackground(new Color(170, 170, 170));
-		btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
-		panel.add(btnConsulta);
-		frame.setVisible(true);
-
-	}
+	
 
 	public void HistorialDeFacturacion() {
 		try {
@@ -5556,6 +6078,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -5578,7 +6110,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -5590,6 +6122,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -5612,7 +6154,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -5639,7 +6181,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -5762,30 +6304,7 @@ public class HomeView {
 
 	}
 
-	public void HistorialyConsulta() {
-		JFrame frame = new JFrame();
-		frame.setResizable(false);
-		frame.setAlwaysOnTop(true);
-		frame.setBounds(100, 100, 1150, 799);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(2, 1)); // 2 filas, 1 columna, que ocupa todo el panel
-
-		JButton btnHistorial = new JButton("Historial de factura");
-		btnHistorial.setForeground(Color.WHITE);
-		btnHistorial.setBackground(new Color(170, 170, 170));
-		btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
-		panel.add(btnHistorial);
-
-		JButton btnConsulta = new JButton("Consulta de clientes");
-		btnConsulta.setForeground(Color.WHITE);
-		btnConsulta.setBackground(new Color(170, 170, 170));
-		btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
-		panel.add(btnConsulta);
-		frame.setVisible(true);
-
-	}
+	
 
 	public void IngresarNuevaOrden() {
 		try {
@@ -5813,6 +6332,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -5835,7 +6364,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -5847,6 +6376,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -5869,7 +6408,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -5896,7 +6435,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -6073,6 +6612,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -6095,7 +6644,7 @@ public class HomeView {
 				panelContenido1.removeAll();
 			} else {
 				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 				panelContenido1.setVisible(true);
 			}
 			panelContenido1.revalidate();
@@ -6107,6 +6656,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -6129,7 +6688,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -6156,7 +6715,7 @@ public class HomeView {
 				panelContenido2.removeAll();
 			} else {
 				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 				panelContenido2.setVisible(true);
 			}
 			panelContenido2.revalidate();
@@ -6302,6 +6861,16 @@ public class HomeView {
 				btnNewButton.setForeground(new Color(255, 255, 255));
 				btnNewButton.setBackground(new Color(50, 98, 115));
 				btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+				btnNewButton.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						frame.dispose();
+						HomeController hm = new HomeController();
+						hm.abrirCuenta2();
+					}
+				});
 				panel.add(btnNewButton);
 				
 				JButton btnNewButton_1 = new JButton("Ensamble");
@@ -6324,7 +6893,7 @@ public class HomeView {
 						        panelContenido1.removeAll();
 						    } else {
 						        panelContenido1.removeAll();
-						        panelContenido1.add(new EnsambledeplatilloyConsultarMenu(), BorderLayout.CENTER);
+						        panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
 						        panelContenido1.setVisible(true);
 						    }
 						    panelContenido1.revalidate();
@@ -6337,6 +6906,16 @@ public class HomeView {
 				btnNewButton_2.setForeground(new Color(255, 255, 255));
 				btnNewButton_2.setBackground(new Color(50, 98, 115));
 				btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+				btnNewButton_2.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						frame.dispose();
+						HomeController cc = new HomeController();
+						cc.Inventario();
+					}
+				});
 				panel.add(btnNewButton_2);
 				
 				JButton btnNewButton_3 = new JButton("Clientes");
@@ -6359,7 +6938,7 @@ public class HomeView {
 						        panelContenido.removeAll();
 						    } else {
 						        panelContenido.removeAll();
-						        panelContenido.add(new HistorialyConsulta(), BorderLayout.CENTER);
+						        panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 						        panelContenido.setVisible(true);
 						    }
 						    panelContenido.revalidate();
@@ -6386,7 +6965,7 @@ public class HomeView {
 								panelContenido2.removeAll();
 							} else {
 								panelContenido2.removeAll();
-								panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+								panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
 								panelContenido2.setVisible(true);
 							}
 							panelContenido2.revalidate();
@@ -6411,6 +6990,17 @@ public class HomeView {
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/añadir.png"));
         Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
         btnNewButton_5.setIcon(new ImageIcon(imagen));
+        
+        btnNewButton_5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Añadirplatillo();
+			}
+		});
 		panel.add(btnNewButton_5);
 
 		JButton btnNewButton_6 = new JButton("EDITAR");

@@ -10,6 +10,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import controllers.HomeController;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
@@ -23,6 +26,7 @@ public class HistorialyConsulta extends JPanel {
         btnHistorial.setForeground(Color.WHITE);
         btnHistorial.setBackground(new Color(170, 170, 170));
         btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
+        
         add(btnHistorial);
 
         JButton btnConsulta = new JButton("Consulta de clientes");
