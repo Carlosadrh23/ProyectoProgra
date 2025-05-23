@@ -90,24 +90,24 @@ public class Usuario {
 		panel.add(btnNewButton_4);
 		
 		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN USUARIOS
-		JPanel panelContenido = new JPanel();
-		panelContenido.setBounds(909, 49, 227, 49);
-		panelContenido.setLayout(new BorderLayout());
-		panelContenido.setVisible(false);
-		panelContenido.setOpaque(false);
-		panel.add(panelContenido);
+		JPanel panelContenido2 = new JPanel();
+		panelContenido2.setBounds(909, 49, 227, 49);
+		panelContenido2.setLayout(new BorderLayout());
+		panelContenido2.setVisible(false);
+		panelContenido2.setOpaque(false);
+		panel.add(panelContenido2);
 
 		btnNewButton_4.addActionListener(e -> {
-			if (panelContenido.isVisible()) {
-				panelContenido.setVisible(false);
-				panelContenido.removeAll();
+			if (panelContenido2.isVisible()) {
+				panelContenido2.setVisible(false);
+				panelContenido2.removeAll();
 			} else {
-				panelContenido.removeAll();
-				panelContenido.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
-				panelContenido.setVisible(true);
+				panelContenido2.removeAll();
+				panelContenido2.add(new UsuarioCerrarSesion(), BorderLayout.CENTER);
+				panelContenido2.setVisible(true);
 			}
-			panelContenido.revalidate();
-			panelContenido.repaint();
+			panelContenido2.revalidate();
+			panelContenido2.repaint();
 		});
 	}
 

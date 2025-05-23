@@ -57,25 +57,23 @@ public void Login() {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(515, 21, 91, 137);
-		ImageIcon p1 =new ImageIcon("img/botella.png");
-        Image p2= p1.getImage();
-        Image p3=p2.getScaledInstance(91, 137,Image.SCALE_SMOOTH);
-        lblNewLabel_1 .setIcon(new ImageIcon(p3));
+		ImageIcon icon2 = new ImageIcon(getClass().getResource("/img/botella.png"));
+        Image imagen2 = icon2.getImage().getScaledInstance(91, 137, Image.SCALE_SMOOTH);
+        lblNewLabel_1.setIcon(new ImageIcon(imagen2));
 		panel.add(lblNewLabel_1);
+	
 		
 		RoundedPanel panel_1 = new RoundedPanel(15);//redondeado de esquina
 		panel_1.setBackground(new Color(130, 48, 56));
 		panel_1.setBounds(333, 296, 454, 411);
 		panel.add(panel_1);
-		
-        
+		panel_1.setLayout(null);
+
         JLabel lblNewLabel_2 = new JLabel("");
         lblNewLabel_2.setBounds(68, 76, 56, 34);
-		ImageIcon b1 =new ImageIcon("img/admin4.png");
-        Image b2= b1.getImage();
-        Image b3=b2.getScaledInstance(56, 34,Image.SCALE_SMOOTH);
-        panel_1.setLayout(null);
-        lblNewLabel_2 .setIcon(new ImageIcon(b3));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/img/admin4.png"));
+        Image imagen1 = icon1.getImage().getScaledInstance(56, 34, Image.SCALE_SMOOTH);
+        lblNewLabel_2.setIcon(new ImageIcon(imagen1));
 		panel_1.add(lblNewLabel_2);
 		
 		JTextField	txtAdministrador = new JTextField("Administrador");
@@ -92,10 +90,9 @@ public void Login() {
 		
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setBounds(68, 184, 65, 41);
-		ImageIcon portada1 =new ImageIcon("img/candado_1.png");
-        Image portada2= portada1.getImage();
-        Image portada3=portada2.getScaledInstance(65, 41,Image.SCALE_SMOOTH);
-        lblNewLabel_3 .setIcon(new ImageIcon(portada3));
+		ImageIcon icon3 = new ImageIcon(getClass().getResource("/img/candado_1.png"));
+        Image imagen3 = icon3.getImage().getScaledInstance(65, 41, Image.SCALE_SMOOTH);
+        lblNewLabel_3.setIcon(new ImageIcon(imagen3));
 		panel_1.add(lblNewLabel_3);
 		
 		passwordField = new JPasswordField();

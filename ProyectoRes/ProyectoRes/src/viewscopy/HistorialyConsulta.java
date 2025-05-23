@@ -25,7 +25,7 @@ public class HistorialyConsulta extends JPanel {
         btnHistorial.setFont(new Font("Inter", Font.BOLD, 14));
         add(btnHistorial);
 
-        JButton btnConsulta = new JButton("Consulta de cuenta");
+        JButton btnConsulta = new JButton("Consulta de clientes");
         btnConsulta.setForeground(Color.WHITE);
         btnConsulta.setBackground(new Color(170, 170, 170));
         btnConsulta.setFont(new Font("Inter", Font.BOLD, 14));
