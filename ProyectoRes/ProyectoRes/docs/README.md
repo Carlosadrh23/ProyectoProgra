@@ -10,17 +10,35 @@ Sistema de gestión para restaurantes desarrollado en Java
 ## 🛠️ Tecnologías utilizadas
     
     JAVA
+## 📦 Instalación
+Asegúrate de tener instalado Java JDK 8 o superior en tu sistema. Puedes verificarlo ejecutando:
+java -version
+
+ Clona este repositorio o descárgalo como archivo ZIP.
+
+ Navega a la carpeta del proyecto y luego a la carpeta docs:
+cd docs
+
+ Ejecuta el instalador:
+java -jar instalador.jar
+Esto iniciará el proceso de instalación de la aplicación de restaurante.
+
 ## 🚀 Uso
 
-Inicia sesion en el login con la contrasena "12345".
+1. Ejecuta la aplicación desde el acceso directo creado o directamente desde el .jar principal si lo proporciona el instalador.
+
+2. Inicia sesion en el login con la contrasena "12345".
+
 ## 🤝 Contribuciones
 
 * Octavio Geraldo Geraldo
-## 👨‍💻 Autores
-* González Martínez Erick Daniel
-* Carlos Alonso Luquin Lopez
-* González Vargas David
-* Hernández Murillo Pablo
-## 📄 Licencia
 
+## 👨‍💻 Autores
+
+ González Martínez Erick Daniel
+ Carlos Alonso Luquin Lopez
+González Vargas David
+ Hernández Murillo Pablo
+ 
+## 📄 Licencia
 ninguna
