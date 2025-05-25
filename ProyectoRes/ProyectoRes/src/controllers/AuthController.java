@@ -16,7 +16,11 @@ public class AuthController {
 	vista.Login();
 	
 	}
-	
+	public void register() {
+		
+		vista.Register();
+		
+		}
 	
 
 

@@ -36,19 +36,17 @@ public class UsersModel {
 				Integer id = rs.getInt(1);
 				String name = rs.getString(2); 
 				String email = rs.getString(3); 
-				String role = rs.getString(4); 
-				String phone = rs.getString(5); 
-
+				String password = rs.getString(4); 
 				System.out.println("empId:" + id);
 				System.out.println("firstName:" + name);
 				System.out.println("email:" + email);
-				System.out.println("role:" + role);
-				System.out.println("phone:" + phone);
+				System.out.println("role:" + password);
+			
 				
 				 
 				System.out.println(""); 
 				
-				usuarios.add(new User(id,name,email,role,phone,null,null));
+				usuarios.add(new User(id,name,email,password,null,null));
 			}
 			
 			rs.close();
@@ -70,7 +68,7 @@ public class UsersModel {
 	public User get(int id_Target)
 	{
 		
-		String query = "select * from users where id = "+id_Target;
+		String query = "select * from users where user_id = "+id_Target;
 		Connection conn = null;
 		Statement stmt = null;
 		User myuser = null;
@@ -85,18 +83,17 @@ public class UsersModel {
 				Integer id = rs.getInt(1);
 				String name = rs.getString(2); 
 				String email = rs.getString(3); 
-				String role = rs.getString(4); 
-				String phone = rs.getString(5); 
+				String password = rs.getString(4); 
 
 				System.out.println("empId:" + id);
 				System.out.println("firstName:" + name);
 				System.out.println("email:" + email);
-				System.out.println("role:" + role);
-				System.out.println("phone:" + phone);
+				System.out.println("role:" + password);
+			
 				
 				 
 				System.out.println(""); 
-				 myuser = new User(id,name,email,role,phone,null,null);
+				 myuser = new User(id,name,email,password,null,null);
 			}
 			
 			rs.close();
@@ -117,7 +114,7 @@ public class UsersModel {
 	
 	public boolean remove(int id) {
 		
-		String query = "DELETE FROM users WHERE `users`.`id` ="+id;
+		String query = "DELETE FROM users WHERE `users`.`user.id` ="+id;
 		Connection conn = null;
 		Statement stmt = null;
 		try {
@@ -144,32 +141,31 @@ public class UsersModel {
 		
 	}
 
-	public void addUser(String nombre,String email,String role,String phone) {
-	 String query = "INSERT INTO users (name, email, role, phone) VALUES (?, ?, ?, ?)";
+	public void addUser(String nombre,String email,String password) {
+	 String query = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
 	    try (Connection conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3781023", "sql3781023", "X9HKF7IsKB");
 	         PreparedStatement pstmt = conn.prepareStatement(query)) {
 	        
 	        pstmt.setString(1, nombre);
-	        pstmt.setString(2, email);
-	        pstmt.setString(3, role);
-	        pstmt.setString(4, phone);
+	        pstmt.setString(2, password);
+	        pstmt.setString(3, email);
+	      
 
 	        pstmt.executeUpdate();
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
 }
-	public void update(int id, String name, String email, String role, String phone) {
-	    String query = "UPDATE users SET username=?, email=?, role=?, phone=? WHERE id=?";
+	public void update(int id, String name, String email, String password) {
+	    String query = "UPDATE users SET username=?, email=?, password=? WHERE id=?";
 	    
 	    try (Connection conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3781023", "sql3781023", "X9HKF7IsKB");
 	         PreparedStatement pstmt = conn.prepareStatement(query)) {
 	        
 	        pstmt.setString(1, name);
 	        pstmt.setString(2, email);
-	        pstmt.setString(3, role);
-	        pstmt.setString(4, phone);
-	        pstmt.setInt(5, id);
+	        pstmt.setString(3, password);
+	        pstmt.setInt(4, id);
 	        
 	        int rowsAffected = pstmt.executeUpdate();
 	        if (rowsAffected > 0) {
