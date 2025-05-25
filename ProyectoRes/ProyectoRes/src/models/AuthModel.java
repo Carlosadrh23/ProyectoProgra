@@ -19,24 +19,23 @@ public class AuthModel {
 		
 	}
 	
-	public boolean login(String password) {
-	    String query = "SELECT * FROM usuario WHERE password = ?";
+	public boolean login(String user,String password) {
+	    String query = "SELECT password FROM users WHERE username = ?";
 	    Connection conn = null;
 	    PreparedStatement stmt = null;
 	    ResultSet rs = null;
 
 	    try {
 	        Class.forName("com.mysql.cj.jdbc.Driver");
-	        conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3779414", "sql3779414", "mteKJLYjrB");
+	        conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3781023", "sql3781023", "X9HKF7IsKB");
 	        stmt = conn.prepareStatement(query);
-	        stmt.setString(1, password); 
+	        stmt.setString(1, user); 
 	        
 	        rs = stmt.executeQuery();
 
 	        if (rs.next()) {
 	       //	  String passwordHash = rs.getString("password");
-	       //       if (BCrypt.checkpw(password, passwordHash))
-	        	//Se implementara al añadir el registro
+	       //       iad implementara al añadir el registro
 	            return true; 
 	        }
 
