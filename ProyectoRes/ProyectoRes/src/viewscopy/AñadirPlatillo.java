@@ -3,6 +3,8 @@ package viewscopy;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -10,19 +12,27 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,7 +40,7 @@ import java.awt.event.ActionEvent;
 public class AñadirPlatillo {
 
 	private JFrame frame;
-	private JTextField TextField;
+	public JTextField TextField;
 
 	/**
 	 * Launch the application.
@@ -59,13 +69,7 @@ public class AñadirPlatillo {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
+	
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setAlwaysOnTop(true);
@@ -147,38 +151,99 @@ public class AñadirPlatillo {
         panel_1.add(panel_2);
         panel_2.setLayout(null);
         
-		TextField = new JTextField("BUSCAR");
-		TextField.setBackground(new Color(237, 237, 237));
-		TextField.setFont(new Font("Inter", Font.BOLD, 10));
-		TextField.setForeground(Color.GRAY);
-		TextField.setBounds(35, 47, 223, 40);
-		panel_2.add(TextField);
-		TextField.setColumns(10);
+        JTextField TextField = new JTextField("BUSCAR");
+        TextField.setBackground(new Color(237, 237, 237));
+        TextField.setFont(new Font("Inter", Font.BOLD, 10));
+        TextField.setForeground(Color.GRAY);
+        TextField.setBounds(35, 47, 223, 40);
+        panel_2.add(TextField);
+        TextField.setColumns(10);
 
-		// HACE QUE SE BORRE EL BUSCAR AL ESCRIBIR EN EL TEXTFIELD
-		final String placeholder = "BUSCAR";
-		TextField.addFocusListener(new FocusAdapter() {
-		   
-		    public void focusGained(FocusEvent e) {
-		        if (TextField.getText().equals(placeholder)) {
-		            TextField.setText("");
-		            TextField.setForeground(Color.BLACK);
-		        }
-		    }
-		    
-		    public void focusLost(FocusEvent e) {
-		        if (TextField.getText().isEmpty()) {
-		            TextField.setText(placeholder);
-		            TextField.setForeground(Color.GRAY);
-		        }
-		    }
-		});
+     
+        String[] columnas = { "Código", "Descripción" };
+        String[][] datos = {
+            { "040221", "Tocino" },
+            { "043216", "Tomate" },
+            { "041555", "Salsa tabasco" },
+            { "041221", "Tomate" },
+            { "043851", "Tahini" }
+        };
+
+      
+        JTable table = new JTable(datos, columnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        table.setFont(new Font("Inter", Font.PLAIN, 14));
+        table.setRowHeight(30);
+        table.setShowGrid(true);
+        table.setGridColor(Color.BLACK);
+        table.getTableHeader().setReorderingAllowed(false);
+
+      
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+
+        
+        JTableHeader header = table.getTableHeader();
+        header.setFont(new Font("Inter", Font.BOLD, 14));
+        header.setDefaultRenderer(new DefaultTableCellRenderer() {
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                    boolean hasFocus, int row, int column) {
+                JLabel label = new JLabel(value.toString(), JLabel.CENTER);
+                label.setFont(new Font("Inter", Font.BOLD, 14));
+                label.setBackground(new Color(220, 220, 220));
+                label.setOpaque(true);
+                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                return label;
+            }
+        });
+
+        
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setPreferredSize(new Dimension(311, 149));
+
+   
+        JPopupMenu popupMenu = new JPopupMenu();
+        popupMenu.add(scrollPane);
+
+      
+        TextField.addFocusListener(new FocusAdapter() {
+            public void focusGained(FocusEvent e) {
+                if (TextField.getText().equals("BUSCAR")) {
+                    TextField.setText("");
+                    TextField.setForeground(Color.BLACK);
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (TextField.getText().isEmpty()) {
+                    TextField.setText("BUSCAR");
+                    TextField.setForeground(Color.GRAY);
+                }
+            }
+        });
+
+        
+        TextField.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    popupMenu.show(TextField, 0, TextField.getHeight());
+                });
+            }
+        });
+
 
 		
 		JButton btnNewButton_5 = new JButton("Añadir");
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_5.setBackground(new Color(	117, 197, 188));
-		btnNewButton_5.setBounds(105, 97, 85, 30);
+		btnNewButton_5.setBounds(105, 172, 85, 30);
 		panel_2.add(btnNewButton_5);
 		
 		JLabel lblNewLabel_1 = new JLabel("Descripción");

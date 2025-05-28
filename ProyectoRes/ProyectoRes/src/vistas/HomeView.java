@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -24,11 +26,13 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
@@ -65,7 +69,9 @@ public class HomeView {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-
+					frame.dispose();
+					HomeController hc = new HomeController();
+					hc.Añadirplatillo();							
 				}
 			});
 			add(btnHistorial);
@@ -1353,10 +1359,11 @@ public class HomeView {
 		btnNewButton_6.setIcon(new ImageIcon(imagen));
 		panel.add(btnNewButton_6);
 
-		ImageIcon lupaIcon = new ImageIcon("/img/lupa.png");
-		Image lupaImg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		ImageIcon lupaIcon = new ImageIcon(getClass().getResource("/img/lupa.png"));
+		Image lupaimg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		ImageIcon lupa = new ImageIcon(lupaimg);
 
-		Lupa textField_1 = new Lupa(lupaImg);
+		Lupa textField_1 = new Lupa(lupaimg); 
 		textField_1.setBounds(357, 150, 263, 43);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
@@ -1610,31 +1617,93 @@ public class HomeView {
 		panel_2.setLayout(null);
 
 		JTextField TextField = new JTextField("BUSCAR");
-		TextField.setBackground(new Color(237, 237, 237));
-		TextField.setFont(new Font("Inter", Font.BOLD, 10));
-		TextField.setForeground(Color.GRAY);
-		TextField.setBounds(35, 47, 223, 40);
-		panel_2.add(TextField);
-		TextField.setColumns(10);
+        TextField.setBackground(new Color(237, 237, 237));
+        TextField.setFont(new Font("Inter", Font.BOLD, 10));
+        TextField.setForeground(Color.GRAY);
+        TextField.setBounds(35, 47, 223, 40);
+        panel_2.add(TextField);
+        TextField.setColumns(10);
 
-		// HACE QUE SE BORRE EL BUSCAR AL ESCRIBIR EN EL TEXTFIELD
-		final String placeholder = "BUSCAR";
-		TextField.addFocusListener(new FocusAdapter() {
+     
+        String[] columnas = { "Código", "Descripción" };
+        String[][] datos = {
+            { "040221", "Tocino" },
+            { "043216", "Tomate" },
+            { "041555", "Salsa tabasco" },
+            { "041221", "Tomate" },
+            { "043851", "Tahini" }
+        };
 
-			public void focusGained(FocusEvent e) {
-				if (TextField.getText().equals(placeholder)) {
-					TextField.setText("");
-					TextField.setForeground(Color.BLACK);
-				}
-			}
+      
+        JTable table = new JTable(datos, columnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        table.setFont(new Font("Inter", Font.PLAIN, 14));
+        table.setRowHeight(30);
+        table.setShowGrid(true);
+        table.setGridColor(Color.BLACK);
+        table.getTableHeader().setReorderingAllowed(false);
 
-			public void focusLost(FocusEvent e) {
-				if (TextField.getText().isEmpty()) {
-					TextField.setText(placeholder);
-					TextField.setForeground(Color.GRAY);
-				}
-			}
-		});
+      
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+
+        
+        JTableHeader header = table.getTableHeader();
+        header.setFont(new Font("Inter", Font.BOLD, 14));
+        header.setDefaultRenderer(new DefaultTableCellRenderer() {
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                    boolean hasFocus, int row, int column) {
+                JLabel label = new JLabel(value.toString(), JLabel.CENTER);
+                label.setFont(new Font("Inter", Font.BOLD, 14));
+                label.setBackground(new Color(220, 220, 220));
+                label.setOpaque(true);
+                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                return label;
+            }
+        });
+
+        
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setPreferredSize(new Dimension(311, 149));
+
+   
+        JPopupMenu popupMenu = new JPopupMenu();
+        popupMenu.add(scrollPane);
+
+      
+        TextField.addFocusListener(new FocusAdapter() {
+            public void focusGained(FocusEvent e) {
+                if (TextField.getText().equals("BUSCAR")) {
+                    TextField.setText("");
+                    TextField.setForeground(Color.BLACK);
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (TextField.getText().isEmpty()) {
+                    TextField.setText("BUSCAR");
+                    TextField.setForeground(Color.GRAY);
+                }
+            }
+        });
+
+        
+        TextField.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    popupMenu.show(TextField, 0, TextField.getHeight());
+                });
+            }
+        });
+
+
 
 		JButton btnNewButton_5 = new JButton("Añadir");
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
@@ -3467,10 +3536,12 @@ public class HomeView {
 
 		panel.add(btnNewButton_6);
 
-		ImageIcon lupaIcon = new ImageIcon("/img/lupa.png");
-		Image lupaImg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		ImageIcon lupaIcon = new ImageIcon(getClass().getResource("/img/lupa.png"));
+		Image lupaimg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		ImageIcon lupa = new ImageIcon(lupaimg);
 
-		Lupa textField_1 = new Lupa(lupaImg);
+	
+		Lupa textField_1 = new Lupa(lupaimg); 
 		textField_1.setBounds(357, 150, 263, 43);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
@@ -6233,10 +6304,12 @@ public class HomeView {
 		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_6);
 
-		ImageIcon lupaIcon = new ImageIcon("/img/lupa.png");
-		Image lupaImg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		ImageIcon lupaIcon = new ImageIcon(getClass().getResource("/img/lupa.png"));
+		Image lupaimg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		ImageIcon lupa = new ImageIcon(lupaimg);
 
-		Lupa textField_1 = new Lupa(lupaImg);
+	
+		Lupa textField_1 = new Lupa(lupaimg); 
 		textField_1.setBounds(357, 150, 263, 43);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
@@ -6783,15 +6856,14 @@ public class HomeView {
 
 			}
 		});
-		ImageIcon lupaIcon = new ImageIcon("/img/lupa.png");
-		Image lupaImg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		
+		
+		ImageIcon lupaIcon = new ImageIcon(getClass().getResource("/img/lupa.png"));
+		Image lupaimg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		ImageIcon lupaEscalada = new ImageIcon(lupaimg);
 
-		/*
-		 * ImageIcon lupaIcona = new ImageIcon(getClass().getResource("/img/lupa.png"));
-		 * Image lupaImg = lupaIcona.getImage().getScaledInstance(30, 30,
-		 * Image.SCALE_SMOOTH); textField_1.setIcon(new ImageIcon(lupaImg));
-		 */
-		Lupa textField_1 = new Lupa(lupaImg);
+	
+		Lupa textField_1 = new Lupa(lupaimg); 
 		textField_1.setBounds(357, 150, 263, 43);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
@@ -7046,10 +7118,11 @@ public class HomeView {
 		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_6);
 
-		ImageIcon lupaIcon = new ImageIcon("/img/lupa.png");
-		Image lupaImg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		ImageIcon lupaIcon = new ImageIcon(getClass().getResource("/img/lupa.png"));
+		Image lupaimg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+		ImageIcon lupa = new ImageIcon(lupaimg);
 
-		Lupa textField_1 = new Lupa(lupaImg);
+		Lupa textField_1 = new Lupa(lupaimg); 
 		textField_1.setBounds(357, 150, 263, 43);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));

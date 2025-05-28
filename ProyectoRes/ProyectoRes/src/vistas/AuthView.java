@@ -36,7 +36,7 @@ public void Login() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  
             UIManager.put("TextComponent.arc", 20);//textfield redondeadas
-            UIManager.put("Buttom.arc", 700); // Esquinas redondeadas
+            UIManager.put("Buttom.arc", 20); // Esquinas redondeadas
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -59,11 +59,7 @@ public void Login() {
 		lblNewLabel.setForeground(new Color(130, 48, 56));
 		lblNewLabel.setBounds(472, 200, 279, 61);
 		panel.add(lblNewLabel);
-		JLabel lblRegistro = new JLabel("Inicia Sesión");
-		lblRegistro.setForeground(Color.black);
-		lblRegistro.setFont(new Font("Inter", Font.BOLD, 35));
-		lblRegistro.setBounds(455, 230, 279, 61);
-		panel.add(lblRegistro);
+		
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(515, 21, 91, 137);
@@ -78,6 +74,14 @@ public void Login() {
 		panel_1.setBounds(333, 296, 454, 411);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_5 = new JLabel("Iniciar sesión");
+		lblNewLabel_5.setForeground(new Color(242, 255, 168));
+		lblNewLabel_5.setBackground(new Color(242, 255, 168));
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel_5.setBounds(116, 10, 222, 28);
+		lblNewLabel_5.setHorizontalAlignment(JTextField.CENTER);
+		panel_1.add(lblNewLabel_5);
 
         JLabel lblNewLabel_2 = new JLabel("");
         lblNewLabel_2.setBounds(68, 76, 56, 34);

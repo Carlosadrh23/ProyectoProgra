@@ -150,6 +150,14 @@ public class Login {
 		btnNewButton.setBackground(new Color(32, 175, 44));
 		panel_1.add(btnNewButton);
 		
+		JLabel lblNewLabel_4 = new JLabel("Iniciar sesión");
+		lblNewLabel_4.setForeground(new Color(242, 255, 168));
+		lblNewLabel_4.setBackground(new Color(242, 255, 168));
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel_4.setBounds(116, 10, 222, 28);
+		lblNewLabel_4.setHorizontalAlignment(JTextField.CENTER);
+		panel_1.add(lblNewLabel_4);
+		
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			
