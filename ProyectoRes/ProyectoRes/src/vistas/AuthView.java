@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -78,10 +80,11 @@ public void Login() {
 		JLabel lblNewLabel_5 = new JLabel("Iniciar sesión");
 		lblNewLabel_5.setForeground(new Color(242, 255, 168));
 		lblNewLabel_5.setBackground(new Color(242, 255, 168));
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_5.setBounds(116, 10, 222, 28);
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblNewLabel_5.setBounds(116, 10, 235, 28);
 		lblNewLabel_5.setHorizontalAlignment(JTextField.CENTER);
 		panel_1.add(lblNewLabel_5);
+		
 
         JLabel lblNewLabel_2 = new JLabel("");
         lblNewLabel_2.setBounds(68, 76, 56, 34);
@@ -220,11 +223,6 @@ public void Login() {
 	lblNewLabel.setForeground(new Color(130, 48, 56));
 	lblNewLabel.setBounds(472, 200, 279, 61);
 	panel.add(lblNewLabel);
-	JLabel lblRegistro = new JLabel("Registro");
-	lblRegistro.setForeground(Color.black);
-	lblRegistro.setFont(new Font("Inter", Font.BOLD, 35));
-	lblRegistro.setBounds(485, 230, 279, 61);
-	panel.add(lblRegistro);
 	
 	
 	JLabel lblNewLabel_1 = new JLabel("");
@@ -243,63 +241,110 @@ public void Login() {
 	
 	
 	JLabel lblNewLabel_2 = new JLabel("");
-    lblNewLabel_2.setBounds(68, 41, 56, 34);
+    lblNewLabel_2.setBounds(68, 66, 56, 54);
 	ImageIcon icon1 = new ImageIcon(getClass().getResource("/img/admin4.png"));
     Image imagen1 = icon1.getImage().getScaledInstance(56, 34, Image.SCALE_SMOOTH);
     lblNewLabel_2.setIcon(new ImageIcon(imagen1));
 	panel_1.add(lblNewLabel_2);
 	
-	JTextField	nombreField = new JTextField();
-	nombreField.setBounds(50, 32, 353, 50);
+	JTextField	nombreField = new JTextField("Username");
+	nombreField.setBounds(50, 66, 353, 50);
+	nombreField.setForeground(new Color(192, 192, 192));
 	nombreField.setFont(new Font("Inter", Font.PLAIN, 16));
 	nombreField.setBackground(new Color(242, 255, 168));
-	panel_1.add(nombreField);
 	nombreField.setHorizontalAlignment(JTextField.CENTER);
 	nombreField.setColumns(10);
+	panel_1.add(nombreField);
 	
+	// HACE QUE SE BORRE EL BUSCAR AL ESCRIBIR EN EL TEXTFIELD
+			final String placeholder = "Username";
+			nombreField.addFocusListener(new FocusAdapter() {
 
-	JTextField	emailField = new JTextField();
-	emailField.setBounds(50, 107, 353, 50);
+				public void focusGained(FocusEvent e) {
+					if (nombreField.getText().equals(placeholder)) {
+						nombreField.setText("");
+						nombreField.setForeground(Color.BLACK);
+					}
+				}
+
+				public void focusLost(FocusEvent e) {
+					if (nombreField.getText().isEmpty()) {
+						nombreField.setText(placeholder);
+						nombreField.setForeground(Color.GRAY);
+					}
+				}
+			});
+	
+	JLabel lblNewLabel_3 = new JLabel("");
+	lblNewLabel_3.setBounds(68, 145, 56, 41);
+	panel_1.add(lblNewLabel_3);
+	frame.setLocationRelativeTo(null);
+	frame.setVisible(true);
+	ImageIcon icon6 = new ImageIcon(getClass().getResource("/img/admin4.png"));
+    Image imagen6 = icon6.getImage().getScaledInstance(56, 34, Image.SCALE_SMOOTH);
+    lblNewLabel_3.setIcon(new ImageIcon(imagen6));
+
+
+	JTextField	emailField = new JTextField("Email");
+	emailField.setBounds(50, 136, 353, 50);
+	emailField.setForeground(new Color(192, 192, 192));
 	emailField.setFont(new Font("Inter", Font.PLAIN, 16));
 	emailField.setBackground(new Color(242, 255, 168));
 	panel_1.add(emailField);
 	emailField.setHorizontalAlignment(JTextField.CENTER);
 	emailField.setColumns(10);
 	
+	// HACE QUE SE BORRE EL BUSCAR AL ESCRIBIR EN EL TEXTFIELD
+	final String placeholder2 = "Email";
+	emailField.addFocusListener(new FocusAdapter() {
+
+		public void focusGained(FocusEvent e) {
+			if (emailField.getText().equals(placeholder2)) {
+				emailField.setText("");
+				emailField.setForeground(Color.BLACK);
+			}
+		}
+
+		public void focusLost(FocusEvent e) {
+			if (emailField.getText().isEmpty()) {
+				emailField.setText(placeholder2);
+				emailField.setForeground(Color.GRAY);
+			}
+		}
+	});
+	
 	JLabel lblCandado1 = new JLabel("");
-	lblCandado1.setBounds(65, 187, 65, 41);
+	lblCandado1.setBounds(68, 210, 65, 41);
 	ImageIcon icon3 = new ImageIcon(getClass().getResource("/img/candado_1.png"));
     Image imagen3 = icon3.getImage().getScaledInstance(65, 41, Image.SCALE_SMOOTH);
     lblCandado1.setIcon(new ImageIcon(imagen3));
 	panel_1.add(lblCandado1);
 	
 	JLabel lblCandado2 = new JLabel("");
-	lblCandado2.setBounds(65, 262, 65, 41);
+	lblCandado2.setBounds(68, 278, 65, 41);
 	icon3 = new ImageIcon(getClass().getResource("/img/candado_1.png"));
     imagen3 = icon3.getImage().getScaledInstance(65, 41, Image.SCALE_SMOOTH);
     lblCandado2.setIcon(new ImageIcon(imagen3));
 	panel_1.add(lblCandado2);
 	
-	JPasswordField passwordField1 = new JPasswordField();
-	passwordField1.setBounds(50, 182, 353, 50);
+	JPasswordField passwordField1 = new JPasswordField("");
+	passwordField1.setBounds(50, 201, 353, 50);
 	passwordField1.setBackground(new Color(242, 255, 168));
 	passwordField1.setFont(new Font("Inter", Font.PLAIN, 16));
 	passwordField1.setHorizontalAlignment(JTextField.CENTER);
 	panel_1.add(passwordField1);
 	passwordField1.setColumns(10);
-	
-	JPasswordField cfrmPassField = new JPasswordField();
-	cfrmPassField.setBounds(50, 257, 353, 50);
+
+	JPasswordField cfrmPassField = new JPasswordField("");
+	cfrmPassField.setBounds(50, 269, 353, 50);
 	cfrmPassField.setBackground(new Color(242, 255, 168));
 	cfrmPassField.setFont(new Font("Inter", Font.PLAIN, 16));
 	cfrmPassField.setHorizontalAlignment(JTextField.CENTER);
 	panel_1.add(cfrmPassField);
 	cfrmPassField.setColumns(10);
-
-	
 	
 	JButton btnNewButton = new JButton("Registrate");
-	btnNewButton.setBounds(168, 332, 109, 50);
+	btnNewButton.setBounds(168, 342, 107, 41);
 	btnNewButton.setFont(new Font("Inter", Font.PLAIN, 12));
 	btnNewButton.setForeground(new Color(242, 255, 168));
 	btnNewButton.setBackground(new Color(32, 175, 44));
@@ -378,9 +423,13 @@ public void Login() {
         }
     });
 	panel_1.add(enlace);
-	frame.setLocationRelativeTo(null);
-	frame.setVisible(true);
+	JLabel lblRegistro = new JLabel("Registro");
+	lblRegistro.setBackground(new Color(242, 255, 168));
+	lblRegistro.setBounds(178, -5, 164, 61);
+	panel_1.add(lblRegistro);
+	lblRegistro.setForeground(new Color(242, 255, 168));
+	lblRegistro.setFont(new Font("Inter", Font.BOLD, 25));
+	
 
 }
-
 }
