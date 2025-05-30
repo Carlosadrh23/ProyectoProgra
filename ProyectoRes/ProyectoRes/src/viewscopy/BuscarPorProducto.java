@@ -81,6 +81,7 @@ public class BuscarPorProducto {
 		textField_2.setBounds(20, 21, 202, 42);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
+		
 		 // Datos de la tabla
         String[] columnNames = {"Código", "Descripción", "Precio"};
         Object[][] data = {
@@ -94,12 +95,21 @@ public class BuscarPorProducto {
         };
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        table = new JTable(model);
+
+     // Crear tabla no editable
+     table = new JTable(model) {
+         @Override
+         public boolean isCellEditable(int row, int column) {
+             return false;
+         }
+     };
+     
         table.setFillsViewportHeight(true);
         table.setRowHeight(25);
         table.setShowGrid(true);
         table.setGridColor(Color.BLACK);
 		table.getTableHeader().setReorderingAllowed(false);
+		
 
      
         // ScrollPane 

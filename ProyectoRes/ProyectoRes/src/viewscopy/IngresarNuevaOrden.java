@@ -196,8 +196,8 @@ public class IngresarNuevaOrden {
 		panel_1.add(scrollPane);
 
 		
-		modelo.addRow(new Object[]{"1", "SKU09", "Hamburguesa clásica combo CH", "$150"});
-		modelo.addRow(new Object[]{"1", "SKU10", "Hamburguesa clásica combo MD", "$185"});
+		modelo.addRow(new Object[]{"1", "SKU09", "Hamburguesa clásica ", "$150"});
+		modelo.addRow(new Object[]{"1", "SKU10", "Hamburguesa clásica ", "$150"});
 		
 		Border cellBorder = BorderFactory.createLineBorder(Color.BLACK);
 		
