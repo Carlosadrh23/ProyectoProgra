@@ -73,6 +73,11 @@ public class HomeController {
 	{
 		vista.AñadirIngrediente();
 	}
+
+	public void BuscarPorProducto()
+	{
+		vista.BuscarPorProducto();
+	}
 	
 	
 

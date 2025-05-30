@@ -71,7 +71,7 @@ public class HomeView {
 					// TODO Auto-generated method stub
 					frame.dispose();
 					HomeController hc = new HomeController();
-					hc.Añadirplatillo();							
+					hc.Añadirplatillo();
 				}
 			});
 			add(btnHistorial);
@@ -187,7 +187,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -369,7 +369,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -702,7 +702,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 
@@ -1039,14 +1039,6 @@ public class HomeView {
 		btnNewButton_8.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_8);
 
-		JButton btnNewButton_9 = new JButton("COMBOS");
-		btnNewButton_9.setFont(new Font("Inter", Font.BOLD, 17));
-		btnNewButton_9.setBackground(new Color(215, 224, 166));
-		btnNewButton_9.setBounds(280, 88, 260, 88);
-		btnNewButton_9.setFocusPainted(false);
-		btnNewButton_9.setContentAreaFilled(true);
-		panel_1.add(btnNewButton_9);
-
 		String[] columnas = { "Cantidad", "Código", "Descripción", "Precio" };
 		DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 		JTable table = new JTable(modelo) {
@@ -1090,7 +1082,7 @@ public class HomeView {
 		scrollPane.setBounds(57, 246, 703, 220); // tabla ajustada
 		panel_1.add(scrollPane);
 
-		modelo.addRow(new Object[] { "1", "SKU09", "Hamburguesa clásica combo CH", "$150" });
+		modelo.addRow(new Object[] { "1", "SKU09", "Hamburguesa clásica ", "$150" });
 
 		JLabel lblTotal = new JLabel("Total");
 		lblTotal.setFont(new Font("Inter", Font.BOLD, 15));
@@ -1111,7 +1103,7 @@ public class HomeView {
 		lblTotalValor.setBounds(580, 464, 180, 30);
 		panel_1.add(lblTotalValor);
 
-		JButton btnNewButton_10 = new JButton("<html><div style='text-align:left;'>ENVIAR<br>PEDIDO</div></html>");
+		JButton btnNewButton_10 = new JButton("<html><div style='text-align:left;'>ENVIAR <br> PEDIDO</div></html>");
 		btnNewButton_10.setFont(new Font("Inter", Font.PLAIN, 10));
 		btnNewButton_10.setBackground(new Color(190, 190, 190));
 		btnNewButton_10.setBounds(215, 537, 120, 44);
@@ -1145,7 +1137,7 @@ public class HomeView {
 		btnNewButton_11.setContentAreaFilled(true);
 
 		JButton btnNewButton_12 = new JButton(
-				"<html><div style='text-align:center;'>ENVIAR Y COBRAR<br><br></div></html>");
+				"<html><div style='text-align:center;'>ENVIAR Y<br> COBRAR<br></div></html>");
 		btnNewButton_12.setFont(new Font("Inter", Font.PLAIN, 9));
 		btnNewButton_12.setBackground(new Color(190, 190, 190));
 		btnNewButton_12.setBounds(501, 537, 120, 44);
@@ -1174,6 +1166,18 @@ public class HomeView {
 		btnNewButton_13.setFocusPainted(false);
 		btnNewButton_13.setContentAreaFilled(true);
 		frame.setVisible(true);
+		//intente poner la alerta pero al momento de cerrarla se cerraba el programa
+		/*btnNewButton_13.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				HomeController cc = new HomeController();
+				cc.BuscarPorProducto();
+				
+			}
+		});*/
 
 	}
 
@@ -1210,7 +1214,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -1363,7 +1367,7 @@ public class HomeView {
 		Image lupaimg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 		ImageIcon lupa = new ImageIcon(lupaimg);
 
-		Lupa textField_1 = new Lupa(lupaimg); 
+		Lupa textField_1 = new Lupa(lupaimg);
 		textField_1.setBounds(357, 150, 263, 43);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
@@ -1479,7 +1483,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -1617,93 +1621,78 @@ public class HomeView {
 		panel_2.setLayout(null);
 
 		JTextField TextField = new JTextField("BUSCAR");
-        TextField.setBackground(new Color(237, 237, 237));
-        TextField.setFont(new Font("Inter", Font.BOLD, 10));
-        TextField.setForeground(Color.GRAY);
-        TextField.setBounds(35, 47, 223, 40);
-        panel_2.add(TextField);
-        TextField.setColumns(10);
+		TextField.setBackground(new Color(237, 237, 237));
+		TextField.setFont(new Font("Inter", Font.BOLD, 10));
+		TextField.setForeground(Color.GRAY);
+		TextField.setBounds(35, 47, 223, 40);
+		panel_2.add(TextField);
+		TextField.setColumns(10);
 
-     
-        String[] columnas = { "Código", "Descripción" };
-        String[][] datos = {
-            { "040221", "Tocino" },
-            { "043216", "Tomate" },
-            { "041555", "Salsa tabasco" },
-            { "041221", "Tomate" },
-            { "043851", "Tahini" }
-        };
+		String[] columnas = { "Código", "Descripción" };
+		String[][] datos = { { "040221", "Tocino" }, { "043216", "Tomate" }, { "041555", "Salsa tabasco" },
+				{ "041221", "Tomate" }, { "043851", "Tahini" } };
 
-      
-        JTable table = new JTable(datos, columnas) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        table.setFont(new Font("Inter", Font.PLAIN, 14));
-        table.setRowHeight(30);
-        table.setShowGrid(true);
-        table.setGridColor(Color.BLACK);
-        table.getTableHeader().setReorderingAllowed(false);
+		JTable table = new JTable(datos, columnas) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table.setFont(new Font("Inter", Font.PLAIN, 14));
+		table.setRowHeight(30);
+		table.setShowGrid(true);
+		table.setGridColor(Color.BLACK);
+		table.getTableHeader().setReorderingAllowed(false);
 
-      
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        for (int i = 0; i < table.getColumnCount(); i++) {
-            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-        }
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		for (int i = 0; i < table.getColumnCount(); i++) {
+			table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+		}
 
-        
-        JTableHeader header = table.getTableHeader();
-        header.setFont(new Font("Inter", Font.BOLD, 14));
-        header.setDefaultRenderer(new DefaultTableCellRenderer() {
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-                    boolean hasFocus, int row, int column) {
-                JLabel label = new JLabel(value.toString(), JLabel.CENTER);
-                label.setFont(new Font("Inter", Font.BOLD, 14));
-                label.setBackground(new Color(220, 220, 220));
-                label.setOpaque(true);
-                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                return label;
-            }
-        });
+		JTableHeader header = table.getTableHeader();
+		header.setFont(new Font("Inter", Font.BOLD, 14));
+		header.setDefaultRenderer(new DefaultTableCellRenderer() {
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+					boolean hasFocus, int row, int column) {
+				JLabel label = new JLabel(value.toString(), JLabel.CENTER);
+				label.setFont(new Font("Inter", Font.BOLD, 14));
+				label.setBackground(new Color(220, 220, 220));
+				label.setOpaque(true);
+				label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				return label;
+			}
+		});
 
-        
-        JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(311, 149));
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(311, 149));
 
-   
-        JPopupMenu popupMenu = new JPopupMenu();
-        popupMenu.add(scrollPane);
+		JPopupMenu popupMenu = new JPopupMenu();
+		popupMenu.add(scrollPane);
 
-      
-        TextField.addFocusListener(new FocusAdapter() {
-            public void focusGained(FocusEvent e) {
-                if (TextField.getText().equals("BUSCAR")) {
-                    TextField.setText("");
-                    TextField.setForeground(Color.BLACK);
-                }
-            }
+		TextField.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {
+				if (TextField.getText().equals("BUSCAR")) {
+					TextField.setText("");
+					TextField.setForeground(Color.BLACK);
+				}
+			}
 
-            public void focusLost(FocusEvent e) {
-                if (TextField.getText().isEmpty()) {
-                    TextField.setText("BUSCAR");
-                    TextField.setForeground(Color.GRAY);
-                }
-            }
-        });
+			public void focusLost(FocusEvent e) {
+				if (TextField.getText().isEmpty()) {
+					TextField.setText("BUSCAR");
+					TextField.setForeground(Color.GRAY);
+				}
+			}
+		});
 
-        
-        TextField.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
-                SwingUtilities.invokeLater(() -> {
-                    popupMenu.show(TextField, 0, TextField.getHeight());
-                });
-            }
-        });
-
-
+		TextField.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				SwingUtilities.invokeLater(() -> {
+					popupMenu.show(TextField, 0, TextField.getHeight());
+				});
+			}
+		});
 
 		JButton btnNewButton_5 = new JButton("Añadir");
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
@@ -3289,6 +3278,7 @@ public class HomeView {
 	}
 
 	public void BuscarPorProducto() {
+		
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 20);// textfield redondeadas
@@ -3316,22 +3306,29 @@ public class HomeView {
 		textField_2.setBounds(20, 21, 202, 42);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
-		// Datos de la tabla
+		
+		//datos
 		String[] columnNames = { "Código", "Descripción", "Precio" };
-		Object[][] data = { { "SKU09", "Hamburguesa clásica", "$150" }, { "SKU10", "Hamburguesa champiñón", "$150" },
-				{ "SKU11", "Hamburguesa hawaiana", "$150" }, { "SKU12", "Hamburguesa clásica combo", "$150" },
-				{ "SKU13", "Hamburguesa con champiñon combo", "$150" },
-				{ "SKU14", "Hamburguesa hawaiana combo", "$150" }, { "SKU15", "Hamburguesa BBQ", "$150" }, };
+		Object[][] data = { { "SKU09", "Hamburguesa clásica", "$150" }, { "SKU10", "Hamburguesa hawaiana", "$170" },
+				{ "SKU11", "Hamburguesa con champiñon ", "$160" }, { "SKU12", "Hamburguesa BBQ", "$180" } };
 
-		DefaultTableModel model = new DefaultTableModel(data, columnNames);
-		JTable table = new JTable(model);
-		table.setFillsViewportHeight(true);
-		table.setRowHeight(25);
-		table.setShowGrid(true);
-		table.setGridColor(Color.BLACK);
-		table.getTableHeader().setReorderingAllowed(false);
+		   DefaultTableModel model = new DefaultTableModel(data, columnNames);
 
-		// ScrollPane
+		     	//
+	   			JTable table = new JTable(model) {
+		         @Override
+		         public boolean isCellEditable(int row, int column) {
+		             return false;
+		         }
+		     };
+		     
+		        table.setFillsViewportHeight(true);
+		        table.setRowHeight(25);
+		        table.setShowGrid(true);
+		        table.setGridColor(Color.BLACK);
+				table.getTableHeader().setReorderingAllowed(false);
+
+		// Scroll
 		JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(20, 73, 500, 150);
@@ -3348,6 +3345,10 @@ public class HomeView {
 		btnNewButton_1.setFont(new Font("Inter", Font.PLAIN, 10));
 		btnNewButton_1.setBounds(412, 248, 85, 21);
 		panel.add(btnNewButton_1);
+
+		frame.setVisible(true);
+		
+		
 	}
 
 	public void ConsultaDeClientes() {
@@ -3378,6 +3379,13 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta3();
+			}
+		});
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
 		btnNewButton_1.setBounds(226, 0, 227, 49);
@@ -3540,8 +3548,7 @@ public class HomeView {
 		Image lupaimg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 		ImageIcon lupa = new ImageIcon(lupaimg);
 
-	
-		Lupa textField_1 = new Lupa(lupaimg); 
+		Lupa textField_1 = new Lupa(lupaimg);
 		textField_1.setBounds(357, 150, 263, 43);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
@@ -3641,7 +3648,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -3908,7 +3915,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -4362,7 +4369,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -4819,7 +4826,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -5266,7 +5273,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -5727,7 +5734,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -5998,7 +6005,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -6164,7 +6171,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -6308,8 +6315,7 @@ public class HomeView {
 		Image lupaimg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 		ImageIcon lupa = new ImageIcon(lupaimg);
 
-	
-		Lupa textField_1 = new Lupa(lupaimg); 
+		Lupa textField_1 = new Lupa(lupaimg);
 		textField_1.setBounds(357, 150, 263, 43);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
@@ -6418,7 +6424,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -6586,8 +6592,8 @@ public class HomeView {
 		scrollPane.setBounds(41, 82, 719, 420); // altura ajustada para dejar espacio al total
 		panel_1.add(scrollPane);
 
-		modelo.addRow(new Object[] { "1", "SKU09", "Hamburguesa clásica combo CH", "$150" });
-		modelo.addRow(new Object[] { "1", "SKU10", "Hamburguesa clásica combo MD", "$185" });
+		modelo.addRow(new Object[] { "1", "SKU09", "Hamburguesa clásica ", "$150" });
+		modelo.addRow(new Object[] { "1", "SKU10", "Hamburguesa clásica ", "$150" });
 
 		Border cellBorder = BorderFactory.createLineBorder(Color.BLACK);
 
@@ -6698,7 +6704,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -6856,14 +6862,12 @@ public class HomeView {
 
 			}
 		});
-		
-		
+
 		ImageIcon lupaIcon = new ImageIcon(getClass().getResource("/img/lupa.png"));
 		Image lupaimg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 		ImageIcon lupaEscalada = new ImageIcon(lupaimg);
 
-	
-		Lupa textField_1 = new Lupa(lupaimg); 
+		Lupa textField_1 = new Lupa(lupaimg);
 		textField_1.setBounds(357, 150, 263, 43);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
@@ -6969,7 +6973,7 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.abrirCuenta2();
+				hm.abrirCuenta3();
 			}
 		});
 		panel.add(btnNewButton);
@@ -7122,7 +7126,7 @@ public class HomeView {
 		Image lupaimg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
 		ImageIcon lupa = new ImageIcon(lupaimg);
 
-		Lupa textField_1 = new Lupa(lupaimg); 
+		Lupa textField_1 = new Lupa(lupaimg);
 		textField_1.setBounds(357, 150, 263, 43);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
@@ -8047,6 +8051,16 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
 		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta3();
+			}
+		});
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
 		btnNewButton_1.setBounds(226, 0, 227, 49);
@@ -8241,10 +8255,6 @@ public class HomeView {
 
 		// boton cancelar
 		JButton btnNewButton_6 = new JButton("CANCELAR");
-		btnNewButton_6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
 		btnNewButton_6.setBounds(301, 422, 85, 60);
 		btnNewButton_6.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -8258,6 +8268,13 @@ public class HomeView {
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.Inventario();
+			}
+		});
 
 		// boton aceptar
 		JButton btnNewButton_7 = new JButton("ACEPTAR");
