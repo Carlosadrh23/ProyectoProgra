@@ -17,6 +17,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -44,6 +46,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import controllers.AuthController;
 import controllers.HomeController;
+import models.Ingredient;
 import viewscopy.EnsambledeplatilloyConsultarMenu;
 import viewscopy.HistorialyConsulta;
 import viewscopy.RoundedPanel;
@@ -1177,7 +1180,7 @@ public class HomeView {
 
 	}
 
-	public void AlmacenEditar() {
+	public void AlmacenEditar(List ingredientes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 30);// textfield redondeadas
@@ -6664,7 +6667,7 @@ public class HomeView {
 
 	}
 
-	public void Inventario() {
+	public void Inventario(List ingredientes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 50);// textfield redondeadas
@@ -6886,24 +6889,33 @@ public class HomeView {
 		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		panel.add(btnNewButton_7);
 
-		// crea la barra
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(140, 296, 795, 260);
-		panel.add(scrollPane);
 
 		String[] columnas = { "Código", "Descripción", "Existencia", "U.M.", "Costo" };
-		String[][] datos = { { "ING001", "Carne molida de res", "43", "KG", "$105" },
+		 DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
+
+			
+	        
+	     
+	for (Iterator iterator = ingredientes.iterator(); iterator.hasNext();) {
+		Ingredient ingredient = (Ingredient) iterator.next();
+		
+		Object[] fila = {ingredient.id, ingredient.name,ingredient.quantity, ingredient.unit,ingredient.cost};
+		modelo.addRow(fila);
+	}
+	/*	String[][] datos = { { "ING001", "Carne molida de res", "43", "KG", "$105" },
 				{ "ING002", "Pan para hamburguesa", "20", "paq c/8", "$75" },
 				{ "ING003", "Lechuga", "90", "Pieza", "$25" }, { "ING004", "Tomate", "25", "Kg", "$35" },
 				{ "ING005", "Cebolla", "25", "Kg", "$60" }, { "ING006", "Pepinillos", "15", "Kg", "$45" },
 				{ "ING007", "Papa blanca", "50", "Kg", "$45" },
-				{ "ING008", "Refresco Coca Cola Regular", "200", "L", "$19" } };
-		JTable table = new JTable(datos, columnas) {
+				{ "ING008", "Refresco Coca Cola Regular", "200", "L", "$19" } };*/
+	
+		JTable table = new JTable(modelo) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
+		
 		table.setFont(new Font("Inter", Font.PLAIN, 14)); // son para la fuente , mostrar las lineas , color y al
 		table.setRowHeight(30);
 		table.setShowGrid(true);
@@ -6930,6 +6942,10 @@ public class HomeView {
 				return label;
 			}
 		});
+		// crea la barra
+        JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(140, 296, 795, 260);
+		panel.add(scrollPane);
 		// scroll la barra
 		scrollPane.setViewportView(table);
 		frame.setVisible(true);

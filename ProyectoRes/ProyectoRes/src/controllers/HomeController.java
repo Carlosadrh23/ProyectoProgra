@@ -3,9 +3,17 @@ package controllers;
 
 import vistas.HomeView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import models.Ingredient;
+import models.IngredientsModel;
+
 public class HomeController {
 	
 	private HomeView vista;
+	private List<Ingredient> ingredientes = new ArrayList<>();
+
 	public HomeController() {
 		
 		vista = new HomeView();
@@ -51,7 +59,11 @@ public class HomeController {
 	}
 	public void Inventario() 
 	{
-		vista.Inventario();
+		IngredientsModel Im = new IngredientsModel();
+		
+		ingredientes = Im.getAll();
+
+		vista.Inventario(ingredientes);
 	}
 	public void EditarCliente() 
 	{
@@ -67,8 +79,9 @@ public class HomeController {
 	}
 	public void AlmacenEditar() 
 	{
-		vista.AlmacenEditar();
-	}
+		IngredientsModel Im = new IngredientsModel();
+		ingredientes = Im.getAll();
+		vista.Inventario(ingredientes);	}
 	public void AñadirIngrediente() 
 	{
 		vista.AñadirIngrediente();
