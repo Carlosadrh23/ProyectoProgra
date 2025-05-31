@@ -46,6 +46,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import controllers.AuthController;
 import controllers.HomeController;
+import models.Client;
 import models.Ingredient;
 import viewscopy.EnsambledeplatilloyConsultarMenu;
 import viewscopy.HistorialyConsulta;
@@ -6140,7 +6141,7 @@ public class HomeView {
 
 	}
 
-	public void HistorialDeFacturacion() {
+	public void HistorialDeFacturacion(List clients) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 50);// textfield redondeadas
@@ -6342,14 +6343,17 @@ public class HomeView {
 		panel.add(btnNewButton_7);
 
 		String[] columnas = { "RFC", "NOMBRE", "IMPORTE" };
-		String[][] datos = { { "LOPR8402", "Laura Fernanda Mendoza Ruiz", "$155" },
-				{ "XACM7501", "Esteban Ríos Calderón", "$189" }, { "RODJ9011", "Camila Duarte Sánchez", "$200" },
-				{ "TEAG8010", "Marcos Antonio Salgado Varela", "$550" },
-				{ "FAGM8512", "Tomás Eduardo Aguirre Morales", "$978" },
-				{ "VELD9203", "Valeria Ponce Rodríguez", "$1200" }, { "NOMI9302", "Rafael Ibáñez Castillo", "$1555" },
-				{ "ZULM8701", "Diego Aranda Gutiérrez", "$1625" } };
+		 DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-		JTable table = new JTable(datos, columnas) {
+	     
+			for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
+				Client client = (Client) iterator.next();
+				
+				Object[] fila = {client.id, client.name,client.phone, client.email};
+				modelo.addRow(fila);
+			}
+
+		JTable table = new JTable(modelo) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -6897,8 +6901,6 @@ public class HomeView {
 		String[] columnas = { "Código", "Descripción", "Existencia", "U.M.", "Costo" };
 		 DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-			
-	        
 	     
 	for (Iterator iterator = ingredientes.iterator(); iterator.hasNext();) {
 		Ingredient ingredient = (Ingredient) iterator.next();
@@ -6906,15 +6908,7 @@ public class HomeView {
 		Object[] fila = {ingredient.id, ingredient.name,ingredient.quantity, ingredient.unit,ingredient.cost};
 		modelo.addRow(fila);
 	}
-	/*	String[][] datos = { { "ING001", "Carne molida de res", "43", "KG", "$105" },
-				{ "ING002", "Pan para hamburguesa", "20", "paq c/8", "$75" },
-				{ "ING003", "Lechuga", "90", "Pieza", "$25" }, { "ING004", "Tomate", "25", "Kg", "$35" },
-				{ "ING005", "Cebolla", "25", "Kg", "$60" }, { "ING006", "Pepinillos", "15", "Kg", "$45" },
-				{ "ING007", "Papa blanca", "50", "Kg", "$45" },
-				{ "ING008", "Refresco Coca Cola Regular", "200", "L", "$19" } };*/
-	
 		JTable table = new JTable(modelo) {
-			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}

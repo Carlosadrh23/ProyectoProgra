@@ -6,13 +6,16 @@ import vistas.HomeView;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Client;
 import models.Ingredient;
 import models.IngredientsModel;
+import models.ClientsModel;
 
 public class HomeController {
 	
 	private HomeView vista;
 	private List<Ingredient> ingredientes = new ArrayList<>();
+	private List<Client> clients = new ArrayList<>();
 
 	public HomeController() {
 		
@@ -47,7 +50,11 @@ public class HomeController {
 	}
 	public void HistorialDeFacturacion() 
 	{
-		vista.HistorialDeFacturacion();
+		ClientsModel Cm = new ClientsModel();
+		
+		clients = Cm.getAll();
+
+		vista.HistorialDeFacturacion(clients);
 	}
 	public void ConsultaDeClientes() 
 	{
