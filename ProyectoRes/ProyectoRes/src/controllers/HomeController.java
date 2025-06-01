@@ -103,7 +103,7 @@ public class HomeController {
 	{
 		IngredientsModel Im = new IngredientsModel();
 		ingredientes = Im.getAll();
-		vista.Inventario(ingredientes);
+		vista.AlmacenEditar(ingredientes);
 		}
 	public void AñadirIngrediente() 
 	{
@@ -116,7 +116,9 @@ public class HomeController {
 	{
 		vista.BuscarPorProducto();
 	}
-	
+	public void EditarMenu() {
+		vista.EditarMenu();
+	}
 	
 
 }

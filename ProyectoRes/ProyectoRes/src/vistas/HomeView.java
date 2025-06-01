@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -31,6 +32,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -4066,7 +4068,6 @@ public class HomeView {
 		panel_2.add(lblNewLabel_2);
 
 		JTextField txtAlejandro = new JTextField();
-		txtAlejandro.setText("Erick");
 		txtAlejandro.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtAlejandro.setBackground(new Color(237, 237, 237));
 		txtAlejandro.setBounds(154, 41, 96, 21);
@@ -4079,7 +4080,6 @@ public class HomeView {
 		panel_2.add(lblNewLabel_3);
 
 		JTextField txtDaniel = new JTextField();
-		txtDaniel.setText("Daniel");
 		txtDaniel.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtDaniel.setBackground(new Color(237, 237, 237));
 		txtDaniel.setBounds(154, 92, 96, 21);
@@ -4092,7 +4092,6 @@ public class HomeView {
 		panel_2.add(lblNewLabel_4);
 
 		JTextField txtGonzales = new JTextField();
-		txtGonzales.setText("González");
 		txtGonzales.setBackground(new Color(237, 237, 237));
 		txtGonzales.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtGonzales.setBounds(154, 151, 96, 21);
@@ -4105,7 +4104,6 @@ public class HomeView {
 		panel_2.add(lblNewLabel_5);
 
 		JTextField txtHernndez = new JTextField();
-		txtHernndez.setText("Martínez");
 		txtHernndez.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtHernndez.setBackground(new Color(237, 237, 237));
 		txtHernndez.setBounds(154, 209, 96, 21);
@@ -4131,7 +4129,6 @@ public class HomeView {
 		panel_3.add(lblNewLabel_7);
 
 		JTextField textField_1 = new JTextField();
-		textField_1.setText("24");
 		textField_1.setBackground(new Color(237, 237, 237));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 11));
 		textField_1.setBounds(42, 30, 34, 19);
@@ -4144,7 +4141,6 @@ public class HomeView {
 		panel_3.add(lblNewLabel_8);
 
 		JTextField textField_2 = new JTextField();
-		textField_2.setText("11");
 		textField_2.setFont(new Font("Inter", Font.PLAIN, 11));
 		textField_2.setBackground(new Color(237, 237, 237));
 		textField_2.setBounds(124, 30, 34, 19);
@@ -4157,7 +4153,6 @@ public class HomeView {
 		panel_3.add(lblNewLabel_9);
 
 		JTextField textField_3 = new JTextField();
-		textField_3.setText("1998");
 		textField_3.setFont(new Font("Inter", Font.PLAIN, 11));
 		textField_3.setBackground(new Color(237, 237, 237));
 		textField_3.setBounds(220, 30, 45, 19);
@@ -4166,7 +4161,7 @@ public class HomeView {
 
 		JLabel lblNewLabel_10 = new JLabel("Sexo:");
 		lblNewLabel_10.setFont(new Font("Inter", Font.BOLD, 16));
-		lblNewLabel_10.setBounds(51, 455, 43, 25);
+		lblNewLabel_10.setBounds(51, 455, 53, 25);
 		panel_1.add(lblNewLabel_10);
 
 		RoundedPanel panel_4 = new RoundedPanel(10);
@@ -4190,7 +4185,6 @@ public class HomeView {
 		JTextField txtCalleTeotihuacn = new JTextField();
 		txtCalleTeotihuacn.setBackground(new Color(237, 237, 237));
 		txtCalleTeotihuacn.setBackground(new Color(237, 237, 237));
-		txtCalleTeotihuacn.setText("Calle Teotihuacán");
 		txtCalleTeotihuacn.setBackground(new Color(237, 237, 237));
 		txtCalleTeotihuacn.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtCalleTeotihuacn.setBounds(79, 30, 208, 26);
@@ -4203,7 +4197,6 @@ public class HomeView {
 		panel_4.add(lblNewLabel_13);
 
 		JTextField textField_5 = new JTextField();
-		textField_5.setText("1946");
 		textField_5.setBackground(new Color(237, 237, 237));
 		textField_5.setFont(new Font("Inter", Font.PLAIN, 14));
 		textField_5.setBounds(39, 88, 62, 26);
@@ -4216,7 +4209,6 @@ public class HomeView {
 		panel_4.add(lblNewLabel_14);
 
 		JTextField textField_6 = new JTextField();
-		textField_6.setText("21095");
 		textField_6.setBackground(new Color(237, 237, 237));
 		textField_6.setFont(new Font("Inter", Font.PLAIN, 14));
 		textField_6.setBounds(190, 89, 62, 26);
@@ -4229,7 +4221,6 @@ public class HomeView {
 		panel_4.add(lblNewLabel_15);
 
 		JTextField txtLosOlivares = new JTextField();
-		txtLosOlivares.setText("Los olivos");
 		txtLosOlivares.setBackground(new Color(237, 237, 237));
 		txtLosOlivares.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtLosOlivares.setBounds(79, 150, 208, 26);
@@ -4244,7 +4235,6 @@ public class HomeView {
 		JTextField txtLaPaz = new JTextField();
 		txtLaPaz.setBackground(new Color(237, 237, 237));
 		txtLaPaz.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtLaPaz.setText("La paz");
 		txtLaPaz.setBounds(67, 219, 62, 26);
 		panel_4.add(txtLaPaz);
 		txtLaPaz.setColumns(10);
@@ -4282,7 +4272,6 @@ public class HomeView {
 		JTextField txtErickuabcsmx = new JTextField();
 		txtErickuabcsmx.setBackground(new Color(237, 237, 237));
 		txtErickuabcsmx.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtErickuabcsmx.setText("erick@uabcs.mx");
 		txtErickuabcsmx.setBounds(77, 30, 191, 19);
 		panel_5.add(txtErickuabcsmx);
 		txtErickuabcsmx.setColumns(10);
@@ -4294,7 +4283,6 @@ public class HomeView {
 
 		JTextField textField_7 = new JTextField();
 		textField_7.setBackground(new Color(237, 237, 237));
-		textField_7.setText("6121659613");
 		textField_7.setFont(new Font("Inter", Font.PLAIN, 14));
 		textField_7.setBounds(77, 75, 191, 19);
 		panel_5.add(textField_7);
@@ -4337,16 +4325,23 @@ public class HomeView {
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
 
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Masculino");
-		chckbxNewCheckBox.setFont(new Font("Inter", Font.BOLD, 12));
-		chckbxNewCheckBox.setBounds(105, 458, 93, 21);
-		panel_1.add(chckbxNewCheckBox);
+        JRadioButton masculino = new JRadioButton("Masculino");
+        masculino.setFont(new Font("Inter", Font.BOLD, 12));
+        masculino.setBounds(105, 458, 93, 21);
 
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Femenino");
-		chckbxNewCheckBox_1.setFont(new Font("Inter", Font.BOLD, 12));
-		chckbxNewCheckBox_1.setBounds(232, 458, 93, 21);
-		panel_1.add(chckbxNewCheckBox_1);
 
+        JRadioButton femenino = new JRadioButton("Femenino");
+        femenino.setFont(new Font("Inter", Font.BOLD, 12));
+        femenino.setBounds(232, 458, 93, 21);
+
+		
+        ButtonGroup grupoSexo = new ButtonGroup();
+        grupoSexo.add(masculino);
+        grupoSexo.add(femenino);
+
+		panel_1.add(masculino);
+		panel_1.add(femenino);
+		
 		frame.setVisible(true);
 
 	}
@@ -7142,6 +7137,18 @@ public class HomeView {
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lapiz.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_6.setIcon(new ImageIcon(imagen2));
+		
+		btnNewButton_6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.EditarMenu();
+			}
+		});
+		
 		panel.add(btnNewButton_6);
 
 		ImageIcon lupaIcon = new ImageIcon(getClass().getResource("/img/lupa.png"));
@@ -7223,7 +7230,318 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
+	
+	
+	public void EditarMenu() {
+		try {
+			UIManager.setLookAndFeel(new FlatLightLaf());
+			UIManager.put("TextComponent.arc", 10);// textfield redondeadas
+			UIManager.put("Buttom.arc", 700); // Esquinas redondeadas
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 
+		JFrame frame = new JFrame();
+		frame.setResizable(false);
+		frame.setAlwaysOnTop(true);
+		frame.setBounds(100, 100, 1150, 799);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 215));
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+
+		// boton de comedor
+		JButton btnNewButton = new JButton("Comedor");
+		btnNewButton.setBounds(0, 0, 234, 49);
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(50, 98, 115));
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta2();
+			}
+		});
+		panel.add(btnNewButton);
+
+		JButton btnNewButton_1 = new JButton("Ensamble");
+		btnNewButton_1.setBounds(226, 0, 227, 49);
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(50, 98, 115));
+		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 15));
+		panel.add(btnNewButton_1);
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
+		JPanel panelContenido1 = new JPanel();
+		panelContenido1.setBounds(230, 49, 225, 65);
+		panelContenido1.setLayout(new BorderLayout());
+		panelContenido1.setVisible(false);
+		panelContenido1.setOpaque(false);
+		panel.add(panelContenido1);
+
+		btnNewButton_1.addActionListener(e -> {
+			if (panelContenido1.isVisible()) {
+				panelContenido1.setVisible(false);
+				panelContenido1.removeAll();
+			} else {
+				panelContenido1.removeAll();
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
+				panelContenido1.setVisible(true);
+			}
+			panelContenido1.revalidate();
+			panelContenido1.repaint();
+		});
+
+		JButton btnNewButton_2 = new JButton("Inventario");
+		btnNewButton_2.setBounds(452, 0, 227, 49);
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setBackground(new Color(50, 98, 115));
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
+		panel.add(btnNewButton_2);
+
+		JButton btnNewButton_3 = new JButton("Clientes");
+		btnNewButton_3.setBounds(677, 0, 234, 49);
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setBackground(new Color(50, 98, 115));
+		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 15));
+		panel.add(btnNewButton_3);
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
+		JPanel panelContenido = new JPanel();
+		panelContenido.setBounds(677, 49, 234, 65);
+		panelContenido.setLayout(new BorderLayout());
+		panelContenido.setVisible(false);
+		panelContenido.setOpaque(false);
+		panel.add(panelContenido);
+
+		btnNewButton_3.addActionListener(e -> {
+			if (panelContenido.isVisible()) {
+				panelContenido.setVisible(false);
+				panelContenido.removeAll();
+			} else {
+				panelContenido.removeAll();
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
+				panelContenido.setVisible(true);
+			}
+			panelContenido.revalidate();
+			panelContenido.repaint();
+		});
+
+		JButton btnNewButton_4 = new JButton("Usuarios");
+		btnNewButton_4.setBounds(909, 0, 227, 49);
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
+		btnNewButton_4.setBackground(new Color(50, 98, 115));
+		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 15));
+		panel.add(btnNewButton_4);
+		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN USUARIOS
+		JPanel panelContenido2 = new JPanel();
+		panelContenido2.setBounds(909, 49, 227, 49);
+		panelContenido2.setLayout(new BorderLayout());
+		panelContenido2.setVisible(false);
+		panelContenido2.setOpaque(false);
+		panel.add(panelContenido2);
+
+		btnNewButton_4.addActionListener(e -> {
+			if (panelContenido2.isVisible()) {
+				panelContenido2.setVisible(false);
+				panelContenido2.removeAll();
+			} else {
+				panelContenido2.removeAll();
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
+				panelContenido2.setVisible(true);
+			}
+			panelContenido2.revalidate();
+			panelContenido2.repaint();
+		});
+
+		RoundedPanel panel_1 = new RoundedPanel(20);
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(167, 108, 798, 509);
+		Border borde = BorderFactory.createLineBorder(Color.BLACK, 0);
+		panel_1.setBorder(borde);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Editar platillo");
+		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 20));
+		lblNewLabel.setBounds(326, 21, 198, 25);
+		panel_1.add(lblNewLabel);
+
+		// segundo panel , el roundpanel espara hacer las esquinas redondas
+		RoundedPanel panel_2 = new RoundedPanel(20) {
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				// Dibuja la línea en el centro de panel_2
+				Graphics2D g2 = (Graphics2D) g.create();
+				g2.setStroke(new BasicStroke(1));
+				g2.setColor(Color.LIGHT_GRAY);
+				int x = getWidth() / 2;
+				g2.drawLine(x, 50, x, getHeight() - 30);
+				g2.dispose();
+			}
+		};
+
+		panel_2.setForeground(new Color(128, 128, 128));
+		panel_2.setBackground(Color.WHITE);
+		panel_2.setBounds(41, 76, 731, 321);
+		panel_2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
+		panel_1.add(panel_2);
+		panel_2.setLayout(null);
+
+		JLabel lblNewLabel_1 = new JLabel("Descripción");
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(392, 36, 116, 13);
+		panel_2.add(lblNewLabel_1);
+
+		JLabel lblNewLabel_2 = new JLabel("Cantidad");
+		lblNewLabel_2.setFont(new Font("Inter", Font.BOLD, 15));
+		lblNewLabel_2.setBounds(498, 36, 85, 13);
+		panel_2.add(lblNewLabel_2);
+
+		JLabel lblNewLabel_3 = new JLabel("U.M.");
+		lblNewLabel_3.setFont(new Font("Inter", Font.BOLD, 15));
+		lblNewLabel_3.setBounds(588, 36, 45, 13);
+		panel_2.add(lblNewLabel_3);
+
+		JLabel lblNewLabel_4 = new JLabel("Costo");
+		lblNewLabel_4.setFont(new Font("Inter", Font.BOLD, 15));
+		lblNewLabel_4.setBounds(643, 36, 55, 13);
+		panel_2.add(lblNewLabel_4);
+
+		// Datos y columnas
+		String[] columnas = { "Código", "Descripción" };
+		String[][] datos = { { "040221", "Tocino" }, { "043216", "Tomate" }, { "041555", "Salsa tabasco" },
+				{ "041221", "Tomate" }, { "043851", "Tahini" },
+
+		};
+
+		// Tabla y scroll
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 76, 311, 149);
+		panel_2.add(scrollPane);
+
+		JTable table = new JTable(datos, columnas) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table.setFont(new Font("Inter", Font.PLAIN, 14));
+		table.setRowHeight(30);
+		table.setShowGrid(true);
+		table.setGridColor(Color.BLACK);
+		table.getTableHeader().setReorderingAllowed(false);
+
+		// Centrado de celdas
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		for (int i = 0; i < table.getColumnCount(); i++) {
+			table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+		}
+
+		// Header personalizado
+		JTableHeader header = table.getTableHeader();
+		header.setFont(new Font("Inter", Font.BOLD, 14));
+		header.setDefaultRenderer(new DefaultTableCellRenderer() {
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+					boolean hasFocus, int row, int column) {
+				JLabel label = new JLabel(value.toString(), JLabel.CENTER);
+				label.setFont(new Font("Inter", Font.BOLD, 14));
+				label.setBackground(new Color(220, 220, 220));
+				label.setOpaque(true);
+				label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				return label;
+			}
+		});
+
+		scrollPane.setViewportView(table);
+
+		JTextField textField = new JTextField("Buscar");
+		textField.setBackground(new Color(237, 237, 237));
+		textField.setFont(new Font("Inter", Font.BOLD, 20));
+		textField.setForeground(Color.GRAY);
+		textField.setBounds(10, 36, 223, 40);
+		panel_2.add(textField);
+		textField.setColumns(10);
+
+		// HACE QUE SE BORRE EL BUSCAR AL ESCRIBIR EN EL TEXTFIELD
+		final String placeholder = "Buscar";
+		textField.addFocusListener(new FocusAdapter() {
+
+			public void focusGained(FocusEvent e) {
+				if (textField.getText().equals(placeholder)) {
+					textField.setText("");
+					textField.setForeground(Color.BLACK);
+				}
+			}
+
+			public void focusLost(FocusEvent e) {
+				if (textField.getText().isEmpty()) {
+					textField.setText(placeholder);
+					textField.setForeground(Color.GRAY);
+				}
+			}
+		});
+
+		// Botón cancelar
+		JButton btnNewButton_6 = new JButton("CANCELAR");
+		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
+		btnNewButton_6.setBounds(306, 422, 85, 60);
+		btnNewButton_6.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_6.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_6.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_6.setIconTextGap(1);
+		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen));
+		btnNewButton_6.setFocusPainted(false);
+		btnNewButton_6.setContentAreaFilled(true);
+		btnNewButton_6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.menu();
+			}
+		});
+		panel_1.add(btnNewButton_6);
+
+		// Botón aceptar
+		JButton btnNewButton_7 = new JButton("ACEPTAR");
+		btnNewButton_7.setFont(new Font("Inter", Font.BOLD, 9));
+		btnNewButton_7.setBounds(421, 422, 85, 60);
+		btnNewButton_7.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_7.setIconTextGap(1);
+		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen2));
+		btnNewButton_7.setFocusPainted(false);
+		btnNewButton_7.setContentAreaFilled(true);
+		panel_1.add(btnNewButton_7);
+		frame.setVisible(true);
+		
+	}
+	
 	class RoundedPanel extends JPanel {
 		private int cornerRadius;
 
