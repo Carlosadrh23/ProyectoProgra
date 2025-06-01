@@ -10,12 +10,15 @@ import models.Client;
 import models.Ingredient;
 import models.IngredientsModel;
 import models.ClientsModel;
+import models.Dish;
+import models.DishesModel;
 
 public class HomeController {
 	
 	private HomeView vista;
 	private List<Ingredient> ingredientes = new ArrayList<>();
 	private List<Client> clients = new ArrayList<>();
+	private List<Dish> dishes = new ArrayList<>();
 
 	public HomeController() {
 		
@@ -38,7 +41,11 @@ public class HomeController {
 	}
 	public void abrirCuenta3()
 	{
-		vista.AbrirCuenta3();
+		DishesModel Dm = new DishesModel();
+		
+		dishes = Dm.getAll();
+
+		vista.AbrirCuenta3(dishes);
 	}
 	public void ConsultaDeCuenta() 
 	{
@@ -58,11 +65,19 @@ public class HomeController {
 	}
 	public void ConsultaDeClientes() 
 	{
-		vista.ConsultaDeClientes();
+		ClientsModel Cm = new ClientsModel();
+		
+		clients = Cm.getAll();
+
+		vista.ConsultaDeClientes(clients);
 	}
 	public void menu() 
 	{
-		vista.menu();
+		DishesModel Dm = new DishesModel();
+		
+		dishes = Dm.getAll();
+
+		vista.menu(dishes);
 	}
 	public void Inventario() 
 	{

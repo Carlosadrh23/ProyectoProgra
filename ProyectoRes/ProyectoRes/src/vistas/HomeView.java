@@ -47,6 +47,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import controllers.AuthController;
 import controllers.HomeController;
 import models.Client;
+import models.Dish;
 import models.Ingredient;
 import viewscopy.EnsambledeplatilloyConsultarMenu;
 import viewscopy.HistorialyConsulta;
@@ -885,7 +886,7 @@ public class HomeView {
 
 	}
 
-	public void AbrirCuenta3() {
+	public void AbrirCuenta3(List dishes) {
 
 		JFrame frame = new JFrame();
 		frame.setAlwaysOnTop(false);
@@ -1044,8 +1045,17 @@ public class HomeView {
 		panel_1.add(btnNewButton_8);
 
 		String[] columnas = { "Cantidad", "Código", "Descripción", "Precio" };
-		DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-		JTable table = new JTable(modelo) {
+		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
+
+	     
+		for (Iterator iterator = dishes.iterator(); iterator.hasNext();) {
+			Dish dish = (Dish) iterator.next();
+			
+			Object[] fila = {dish.id, dish.code,dish.name,"$"+dish.price};
+			modelo.addRow(fila);
+		}
+
+	JTable table = new JTable(modelo) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -1085,9 +1095,6 @@ public class HomeView {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(57, 246, 703, 220); // tabla ajustada
 		panel_1.add(scrollPane);
-
-		modelo.addRow(new Object[] { "1", "SKU09", "Hamburguesa clásica ", "$150" });
-
 		JLabel lblTotal = new JLabel("Total");
 		lblTotal.setFont(new Font("Inter", Font.BOLD, 15));
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -3355,7 +3362,7 @@ public class HomeView {
 		
 	}
 
-	public void ConsultaDeClientes() {
+	public void ConsultaDeClientes(List clients) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 20);// textfield redondeado
@@ -3578,18 +3585,19 @@ public class HomeView {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(140, 296, 795, 260);
 		panel.add(scrollPane);
-
+		//retorno
 		String[] columnas = { "ID cliente", "Nombre", "RFC" };
-		String[][] datos = { { "C7283945", "Laura Fernanda Mendoza Ruiz", "LOPR8402" },
-				{ "C1038472", "Esteban Ríos Calderón", "XACM7501" },
-				{ "C5892371", "Camila Duarte Sánchez", "RODJ9011" },
-				{ "C2947103", "Marcos Antonio Salgado Varela", "TEAG8010" },
-				{ "C6739201", "Tomás Eduardo Aguirre Morales", "FAGM8512" },
-				{ "C3478120", "Valeria Ponce Rodríguez", "VELD9203" },
-				{ "C9012843", "Rafael Ibáñez Castillo", "NOMI9302" },
-				{ "C7653902", "Diego Aranda Gutiérrez", "ZULM8701" } };
+		 DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-		JTable table = new JTable(datos, columnas) {
+	     
+			for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
+				Client client = (Client) iterator.next();
+				
+				Object[] fila = {client.id, client.name,client.rfc};
+				modelo.addRow(fila);
+			}
+
+		JTable table = new JTable(modelo) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -6349,7 +6357,7 @@ public class HomeView {
 			for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
 				Client client = (Client) iterator.next();
 				
-				Object[] fila = {client.id, client.name,client.phone, client.email};
+				Object[] fila = {client.rfc, client.name,"$"+client.importe};
 				modelo.addRow(fila);
 			}
 
@@ -6905,7 +6913,7 @@ public class HomeView {
 	for (Iterator iterator = ingredientes.iterator(); iterator.hasNext();) {
 		Ingredient ingredient = (Ingredient) iterator.next();
 		
-		Object[] fila = {ingredient.id, ingredient.name,ingredient.quantity, ingredient.unit,ingredient.cost};
+		Object[] fila = {ingredient.id, ingredient.name,ingredient.quantity, ingredient.unit,"$"+ingredient.cost};
 		modelo.addRow(fila);
 	}
 		JTable table = new JTable(modelo) {
@@ -6950,7 +6958,7 @@ public class HomeView {
 
 	}
 
-	public void menu() {
+	public void menu(List dishes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 20);// textfield redondeado
@@ -7164,13 +7172,17 @@ public class HomeView {
 		panel.add(scrollPane);
 
 		String[] columnas = { "ID paltillo", "Descripción", "Precio" };
-		String[][] datos = { { "SKU08726", "Boneless sencillas", "$90" }, { "SKU08243", "Boneless combo ", "$130" },
-				{ "SKU08108", "Papas fritas sencillas", "$50" }, { "SKU00782", "Papas fritas especiales", "$110" },
-				{ "SKU00345", "Hamburguesa clásica", "$100" }, { "SKU02023", "Hamburguesa boneless", "$110" },
-				{ "SKU03108", "Hamburguesa clásica combo", "$150" },
-				{ "C7653902", "Hamburguesa boneless combo", "$170" } };
+		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-		JTable table = new JTable(datos, columnas) {
+	     
+		for (Iterator iterator = dishes.iterator(); iterator.hasNext();) {
+			Dish dish = (Dish) iterator.next();
+			
+			Object[] fila = {dish.id, dish.name,"$"+dish.price};
+			modelo.addRow(fila);
+		}
+
+	JTable table = new JTable(modelo) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;

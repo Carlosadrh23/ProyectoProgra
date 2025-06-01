@@ -19,46 +19,33 @@ public class ClientsModel {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public List getAll()
-	{
-		
-		String query = "select * from customers";
-		Connection conn = null;
-		Statement stmt = null;
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-	        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-			
-			while (rs.next()) { 
-				
-				Integer id = rs.getInt(1);
-				String name = rs.getString(2); 
-				String phone = rs.getString(3); 
-				String email = rs.getString(4); 
-				String rfc = rs.getString(5); 
-
-				
-				clientes.add(new Client(id,name,phone,email,null,null,rfc));
-			}
-			
-			rs.close();
-			
-			return clientes;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (Exception e) {}
-		}
-		
-		return clientes;
+	public List<Client> getAll() {
+	    String query = "SELECT *, SUM(o.total) AS IMPORTE FROM customers c " +
+	                   "JOIN orders o ON c.customer_id = o.customer_id " +
+	                   "GROUP BY c.customer_id";
+	    
+	    try (Connection conn = DriverManager.getConnection(
+	             "jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
+	         PreparedStatement stmt = conn.prepareStatement(query);
+	         ResultSet rs = stmt.executeQuery()) {
+	        
+	        while (rs.next()) {
+	            Integer id = rs.getInt("customer_id");
+	            String name = rs.getString("name");
+	            String rfc = rs.getString("rfc");
+	            String phone = rs.getString("phone");
+	            String email = rs.getString("email");
+	            Float importe = rs.getFloat("IMPORTE");
+	            
+	            clientes.add(new Client(id, name, rfc, phone, email, importe,null,null));
+	        }
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return clientes;
 	}
-	
 	
 	public User get(int id_Target)
 	{
