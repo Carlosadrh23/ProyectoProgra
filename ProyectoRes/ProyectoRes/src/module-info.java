@@ -5,17 +5,13 @@
  * 
  */
 module ProyectoRes {
-	requires java.desktop;
-	requires com.formdev.flatlaf;
-	requires java.sql;
-	requires jbcrypt;
-	
+    requires java.desktop;
+    requires com.formdev.flatlaf;
+    requires java.sql;
+    requires jbcrypt;
 
-	
-	exports controllers;
+    exports controllers;
     exports models;
     exports vistas;
-   
-
-    exports aplication;
+    exports application;
 }

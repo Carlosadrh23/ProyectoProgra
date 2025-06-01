@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Ingredient {
 	
 	public int id;
+	public String code;
 	public String name;
 	public String unit;
 	public Float cost;
@@ -12,8 +13,9 @@ public class Ingredient {
 
 	
 	
-	public Ingredient(int id, String name,int quantity, String unit,Float cost) {
+	public Ingredient(int id,String code, String name,int quantity, String unit,Float cost) {
 		this.id = id;
+		this.code = code;
 		this.name = name;
 		this.quantity = quantity;
 		this.unit = unit;

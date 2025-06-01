@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,32 +25,25 @@ public class IngredientsModel {
 	public List getAll()
 	{
 		
-		String query = "SELECT i.ingredient_id, i.name, inv.current_quantity, i.unit, i.price FROM ingredients i JOIN inventories inv ON i.ingredient_id = inv.ingredient_id";
+		String query = "SELECT i.ingredient_id,i.code, i.name, inv.current_quantity, i.unit, i.price FROM ingredients i JOIN inventories inv ON i.ingredient_id = inv.ingredient_id";
 		Connection conn = null;
 		Statement stmt = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-	        			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
+	      conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			
 			while (rs.next()) { 
 				
 				Integer id = rs.getInt(1);
-				String name = rs.getString(2); 
-				Integer quantity = rs.getInt(3); 
-				String units = rs.getString(4); 
-				Float cost = rs.getFloat(5);
-
-				System.out.println("empId:" + id);
-				System.out.println("name:" + name);
-				
-			
-				
-				 
-				System.out.println(""); 
-				
-				ingredientes.add(new Ingredient(id,name,quantity,units,cost));
+				String code = rs.getString(2); 
+				String name = rs.getString(3); 
+				Integer quantity = rs.getInt(4); 
+				String units = rs.getString(5); 
+				Float cost = rs.getFloat(6);
+		
+				ingredientes.add(new Ingredient(id,code,name,quantity,units,cost));
 			}
 			
 			rs.close();
@@ -77,24 +71,20 @@ public class IngredientsModel {
 		Statement stmt = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-	        			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
+			conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			
 			while (rs.next()) { 
 				
 				Integer id = rs.getInt(1);
-				String name = rs.getString(2); 
-				Integer quantity = rs.getInt(3); 
-				String units = rs.getString(4); 
-				Float cost = rs.getFloat(5);
-				
-			
-				
-				 
-				System.out.println(""); 
-				
-				ingredientes.add(new Ingredient(id,name,quantity,units,cost));
+				String code = rs.getString(2); 
+				String name = rs.getString(3); 
+				Integer quantity = rs.getInt(4); 
+				String units = rs.getString(5); 
+				Float cost = rs.getFloat(6);
+		
+				ingredientes.add(new Ingredient(id,code,name,quantity,units,cost));
 			}
 			
 			rs.close();
@@ -121,7 +111,7 @@ public class IngredientsModel {
 		User myuser = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-	        			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
+			conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			
@@ -188,25 +178,55 @@ public class IngredientsModel {
 		
 	}
 
-	public void addUser(String nombre,String email,String password) {
-	 String query = "INSERT INTO ingredients (username, password, email) VALUES (?, ?, ?)";
-	    try (Connection 			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
-	         PreparedStatement pstmt = conn.prepareStatement(query)) {
+	    // Method 1: Two-step approach (Most Reliable)
+	    public int AddIngredient(String name, String description, String customCode) throws SQLException {
+	        String insertSql = "INSERT INTO ingredients (name, description, code) VALUES (?, ?, ?)";
+	        String updateCodeSql = "UPDATE ingredients SET code = CONCAT('ING', LPAD(ingredient_id, 3, '0')) WHERE ingredient_id = ? AND (code IS NULL OR code = '')";
+	        Connection  conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
+	        try (PreparedStatement insertStmt = conn.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS)) {
+	            
+	            insertStmt.setString(1, name);
+	            insertStmt.setString(2, description);
+	            insertStmt.setString(3, customCode); // null if you want auto-generation
+	            
+	            int rowsAffected = insertStmt.executeUpdate();
+	            
+	            if (rowsAffected > 0) {
+	                try (ResultSet generatedKeys = insertStmt.getGeneratedKeys()) {
+	                    if (generatedKeys.next()) {
+	                        int ingredientId = generatedKeys.getInt(1);
+	                        
+	                        // If no custom code provided, generate one
+	                        if (customCode == null || customCode.trim().isEmpty()) {
+	                            try (PreparedStatement updateStmt = conn.prepareStatement(updateCodeSql)) {
+	                                updateStmt.setInt(1, ingredientId);
+	                                updateStmt.executeUpdate();
+	                            }
+	                        }
+	                        
+	                        return ingredientId;
+	                    }
+	                }
+	            }
+	        }
 	        
-	        pstmt.setString(1, nombre);
-	        pstmt.setString(2, password);
-	        pstmt.setString(3, email);
-	      
-
-	        pstmt.executeUpdate();
-	    } catch (Exception e) {
-	        e.printStackTrace();
+	        throw new SQLException("Failed to insert ingredient");
 	    }
+
+	
+	public void generateIngredientCode(Connection connection, int ingredientId) throws SQLException {
+    String sql = "UPDATE ingredients SET code = CONCAT('ING', LPAD(?, 3, '0')) WHERE ingredient_id = ? AND (code IS NULL OR code = '')";
+    
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setInt(1, ingredientId);
+        stmt.setInt(2, ingredientId);
+        stmt.executeUpdate();
+    }
 }
 	public void update(int id, String name, String email, String password) {
 	    String query = "UPDATE ingredients SET username=?, email=?, password=? WHERE id=?";
 	    
-	    try (Connection 			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
+	    try (Connection  conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 	         PreparedStatement pstmt = conn.prepareStatement(query)) {
 	        
 	        pstmt.setString(1, name);

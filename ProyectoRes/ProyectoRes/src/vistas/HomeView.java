@@ -17,6 +17,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,6 +28,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -49,6 +51,8 @@ import controllers.HomeController;
 import models.Client;
 import models.Dish;
 import models.Ingredient;
+import models.IngredientsModel;
+import models.UsersModel;
 import viewscopy.EnsambledeplatilloyConsultarMenu;
 import viewscopy.HistorialyConsulta;
 import viewscopy.RoundedPanel;
@@ -2073,7 +2077,7 @@ public class HomeView {
 
 	}
 
-	public void AñadirPlatillo3() {
+	public void AñadirPlatillo3( ) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 10);// textfield redondeadas
@@ -6913,7 +6917,7 @@ public class HomeView {
 	for (Iterator iterator = ingredientes.iterator(); iterator.hasNext();) {
 		Ingredient ingredient = (Ingredient) iterator.next();
 		
-		Object[] fila = {ingredient.id, ingredient.name,ingredient.quantity, ingredient.unit,"$"+ingredient.cost};
+		Object[] fila = {ingredient.code, ingredient.name,ingredient.quantity, ingredient.unit,"$"+ingredient.cost};
 		modelo.addRow(fila);
 	}
 		JTable table = new JTable(modelo) {
@@ -8046,7 +8050,7 @@ public class HomeView {
 
 	}
 
-	public void AñadirIngrediente() {
+	public void AñadirIngrediente(List<Ingredient> ingredientes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 10);// textfield redondeadas
@@ -8260,11 +8264,33 @@ public class HomeView {
 		lblNewLabel_8.setBounds(22, 140, 65, 28);
 		panel_2.add(lblNewLabel_8);
 
-		String[] unidades = { "KG", "CAJA C/6 PZ", "PZ" };
+		String[] unidades = { "kg", "litro", "pieza" };
+
+		for (Iterator<Ingredient> iterator = ingredientes.iterator(); iterator.hasNext();) {
+		    Ingredient ingredient = iterator.next();
+		    
+		    // Buscar si la unidad existe en el array
+		    String unitName = ingredient.unit;
+		    boolean unitFound = false;
+		    
+		    for (String unidad : unidades) {
+		        if (unidad.equalsIgnoreCase(ingredient.unit)) {
+		            unitName = unidad;
+		            unitFound = true;
+		            break;
+		        }
+		    }
+		    
+		    // Si no se encuentra, usar valor por defecto
+		    if (!unitFound) {
+		        unitName = "Sin unidad";
+		    }
+		    
+		 
+		}
 		JComboBox<String> comboBox = new JComboBox<>(unidades);
 		comboBox.setBounds(62, 145, 90, 21);
 		panel_2.add(comboBox);
-
 		JLabel lblNewLabel_9 = new JLabel("Costo:");
 		lblNewLabel_9.setFont(new Font("Inter", Font.PLAIN, 13));
 		lblNewLabel_9.setBounds(217, 140, 53, 22);
@@ -8291,7 +8317,10 @@ public class HomeView {
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
 		btnNewButton_6.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
+				String selectedString = (String) comboBox.getSelectedItem();
+	            System.out.println(selectedString);
 				frame.dispose();
 				HomeController hm = new HomeController();
 				hm.Inventario();
@@ -8312,6 +8341,29 @@ public class HomeView {
 		btnNewButton_7.setIcon(new ImageIcon(imagen4));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
+		btnNewButton_7.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String selectedString = (String) comboBox.getSelectedItem();
+				IngredientsModel Im = new IngredientsModel();
+					try {
+						Im.AddIngredient(txtTocinoAhumado.getText().toString(),selectedString,selectedString);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			
+                JOptionPane.showMessageDialog(null, "Ingrediente añadido correctamente");
+                
+                frame.dispose();
+
+                HomeController hc = new HomeController();
+                hc.AñadirIngrediente();
+			}
+		});
+		
 		panel_1.add(btnNewButton_7);
 
 		frame.setVisible(true);

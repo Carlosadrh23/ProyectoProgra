@@ -103,10 +103,13 @@ public class HomeController {
 	{
 		IngredientsModel Im = new IngredientsModel();
 		ingredientes = Im.getAll();
-		vista.Inventario(ingredientes);	}
+		vista.Inventario(ingredientes);
+		}
 	public void AñadirIngrediente() 
 	{
-		vista.AñadirIngrediente();
+		IngredientsModel Im = new IngredientsModel();
+		ingredientes = Im.getAll();
+		vista.AñadirIngrediente(ingredientes);
 	}
 
 	public void BuscarPorProducto()

@@ -392,8 +392,8 @@ public void Login() {
             if(nombreValido && emailValido && passwordValido) {
                 // Aquí iría el código para guardar el usuario en la base de datos
             
-						UsersModel um = new UsersModel();
-						um.addUser(nombreField.getText().toString(), emailField.getText(), passText);
+            	UsersModel um = new UsersModel();
+				um.addUser(nombreField.getText().toString(), emailField.getText(), passText);
 					
                 JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
                 
