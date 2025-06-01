@@ -29,7 +29,7 @@ public boolean login(String username, String password) {
 
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3781023", "sql3781023", "X9HKF7IsKB");
+        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 
         stmt = conn.prepareStatement(query);
         stmt.setString(1, username);

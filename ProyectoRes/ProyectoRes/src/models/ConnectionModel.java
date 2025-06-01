@@ -14,7 +14,7 @@ public class ConnectionModel {
 		Statement stmt = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3779414", "sql3779414", "mteKJLYjrB");
+			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {

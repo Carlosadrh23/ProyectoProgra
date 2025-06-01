@@ -29,7 +29,7 @@ public class IngredientsModel {
 		Statement stmt = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-	        conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3781023", "sql3781023", "X9HKF7IsKB");
+	        			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			
@@ -77,7 +77,7 @@ public class IngredientsModel {
 		Statement stmt = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-	        conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3781023", "sql3781023", "X9HKF7IsKB");
+	        			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			
@@ -121,7 +121,7 @@ public class IngredientsModel {
 		User myuser = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-	        conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3781023", "sql3781023", "X9HKF7IsKB");
+	        			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			
@@ -166,7 +166,7 @@ public class IngredientsModel {
 		Statement stmt = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-	        conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3781023", "sql3781023", "X9HKF7IsKB");
+	        			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 			stmt = conn.createStatement();
 			
 			stmt.executeUpdate(query);
@@ -190,7 +190,7 @@ public class IngredientsModel {
 
 	public void addUser(String nombre,String email,String password) {
 	 String query = "INSERT INTO ingredients (username, password, email) VALUES (?, ?, ?)";
-	    try (Connection conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3781023", "sql3781023", "X9HKF7IsKB");
+	    try (Connection 			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 	         PreparedStatement pstmt = conn.prepareStatement(query)) {
 	        
 	        pstmt.setString(1, nombre);
@@ -206,7 +206,7 @@ public class IngredientsModel {
 	public void update(int id, String name, String email, String password) {
 	    String query = "UPDATE ingredients SET username=?, email=?, password=? WHERE id=?";
 	    
-	    try (Connection conn = DriverManager.getConnection("jdbc:mysql://sql3.freesqldatabase.com/sql3781023", "sql3781023", "X9HKF7IsKB");
+	    try (Connection 			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 	         PreparedStatement pstmt = conn.prepareStatement(query)) {
 	        
 	        pstmt.setString(1, name);
