@@ -8706,19 +8706,18 @@ public class HomeView {
 				// TODO Auto-generated method stub
 				String selectedString = (String) comboBox.getSelectedItem();
 				IngredientsModel Im = new IngredientsModel();
-					try {
-						Im.AddIngredient(txtTocinoAhumado.getText().toString(),selectedString,selectedString);
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+				Float precio= Float.parseFloat(lblNewLabel_10.getText().replace("$", ""));
+					
+				Im.addIngredient(txtTocinoAhumado.getText(),selectedString,precio);
+						
+					
 			
                 JOptionPane.showMessageDialog(null, "Ingrediente añadido correctamente");
                 
                 frame.dispose();
 
                 HomeController hc = new HomeController();
-                hc.AñadirIngrediente();
+                hc.Inventario();
 			}
 		});
 		

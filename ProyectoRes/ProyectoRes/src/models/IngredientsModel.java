@@ -102,6 +102,22 @@ public class IngredientsModel {
 		
 		return ingredientes;
 	}
+	public void addIngredient(String name, String unit, Float price) {
+		 String query =  "INSERT INTO ingredients (name, unit, price) VALUES (?, ?, ?)";
+		    try (Connection         conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
+		         PreparedStatement pstmt = conn.prepareStatement(query)) {
+		        
+		    	pstmt.setString(1, name);
+		    	pstmt.setString(2, unit);
+		    	pstmt.setFloat(3, price);
+		      
+
+		        pstmt.executeUpdate();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+	}
+	
 	public User get(int id_Target)
 	{
 		
@@ -178,51 +194,49 @@ public class IngredientsModel {
 		
 	}
 
-	    // Method 1: Two-step approach (Most Reliable)
-	    public int AddIngredient(String name, String description, String customCode) throws SQLException {
-	        String insertSql = "INSERT INTO ingredients (name, description, code) VALUES (?, ?, ?)";
-	        String updateCodeSql = "UPDATE ingredients SET code = CONCAT('ING', LPAD(ingredient_id, 3, '0')) WHERE ingredient_id = ? AND (code IS NULL OR code = '')";
+	 public String generateNextIngredientCode() throws SQLException {
+	        String sql = "SELECT COALESCE(MAX(ingredient_id), 0) + 1 as next_id FROM ingredients";
 	        Connection  conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
-	        try (PreparedStatement insertStmt = conn.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS)) {
+
+	        try (PreparedStatement stmt = conn.prepareStatement(sql);
+	             ResultSet rs = stmt.executeQuery()) {
 	            
-	            insertStmt.setString(1, name);
-	            insertStmt.setString(2, description);
-	            insertStmt.setString(3, customCode); // null if you want auto-generation
+	            if (rs.next()) {
+	                int nextId = rs.getInt("next_id");
+	                return String.format("ING%03d", nextId);
+	            }
+	        }
+	        return "ING001"; // Por defecto
+	    }
+	    
+	    public int insertIngredient(String name, String unit, Float price) 
+	            throws SQLException {
+	    	Connection  conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
+
+	        String code = generateNextIngredientCode();
+	        
+	        String sql = "INSERT INTO ingredients (code, name, unit, price) VALUES (?, ?, ?, ?)";
+	        
+	        try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+	            stmt.setString(1, code);
+	            stmt.setString(2, name);
+	            stmt.setString(3, unit);
+	            stmt.setFloat(4, price);
 	            
-	            int rowsAffected = insertStmt.executeUpdate();
+	            int rowsAffected = stmt.executeUpdate();
 	            
 	            if (rowsAffected > 0) {
-	                try (ResultSet generatedKeys = insertStmt.getGeneratedKeys()) {
+	                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
 	                    if (generatedKeys.next()) {
-	                        int ingredientId = generatedKeys.getInt(1);
-	                        
-	                        // If no custom code provided, generate one
-	                        if (customCode == null || customCode.trim().isEmpty()) {
-	                            try (PreparedStatement updateStmt = conn.prepareStatement(updateCodeSql)) {
-	                                updateStmt.setInt(1, ingredientId);
-	                                updateStmt.executeUpdate();
-	                            }
-	                        }
-	                        
-	                        return ingredientId;
+	                        return generatedKeys.getInt(1); // Retorna el ID generado
 	                    }
 	                }
 	            }
 	        }
-	        
-	        throw new SQLException("Failed to insert ingredient");
+	        return -1;
 	    }
 
 	
-	public void generateIngredientCode(Connection connection, int ingredientId) throws SQLException {
-    String sql = "UPDATE ingredients SET code = CONCAT('ING', LPAD(?, 3, '0')) WHERE ingredient_id = ? AND (code IS NULL OR code = '')";
-    
-    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-        stmt.setInt(1, ingredientId);
-        stmt.setInt(2, ingredientId);
-        stmt.executeUpdate();
-    }
-}
 	public void update(int id, String name, String email, String password) {
 	    String query = "UPDATE ingredients SET username=?, email=?, password=? WHERE id=?";
 	    
