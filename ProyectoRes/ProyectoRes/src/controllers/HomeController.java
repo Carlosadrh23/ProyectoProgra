@@ -114,10 +114,19 @@ public class HomeController {
 
 	public void BuscarPorProducto()
 	{
-		vista.BuscarPorProducto();
+		vista.BuscarPorProducto(null);
 	}
 	public void EditarMenu() {
 		vista.EditarMenu();
+	}
+
+	public void SeleccionDeCantidad() {
+		vista.SeleccionDeCantidad(null);
+	}
+
+	public void SeleccionDeBebida() {
+		// TODO Auto-generated method stub
+		vista.SeleccionDeBebida(null);
 	}
 	
 

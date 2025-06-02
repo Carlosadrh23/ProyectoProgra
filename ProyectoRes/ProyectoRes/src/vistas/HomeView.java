@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -27,6 +28,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -953,6 +956,7 @@ public class HomeView {
 				frame.dispose();
 				HomeController cc = new HomeController();
 				cc.Inventario();
+				
 			}
 		});
 		panel.add(btnNewButton_2);
@@ -1025,6 +1029,16 @@ public class HomeView {
 		btnNewButton_5.setFocusPainted(false);
 		btnNewButton_5.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_5);
+		btnNewButton_5.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		       
+		    	
+		        HomeController cc = new HomeController();
+		        cc.SeleccionDeCantidad();
+		        
+		    }
+		});
 
 		JButton btnNewButton_6 = new JButton("BONELESS");
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 17));
@@ -1049,6 +1063,15 @@ public class HomeView {
 		btnNewButton_8.setFocusPainted(false);
 		btnNewButton_8.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_8);
+		btnNewButton_8.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		       
+		    
+		        HomeController cc = new HomeController();
+		        cc.SeleccionDeBebida();
+		    }
+		});
 
 		String[] columnas = { "Cantidad", "Código", "Descripción", "Precio" };
 		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
@@ -1182,20 +1205,17 @@ public class HomeView {
 		panel.add(btnNewButton_13);
 		btnNewButton_13.setFocusPainted(false);
 		btnNewButton_13.setContentAreaFilled(true);
+		btnNewButton_13.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		       
+		    
+		        HomeController cc = new HomeController();
+		        cc.BuscarPorProducto();
+		    }
+		});
 		frame.setVisible(true);
-		//intente poner la alerta pero al momento de cerrarla se cerraba el programa
-		/*btnNewButton_13.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-				HomeController cc = new HomeController();
-				cc.BuscarPorProducto();
-				
-			}
-		});*/
-
+	
 	}
 
 	public void AlmacenEditar(List ingredientes) {
@@ -3294,7 +3314,7 @@ public class HomeView {
 
 	}
 
-	public void BuscarPorProducto() {
+	public void BuscarPorProducto(Consumer<JComponent> addScaled) {
 		
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -3304,12 +3324,11 @@ public class HomeView {
 			ex.printStackTrace();
 		}
 
-		JFrame frame = new JFrame();
+		JDialog frame = new JDialog();
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
-
 		frame.setBounds(0, 0, 545, 320);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -3355,6 +3374,12 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(255, 0, 0));
 		btnNewButton.setFont(new Font("Inter", Font.PLAIN, 10));
 		btnNewButton.setBounds(10, 248, 85, 21);
+		btnNewButton.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        frame.dispose(); 
+		    }
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Aceptar");
@@ -7568,21 +7593,23 @@ public class HomeView {
 		}
 	}
 
-	public void SeleccionDeBebida() {
+	public void SeleccionDeBebida(Consumer<JComponent> addScaled) {
 
-		JFrame frame = new JFrame();
+		JDialog frame = new JDialog();
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 1150, 799);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-
+		frame.setBounds(0, 0, 545, 320);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		frame.getContentPane();
+		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(313, 90, 545, 320);
+		panel.setBounds(0, 0, 545, 320);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-
+		
 		JLabel lblNewLabel = new JLabel("Hamburguesa clásica combo");
 		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 18));
 		lblNewLabel.setBounds(135, 10, 281, 30);
@@ -7634,6 +7661,12 @@ public class HomeView {
 		Image imagen4 = d.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_3.setIcon(new ImageIcon(imagen4));
 		panel.add(btnNewButton_3);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			    @Override
+			    public void actionPerformed(ActionEvent e) {
+			        frame.dispose(); 
+			    }
+			});
 
 		JButton btnNewButton_4 = new JButton("ACEPTAR");
 		btnNewButton_4.setBackground(new Color(255, 255, 255));
@@ -7653,14 +7686,15 @@ public class HomeView {
 
 	}
 
-	public void SeleccionDeCantidad() {
+	public void SeleccionDeCantidad(Consumer<JComponent> addScaled){
 
-		JFrame frame = new JFrame();
+		JDialog frame = new JDialog();
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
 		frame.setBounds(0, 0, 545, 320);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		frame.getContentPane();
+		frame.setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
@@ -7702,24 +7736,29 @@ public class HomeView {
 		btnNewButton_2.setContentAreaFilled(true);
 		panel.add(btnNewButton_2);
 
-		JButton btnNewButton_3 = new JButton("CANCELAR");
-		btnNewButton_3.setBackground(new Color(255, 255, 255));
-		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 9));
-		// QUITA las lineas que salen al picarle al boton
-		btnNewButton_3.setFocusPainted(false);
-		btnNewButton_3.setContentAreaFilled(true);
-		// TEXTO ABAJO DE LA IMAGEN
-		btnNewButton_3.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnNewButton_3.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnNewButton_3.setHorizontalAlignment(SwingConstants.CENTER);
-		btnNewButton_3.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_3.setIconTextGap(1);
-		btnNewButton_3.setBounds(146, 224, 92, 49);
+		  JButton btnCancelar = new JButton("CANCELAR");
+		    btnCancelar.setBackground(new Color(255, 255, 255));
+		    btnCancelar.setFont(new Font("Inter", Font.BOLD, 9));
+		    btnCancelar.setFocusPainted(false);
+		    btnCancelar.setContentAreaFilled(true);
+		    btnCancelar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		    btnCancelar.setHorizontalTextPosition(SwingConstants.CENTER);
+		    btnCancelar.setHorizontalAlignment(SwingConstants.CENTER);
+		    btnCancelar.setVerticalAlignment(SwingConstants.CENTER);
+		    btnCancelar.setIconTextGap(1);
+		    btnCancelar.setBounds(146, 224, 92, 49);
+		    btnCancelar.addActionListener(new ActionListener() {
+			    @Override
+			    public void actionPerformed(ActionEvent e) {
+			        frame.dispose(); 
+			    }
+			});
+		
 		// imagen
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
 		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-		btnNewButton_3.setIcon(new ImageIcon(imagen));
-		panel.add(btnNewButton_3);
+		btnCancelar.setIcon(new ImageIcon(imagen));
+		panel.add(btnCancelar);
 
 		JButton btnNewButton_4 = new JButton("ACEPTAR");
 		btnNewButton_4.setBackground(new Color(255, 255, 255));
@@ -7739,7 +7778,8 @@ public class HomeView {
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_4.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_4);
-		frame.setVisible(true);
+		frame.add(panel);
+	    frame.setVisible(true);
 
 	}
 

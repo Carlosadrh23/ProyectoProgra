@@ -11,32 +11,45 @@ import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class SeleccionDeCantidad {
 
-	private JFrame frame;
+public class SeleccionDeCantidad extends JDialog {
+
+	private JPanel panel;
+	private JButton btnCantidad;
+	private int cantidad = 1;
 
 	/**
-	 * Launch the application.
+	 * Launch the application - Solo para pruebas
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SeleccionDeCantidad window = new SeleccionDeCantidad();
-					window.frame.setVisible(true);
+					// Crear una ventana padre de prueba
+					JFrame parentFrame = new JFrame("Ventana Principal");
+					parentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					parentFrame.setSize(400, 300);
+					parentFrame.setLocationRelativeTo(null);
+					
+					JButton testButton = new JButton("Abrir Selección de Cantidad");
+					testButton.addActionListener(e -> {
+						SeleccionDeCantidad dialog = new SeleccionDeCantidad();
+						dialog.setVisible(true);
+					});
+					
+					parentFrame.add(testButton);
+					parentFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
-	/**
-	 * Create the application.
-	 */
+	
 	public SeleccionDeCantidad() {
 		initialize();
 	}
@@ -45,17 +58,16 @@ public class SeleccionDeCantidad {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setAlwaysOnTop(true);
-		frame.setResizable(false);
-		frame.setBounds(0, 0, 545, 320);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setAlwaysOnTop(true);
+		setResizable(false);
+		setBounds(0, 0, 545, 320);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 0, 545, 320);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Hamburguesa clásica combo");
