@@ -120,8 +120,12 @@ public class HomeController {
 		vista.EditarMenu();
 	}
 
-	public void SeleccionDeCantidad() {
-		vista.SeleccionDeCantidad(null);
+	public void SeleccionDeCantidadHamburguesa() {
+		vista.SeleccionDeCantidadHamburguesa(null);
+	}
+	
+	public void SeleccionDeCantidadBoneless() {
+		vista.SeleccionDeCantidadBoneless(null);
 	}
 
 	public void SeleccionDeBebida() {
