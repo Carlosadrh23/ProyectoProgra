@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -50,7 +51,7 @@ public class AlertaCuentaEliminada {
 		frame.setResizable(false);
 		
 		frame.setBounds(0, 0, 545, 320);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -63,15 +64,14 @@ public class AlertaCuentaEliminada {
 		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 18));
 		lblNewLabel.setBounds(181, 28, 197, 30);
 		panel.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(222, 68, 128, 97);
-		ImageIcon a1 = new ImageIcon("img/borrar2.png");
-		Image a2 = a1.getImage();
-		Image a3 = a2.getScaledInstance(80, 120, Image.SCALE_SMOOTH);
-		panel.setLayout(null);
-		lblNewLabel_1.setIcon(new ImageIcon(a3));
+		ImageIcon a = new ImageIcon(getClass().getResource("/img/borrar2.png"));
+		Image imagen = a.getImage().getScaledInstance(80, 120, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen));
 		panel.add(lblNewLabel_1);
+		frame.setVisible(true);
 	}
 
 }

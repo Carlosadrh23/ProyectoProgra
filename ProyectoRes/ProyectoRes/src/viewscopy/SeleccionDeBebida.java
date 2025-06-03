@@ -56,14 +56,9 @@ public class SeleccionDeBebida {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Hamburguesa clásica combo");
-		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 18));
-		lblNewLabel.setBounds(135, 10, 281, 30);
-		panel.add(lblNewLabel);
-		
 		JLabel lblNewLabel_1 = new JLabel("Seleccióne el refresco");
-		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(193, 63, 161, 13);
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 20));
+		lblNewLabel_1.setBounds(162, 22, 262, 49);
 		panel.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("");

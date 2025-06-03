@@ -63,8 +63,7 @@ import viewscopy.HistorialyConsulta;
 import viewscopy.RoundedPanel;
 
 public class HomeView {
-	
-	
+
 	public HomeView() {
 
 	}
@@ -664,6 +663,7 @@ public class HomeView {
 		textField.setBackground(new Color(237, 237, 237));
 		textField.setBounds(139, 92, 46, 19);
 		textField.setHorizontalAlignment(JTextField.CENTER);
+		textField.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
 		panel_1.add(textField);
 		textField.setColumns(10);
 
@@ -676,6 +676,7 @@ public class HomeView {
 		textField_1.setBackground(new Color(237, 237, 237));
 		textField_1.setBounds(413, 92, 46, 19);
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
+		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 
@@ -694,6 +695,14 @@ public class HomeView {
 		Image imagen = p.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_5.setIcon(new ImageIcon(imagen));
 		panel_1.add(btnNewButton_5);
+		btnNewButton_5.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.comedor();
+			}
+		});
 
 		JButton btnNewButton_6 = new JButton("ACEPTAR");
 		btnNewButton_6.setBackground(new Color(255, 255, 255));
@@ -958,7 +967,7 @@ public class HomeView {
 				frame.dispose();
 				HomeController cc = new HomeController();
 				cc.Inventario();
-				
+
 			}
 		});
 		panel.add(btnNewButton_2);
@@ -1032,14 +1041,13 @@ public class HomeView {
 		btnNewButton_5.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_5);
 		btnNewButton_5.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		       
-		    	
-		        HomeController cc = new HomeController();
-		        cc.SeleccionDeCantidadHamburguesa();
-		        
-		    }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				HomeController cc = new HomeController();
+				cc.SeleccionDeCantidadHamburguesa();
+
+			}
 		});
 
 		JButton btnNewButton_6 = new JButton("BONELESS");
@@ -1049,12 +1057,12 @@ public class HomeView {
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		btnNewButton_6.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-		        HomeController cc = new HomeController();
-		        cc.SeleccionDeCantidadBoneless();
+				HomeController cc = new HomeController();
+				cc.SeleccionDeCantidadBoneless();
 			}
 		});
 		panel_1.add(btnNewButton_6);
@@ -1075,27 +1083,25 @@ public class HomeView {
 		btnNewButton_8.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_8);
 		btnNewButton_8.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		       
-		    
-		        HomeController cc = new HomeController();
-		        cc.SeleccionDeBebida();
-		    }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				HomeController cc = new HomeController();
+				cc.SeleccionDeBebida();
+			}
 		});
 
 		String[] columnas = { "Cantidad", "Código", "Descripción", "Precio" };
 		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-	     
 		for (Iterator iterator = dishes.iterator(); iterator.hasNext();) {
 			Dish dish = (Dish) iterator.next();
-			
-			Object[] fila = {dish.id, dish.code,dish.name,"$"+dish.price};
+
+			Object[] fila = { dish.id, dish.code, dish.name, "$" + dish.price };
 			modelo.addRow(fila);
 		}
 
-	JTable table = new JTable(modelo) {
+		JTable table = new JTable(modelo) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -1186,6 +1192,16 @@ public class HomeView {
 		panel_1.add(btnNewButton_11);
 		btnNewButton_11.setFocusPainted(false);
 		btnNewButton_11.setContentAreaFilled(true);
+		btnNewButton_11.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.comedor();
+			}
+		});
 
 		JButton btnNewButton_12 = new JButton(
 				"<html><div style='text-align:center;'>ENVIAR Y<br> COBRAR<br></div></html>");
@@ -1217,16 +1233,15 @@ public class HomeView {
 		btnNewButton_13.setFocusPainted(false);
 		btnNewButton_13.setContentAreaFilled(true);
 		btnNewButton_13.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		       
-		    
-		        HomeController cc = new HomeController();
-		        cc.BuscarPorProducto();
-		    }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				HomeController cc = new HomeController();
+				cc.BuscarPorProducto();
+			}
 		});
 		frame.setVisible(true);
-	
+
 	}
 
 	public void AlmacenEditar(List ingredientes) {
@@ -2110,7 +2125,7 @@ public class HomeView {
 
 	}
 
-	public void AñadirPlatillo3( ) {
+	public void AñadirPlatillo3() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 10);// textfield redondeadas
@@ -3326,7 +3341,7 @@ public class HomeView {
 	}
 
 	public void BuscarPorProducto(Consumer<JComponent> addScaled) {
-		
+
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 20);// textfield redondeadas
@@ -3354,27 +3369,27 @@ public class HomeView {
 		textField_2.setBounds(20, 21, 202, 42);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
-		
-		//datos
+
+		// datos
 		String[] columnNames = { "Código", "Descripción", "Precio" };
 		Object[][] data = { { "SKU09", "Hamburguesa clásica", "$150" }, { "SKU10", "Hamburguesa hawaiana", "$170" },
 				{ "SKU11", "Hamburguesa con champiñon ", "$160" }, { "SKU12", "Hamburguesa BBQ", "$180" } };
 
-		   DefaultTableModel model = new DefaultTableModel(data, columnNames);
+		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 
-		     	//
-	   			JTable table = new JTable(model) {
-		         @Override
-		         public boolean isCellEditable(int row, int column) {
-		             return false;
-		         }
-		     };
-		     
-		        table.setFillsViewportHeight(true);
-		        table.setRowHeight(25);
-		        table.setShowGrid(true);
-		        table.setGridColor(Color.BLACK);
-				table.getTableHeader().setReorderingAllowed(false);
+		//
+		JTable table = new JTable(model) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+
+		table.setFillsViewportHeight(true);
+		table.setRowHeight(25);
+		table.setShowGrid(true);
+		table.setGridColor(Color.BLACK);
+		table.getTableHeader().setReorderingAllowed(false);
 
 		// Scroll
 		JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -3387,10 +3402,10 @@ public class HomeView {
 		btnNewButton.setFont(new Font("Inter", Font.PLAIN, 10));
 		btnNewButton.setBounds(10, 248, 85, 21);
 		btnNewButton.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        frame.dispose(); 
-		    }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
 		});
 		panel.add(btnNewButton);
 
@@ -3401,8 +3416,7 @@ public class HomeView {
 		panel.add(btnNewButton_1);
 
 		frame.setVisible(true);
-		
-		
+
 	}
 
 	public void ConsultaDeClientes(List clients) {
@@ -3628,17 +3642,16 @@ public class HomeView {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(140, 296, 795, 260);
 		panel.add(scrollPane);
-		//retorno
+		// retorno
 		String[] columnas = { "ID cliente", "Nombre", "RFC" };
-		 DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
+		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-	     
-			for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
-				Client client = (Client) iterator.next();
-				
-				Object[] fila = {client.id, client.name,client.rfc};
-				modelo.addRow(fila);
-			}
+		for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
+			Client client = (Client) iterator.next();
+
+			Object[] fila = { client.id, client.name, client.rfc };
+			modelo.addRow(fila);
+		}
 
 		JTable table = new JTable(modelo) {
 			@Override
@@ -4362,23 +4375,21 @@ public class HomeView {
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
 
-        JRadioButton masculino = new JRadioButton("Masculino");
-        masculino.setFont(new Font("Inter", Font.BOLD, 12));
-        masculino.setBounds(105, 458, 93, 21);
+		JRadioButton masculino = new JRadioButton("Masculino");
+		masculino.setFont(new Font("Inter", Font.BOLD, 12));
+		masculino.setBounds(105, 458, 93, 21);
 
+		JRadioButton femenino = new JRadioButton("Femenino");
+		femenino.setFont(new Font("Inter", Font.BOLD, 12));
+		femenino.setBounds(232, 458, 93, 21);
 
-        JRadioButton femenino = new JRadioButton("Femenino");
-        femenino.setFont(new Font("Inter", Font.BOLD, 12));
-        femenino.setBounds(232, 458, 93, 21);
-
-		
-        ButtonGroup grupoSexo = new ButtonGroup();
-        grupoSexo.add(masculino);
-        grupoSexo.add(femenino);
+		ButtonGroup grupoSexo = new ButtonGroup();
+		grupoSexo.add(masculino);
+		grupoSexo.add(femenino);
 
 		panel_1.add(masculino);
 		panel_1.add(femenino);
-		
+
 		frame.setVisible(true);
 
 	}
@@ -6387,15 +6398,14 @@ public class HomeView {
 		panel.add(btnNewButton_7);
 
 		String[] columnas = { "RFC", "NOMBRE", "IMPORTE" };
-		 DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
+		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-	     
-			for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
-				Client client = (Client) iterator.next();
-				
-				Object[] fila = {client.rfc, client.name,"$"+client.importe};
-				modelo.addRow(fila);
-			}
+		for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
+			Client client = (Client) iterator.next();
+
+			Object[] fila = { client.rfc, client.name, "$" + client.importe };
+			modelo.addRow(fila);
+		}
 
 		JTable table = new JTable(modelo) {
 			@Override
@@ -6442,7 +6452,7 @@ public class HomeView {
 
 	}
 
-	public void IngresarNuevaOrden() {
+	public void IngresarNuevaOrden(List dishes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 20);// textfield redondeadas
@@ -6638,9 +6648,8 @@ public class HomeView {
 			}
 		});
 
-		// ScrollPane y ubicación
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(41, 82, 719, 420); // altura ajustada para dejar espacio al total
+		scrollPane.setBounds(41, 82, 719, 420);
 		panel_1.add(scrollPane);
 
 		modelo.addRow(new Object[] { "1", "SKU09", "Hamburguesa clásica ", "$150" });
@@ -6684,6 +6693,16 @@ public class HomeView {
 		btnNewButton_5.setFocusPainted(false);
 		btnNewButton_5.setContentAreaFilled(true);
 		panel.add(btnNewButton_5);
+		btnNewButton_5.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				HomeController cc = new HomeController();
+				cc.AlertaEliminarCuenta();
+
+			}
+		});
+
 
 		JButton btnNewButton_6 = new JButton(
 				"<html><div style='text-align:left;'>Ingresar nueva<br>orden</div></html>");
@@ -6700,6 +6719,14 @@ public class HomeView {
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel.add(btnNewButton_6);
+		btnNewButton_6.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.abrirCuenta3();
+			}
+		});
 
 		JButton btnNewButton_7 = new JButton("Imprimir cuenta");
 		btnNewButton_7.setBackground(new Color(203, 145, 196));
@@ -6717,6 +6744,14 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel.add(btnNewButton_7);
+		btnNewButton_7.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				HomeController cc = new HomeController();
+				cc.Ticket();
+			}
+		});
 		frame.setVisible(true);
 
 	}
@@ -6941,23 +6976,22 @@ public class HomeView {
 		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		panel.add(btnNewButton_7);
 
-
 		String[] columnas = { "Código", "Descripción", "Existencia", "U.M.", "Costo" };
-		 DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
+		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-	     
-	for (Iterator iterator = ingredientes.iterator(); iterator.hasNext();) {
-		Ingredient ingredient = (Ingredient) iterator.next();
-		
-		Object[] fila = {ingredient.code, ingredient.name,ingredient.quantity, ingredient.unit,"$"+ingredient.cost};
-		modelo.addRow(fila);
-	}
+		for (Iterator iterator = ingredientes.iterator(); iterator.hasNext();) {
+			Ingredient ingredient = (Ingredient) iterator.next();
+
+			Object[] fila = { ingredient.code, ingredient.name, ingredient.quantity, ingredient.unit,
+					"$" + ingredient.cost };
+			modelo.addRow(fila);
+		}
 		JTable table = new JTable(modelo) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
-		
+
 		table.setFont(new Font("Inter", Font.PLAIN, 14)); // son para la fuente , mostrar las lineas , color y al
 		table.setRowHeight(30);
 		table.setShowGrid(true);
@@ -6985,7 +7019,7 @@ public class HomeView {
 			}
 		});
 		// crea la barra
-        JScrollPane scrollPane = new JScrollPane();
+		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(140, 296, 795, 260);
 		panel.add(scrollPane);
 		// scroll la barra
@@ -7174,9 +7208,9 @@ public class HomeView {
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lapiz.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_6.setIcon(new ImageIcon(imagen2));
-		
+
 		btnNewButton_6.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -7185,7 +7219,7 @@ public class HomeView {
 				cc.EditarMenu();
 			}
 		});
-		
+
 		panel.add(btnNewButton_6);
 
 		ImageIcon lupaIcon = new ImageIcon(getClass().getResource("/img/lupa.png"));
@@ -7222,15 +7256,14 @@ public class HomeView {
 		String[] columnas = { "ID paltillo", "Descripción", "Precio" };
 		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-	     
 		for (Iterator iterator = dishes.iterator(); iterator.hasNext();) {
 			Dish dish = (Dish) iterator.next();
-			
-			Object[] fila = {dish.id, dish.name,"$"+dish.price};
+
+			Object[] fila = { dish.id, dish.name, "$" + dish.price };
 			modelo.addRow(fila);
 		}
 
-	JTable table = new JTable(modelo) {
+		JTable table = new JTable(modelo) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -7267,8 +7300,7 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-	
-	
+
 	public void EditarMenu() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -7549,7 +7581,7 @@ public class HomeView {
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		btnNewButton_6.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -7576,9 +7608,9 @@ public class HomeView {
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
 		frame.setVisible(true);
-		
+
 	}
-	
+
 	class RoundedPanel extends JPanel {
 		private int cornerRadius;
 
@@ -7615,21 +7647,16 @@ public class HomeView {
 		frame.getContentPane();
 		frame.setLayout(null);
 		frame.setLocationRelativeTo(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 0, 545, 320);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Hamburguesa clásica combo");
-		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 18));
-		lblNewLabel.setBounds(135, 10, 281, 30);
-		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Seleccióne el refresco");
-		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(193, 63, 161, 13);
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 20));
+		lblNewLabel_1.setBounds(162, 22, 262, 49);
 		panel.add(lblNewLabel_1);
 
 		JButton btnNewButton = new JButton("");
@@ -7674,11 +7701,11 @@ public class HomeView {
 		btnNewButton_3.setIcon(new ImageIcon(imagen4));
 		panel.add(btnNewButton_3);
 		btnNewButton_3.addActionListener(new ActionListener() {
-			    @Override
-			    public void actionPerformed(ActionEvent e) {
-			        frame.dispose(); 
-			    }
-			});
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 
 		JButton btnNewButton_4 = new JButton("ACEPTAR");
 		btnNewButton_4.setBackground(new Color(255, 255, 255));
@@ -7698,8 +7725,7 @@ public class HomeView {
 
 	}
 
-	public void SeleccionDeCantidadHamburguesa(Consumer<JComponent> addScaled){
-
+	public void SeleccionDeCantidadHamburguesa(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();
 		frame.setAlwaysOnTop(true);
@@ -7725,20 +7751,17 @@ public class HomeView {
 		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(193, 63, 161, 13);
 		panel.add(lblNewLabel_1);
-		
-		
-		final int[] cantidad = {1};
 
-		
-		
+		final int[] cantidad = { 1 };
+
 		// label de cantidad
 		JLabel lblCantidad = new JLabel("1", SwingConstants.CENTER); // Centra el texto
 		lblCantidad.setFont(new Font("Inter", Font.BOLD, 15));
-		lblCantidad.setOpaque(true); 
+		lblCantidad.setOpaque(true);
 		lblCantidad.setBackground(new Color(255, 255, 255));
 		lblCantidad.setBounds(235, 117, 68, 59);
 		panel.add(lblCantidad);
-		
+
 		// boton -
 		JButton btnNewButton = new JButton("-");
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
@@ -7747,18 +7770,18 @@ public class HomeView {
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setContentAreaFilled(true);
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(cantidad[0] > 1) {
-				    cantidad[0]--;
-				    lblCantidad.setText(String.valueOf(cantidad[0]));
+				if (cantidad[0] > 1) {
+					cantidad[0]--;
+					lblCantidad.setText(String.valueOf(cantidad[0]));
 				}
 			}
 		});
 		panel.add(btnNewButton);
-		
+
 		// boton *+*
 		JButton btnNewButton_2 = new JButton("+");
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
@@ -7767,34 +7790,34 @@ public class HomeView {
 		btnNewButton_2.setFocusPainted(false);
 		btnNewButton_2.setContentAreaFilled(true);
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			    cantidad[0]++;
-			    lblCantidad.setText(String.valueOf(cantidad[0]));
+				cantidad[0]++;
+				lblCantidad.setText(String.valueOf(cantidad[0]));
 			}
 		});
 		panel.add(btnNewButton_2);
 
-		  JButton btnCancelar = new JButton("CANCELAR");
-		    btnCancelar.setBackground(new Color(255, 255, 255));
-		    btnCancelar.setFont(new Font("Inter", Font.BOLD, 9));
-		    btnCancelar.setFocusPainted(false);
-		    btnCancelar.setContentAreaFilled(true);
-		    btnCancelar.setVerticalTextPosition(SwingConstants.BOTTOM);
-		    btnCancelar.setHorizontalTextPosition(SwingConstants.CENTER);
-		    btnCancelar.setHorizontalAlignment(SwingConstants.CENTER);
-		    btnCancelar.setVerticalAlignment(SwingConstants.CENTER);
-		    btnCancelar.setIconTextGap(1);
-		    btnCancelar.setBounds(146, 224, 92, 49);
-		    btnCancelar.addActionListener(new ActionListener() {
-			    @Override
-			    public void actionPerformed(ActionEvent e) {
-			        frame.dispose(); 
-			    }
-			});
-		
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setBackground(new Color(255, 255, 255));
+		btnCancelar.setFont(new Font("Inter", Font.BOLD, 9));
+		btnCancelar.setFocusPainted(false);
+		btnCancelar.setContentAreaFilled(true);
+		btnCancelar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnCancelar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCancelar.setHorizontalAlignment(SwingConstants.CENTER);
+		btnCancelar.setVerticalAlignment(SwingConstants.CENTER);
+		btnCancelar.setIconTextGap(1);
+		btnCancelar.setBounds(146, 224, 92, 49);
+		btnCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+
 		// imagen
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
 		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -7820,7 +7843,7 @@ public class HomeView {
 		btnNewButton_4.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_4);
 		frame.add(panel);
-	    frame.setVisible(true);
+		frame.setVisible(true);
 
 	}
 
@@ -7842,27 +7865,24 @@ public class HomeView {
 
 		JLabel lblNewLabel = new JLabel("Orden de Boneless");
 		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 18));
-		lblNewLabel.setBounds(135, 10, 281, 30);
+		lblNewLabel.setBounds(193, 0, 262, 49);
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Seleccióna la cantidad");
 		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(193, 63, 161, 13);
 		panel.add(lblNewLabel_1);
-		
-		
-		final int[] cantidad = {1};
 
-		
-		
+		final int[] cantidad = { 1 };
+
 		// label de cantidad
 		JLabel lblCantidad = new JLabel("1", SwingConstants.CENTER); // Centra el texto
 		lblCantidad.setFont(new Font("Inter", Font.BOLD, 15));
-		lblCantidad.setOpaque(true); 
+		lblCantidad.setOpaque(true);
 		lblCantidad.setBackground(new Color(255, 255, 255));
 		lblCantidad.setBounds(235, 117, 68, 59);
 		panel.add(lblCantidad);
-		
+
 		// boton -
 		JButton btnNewButton = new JButton("-");
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
@@ -7871,18 +7891,18 @@ public class HomeView {
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setContentAreaFilled(true);
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(cantidad[0] > 1) {
-				    cantidad[0]--;
-				    lblCantidad.setText(String.valueOf(cantidad[0]));
+				if (cantidad[0] > 1) {
+					cantidad[0]--;
+					lblCantidad.setText(String.valueOf(cantidad[0]));
 				}
 			}
 		});
 		panel.add(btnNewButton);
-		
+
 		// boton *+*
 		JButton btnNewButton_2 = new JButton("+");
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
@@ -7891,34 +7911,34 @@ public class HomeView {
 		btnNewButton_2.setFocusPainted(false);
 		btnNewButton_2.setContentAreaFilled(true);
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			    cantidad[0]++;
-			    lblCantidad.setText(String.valueOf(cantidad[0]));
+				cantidad[0]++;
+				lblCantidad.setText(String.valueOf(cantidad[0]));
 			}
 		});
 		panel.add(btnNewButton_2);
 
-		  JButton btnCancelar = new JButton("CANCELAR");
-		    btnCancelar.setBackground(new Color(255, 255, 255));
-		    btnCancelar.setFont(new Font("Inter", Font.BOLD, 9));
-		    btnCancelar.setFocusPainted(false);
-		    btnCancelar.setContentAreaFilled(true);
-		    btnCancelar.setVerticalTextPosition(SwingConstants.BOTTOM);
-		    btnCancelar.setHorizontalTextPosition(SwingConstants.CENTER);
-		    btnCancelar.setHorizontalAlignment(SwingConstants.CENTER);
-		    btnCancelar.setVerticalAlignment(SwingConstants.CENTER);
-		    btnCancelar.setIconTextGap(1);
-		    btnCancelar.setBounds(146, 224, 92, 49);
-		    btnCancelar.addActionListener(new ActionListener() {
-			    @Override
-			    public void actionPerformed(ActionEvent e) {
-			        frame.dispose(); 
-			    }
-			});
-		
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setBackground(new Color(255, 255, 255));
+		btnCancelar.setFont(new Font("Inter", Font.BOLD, 9));
+		btnCancelar.setFocusPainted(false);
+		btnCancelar.setContentAreaFilled(true);
+		btnCancelar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnCancelar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCancelar.setHorizontalAlignment(SwingConstants.CENTER);
+		btnCancelar.setVerticalAlignment(SwingConstants.CENTER);
+		btnCancelar.setIconTextGap(1);
+		btnCancelar.setBounds(146, 224, 92, 49);
+		btnCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+
 		// imagen
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
 		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -7944,15 +7964,15 @@ public class HomeView {
 		btnNewButton_4.setIcon(new ImageIcon(imagen2));
 		panel.add(btnNewButton_4);
 		frame.add(panel);
-	    frame.setVisible(true);
+		frame.setVisible(true);
 	}
-	
-	public void Ticket() {
 
-		JFrame frame = new JFrame();
+	public void Ticket(Consumer<JComponent> addScaled) {
+
+		JDialog frame = new JDialog();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 404, 630);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -7991,7 +8011,7 @@ public class HomeView {
 		panel.add(lblNewLabel_5);
 
 		JLabel lblNewLabel_6 = new JLabel(
-				"--------------------------------------------------------------------------------");
+				"-----------------------------------------------------------------------------");
 		lblNewLabel_6.setBounds(27, 253, 353, 13);
 		panel.add(lblNewLabel_6);
 
@@ -8203,12 +8223,12 @@ public class HomeView {
 
 	public void AlertaAutorizacionEliminarCuenta() {
 
-		JFrame frame = new JFrame();
+		JDialog frame = new JDialog();
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
 
 		frame.setBounds(0, 0, 545, 320);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -8291,13 +8311,13 @@ public class HomeView {
 
 	}
 
-	public void AlertaCambiosGuardados() {
+	public void AlertaCambiosGuardados(Consumer<JComponent> addScaled) {
 
-		JFrame frame = new JFrame();
+		JDialog frame = new JDialog();
 		frame.setResizable(false);
 		frame.setAlwaysOnTop(true);
 		frame.setBounds(198, 76, 526, 320);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -8321,14 +8341,14 @@ public class HomeView {
 
 	}
 
-	public void AlertaCuentaEliminada() {
+	public void AlertaCuentaEliminada(Consumer<JComponent> addScaled) {
 
-		JFrame frame = new JFrame();
+		JDialog frame = new JDialog();
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
 
 		frame.setBounds(0, 0, 545, 320);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -8352,18 +8372,18 @@ public class HomeView {
 
 	}
 
-	public void AlertaMenuAdmin() {
+	public void AlertaMenuAdmin(Consumer<JComponent> addScaled) {
 
-		JFrame frame = new JFrame();
+		JDialog frame = new JDialog();
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
-		frame.setBounds(198, 76, 526, 320);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(0, 0, 502, 273);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 526, 291);
+		panel.setBounds(0, 0, 502, 273);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -8375,15 +8395,28 @@ public class HomeView {
 		btnNewButton.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton.setIconTextGap(1);
-		btnNewButton.setBounds(153, 224, 92, 49);
+		btnNewButton.setBounds(138, 168, 92, 49);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
 		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton.setIcon(new ImageIcon(imagen));
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setContentAreaFilled(true);
 		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.AlertaEliminarCuenta();
+			}
+		});
+		
 
 		JButton btnNewButton_1 = new JButton("ACEPTAR");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_1.setBackground(new Color(255, 255, 255));
 		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_1.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -8391,16 +8424,25 @@ public class HomeView {
 		btnNewButton_1.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_1.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_1.setIconTextGap(1);
-		btnNewButton_1.setBounds(304, 225, 92, 49);
+		btnNewButton_1.setBounds(270, 167, 92, 49);
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_1.setIcon(new ImageIcon(imagen2));
 		btnNewButton_1.setFocusPainted(false);
 		btnNewButton_1.setContentAreaFilled(true);
 		panel.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController hc = new HomeController();
+				hc.AlertaCuentaEliminada();
+			}
+		});
+		
 
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(162, 106, 44, 25);
+		lblNewLabel_2.setBounds(123, 49, 44, 25);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/admin4.png"));
 		Image imagen3 = c.getImage().getScaledInstance(44, 25, Image.SCALE_SMOOTH);
 		lblNewLabel_2.setIcon(new ImageIcon(imagen3));
@@ -8409,7 +8451,7 @@ public class HomeView {
 		JTextField textField = new JTextField("Administrador");
 		textField.setFont(new Font("Inter", Font.BOLD, 12));
 		textField.setBackground(new Color(242, 255, 168));
-		textField.setBounds(153, 106, 243, 25);
+		textField.setBounds(110, 39, 273, 43);
 		panel.add(textField);
 		textField.setEditable(false);
 		textField.setHorizontalAlignment(JTextField.CENTER);
@@ -8419,7 +8461,7 @@ public class HomeView {
 		textField.setFocusable(false);
 
 		JLabel lblNewLabel_1 = new JLabel(""); // imagen del candado
-		lblNewLabel_1.setBounds(161, 165, 45, 30);
+		lblNewLabel_1.setBounds(123, 102, 45, 43);
 		ImageIcon d = new ImageIcon(getClass().getResource("/img/candado_1.png"));
 		Image imagen4 = d.getImage().getScaledInstance(44, 30, Image.SCALE_SMOOTH);
 		lblNewLabel_1.setIcon(new ImageIcon(imagen4));
@@ -8428,7 +8470,7 @@ public class HomeView {
 		JTextField textField_1 = new JTextField();
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 12));
 		textField_1.setBackground(new Color(242, 255, 168));
-		textField_1.setBounds(153, 165, 243, 30);
+		textField_1.setBounds(110, 102, 273, 43);
 		textField_1.setColumns(10);
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		panel.add(textField_1);
@@ -8789,26 +8831,25 @@ public class HomeView {
 		String[] unidades = { "kg", "litro", "pieza" };
 
 		for (Iterator<Ingredient> iterator = ingredientes.iterator(); iterator.hasNext();) {
-		    Ingredient ingredient = iterator.next();
-		    
-		    // Buscar si la unidad existe en el array
-		    String unitName = ingredient.unit;
-		    boolean unitFound = false;
-		    
-		    for (String unidad : unidades) {
-		        if (unidad.equalsIgnoreCase(ingredient.unit)) {
-		            unitName = unidad;
-		            unitFound = true;
-		            break;
-		        }
-		    }
-		    
-		    // Si no se encuentra, usar valor por defecto
-		    if (!unitFound) {
-		        unitName = "Sin unidad";
-		    }
-		    
-		 
+			Ingredient ingredient = iterator.next();
+
+			// Buscar si la unidad existe en el array
+			String unitName = ingredient.unit;
+			boolean unitFound = false;
+
+			for (String unidad : unidades) {
+				if (unidad.equalsIgnoreCase(ingredient.unit)) {
+					unitName = unidad;
+					unitFound = true;
+					break;
+				}
+			}
+
+			// Si no se encuentra, usar valor por defecto
+			if (!unitFound) {
+				unitName = "Sin unidad";
+			}
+
 		}
 		JComboBox<String> comboBox = new JComboBox<>(unidades);
 		comboBox.setBounds(62, 145, 90, 21);
@@ -8839,10 +8880,10 @@ public class HomeView {
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
 		btnNewButton_6.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				String selectedString = (String) comboBox.getSelectedItem();
-	            System.out.println(selectedString);
+				System.out.println(selectedString);
 				frame.dispose();
 				HomeController hm = new HomeController();
 				hm.Inventario();
@@ -8864,30 +8905,112 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		btnNewButton_7.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String selectedString = (String) comboBox.getSelectedItem();
 				IngredientsModel Im = new IngredientsModel();
-				Float precio= Float.parseFloat(lblNewLabel_10.getText().replace("$", ""));
-					
-				Im.addIngredient(txtTocinoAhumado.getText(),selectedString,precio);
-						
-					
-			
-                JOptionPane.showMessageDialog(null, "Ingrediente añadido correctamente");
-                
-                frame.dispose();
+				Float precio = Float.parseFloat(lblNewLabel_10.getText().replace("$", ""));
 
-                HomeController hc = new HomeController();
-                hc.Inventario();
+				Im.addIngredient(txtTocinoAhumado.getText(), selectedString, precio);
+
+				JOptionPane.showMessageDialog(null, "Ingrediente añadido correctamente");
+
+				frame.dispose();
+
+				HomeController hc = new HomeController();
+				hc.Inventario();
 			}
 		});
-		
+
 		panel_1.add(btnNewButton_7);
 
 		frame.setVisible(true);
 
 	}
+	public void AlertaEliminarCuenta(Consumer<JComponent> addScaled) {
+	
+		JDialog dialog = new JDialog();
+		dialog.setResizable(false);
+		dialog.setAlwaysOnTop(true);
+		dialog.setBounds(198, 76, 526, 320);
+		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		dialog.getContentPane();
+		dialog.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 526, 291);
+		dialog.getContentPane();
+		dialog.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(226, 58, 95, 89);
+		ImageIcon c = new ImageIcon(getClass().getResource("/img/alerta.png"));
+		Image imagen3 = c.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+		lblNewLabel.setIcon(new ImageIcon(imagen3));
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("¿Desea eliminar esta cuenta?");
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 13));
+		lblNewLabel_1.setBounds(170, 158, 201, 23);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Está por eliminar una cuenta");
+		lblNewLabel_2.setFont(new Font("Inter", Font.BOLD, 17));
+		lblNewLabel_2.setBounds(152, 10, 263, 23);
+		panel.add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("CANCELAR");
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 9));
+		btnNewButton.setBounds(149, 208, 85, 57);
+		btnNewButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton.setIconTextGap(1);
+		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton.setIcon(new ImageIcon(imagen));
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(true);
+		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dialog.dispose();
+			}
+		});
+
+		
+		JButton btnNewButton_1 = new JButton("ACEPTAR");
+		btnNewButton_1.setBackground(new Color(255, 255, 255));
+		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 9));
+		btnNewButton_1.setBounds(275, 209, 85, 57);
+		btnNewButton_1.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_1.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_1.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_1.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_1.setIconTextGap(1);
+		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_1.setIcon(new ImageIcon(imagen2));
+		btnNewButton_1.setFocusPainted(false);
+		btnNewButton_1.setContentAreaFilled(true);
+		panel.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dialog.dispose();
+				HomeController hc = new HomeController();
+				hc.AlertaMenuAdmin();
+			}
+		});
+		
+		 dialog.setVisible(true);
+	}
+	 
 }

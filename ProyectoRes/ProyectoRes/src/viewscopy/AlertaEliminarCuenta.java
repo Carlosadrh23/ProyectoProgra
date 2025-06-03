@@ -35,7 +35,7 @@ public class AlertaEliminarCuenta {
 	/**
 	 * Create the application.
 	 */
-	public AlertaEliminarCuenta() {
+	public void AlertaEliminarCuenta() {
 		initialize();
 	}
 
@@ -43,7 +43,7 @@ public class AlertaEliminarCuenta {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		JFrame	frame = new JFrame();
 		frame.setResizable(false);
 		frame.setAlwaysOnTop(true);
 		frame.setBounds(198, 76, 526, 320);

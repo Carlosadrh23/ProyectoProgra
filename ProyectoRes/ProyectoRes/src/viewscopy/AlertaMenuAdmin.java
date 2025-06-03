@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AlertaMenuAdmin {
 
@@ -50,16 +52,15 @@ public class AlertaMenuAdmin {
 		frame = new JFrame();
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
-		frame.setBounds(198, 76, 526, 320);
+		frame.setBounds(0, 0, 502, 273);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 526, 291);
+		panel.setBounds(0, 0, 502, 273);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-
 
 		JButton btnNewButton = new JButton("CANCELAR");
 		btnNewButton.setBackground(new Color(255, 255, 255));
@@ -69,16 +70,19 @@ public class AlertaMenuAdmin {
 		btnNewButton.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton.setIconTextGap(1);
-		btnNewButton.setBounds(153, 224, 92, 49);
-		ImageIcon a1 = new ImageIcon("img/cancelar.png");
-		Image a2 = a1.getImage();
-		Image a3 = a2.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-		btnNewButton.setIcon(new ImageIcon(a3));
+		btnNewButton.setBounds(138, 168, 92, 49);
+		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton.setIcon(new ImageIcon(imagen));
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setContentAreaFilled(true);
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("ACEPTAR");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_1.setBackground(new Color(255, 255, 255));
 		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_1.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -86,28 +90,25 @@ public class AlertaMenuAdmin {
 		btnNewButton_1.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_1.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_1.setIconTextGap(1);
-		btnNewButton_1.setBounds(304, 225, 92, 49);
-		ImageIcon portada1 = new ImageIcon("img/aceptar.png");
-		Image portada2 = portada1.getImage();
-		Image portada3 = portada2.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-		btnNewButton_1.setIcon(new ImageIcon(portada3));
+		btnNewButton_1.setBounds(270, 167, 92, 49);
+		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_1.setIcon(new ImageIcon(imagen2));
 		btnNewButton_1.setFocusPainted(false);
 		btnNewButton_1.setContentAreaFilled(true);
 		panel.add(btnNewButton_1);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(162, 106, 44, 25);
-		ImageIcon b1 = new ImageIcon("img/admin4.png");
-		Image b2 = b1.getImage();
-		Image b3 = b2.getScaledInstance(44, 25, Image.SCALE_SMOOTH);
-		panel.setLayout(null);
-		lblNewLabel_2.setIcon(new ImageIcon(b3));
+		lblNewLabel_2.setBounds(123, 49, 44, 25);
+		ImageIcon c = new ImageIcon(getClass().getResource("/img/admin4.png"));
+		Image imagen3 = c.getImage().getScaledInstance(44, 25, Image.SCALE_SMOOTH);
+		lblNewLabel_2.setIcon(new ImageIcon(imagen3));
 		panel.add(lblNewLabel_2);
 
-		textField = new JTextField("Administrador");
+		JTextField textField = new JTextField("Administrador");
 		textField.setFont(new Font("Inter", Font.BOLD, 12));
 		textField.setBackground(new Color(242, 255, 168));
-		textField.setBounds(153, 106, 243, 25);
+		textField.setBounds(110, 39, 273, 43);
 		panel.add(textField);
 		textField.setEditable(false);
 		textField.setHorizontalAlignment(JTextField.CENTER);
@@ -115,23 +116,22 @@ public class AlertaMenuAdmin {
 		textField.setBorder(BorderFactory.createEmptyBorder());
 		textField.setOpaque(true);
 		textField.setFocusable(false);
-		
-		JLabel lblNewLabel_1 = new JLabel(""); // imagen del candado 
-		lblNewLabel_1.setBounds(161, 165, 45, 30);
-		ImageIcon c1 = new ImageIcon("img/candado_1.png");
-		Image c2 = c1.getImage();
-		Image c3 = c2.getScaledInstance(44, 30, Image.SCALE_SMOOTH);
-		lblNewLabel_1.setIcon(new ImageIcon(c3));
+
+		JLabel lblNewLabel_1 = new JLabel(""); // imagen del candado
+		lblNewLabel_1.setBounds(123, 102, 45, 43);
+		ImageIcon d = new ImageIcon(getClass().getResource("/img/candado_1.png"));
+		Image imagen4 = d.getImage().getScaledInstance(44, 30, Image.SCALE_SMOOTH);
+		lblNewLabel_1.setIcon(new ImageIcon(imagen4));
 		panel.add(lblNewLabel_1);
 
-		
-		textField_1 = new JTextField();
+		JTextField textField_1 = new JTextField();
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 12));
 		textField_1.setBackground(new Color(242, 255, 168));
-		textField_1.setBounds(153, 165, 243, 30);
+		textField_1.setBounds(110, 102, 273, 43);
 		textField_1.setColumns(10);
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		panel.add(textField_1);
+		frame.setVisible(true);
 	}
 
 }

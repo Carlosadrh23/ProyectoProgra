@@ -53,7 +53,7 @@ public class HomeController {
 	}
 	public void IngresarnuevaCuenta() 
 	{
-		vista.IngresarNuevaOrden();
+		vista.IngresarNuevaOrden(dishes);
 	}
 	public void HistorialDeFacturacion() 
 	{
@@ -131,6 +131,25 @@ public class HomeController {
 	public void SeleccionDeBebida() {
 		// TODO Auto-generated method stub
 		vista.SeleccionDeBebida(null);
+	}
+
+	public void Ticket() {
+		// TODO Auto-generated method stub
+		vista.Ticket(null);
+	}
+	public void AlertaEliminarCuenta() {
+		// TODO Auto-generated method stub
+		vista.AlertaEliminarCuenta(null);
+	}
+
+	public void AlertaMenuAdmin() {
+		// TODO Auto-generated method stub
+		vista.AlertaMenuAdmin(null);
+	}
+
+	public void AlertaCuentaEliminada() {
+		// TODO Auto-generated method stub
+		vista.AlertaCuentaEliminada(null);
 	}
 	
 

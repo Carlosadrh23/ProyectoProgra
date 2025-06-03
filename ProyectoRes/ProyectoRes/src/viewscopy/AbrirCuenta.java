@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -128,6 +129,7 @@ public class AbrirCuenta {
 		textField.setBackground(new Color(	237, 237, 237));
 		textField.setBounds(139, 92, 46, 19);
 		textField.setHorizontalAlignment(JTextField.CENTER);
+		textField.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
@@ -138,8 +140,9 @@ public class AbrirCuenta {
 		
 		textField_1 = new JTextField();
 		textField_1.setBackground(new Color(	237, 237, 237));
-		textField_1.setBounds(413, 92, 46, 19);
+		textField_1.setBounds(411, 92, 46, 19);
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
+		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 		
