@@ -1727,6 +1727,40 @@ public class HomeView {
 			}
 		});
 
+		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
+				
+				if (row >= 0) {
+					//para agarrar el texto dentro de descripcion
+					Object cellValue = table.getValueAt(row, 1);
+					String descripcion = cellValue != null ? cellValue.toString() : "";
+					
+					// Limpiar el TextField si tiene el texto placeholder
+					if (TextField.getText().equals("BUSCAR")) {
+						TextField.setText("");
+						TextField.setForeground(Color.BLACK);
+					}
+					
+					// Agregar la descripción al TextField
+					String textoActual = TextField.getText();
+					if (textoActual.isEmpty()) {
+						TextField.setText(descripcion);
+					} else {
+						TextField.setText(textoActual + " " + descripcion);
+					}
+					
+					// Cerrar el popup después de seleccionar
+					Component popupMenu = null;
+					if (popupMenu.isVisible()) {
+						popupMenu.setVisible(false);
+					}
+				}
+			}
+		});
+
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setPreferredSize(new Dimension(311, 149));
 
