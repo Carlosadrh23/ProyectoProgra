@@ -1727,7 +1727,14 @@ public class HomeView {
 			}
 		});
 
-		
+		// PRIMERO creamos el JScrollPane y JPopupMenu
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(311, 149));
+
+		JPopupMenu popupMenu = new JPopupMenu();
+		popupMenu.add(scrollPane);
+
+		// AHORA añadimos el MouseListener que puede referenciar al popupMenu
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1752,20 +1759,13 @@ public class HomeView {
 						TextField.setText(textoActual + " " + descripcion);
 					}
 					
-					// Cerrar el popup después de seleccionar
-					Component popupMenu = null;
+					// Cerrar el popup después de seleccionar (CORREGIDO)
 					if (popupMenu.isVisible()) {
 						popupMenu.setVisible(false);
 					}
 				}
 			}
 		});
-
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setPreferredSize(new Dimension(311, 149));
-
-		JPopupMenu popupMenu = new JPopupMenu();
-		popupMenu.add(scrollPane);
 
 		TextField.addFocusListener(new FocusAdapter() {
 			public void focusGained(FocusEvent e) {

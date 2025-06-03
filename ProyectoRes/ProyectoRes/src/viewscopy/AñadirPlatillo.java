@@ -61,6 +61,7 @@ public class AñadirPlatillo {
 	/**
 	 * Create the application.
 	 */
+	//por si da error el otro añadir platillo dentro del homeview aqui esta el anterior
 	public AñadirPlatillo() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  
@@ -87,7 +88,16 @@ public class AñadirPlatillo {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
-		
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta3();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -104,13 +114,34 @@ public class AñadirPlatillo {
 		panelContenido1.setOpaque(false);
 		panel.add(panelContenido1);
 
-	
+		btnNewButton_1.addActionListener(e -> {
+			if (panelContenido1.isVisible()) {
+				panelContenido1.setVisible(false);
+				panelContenido1.removeAll();
+			} else {
+				panelContenido1.removeAll();
+				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
+				panelContenido1.setVisible(true);
+			}
+			panelContenido1.revalidate();
+			panelContenido1.repaint();
+		});
+
 		JButton btnNewButton_2 = new JButton("Inventario");
 		btnNewButton_2.setBounds(452, 0, 227, 49);
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
-		
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -127,7 +158,19 @@ public class AñadirPlatillo {
 		panelContenido.setOpaque(false);
 		panel.add(panelContenido);
 
-	
+		btnNewButton_3.addActionListener(e -> {
+			if (panelContenido.isVisible()) {
+				panelContenido.setVisible(false);
+				panelContenido.removeAll();
+			} else {
+				panelContenido.removeAll();
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
+				panelContenido.setVisible(true);
+			}
+			panelContenido.revalidate();
+			panelContenido.repaint();
+		});
+
 		JButton btnNewButton_4 = new JButton("Usuarios");
 		btnNewButton_4.setBounds(909, 0, 227, 49);
 		btnNewButton_4.setForeground(new Color(255, 255, 255));
@@ -142,7 +185,19 @@ public class AñadirPlatillo {
 		panelContenido2.setOpaque(false);
 		panel.add(panelContenido2);
 
-		
+		btnNewButton_4.addActionListener(e -> {
+			if (panelContenido2.isVisible()) {
+				panelContenido2.setVisible(false);
+				panelContenido2.removeAll();
+			} else {
+				panelContenido2.removeAll();
+				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
+				panelContenido2.setVisible(true);
+			}
+			panelContenido2.revalidate();
+			panelContenido2.repaint();
+		});
+
 		RoundedPanel panel_1 = new RoundedPanel(20);
 		panel_1.setBackground(new Color(255, 255, 255));
 		panel_1.setBounds(167, 108, 798, 509);
@@ -246,7 +301,6 @@ public class AñadirPlatillo {
 						TextField.setText(textoActual + " " + descripcion);
 					}
 					
-					Component popupMenu = null;
 					// Cerrar el popup después de seleccionar
 					if (popupMenu.isVisible()) {
 						popupMenu.setVisible(false);
@@ -313,7 +367,13 @@ public class AñadirPlatillo {
 
 		// boton cancelar
 		JButton btnNewButton_6 = new JButton("CANCELAR");
-		
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.menu();
+			}
+		});
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
 		btnNewButton_6.setBounds(311, 422, 85, 60);
 		btnNewButton_6.setVerticalTextPosition(SwingConstants.BOTTOM);
