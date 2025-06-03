@@ -38,7 +38,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AñadirPlatillo {
-
+  
 	private JFrame frame;
 	public JTextField TextField;
 

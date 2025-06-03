@@ -405,11 +405,11 @@ public void Login() {
 
         }
     });
-	JLabel lblNewLabel_4 = new JLabel("¿Ya tienes una cuenta?");
+	JLabel lblNewLabel_4 = new JLabel("¿Aun no tienes una cuenta?");
 	lblNewLabel_4.setBounds(168, 385, 152, 16);
 	panel_1.add(lblNewLabel_4);
 	
-	JLabel enlace = new JLabel("<html><a href=''>Inicia sesión</a></html>");
+	JLabel enlace = new JLabel("<html><a href=''>Registrate</a></html>");
     enlace.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     enlace.setBounds(295, 385, 152, 16);
     // Acción al hacer clic

@@ -54,6 +54,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import controllers.AuthController;
 import controllers.HomeController;
 import models.Client;
+import models.ClientsModel;
 import models.Dish;
 import models.Ingredient;
 import models.IngredientsModel;
@@ -663,7 +664,7 @@ public class HomeView {
 		textField.setBackground(new Color(237, 237, 237));
 		textField.setBounds(139, 92, 46, 19);
 		textField.setHorizontalAlignment(JTextField.CENTER);
-		textField.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
+		textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
 		panel_1.add(textField);
 		textField.setColumns(10);
 
@@ -676,7 +677,7 @@ public class HomeView {
 		textField_1.setBackground(new Color(237, 237, 237));
 		textField_1.setBounds(413, 92, 46, 19);
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
-		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
+		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 
@@ -1739,18 +1740,18 @@ public class HomeView {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int row = table.rowAtPoint(e.getPoint());
-				
+
 				if (row >= 0) {
-					//para agarrar el texto dentro de descripcion
+					// para agarrar el texto dentro de descripcion
 					Object cellValue = table.getValueAt(row, 1);
 					String descripcion = cellValue != null ? cellValue.toString() : "";
-					
+
 					// Limpiar el TextField si tiene el texto placeholder
 					if (TextField.getText().equals("BUSCAR")) {
 						TextField.setText("");
 						TextField.setForeground(Color.BLACK);
 					}
-					
+
 					// Agregar la descripción al TextField
 					String textoActual = TextField.getText();
 					if (textoActual.isEmpty()) {
@@ -1758,7 +1759,7 @@ public class HomeView {
 					} else {
 						TextField.setText(textoActual + " " + descripcion);
 					}
-					
+
 					// Cerrar el popup después de seleccionar (CORREGIDO)
 					if (popupMenu.isVisible()) {
 						popupMenu.setVisible(false);
@@ -3453,7 +3454,7 @@ public class HomeView {
 
 	}
 
-	public void ConsultaDeClientes(List clients) {
+	public void ConsultaDeClientes(List clientes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 20);// textfield redondeado
@@ -3680,7 +3681,7 @@ public class HomeView {
 		String[] columnas = { "ID cliente", "Nombre", "RFC" };
 		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-		for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = clientes.iterator(); iterator.hasNext();) {
 			Client client = (Client) iterator.next();
 
 			Object[] fila = { client.id, client.name, client.rfc };
@@ -3698,7 +3699,77 @@ public class HomeView {
 		table.setShowGrid(true);
 		table.setGridColor(Color.BLACK);
 		table.getTableHeader().setReorderingAllowed(false);
+		btnNewButton_7.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Obtener la fila seleccionada
+				int filaSeleccionada = table.getSelectedRow(); // Usar 'table', no 'tabla'
 
+				// Verificar si hay una fila seleccionada
+				if (filaSeleccionada == -1) {
+					JOptionPane.showMessageDialog(frame, "Por favor, selecciona un registro para eliminar.",
+							"Ningún registro seleccionado", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+
+				// Obtener los datos de la fila seleccionada
+				int id = (int) modelo.getValueAt(filaSeleccionada, 0);
+				String nombre = (String) modelo.getValueAt(filaSeleccionada, 1);
+				String importe = (String) modelo.getValueAt(filaSeleccionada, 2);
+
+				// Confirmar eliminación
+				int respuesta = JOptionPane.showConfirmDialog(frame,
+						"¿Estás seguro de que deseas eliminar el registro?\n\n" + "Id: " + id + "\n" + "Nombre: "
+								+ nombre + "\n" + "Importe: " + importe,
+						"Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (respuesta == JOptionPane.YES_OPTION) {
+					try {
+						// Encontrar el cliente en la lista original para eliminarlo
+						Client clienteAEliminar = null;
+						for (Iterator iterator = clientes.iterator(); iterator.hasNext();) {
+							Client client = (Client) iterator.next();
+							if (client.id == id) {
+								clienteAEliminar = client;
+								break;
+							}
+						}
+
+						if (clienteAEliminar != null) {
+							// Eliminar de la lista
+							clientes.remove(clienteAEliminar);
+
+							// Eliminar de la base de datos si es necesario
+							ClientsModel cm = new ClientsModel();
+							cm.remove(clienteAEliminar.id);
+
+							// Eliminar de la tabla visual
+							modelo.removeRow(filaSeleccionada);
+
+							// Mostrar mensaje de confirmación
+							JOptionPane.showMessageDialog(frame, "Registro eliminado exitosamente.",
+									"Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+						}
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(frame, "Error al eliminar el registro: " + ex.getMessage(),
+								"Error", JOptionPane.ERROR_MESSAGE);
+						ex.printStackTrace();
+					}
+				}
+			}
+		});
+		btnNewButton_6.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int filaSeleccionada = table.getSelectedRow(); // Usar 'table', no 'tabla'
+				if (filaSeleccionada == -1) {
+					JOptionPane.showMessageDialog(frame, "Por favor, selecciona un registro para editar.",
+							"Ningún registro seleccionado", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+			}
+		});
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 		for (int i = 0; i < table.getColumnCount(); i++) {
@@ -4427,8 +4498,25 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
+	private JTextField txtPrimerNombre;
+	private JTextField txtSegundoNombre;
+	private JTextField txtPrimerApellido;
+	private JTextField txtSegundoApellido;
+	private JTextField txtDia;
+	private JTextField txtMes;
+	private JTextField txtAño;
+	private JTextField txtRFC;
+	private JTextField txtCalle;
+	private JTextField txtNumeroCalle;
+	private JTextField txtCP;
+	private JTextField txtEstado;
+	private JTextField txtColonia;
+	private JTextField txtCiudad;
+	private JTextField txtCorreo;
+	private JTextField txtTelefono;
 
-	public void EditarCliente() {
+	private Client clienteActual;
+	public void EditarCliente(List clientes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 5);// textfield redondeadas
@@ -4596,52 +4684,52 @@ public class HomeView {
 		lblNewLabel_2.setBounds(10, 41, 118, 21);
 		panel_2.add(lblNewLabel_2);
 
-		JTextField txtAlejandro = new JTextField();
-		txtAlejandro.setText("Erick");
-		txtAlejandro.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtAlejandro.setBackground(new Color(237, 237, 237));
-		txtAlejandro.setBounds(154, 41, 96, 21);
-		panel_2.add(txtAlejandro);
-		txtAlejandro.setColumns(10);
+		 txtPrimerNombre = new JTextField();
+		txtPrimerNombre.setText("Erick");
+		txtPrimerNombre.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtPrimerNombre.setBackground(new Color(237, 237, 237));
+		txtPrimerNombre.setBounds(154, 41, 96, 21);
+		panel_2.add(txtPrimerNombre);
+		txtPrimerNombre.setColumns(10);
 
 		JLabel lblNewLabel_3 = new JLabel("Segundo nombre:");
 		lblNewLabel_3.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_3.setBounds(10, 88, 135, 24);
 		panel_2.add(lblNewLabel_3);
 
-		JTextField txtDaniel = new JTextField();
-		txtDaniel.setText("Daniel");
-		txtDaniel.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtDaniel.setBackground(new Color(237, 237, 237));
-		txtDaniel.setBounds(154, 92, 96, 21);
-		panel_2.add(txtDaniel);
-		txtDaniel.setColumns(10);
+		 txtSegundoNombre = new JTextField();
+		txtSegundoNombre.setText("Daniel");
+		txtSegundoNombre.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtSegundoNombre.setBackground(new Color(237, 237, 237));
+		txtSegundoNombre.setBounds(154, 92, 96, 21);
+		panel_2.add(txtSegundoNombre);
+		txtSegundoNombre.setColumns(10);
 
 		JLabel lblNewLabel_4 = new JLabel("Primer apellido: ");
 		lblNewLabel_4.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_4.setBounds(10, 150, 135, 19);
 		panel_2.add(lblNewLabel_4);
 
-		JTextField txtGonzales = new JTextField();
-		txtGonzales.setText("González");
-		txtGonzales.setBackground(new Color(237, 237, 237));
-		txtGonzales.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtGonzales.setBounds(154, 151, 96, 21);
-		panel_2.add(txtGonzales);
-		txtGonzales.setColumns(10);
+		 txtPrimerApellido = new JTextField();
+		txtPrimerApellido.setText("González");
+		txtPrimerApellido.setBackground(new Color(237, 237, 237));
+		txtPrimerApellido.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtPrimerApellido.setBounds(154, 151, 96, 21);
+		panel_2.add(txtPrimerApellido);
+		txtPrimerApellido.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("Segundo apellido:");
 		lblNewLabel_5.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_5.setBounds(10, 208, 128, 21);
 		panel_2.add(lblNewLabel_5);
 
-		JTextField txtHernndez = new JTextField();
-		txtHernndez.setText("Martínez");
-		txtHernndez.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtHernndez.setBackground(new Color(237, 237, 237));
-		txtHernndez.setBounds(154, 209, 96, 21);
-		panel_2.add(txtHernndez);
-		txtHernndez.setColumns(10);
+		 txtSegundoApellido = new JTextField();
+		txtSegundoApellido.setText("Martínez");
+		txtSegundoApellido.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtSegundoApellido.setBackground(new Color(237, 237, 237));
+		txtSegundoApellido.setBounds(154, 209, 96, 21);
+		panel_2.add(txtSegundoApellido);
+		txtSegundoApellido.setColumns(10);
 
 		RoundedPanel panel_3 = new RoundedPanel(10);
 		panel_3.setForeground(new Color(128, 128, 128));
@@ -4661,53 +4749,53 @@ public class HomeView {
 		lblNewLabel_7.setBounds(10, 32, 45, 13);
 		panel_3.add(lblNewLabel_7);
 
-		JTextField textField_1 = new JTextField();
-		textField_1.setText("24");
-		textField_1.setBackground(new Color(237, 237, 237));
-		textField_1.setFont(new Font("Inter", Font.PLAIN, 11));
-		textField_1.setBounds(42, 30, 34, 19);
-		panel_3.add(textField_1);
-		textField_1.setColumns(10);
+		 txtDia = new JTextField();
+		txtDia.setText("24");
+		txtDia.setBackground(new Color(237, 237, 237));
+		txtDia.setFont(new Font("Inter", Font.PLAIN, 11));
+		txtDia.setBounds(42, 30, 34, 19);
+		panel_3.add(txtDia);
+		txtDia.setColumns(10);
 
 		JLabel lblNewLabel_8 = new JLabel("Mes:");
 		lblNewLabel_8.setFont(new Font("Inter", Font.BOLD, 12));
 		lblNewLabel_8.setBounds(90, 32, 45, 13);
 		panel_3.add(lblNewLabel_8);
 
-		JTextField textField_2 = new JTextField();
-		textField_2.setText("11");
-		textField_2.setFont(new Font("Inter", Font.PLAIN, 11));
-		textField_2.setBackground(new Color(237, 237, 237));
-		textField_2.setBounds(124, 30, 34, 19);
-		panel_3.add(textField_2);
-		textField_2.setColumns(10);
+		 txtMes = new JTextField();
+		txtMes.setText("11");
+		txtMes.setFont(new Font("Inter", Font.PLAIN, 11));
+		txtMes.setBackground(new Color(237, 237, 237));
+		txtMes.setBounds(124, 30, 34, 19);
+		panel_3.add(txtMes);
+		txtMes.setColumns(10);
 
 		JLabel lblNewLabel_9 = new JLabel("Año:");
 		lblNewLabel_9.setFont(new Font("Inter", Font.BOLD, 12));
 		lblNewLabel_9.setBounds(185, 33, 34, 13);
 		panel_3.add(lblNewLabel_9);
 
-		JTextField textField_3 = new JTextField();
-		textField_3.setText("1998");
-		textField_3.setFont(new Font("Inter", Font.PLAIN, 11));
-		textField_3.setBackground(new Color(237, 237, 237));
-		textField_3.setBounds(220, 30, 45, 19);
-		panel_3.add(textField_3);
-		textField_3.setColumns(10);
+		 txtAño = new JTextField();
+		txtAño.setText("1998");
+		txtAño.setFont(new Font("Inter", Font.PLAIN, 11));
+		txtAño.setBackground(new Color(237, 237, 237));
+		txtAño.setBounds(220, 30, 45, 19);
+		panel_3.add(txtAño);
+		txtAño.setColumns(10);
 
 		JLabel lblNewLabel_10 = new JLabel("RFC:");
 		lblNewLabel_10.setFont(new Font("Inter", Font.BOLD, 16));
 		lblNewLabel_10.setBounds(51, 455, 69, 25);
 		panel_1.add(lblNewLabel_10);
 
-		JTextField txtEdgmhc = new JTextField();
-		txtEdgmhc.setText("EDGM119824HC1");
-		txtEdgmhc.setBackground(new Color(237, 237, 237));
-		txtEdgmhc.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtEdgmhc.setBounds(91, 455, 174, 22);
-		txtEdgmhc.setHorizontalAlignment(JTextField.CENTER);
-		panel_1.add(txtEdgmhc);
-		txtEdgmhc.setColumns(10);
+		 txtRFC = new JTextField();
+		txtRFC.setText("EDGM119824HC1");
+		txtRFC.setBackground(new Color(237, 237, 237));
+		txtRFC.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtRFC.setBounds(91, 455, 174, 22);
+		txtRFC.setHorizontalAlignment(JTextField.CENTER);
+		panel_1.add(txtRFC);
+		txtRFC.setColumns(10);
 
 		RoundedPanel panel_4 = new RoundedPanel(10);
 		panel_4.setForeground(new Color(128, 128, 128));
@@ -4727,79 +4815,79 @@ public class HomeView {
 		lblNewLabel_12.setBounds(10, 30, 45, 26);
 		panel_4.add(lblNewLabel_12);
 
-		JTextField txtCalleTeotihuacn = new JTextField();
-		txtCalleTeotihuacn.setBackground(new Color(237, 237, 237));
-		txtCalleTeotihuacn.setBackground(new Color(237, 237, 237));
-		txtCalleTeotihuacn.setText("Calle Oro");
-		txtCalleTeotihuacn.setBackground(new Color(237, 237, 237));
-		txtCalleTeotihuacn.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtCalleTeotihuacn.setBounds(79, 30, 208, 26);
-		panel_4.add(txtCalleTeotihuacn);
-		txtCalleTeotihuacn.setColumns(10);
+		 txtCalle = new JTextField();
+		txtCalle.setBackground(new Color(237, 237, 237));
+		txtCalle.setBackground(new Color(237, 237, 237));
+		txtCalle.setText("Calle Oro");
+		txtCalle.setBackground(new Color(237, 237, 237));
+		txtCalle.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtCalle.setBounds(79, 30, 208, 26);
+		panel_4.add(txtCalle);
+		txtCalle.setColumns(10);
 
 		JLabel lblNewLabel_13 = new JLabel("No.");
 		lblNewLabel_13.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_13.setBounds(10, 93, 45, 18);
 		panel_4.add(lblNewLabel_13);
 
-		JTextField textField_5 = new JTextField();
-		textField_5.setText("1946");
-		textField_5.setBackground(new Color(237, 237, 237));
-		textField_5.setFont(new Font("Inter", Font.PLAIN, 14));
-		textField_5.setBounds(39, 88, 62, 26);
-		panel_4.add(textField_5);
-		textField_5.setColumns(10);
+		 txtNumeroCalle = new JTextField();
+		txtNumeroCalle.setText("1946");
+		txtNumeroCalle.setBackground(new Color(237, 237, 237));
+		txtNumeroCalle.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtNumeroCalle.setBounds(39, 88, 62, 26);
+		panel_4.add(txtNumeroCalle);
+		txtNumeroCalle.setColumns(10);
 
 		JLabel lblNewLabel_14 = new JLabel("C.P.");
 		lblNewLabel_14.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_14.setBounds(154, 93, 45, 18);
 		panel_4.add(lblNewLabel_14);
 
-		JTextField textField_6 = new JTextField();
-		textField_6.setText("23795");
-		textField_6.setBackground(new Color(237, 237, 237));
-		textField_6.setFont(new Font("Inter", Font.PLAIN, 14));
-		textField_6.setBounds(190, 89, 62, 26);
-		panel_4.add(textField_6);
-		textField_6.setColumns(10);
+		 txtCP = new JTextField();
+		txtCP.setText("23795");
+		txtCP.setBackground(new Color(237, 237, 237));
+		txtCP.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtCP.setBounds(190, 89, 62, 26);
+		panel_4.add(txtCP);
+		txtCP.setColumns(10);
 
 		JLabel lblNewLabel_15 = new JLabel("Colonia");
 		lblNewLabel_15.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_15.setBounds(10, 152, 69, 26);
 		panel_4.add(lblNewLabel_15);
 
-		JTextField txtLosOlivares = new JTextField();
-		txtLosOlivares.setText("Camino real");
-		txtLosOlivares.setBackground(new Color(237, 237, 237));
-		txtLosOlivares.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtLosOlivares.setBounds(79, 150, 208, 26);
-		panel_4.add(txtLosOlivares);
-		txtLosOlivares.setColumns(10);
+		 txtColonia = new JTextField();
+		txtColonia.setText("Camino real");
+		txtColonia.setBackground(new Color(237, 237, 237));
+		txtColonia.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtColonia.setBounds(79, 150, 208, 26);
+		panel_4.add(txtColonia);
+		txtColonia.setColumns(10);
 
 		JLabel lblNewLabel_16 = new JLabel("Ciudad");
 		lblNewLabel_16.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_16.setBounds(10, 219, 69, 26);
 		panel_4.add(lblNewLabel_16);
 
-		JTextField txtLaPaz = new JTextField();
-		txtLaPaz.setBackground(new Color(237, 237, 237));
-		txtLaPaz.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtLaPaz.setText("La paz");
-		txtLaPaz.setBounds(67, 219, 62, 26);
-		panel_4.add(txtLaPaz);
-		txtLaPaz.setColumns(10);
+		 txtCiudad = new JTextField();
+		txtCiudad.setBackground(new Color(237, 237, 237));
+		txtCiudad.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtCiudad.setText("La paz");
+		txtCiudad.setBounds(67, 219, 62, 26);
+		panel_4.add(txtCiudad);
+		txtCiudad.setColumns(10);
 
 		JLabel lblNewLabel_17 = new JLabel("Estado");
 		lblNewLabel_17.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_17.setBounds(154, 219, 52, 26);
 		panel_4.add(lblNewLabel_17);
 
-		JTextField textField_4 = new JTextField();
-		textField_4.setFont(new Font("Inter", Font.PLAIN, 14));
-		textField_4.setBackground(new Color(237, 237, 237));
-		textField_4.setBounds(205, 221, 62, 26);
-		panel_4.add(textField_4);
-		textField_4.setColumns(10);
+	    txtEstado = new JTextField();
+		txtEstado.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtEstado.setBackground(new Color(237, 237, 237));
+		txtEstado.setBounds(205, 221, 62, 26);
+		panel_4.add(txtEstado);
+		txtEstado.setColumns(10);
 
 		RoundedPanel panel_5 = new RoundedPanel(10);
 		panel_5.setForeground(new Color(128, 128, 128));
@@ -4819,26 +4907,28 @@ public class HomeView {
 		lblNewLabel_19.setBounds(10, 32, 61, 13);
 		panel_5.add(lblNewLabel_19);
 
-		JTextField txtErickuabcsmx = new JTextField();
-		txtErickuabcsmx.setBackground(new Color(237, 237, 237));
-		txtErickuabcsmx.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtErickuabcsmx.setText("erick_11@uabcs.mx");
-		txtErickuabcsmx.setBounds(77, 30, 191, 19);
-		panel_5.add(txtErickuabcsmx);
-		txtErickuabcsmx.setColumns(10);
+		 txtCorreo = new JTextField();
+		txtCorreo.setBackground(new Color(237, 237, 237));
+		txtCorreo.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtCorreo.setText("erick_11@uabcs.mx");
+		txtCorreo.setBounds(77, 30, 191, 19);
+		panel_5.add(txtCorreo);
+		txtCorreo.setColumns(10);
 
 		JLabel lblNewLabel_20 = new JLabel("Teléfono");
 		lblNewLabel_20.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_20.setBounds(10, 77, 73, 13);
 		panel_5.add(lblNewLabel_20);
 
-		JTextField textField_7 = new JTextField();
-		textField_7.setBackground(new Color(237, 237, 237));
-		textField_7.setText("6121887645");
-		textField_7.setFont(new Font("Inter", Font.PLAIN, 14));
-		textField_7.setBounds(77, 75, 191, 19);
-		panel_5.add(textField_7);
-		textField_7.setColumns(10);
+		txtTelefono = new JTextField();
+		txtTelefono.setBackground(new Color(237, 237, 237));
+		txtTelefono.setText("6121887645");
+		txtTelefono.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtTelefono.setBounds(77, 75, 191, 19);
+		panel_5.add(txtTelefono);
+		txtTelefono.setColumns(10);
+
+		cargarDatosCliente(clientes);
 
 		JButton btnNewButton_6 = new JButton("CANCELAR");
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
@@ -4867,6 +4957,8 @@ public class HomeView {
 
 		panel_1.add(btnNewButton_6);
 
+		
+
 		// boton aceptar
 		JButton btnNewButton_7 = new JButton("ACEPTAR");
 		btnNewButton_7.setFont(new Font("Inter", Font.BOLD, 9));
@@ -4876,6 +4968,79 @@ public class HomeView {
 		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
+		btnNewButton_7.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					// Obtener valores de los campos de texto
+					String firstName = txtPrimerApellido.getText().trim();
+					String secondName = txtSegundoNombre.getText().trim();
+					String firstLastName = txtPrimerApellido.getText().trim();
+					String secondLastName = txtSegundoApellido.getText().trim();
+					String rfc = txtRFC.getText().trim();
+					String phone = txtTelefono.getText().trim();
+					String email = txtCorreo.getText().trim();
+					String street = txtCalle.getText().trim();
+					String number = txtNumeroCalle.getText().trim();
+					String neighborhood = txtColonia.getText().trim();
+					String city = txtCiudad.getText().trim();
+					String state = txtEstado.getText().trim();
+					String postalCode = txtCP.getText().trim();
+
+					// Obtener fecha de nacimiento
+					String day = txtDia.getText().trim();
+					String month = txtMes.getText().trim();
+					String year = txtAño.getText().trim();
+
+					// Validar campos obligatorios
+					if (validateFields(firstName, firstLastName, rfc, email, phone, day, month, year)) {
+						// Concatenar nombres completos
+						String fullName = buildFullName(firstName, secondName, firstLastName, secondLastName);
+
+						// Concatenar dirección completa (calle + número)
+						String fullStreet = buildFullAddress(street, number);
+
+						// Obtener ID del cliente actual
+						int customerId = obtenerIdClienteActual();
+
+						// Llamar a tu método updateCustomer con TODOS los parámetros requeridos
+						ClientsModel cm = new ClientsModel();
+						cm.updateCustomer(customerId, // int customerId
+								fullName, // String name
+								rfc, // String rfc
+								phone, // String phone
+								email, // String email
+								fullStreet, // String street
+								neighborhood, // String neighborhood
+								city, // String city
+								state, // String state
+								postalCode, // String postalCode
+								"México", // String country
+								day, // String day
+								month, // String month
+								year // String year
+						);
+
+						// Mostrar mensaje de éxito
+						JOptionPane.showMessageDialog(frame, "Cliente actualizado correctamente.", "Éxito",
+								JOptionPane.INFORMATION_MESSAGE);
+
+						// Cerrar ventana actual y volver a la consulta
+						frame.dispose();
+						HomeController cc = new HomeController();
+						cc.ConsultaDeClientes();
+
+					}
+				} catch (Exception ex) {
+					System.err.println("Error al procesar la actualización: " + ex.getMessage());
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(frame, "Error al actualizar cliente: " + ex.getMessage(), "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+	
+
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		btnNewButton_7.setIcon(new ImageIcon(imagen2));
@@ -4883,7 +5048,170 @@ public class HomeView {
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
 		frame.setVisible(true);
+		
 
+	}
+	private void cargarDatosCliente(List<Client> clientes) {
+	    if (clientes != null && !clientes.isEmpty()) {
+	        // Tomar el primer cliente de la lista y almacenarlo
+	        clienteActual = clientes.get(0);
+	        
+	        // Cargar datos básicos desde el objeto Client
+	        if (clienteActual.name != null) {
+	            String[] nombres = clienteActual.name.split(" ");
+	            if (nombres.length > 0) txtPrimerNombre.setText(nombres[0]);
+	            if (nombres.length > 1) txtSegundoNombre.setText(nombres[1]);
+	            if (nombres.length > 2) txtPrimerApellido.setText(nombres[2]);
+	            if (nombres.length > 3) txtSegundoApellido.setText(nombres[3]);
+	        }
+	        
+	        // Cargar RFC, teléfono y email
+	        if (clienteActual.rfc != null) txtRFC.setText(clienteActual.rfc);
+	        if (clienteActual.phone != null) txtTelefono.setText(clienteActual.phone);
+	        if (clienteActual.email != null) txtCorreo.setText(clienteActual.email);
+	        
+	       
+	    }
+	}
+	
+	private boolean validateFields(String firstName, String firstLastName, String rfc, String email, String phone,
+			String day, String month, String year) {
+
+// Validar campos básicos
+		if (firstName.isEmpty() || firstLastName.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "El primer nombre y primer apellido son obligatorios.",
+					"Campos Requeridos", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+
+// Validar RFC
+		if (rfc.isEmpty() || rfc.length() < 10) {
+			JOptionPane.showMessageDialog(null, "El RFC es obligatorio y debe tener al menos 10 caracteres.",
+					"RFC Inválido", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+
+// Validar email
+		if (email.isEmpty() || !email.contains("@")) {
+			JOptionPane.showMessageDialog(null, "Ingrese un correo electrónico válido.", "Email Inválido",
+					JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+
+// Validar teléfono
+		if (phone.isEmpty() || phone.length() < 10) {
+			JOptionPane.showMessageDialog(null, "El teléfono debe tener al menos 10 dígitos.", "Teléfono Inválido",
+					JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+
+// Validar fecha de nacimiento
+		try {
+			int dayInt = Integer.parseInt(day);
+			int monthInt = Integer.parseInt(month);
+			int yearInt = Integer.parseInt(year);
+
+			if (dayInt < 1 || dayInt > 31) {
+				throw new NumberFormatException("Día inválido");
+			}
+			if (monthInt < 1 || monthInt > 12) {
+				throw new NumberFormatException("Mes inválido");
+			}
+			if (yearInt < 1900 || yearInt > 2024) {
+				throw new NumberFormatException("Año inválido");
+			}
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "Ingrese una fecha de nacimiento válida (DD/MM/AAAA).",
+					"Fecha Inválida", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+
+		return true;
+	}
+
+	
+	private String buildFullName(String firstName, String secondName, String firstLastName, String secondLastName) {
+		StringBuilder fullName = new StringBuilder();
+
+		if (!firstName.isEmpty()) {
+			fullName.append(firstName);
+		}
+
+		if (!secondName.isEmpty()) {
+			if (fullName.length() > 0)
+				fullName.append(" ");
+			fullName.append(secondName);
+		}
+
+		if (!firstLastName.isEmpty()) {
+			if (fullName.length() > 0)
+				fullName.append(" ");
+			fullName.append(firstLastName);
+		}
+
+		if (!secondLastName.isEmpty()) {
+			if (fullName.length() > 0)
+				fullName.append(" ");
+			fullName.append(secondLastName);
+		}
+
+		return fullName.toString().trim();
+	}
+
+	/**
+	 * Construye la dirección completa
+	 */
+	private String buildFullAddress(String street, String number) {
+		if (street.isEmpty()) {
+			return "";
+		}
+
+		if (number.isEmpty()) {
+			return street;
+		}
+
+		return street + " No. " + number;
+	}
+
+	private int obtenerIdClienteActual() {
+
+		String idStr = JOptionPane.showInputDialog(null, "Ingrese el ID del cliente a actualizar:", "ID Cliente",
+				JOptionPane.QUESTION_MESSAGE);
+		try {
+			return Integer.parseInt(idStr);
+		} catch (NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null, "ID inválido. Usando ID 1 por defecto.", "Advertencia",
+					JOptionPane.WARNING_MESSAGE);
+			return 1;
+		}
+	}
+
+	private boolean validateFields(String firstName, String firstLastName, String rfc, String email, String phone) {
+		if (firstName.trim().isEmpty() || firstLastName.trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "El primer nombre y primer apellido son obligatorios.",
+					"Error de validación", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if (rfc.trim().isEmpty() || rfc.length() < 10) {
+			JOptionPane.showMessageDialog(null, "El RFC debe tener al menos 10 caracteres.", "Error de validación",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if (email.trim().isEmpty() || !email.contains("@")) {
+			JOptionPane.showMessageDialog(null, "Ingrese un email válido.", "Error de validación",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		if (phone.trim().isEmpty() || phone.length() < 10) {
+			JOptionPane.showMessageDialog(null, "El teléfono debe tener al menos 10 dígitos.", "Error de validación",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		return true;
 	}
 
 	public void EliminarCliente() {
@@ -5332,6 +5660,7 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
+	
 
 	public void EliminarCliente2() {
 		try {
@@ -6736,7 +7065,6 @@ public class HomeView {
 
 			}
 		});
-
 
 		JButton btnNewButton_6 = new JButton(
 				"<html><div style='text-align:left;'>Ingresar nueva<br>orden</div></html>");
@@ -8444,7 +8772,6 @@ public class HomeView {
 				hc.AlertaEliminarCuenta();
 			}
 		});
-		
 
 		JButton btnNewButton_1 = new JButton("ACEPTAR");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -8473,7 +8800,6 @@ public class HomeView {
 				hc.AlertaCuentaEliminada();
 			}
 		});
-		
 
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(138, 56, 44, 25);
@@ -8963,8 +9289,9 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
+
 	public void AlertaEliminarCuenta(Consumer<JComponent> addScaled) {
-	
+
 		JDialog dialog = new JDialog();
 		dialog.setResizable(false);
 		dialog.setAlwaysOnTop(true);
@@ -8972,31 +9299,31 @@ public class HomeView {
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dialog.getContentPane();
 		dialog.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 0, 526, 291);
 		dialog.getContentPane();
 		dialog.add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(226, 58, 95, 89);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/alerta.png"));
 		Image imagen3 = c.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 		lblNewLabel.setIcon(new ImageIcon(imagen3));
 		panel.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("¿Desea eliminar esta cuenta?");
 		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 13));
 		lblNewLabel_1.setBounds(170, 158, 201, 23);
 		panel.add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Está por eliminar una cuenta");
 		lblNewLabel_2.setFont(new Font("Inter", Font.BOLD, 17));
 		lblNewLabel_2.setBounds(152, 10, 263, 23);
 		panel.add(lblNewLabel_2);
-		
+
 		JButton btnNewButton = new JButton("CANCELAR");
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 9));
@@ -9019,7 +9346,6 @@ public class HomeView {
 			}
 		});
 
-		
 		JButton btnNewButton_1 = new JButton("ACEPTAR");
 		btnNewButton_1.setBackground(new Color(255, 255, 255));
 		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 9));
@@ -9043,8 +9369,8 @@ public class HomeView {
 				hc.AlertaMenuAdmin();
 			}
 		});
-		
-		 dialog.setVisible(true);
+
+		dialog.setVisible(true);
 	}
-	 
+
 }

@@ -89,7 +89,11 @@ public class HomeController {
 	}
 	public void EditarCliente() 
 	{
-		vista.EditarCliente();
+		ClientsModel Cm = new ClientsModel();
+		
+		clients = Cm.getAll();
+
+		vista.EditarCliente(clients);
 	}
 	public void AltaDeClientes() 
 	{
