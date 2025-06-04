@@ -7262,7 +7262,7 @@ public class HomeView {
 		panel_1.add(lblTotal);
 
 		// Valor del total
-		JLabel lblTotalValor = new JLabel("$335");
+		JLabel lblTotalValor = new JLabel("$300");
 		lblTotalValor.setBackground(new Color(190, 190, 190));
 		lblTotalValor.setFont(new Font("Inter", Font.BOLD, 15));
 		lblTotalValor.setHorizontalAlignment(SwingConstants.CENTER);
@@ -8399,6 +8399,12 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		ImageIcon e = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen5 = e.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_4.setIcon(new ImageIcon(imagen5));
@@ -8519,6 +8525,12 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -8640,6 +8652,12 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -9108,6 +9126,12 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -9163,7 +9187,7 @@ public class HomeView {
 		panel.add(lblNewLabel_5);
 
 		JLabel lblNewLabel_6 = new JLabel(
-				"-----------------------------------------------------------------------------");
+				"---------------------------------------------------------------------");
 		lblNewLabel_6.setBounds(27, 253, 353, 13);
 		panel.add(lblNewLabel_6);
 
@@ -9217,12 +9241,12 @@ public class HomeView {
 		lblNewLabel_15.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(lblNewLabel_15);
 
-		JLabel lblNewLabel_16 = new JLabel("Hamburguesa clásica combo CH");
+		JLabel lblNewLabel_16 = new JLabel("Hamburguesa clásica ");
 		lblNewLabel_16.setFont(new Font("Inter", Font.PLAIN, 10));
 		lblNewLabel_16.setBounds(130, 397, 174, 13);
 		panel.add(lblNewLabel_16);
 
-		JLabel lblNewLabel_17 = new JLabel("Hamburguesa clásica combo MED");
+		JLabel lblNewLabel_17 = new JLabel("Hamburguesa clásica ");
 		lblNewLabel_17.setFont(new Font("Inter", Font.PLAIN, 10));
 		lblNewLabel_17.setBounds(130, 420, 187, 13);
 		panel.add(lblNewLabel_17);
@@ -9238,7 +9262,7 @@ public class HomeView {
 		lblNewLabel_19.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(lblNewLabel_19);
 
-		JLabel lblNewLabel_20 = new JLabel("$185");
+		JLabel lblNewLabel_20 = new JLabel("$150");
 		lblNewLabel_20.setFont(new Font("Inter", Font.PLAIN, 10));
 		lblNewLabel_20.setBounds(324, 420, 45, 13);
 		lblNewLabel_20.setHorizontalAlignment(JLabel.CENTER);
@@ -9250,7 +9274,7 @@ public class HomeView {
 		lblNewLabel_21.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(lblNewLabel_21);
 
-		JLabel lblNewLabel_22 = new JLabel("$335");
+		JLabel lblNewLabel_22 = new JLabel("$300");
 		lblNewLabel_22.setFont(new Font("Inter", Font.PLAIN, 10));
 		lblNewLabel_22.setBounds(335, 489, 45, 13);
 		lblNewLabel_22.setHorizontalAlignment(JLabel.CENTER);
