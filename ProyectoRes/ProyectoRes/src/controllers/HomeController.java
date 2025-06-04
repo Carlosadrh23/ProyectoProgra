@@ -140,20 +140,7 @@ public class HomeController {
 		// TODO Auto-generated method stub
 		vista.SeleccionDeBebida(null);
 	}
-	public void SeleccionDePapas() {
-		vista.SeleccionDePapas(null);
-	}
-	public void SeleccionPapasChicas() {
-		vista.SeleccionPapasChicas(null);
-	}
-	
-	public void SeleccionPapasMedianas() {
-		vista.SeleccionPapasMedianas(null);
-	}
-	
-	public void SeleccionPapasGrandes() {
-		vista.SeleccionPapasGrandes(null);
-	}
+
 
 	public void Ticket() {
 		// TODO Auto-generated method stub
