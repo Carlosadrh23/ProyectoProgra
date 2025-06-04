@@ -194,6 +194,7 @@ public void Login() {
 		});
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		
 
 	}
 
