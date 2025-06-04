@@ -104,52 +104,7 @@ public class DishesModel {
 		
 		return dishes;
 	}
-	public User get(int id_Target)
-	{
-		
-		String query = "select * from ingredients where user_id = "+id_Target;
-		Connection conn = null;
-		Statement stmt = null;
-		User myuser = null;
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-	        			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-			
-			while (rs.next()) { 
-				
-				Integer id = rs.getInt(1);
-				String name = rs.getString(2); 
-				String email = rs.getString(3); 
-				String password = rs.getString(4); 
-
-				System.out.println("empId:" + id);
-				System.out.println("firstName:" + name);
-				System.out.println("email:" + email);
-				System.out.println("role:" + password);
-			
-				
-				 
-				System.out.println(""); 
-				 myuser = new User(id,name,email,password,null,null);
-			}
-			
-			rs.close();
-			
-			return myuser;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (Exception e) {}
-		}
-		
-		return myuser;
-	}
+	
 	
 	public boolean remove(int id) {
 		
@@ -180,7 +135,7 @@ public class DishesModel {
 		
 	}
 
-	public void addUser(String nombre,String email,String password) {
+	public void addIngredient(String nombre,String email,String password) {
 	 String query = "INSERT INTO ingredients (username, password, email) VALUES (?, ?, ?)";
 	    try (Connection 			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 	         PreparedStatement pstmt = conn.prepareStatement(query)) {

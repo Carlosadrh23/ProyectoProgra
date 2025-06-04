@@ -259,57 +259,5 @@ public class IngredientsModel {
 	        e.printStackTrace();
 	    }
 	}
-/*
-	public void  mostrarUsuarios(JTable tablaTotalUsuarios){
-	       Clases.CConexion objetoConexion = new Clases.CConexion();
 
-	        DefaultTableModel modelo = new DefaultTableModel();
-	        
-	        String sql="";
-	        modelo.addColumn("Id");
-	        modelo.addColumn("Nombre");
-	        modelo.addColumn("Apellidos");
-	        modelo.addColumn("Sexo");
-	        modelo.addColumn("Edad");
-	        modelo.addColumn("FNacimiento");
-	        modelo.addColumn("Foto");
-	        
-	        tablaTotalUsuarios.setModel(modelo);
-	        sql="SELECT u.id,u.nombres,u.apellidos,sexo.sexo,u.edad,u.fnacimiento,u.foto from usuarios as u INNER JOIN sexo ON u.sexo_id = sexo.id;";
-	        
-	        try {
-	            Statement st = objetoConexion.estableceConexion().createStatement();
-	            ResultSet rs = st.executeQuery(sql);
-	            
-	            while (rs.next()) {                
-	                String id = rs.getString("id");
-	                String nombres = rs.getString("nombres");
-	                String apellidos = rs.getString("apellidos");
-	                String sexo = rs.getString("sexo");
-	                String edad = rs.getString("edad");
-	                
-	                SimpleDateFormat stf = new SimpleDateFormat("dd/MM/yyyy");
-	                java.sql.Date fechaSQL = rs.getDate("fnacimiento");
-	                String nuevaFecha = stf.format(fechaSQL);
-	                
-	                byte [] ImageBytes = rs.getBytes("foto");
-	                Image foto = null;
-	                if (ImageBytes!=null) {
-	                    try {
-	                        ImageIcon imageIcon = new ImageIcon(ImageBytes);
-	                        foto= imageIcon.getImage();
-	                    } catch (Exception e) {
-	                    JOptionPane.showMessageDialog(null, "Ocurrio un error: "+e);
-	                    }
-	                    modelo.addRow(new Object[]{id,nombres,apellidos,sexo,edad,nuevaFecha,foto});
-	                }
-	                tablaTotalUsuarios.setModel(modelo);
-	            }
-	        } catch (Exception e) {
-	JOptionPane.showMessageDialog(null, "Error al mostrar usuarios : "+e);
-	        }
-	        finally{
-	            objetoConexion.cerrarConexion();
-	        }
-	    }*/
 }

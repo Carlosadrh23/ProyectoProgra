@@ -21,8 +21,9 @@ public class ClientsModel {
 	}
 
 	public List<Client> getAll() {
-		String query = "SELECT *, SUM(o.total) AS IMPORTE FROM customers c "
-				+ "JOIN orders o ON c.customer_id = o.customer_id " + "GROUP BY c.customer_id";
+		String query = "SELECT *, COALESCE(SUM(o.total), 0) AS IMPORTE FROM customers c \r\n"
+				+ "LEFT JOIN orders o ON c.customer_id = o.customer_id \r\n"
+				+ "GROUP BY c.customer_id";
 
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
 				"*e9EZn3Nr@KBrde");
@@ -102,33 +103,30 @@ public class ClientsModel {
 			// Start transaction
 			conn.setAutoCommit(false);
 
-			// First, delete orders associated with this customer
+			// primero remueve las ordenes asociadas con el cliente
 			String deleteOrdersQuery = "DELETE FROM orders WHERE customer_id = ?";
 			stmt1 = conn.prepareStatement(deleteOrdersQuery);
 			stmt1.setInt(1, id);
 			stmt1.executeUpdate();
 
-			// Second, delete addresses associated with this customer
+			// segundo remuevo las direcciones asociadas con el cliente
 			String deleteAddressesQuery = "DELETE FROM addresses WHERE customer_id = ?";
 			stmt2 = conn.prepareStatement(deleteAddressesQuery);
 			stmt2.setInt(1, id);
 			stmt2.executeUpdate();
 
-			// Finally, delete the customer
+			// tercero borra el cliente
 			String deleteCustomerQuery = "DELETE FROM customers WHERE customer_id = ?";
 			stmt3 = conn.prepareStatement(deleteCustomerQuery);
 			stmt3.setInt(1, id);
 			int rowsAffected = stmt3.executeUpdate();
 
-			// Commit transaction
 			conn.commit();
 
-			// Return true if at least one row was deleted
 			return rowsAffected > 0;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			// Rollback transaction in case of error
 			if (conn != null) {
 				try {
 					conn.rollback();
@@ -139,7 +137,6 @@ public class ClientsModel {
 			return false;
 
 		} finally {
-			// Close resources
 			try {
 				if (stmt1 != null)
 					stmt1.close();
@@ -160,7 +157,7 @@ public class ClientsModel {
 			}
 			try {
 				if (conn != null) {
-					conn.setAutoCommit(true); // Reset auto-commit
+					conn.setAutoCommit(true);
 					conn.close();
 				}
 			} catch (SQLException e) {
@@ -172,17 +169,17 @@ public class ClientsModel {
 	public void addClient(String name, String rfc, String phone, String email, String street, String neighborhood,
 			String city, String state, String postalCode, String country) {
 
-// Query para insertar cliente según la estructura real de la BD
+// Query para insertar cliente 
 		String insertCustomerQuery = "INSERT INTO customers (name, rfc, phone, email) VALUES (?, ?, ?, ?)";
 
-// Query para insertar dirección según la estructura real de la BD
+// Query para insertar dirección
 		String insertAddressQuery = "INSERT INTO addresses (customer_id, street, neighborhood, city, state, postal_code, country) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
 				"*e9EZn3Nr@KBrde")) {
 
-// Deshabilitar autocommit para manejar transacciones
+
 			conn.setAutoCommit(false);
 
 			try {
@@ -353,7 +350,7 @@ public class ClientsModel {
 			throw new IllegalArgumentException("Error en formato de fecha: " + e.getMessage());
 		}
 	}
-
+/*
 	public void updateCustomer(int customerId, String name, String rfc, String phone, String email, String street,
 			String neighborhood, String city, String state, String postalCode, String country) {
 		String updateCustomerQuery = "UPDATE customers SET name = ?, rfc = ?, phone = ?, email = ?, updated_at = CURRENT_TIMESTAMP WHERE customer_id = ?";
@@ -414,7 +411,7 @@ public class ClientsModel {
 			e.printStackTrace();
 		}
 	}
-
+     */
 	public void updateCustomer(int customerId, String name, String rfc, String phone, String email, String street,
 			String neighborhood, String city, String state, String postalCode, String country, String day, String month,
 			String year) {
@@ -477,5 +474,5 @@ public class ClientsModel {
 			System.err.println("Error al actualizar cliente: " + e.getMessage());
 			e.printStackTrace();
 		}
-	}
+	} 
 }
