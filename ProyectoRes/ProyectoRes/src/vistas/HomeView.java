@@ -1216,18 +1216,6 @@ public class HomeView {
 		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		btnNewButton_12.setIcon(new ImageIcon(imagen2));
 		btnNewButton_12.setIconTextGap(20); // espacio entre imagen y texto
-		
-		btnNewButton_12.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                frame.dispose();
-                HomeController hm = new HomeController();
-                hm.IngresarnuevaCuenta();
-            }
-        });
-		
 		panel_1.add(btnNewButton_12);
 		btnNewButton_12.setFocusPainted(false);
 		btnNewButton_12.setContentAreaFilled(true);
@@ -4065,8 +4053,24 @@ public class HomeView {
 		});
 		panel.add(btnNewButton_8);
 	}
-
-	public void AltaDeClientes() {
+	private JTextField txtPrimerNombre;
+	private JTextField txtSegundoNombre;
+	private JTextField txtPrimerApellido;
+	private JTextField txtSegundoApellido;
+	private JTextField txtDia;
+	private JTextField txtMes;
+	private JTextField txtAño;
+	private JTextField txtRFC;
+	private JTextField txtCalle;
+	private JTextField txtNumeroCalle;
+	private JTextField txtCP;
+	private JTextField txtEstado;
+	private JTextField txtColonia;
+	private JTextField txtCiudad;
+	private JTextField txtCorreo;
+	private JTextField txtTelefono;
+	private Client clienteActual;
+	public void AltaDeClientes(List clientes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 5);// textfield redondeadas
@@ -4086,7 +4090,7 @@ public class HomeView {
 		panel.setBackground(new Color(255, 255, 215));
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-
+	
 		// boton de comedor
 		JButton btnNewButton = new JButton("Comedor");
 		btnNewButton.setBounds(0, 0, 234, 49);
@@ -4211,7 +4215,7 @@ public class HomeView {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Alta de clientes");
+		JLabel lblNewLabel = new JLabel("Alta de cliente");
 		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 20));
 		lblNewLabel.setBounds(333, 10, 235, 25);
 		panel_1.add(lblNewLabel);
@@ -4220,7 +4224,7 @@ public class HomeView {
 		panel_2.setForeground(new Color(128, 128, 128));
 		panel_2.setBackground(Color.WHITE);
 		panel_2.setBounds(41, 45, 297, 283);
-		panel_2.setBorder(BorderFactory.createLineBorder(Color.GRAY, 0));// crea la linea del borde
+		panel_2.setBorder(BorderFactory.createLineBorder(Color.GRAY, 0));// crea la line del borde
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 
@@ -4234,48 +4238,48 @@ public class HomeView {
 		lblNewLabel_2.setBounds(10, 41, 118, 21);
 		panel_2.add(lblNewLabel_2);
 
-		JTextField txtAlejandro = new JTextField();
-		txtAlejandro.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtAlejandro.setBackground(new Color(237, 237, 237));
-		txtAlejandro.setBounds(154, 41, 96, 21);
-		panel_2.add(txtAlejandro);
-		txtAlejandro.setColumns(10);
+		 txtPrimerNombre = new JTextField();
+		txtPrimerNombre.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtPrimerNombre.setBackground(new Color(237, 237, 237));
+		txtPrimerNombre.setBounds(154, 41, 96, 21);
+		panel_2.add(txtPrimerNombre);
+		txtPrimerNombre.setColumns(10);
 
 		JLabel lblNewLabel_3 = new JLabel("Segundo nombre:");
 		lblNewLabel_3.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_3.setBounds(10, 88, 135, 24);
 		panel_2.add(lblNewLabel_3);
 
-		JTextField txtDaniel = new JTextField();
-		txtDaniel.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtDaniel.setBackground(new Color(237, 237, 237));
-		txtDaniel.setBounds(154, 92, 96, 21);
-		panel_2.add(txtDaniel);
-		txtDaniel.setColumns(10);
+		 txtSegundoNombre = new JTextField();
+		txtSegundoNombre.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtSegundoNombre.setBackground(new Color(237, 237, 237));
+		txtSegundoNombre.setBounds(154, 92, 96, 21);
+		panel_2.add(txtSegundoNombre);
+		txtSegundoNombre.setColumns(10);
 
 		JLabel lblNewLabel_4 = new JLabel("Primer apellido: ");
 		lblNewLabel_4.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_4.setBounds(10, 150, 135, 19);
 		panel_2.add(lblNewLabel_4);
 
-		JTextField txtGonzales = new JTextField();
-		txtGonzales.setBackground(new Color(237, 237, 237));
-		txtGonzales.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtGonzales.setBounds(154, 151, 96, 21);
-		panel_2.add(txtGonzales);
-		txtGonzales.setColumns(10);
+		 txtPrimerApellido = new JTextField();
+		txtPrimerApellido.setBackground(new Color(237, 237, 237));
+		txtPrimerApellido.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtPrimerApellido.setBounds(154, 151, 96, 21);
+		panel_2.add(txtPrimerApellido);
+		txtPrimerApellido.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("Segundo apellido:");
 		lblNewLabel_5.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_5.setBounds(10, 208, 128, 21);
 		panel_2.add(lblNewLabel_5);
 
-		JTextField txtHernndez = new JTextField();
-		txtHernndez.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtHernndez.setBackground(new Color(237, 237, 237));
-		txtHernndez.setBounds(154, 209, 96, 21);
-		panel_2.add(txtHernndez);
-		txtHernndez.setColumns(10);
+		 txtSegundoApellido = new JTextField();
+		txtSegundoApellido.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtSegundoApellido.setBackground(new Color(237, 237, 237));
+		txtSegundoApellido.setBounds(154, 209, 96, 21);
+		panel_2.add(txtSegundoApellido);
+		txtSegundoApellido.setColumns(10);
 
 		RoundedPanel panel_3 = new RoundedPanel(10);
 		panel_3.setForeground(new Color(128, 128, 128));
@@ -4295,47 +4299,44 @@ public class HomeView {
 		lblNewLabel_7.setBounds(10, 32, 45, 13);
 		panel_3.add(lblNewLabel_7);
 
-		JTextField textField_1 = new JTextField();
-		textField_1.setBackground(new Color(237, 237, 237));
-		textField_1.setFont(new Font("Inter", Font.PLAIN, 11));
-		textField_1.setBounds(42, 30, 34, 19);
-		panel_3.add(textField_1);
-		textField_1.setColumns(10);
+		 txtDia = new JTextField();
+		txtDia.setBackground(new Color(237, 237, 237));
+		txtDia.setFont(new Font("Inter", Font.PLAIN, 11));
+		txtDia.setBounds(42, 30, 34, 19);
+		panel_3.add(txtDia);
+		txtDia.setColumns(10);
 
 		JLabel lblNewLabel_8 = new JLabel("Mes:");
 		lblNewLabel_8.setFont(new Font("Inter", Font.BOLD, 12));
 		lblNewLabel_8.setBounds(90, 32, 45, 13);
 		panel_3.add(lblNewLabel_8);
 
-		JTextField textField_2 = new JTextField();
-		textField_2.setFont(new Font("Inter", Font.PLAIN, 11));
-		textField_2.setBackground(new Color(237, 237, 237));
-		textField_2.setBounds(124, 30, 34, 19);
-		panel_3.add(textField_2);
-		textField_2.setColumns(10);
+		 txtMes = new JTextField();
+		txtMes.setFont(new Font("Inter", Font.PLAIN, 11));
+		txtMes.setBackground(new Color(237, 237, 237));
+		txtMes.setBounds(124, 30, 34, 19);
+		panel_3.add(txtMes);
+		txtMes.setColumns(10);
 
 		JLabel lblNewLabel_9 = new JLabel("Año:");
 		lblNewLabel_9.setFont(new Font("Inter", Font.BOLD, 12));
 		lblNewLabel_9.setBounds(185, 33, 34, 13);
 		panel_3.add(lblNewLabel_9);
 
-		JTextField textField_3 = new JTextField();
-		textField_3.setFont(new Font("Inter", Font.PLAIN, 11));
-		textField_3.setBackground(new Color(237, 237, 237));
-		textField_3.setBounds(220, 30, 45, 19);
-		panel_3.add(textField_3);
-		textField_3.setColumns(10);
+		 txtAño = new JTextField();
+		txtAño.setFont(new Font("Inter", Font.PLAIN, 11));
+		txtAño.setBackground(new Color(237, 237, 237));
+		txtAño.setBounds(220, 30, 45, 19);
+		panel_3.add(txtAño);
+		txtAño.setColumns(10);
 
-		JLabel lblNewLabel_10 = new JLabel("Sexo:");
-		lblNewLabel_10.setFont(new Font("Inter", Font.BOLD, 16));
-		lblNewLabel_10.setBounds(51, 455, 53, 25);
-		panel_1.add(lblNewLabel_10);
+	
 
 		RoundedPanel panel_4 = new RoundedPanel(10);
 		panel_4.setForeground(new Color(128, 128, 128));
 		panel_4.setBackground(Color.WHITE);
 		panel_4.setBounds(466, 45, 297, 283);
-		panel_4.setBorder(BorderFactory.createLineBorder(Color.GRAY, 0));// crea la line del borde
+		panel_4.setBorder(BorderFactory.createLineBorder(Color.GRAY, 0));// crea la linea del borde
 		panel_1.add(panel_4);
 		panel_4.setLayout(null);
 
@@ -4349,74 +4350,74 @@ public class HomeView {
 		lblNewLabel_12.setBounds(10, 30, 45, 26);
 		panel_4.add(lblNewLabel_12);
 
-		JTextField txtCalleTeotihuacn = new JTextField();
-		txtCalleTeotihuacn.setBackground(new Color(237, 237, 237));
-		txtCalleTeotihuacn.setBackground(new Color(237, 237, 237));
-		txtCalleTeotihuacn.setBackground(new Color(237, 237, 237));
-		txtCalleTeotihuacn.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtCalleTeotihuacn.setBounds(79, 30, 208, 26);
-		panel_4.add(txtCalleTeotihuacn);
-		txtCalleTeotihuacn.setColumns(10);
+		 txtCalle = new JTextField();
+		txtCalle.setBackground(new Color(237, 237, 237));
+		txtCalle.setBackground(new Color(237, 237, 237));
+		txtCalle.setBackground(new Color(237, 237, 237));
+		txtCalle.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtCalle.setBounds(79, 30, 208, 26);
+		panel_4.add(txtCalle);
+		txtCalle.setColumns(10);
 
 		JLabel lblNewLabel_13 = new JLabel("No.");
 		lblNewLabel_13.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_13.setBounds(10, 93, 45, 18);
 		panel_4.add(lblNewLabel_13);
 
-		JTextField textField_5 = new JTextField();
-		textField_5.setBackground(new Color(237, 237, 237));
-		textField_5.setFont(new Font("Inter", Font.PLAIN, 14));
-		textField_5.setBounds(39, 88, 62, 26);
-		panel_4.add(textField_5);
-		textField_5.setColumns(10);
+		 txtNumeroCalle = new JTextField();
+		txtNumeroCalle.setBackground(new Color(237, 237, 237));
+		txtNumeroCalle.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtNumeroCalle.setBounds(39, 88, 62, 26);
+		panel_4.add(txtNumeroCalle);
+		txtNumeroCalle.setColumns(10);
 
 		JLabel lblNewLabel_14 = new JLabel("C.P.");
 		lblNewLabel_14.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_14.setBounds(154, 93, 45, 18);
 		panel_4.add(lblNewLabel_14);
 
-		JTextField textField_6 = new JTextField();
-		textField_6.setBackground(new Color(237, 237, 237));
-		textField_6.setFont(new Font("Inter", Font.PLAIN, 14));
-		textField_6.setBounds(190, 89, 62, 26);
-		panel_4.add(textField_6);
-		textField_6.setColumns(10);
+		 txtCP = new JTextField();
+		txtCP.setBackground(new Color(237, 237, 237));
+		txtCP.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtCP.setBounds(190, 89, 62, 26);
+		panel_4.add(txtCP);
+		txtCP.setColumns(10);
 
 		JLabel lblNewLabel_15 = new JLabel("Colonia");
 		lblNewLabel_15.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_15.setBounds(10, 152, 69, 26);
 		panel_4.add(lblNewLabel_15);
 
-		JTextField txtLosOlivares = new JTextField();
-		txtLosOlivares.setBackground(new Color(237, 237, 237));
-		txtLosOlivares.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtLosOlivares.setBounds(79, 150, 208, 26);
-		panel_4.add(txtLosOlivares);
-		txtLosOlivares.setColumns(10);
+		 txtColonia = new JTextField();
+		txtColonia.setBackground(new Color(237, 237, 237));
+		txtColonia.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtColonia.setBounds(79, 150, 208, 26);
+		panel_4.add(txtColonia);
+		txtColonia.setColumns(10);
 
 		JLabel lblNewLabel_16 = new JLabel("Ciudad");
 		lblNewLabel_16.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_16.setBounds(10, 219, 69, 26);
 		panel_4.add(lblNewLabel_16);
 
-		JTextField txtLaPaz = new JTextField();
-		txtLaPaz.setBackground(new Color(237, 237, 237));
-		txtLaPaz.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtLaPaz.setBounds(67, 219, 62, 26);
-		panel_4.add(txtLaPaz);
-		txtLaPaz.setColumns(10);
+		 txtCiudad = new JTextField();
+		txtCiudad.setBackground(new Color(237, 237, 237));
+		txtCiudad.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtCiudad.setBounds(67, 219, 62, 26);
+		panel_4.add(txtCiudad);
+		txtCiudad.setColumns(10);
 
 		JLabel lblNewLabel_17 = new JLabel("Estado");
 		lblNewLabel_17.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_17.setBounds(154, 219, 52, 26);
 		panel_4.add(lblNewLabel_17);
 
-		JTextField textField_4 = new JTextField();
-		textField_4.setFont(new Font("Inter", Font.PLAIN, 14));
-		textField_4.setBackground(new Color(237, 237, 237));
-		textField_4.setBounds(205, 221, 62, 26);
-		panel_4.add(textField_4);
-		textField_4.setColumns(10);
+	    txtEstado = new JTextField();
+		txtEstado.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtEstado.setBackground(new Color(237, 237, 237));
+		txtEstado.setBounds(205, 221, 62, 26);
+		panel_4.add(txtEstado);
+		txtEstado.setColumns(10);
 
 		RoundedPanel panel_5 = new RoundedPanel(10);
 		panel_5.setForeground(new Color(128, 128, 128));
@@ -4436,32 +4437,32 @@ public class HomeView {
 		lblNewLabel_19.setBounds(10, 32, 61, 13);
 		panel_5.add(lblNewLabel_19);
 
-		JTextField txtErickuabcsmx = new JTextField();
-		txtErickuabcsmx.setBackground(new Color(237, 237, 237));
-		txtErickuabcsmx.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtErickuabcsmx.setBounds(77, 30, 191, 19);
-		panel_5.add(txtErickuabcsmx);
-		txtErickuabcsmx.setColumns(10);
+		 txtCorreo = new JTextField();
+		txtCorreo.setBackground(new Color(237, 237, 237));
+		txtCorreo.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtCorreo.setBounds(77, 30, 191, 19);
+		panel_5.add(txtCorreo);
+		txtCorreo.setColumns(10);
 
 		JLabel lblNewLabel_20 = new JLabel("Teléfono");
 		lblNewLabel_20.setFont(new Font("Inter", Font.BOLD, 14));
 		lblNewLabel_20.setBounds(10, 77, 73, 13);
 		panel_5.add(lblNewLabel_20);
 
-		JTextField textField_7 = new JTextField();
-		textField_7.setBackground(new Color(237, 237, 237));
-		textField_7.setFont(new Font("Inter", Font.PLAIN, 14));
-		textField_7.setBounds(77, 75, 191, 19);
-		panel_5.add(textField_7);
-		textField_7.setColumns(10);
+		txtTelefono = new JTextField();
+		txtTelefono.setBackground(new Color(237, 237, 237));
+		txtTelefono.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtTelefono.setBounds(77, 75, 191, 19);
+		panel_5.add(txtTelefono);
+		txtTelefono.setColumns(10);
+
+		JLabel lblNewLabel_21 = new JLabel("Sexo:");
+		lblNewLabel_21.setFont(new Font("Inter", Font.BOLD, 16));
+		lblNewLabel_21.setBounds(51, 455, 53, 25);
+		panel_1.add(lblNewLabel_21);
+
+		
 		JButton btnNewButton_6 = new JButton("CANCELAR");
-		btnNewButton_6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController cc = new HomeController();
-				cc.ConsultaDeClientes();
-			}
-		});
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
 		btnNewButton_6.setBounds(303, 486, 85, 60);
 		btnNewButton_6.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -4474,24 +4475,19 @@ public class HomeView {
 		btnNewButton_6.setIcon(new ImageIcon(imagen));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
+
+		btnNewButton_6.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.ConsultaDeClientes();
+			}
+		});
+
 		panel_1.add(btnNewButton_6);
-
-		// boton aceptar
-		JButton btnNewButton_7 = new JButton("ACEPTAR");
-		btnNewButton_7.setFont(new Font("Inter", Font.BOLD, 9));
-		btnNewButton_7.setBounds(419, 486, 85, 60);
-		btnNewButton_7.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
-		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_7.setIconTextGap(1);
-		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		btnNewButton_7.setIcon(new ImageIcon(imagen2));
-		btnNewButton_7.setFocusPainted(false);
-		btnNewButton_7.setContentAreaFilled(true);
-		panel_1.add(btnNewButton_7);
-
 		JRadioButton masculino = new JRadioButton("Masculino");
 		masculino.setFont(new Font("Inter", Font.BOLD, 12));
 		masculino.setBounds(105, 458, 93, 21);
@@ -4503,31 +4499,99 @@ public class HomeView {
 		ButtonGroup grupoSexo = new ButtonGroup();
 		grupoSexo.add(masculino);
 		grupoSexo.add(femenino);
+		JLabel lblNewLabel_10 = new JLabel("RFC:");
+		lblNewLabel_10.setFont(new Font("Inter", Font.BOLD, 16));
+		lblNewLabel_10.setBounds(51, 480, 69, 25);
+		panel_1.add(lblNewLabel_10);
+		txtRFC = new JTextField();
+		txtRFC.setBackground(new Color(237, 237, 237));
+		txtRFC.setFont(new Font("Inter", Font.PLAIN, 14));
+		txtRFC.setBounds(91, 480, 174, 22);
+		txtRFC.setHorizontalAlignment(JTextField.CENTER);
+		panel_1.add(txtRFC);
+		txtRFC.setColumns(10);
+
+		// boton aceptar
+		JButton btnNewButton_7 = new JButton("ACEPTAR");
+		btnNewButton_7.setFont(new Font("Inter", Font.BOLD, 9));
+		btnNewButton_7.setBounds(419, 486, 85, 60);
+		btnNewButton_7.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_7.setIconTextGap(1);
+		btnNewButton_7.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					// Obtener valores de los campos de texto
+					String firstName = txtPrimerNombre.getText().trim();
+					String secondName = txtSegundoNombre.getText().trim();
+					String firstLastName = txtPrimerApellido.getText().trim();
+					String secondLastName = txtSegundoApellido.getText().trim();
+					String rfc = txtRFC.getText().trim();
+					String phone = txtTelefono.getText().trim();
+					String email = txtCorreo.getText().trim();
+					String street = txtCalle.getText().trim();
+					String number = txtNumeroCalle.getText().trim();
+					String neighborhood = txtColonia.getText().trim();
+					String city = txtCiudad.getText().trim();
+					String state = txtEstado.getText().trim();
+					String postalCode = txtCP.getText().trim();
+					String gender = "";
+					if (masculino.isSelected()) {
+					    gender = "Masculino";
+					} else if (femenino.isSelected()) {
+					    gender = "Femenino";
+					}
+					// Obtener fecha de nacimiento
+					String day = txtDia.getText().trim();
+					String month = txtMes.getText().trim();
+					String year = txtAño.getText().trim();
+
+					// Validar campos obligatorios
+					
+
+						// Llamar a tu método updateCustomer con TODOS los parámetros requeridos
+						ClientsModel cm = new ClientsModel();
+						cm.addClientFromForm(firstName, secondName, firstLastName, secondLastName, rfc, phone, email, street, number, neighborhood, city, state, postalCode);
+
+						// Mostrar mensaje de éxito
+						JOptionPane.showMessageDialog(frame, "Cliente actualizado correctamente.", "Éxito",
+								JOptionPane.INFORMATION_MESSAGE);
+
+						// Cerrar ventana actual y volver a la consulta
+						frame.dispose();
+						HomeController cc = new HomeController();
+						cc.ConsultaDeClientes();
+
+					
+				} catch (Exception ex) {
+					System.err.println("Error al procesar la actualización: " + ex.getMessage());
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(frame, "Error al actualizar cliente: " + ex.getMessage(), "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+	
+
+		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen2));
+		btnNewButton_7.setFocusPainted(false);
+		btnNewButton_7.setContentAreaFilled(true);
+		panel_1.add(btnNewButton_7);
+	
 
 		panel_1.add(masculino);
 		panel_1.add(femenino);
-
 		frame.setVisible(true);
+		
 
 	}
-	private JTextField txtPrimerNombre;
-	private JTextField txtSegundoNombre;
-	private JTextField txtPrimerApellido;
-	private JTextField txtSegundoApellido;
-	private JTextField txtDia;
-	private JTextField txtMes;
-	private JTextField txtAño;
-	private JTextField txtRFC;
-	private JTextField txtCalle;
-	private JTextField txtNumeroCalle;
-	private JTextField txtCP;
-	private JTextField txtEstado;
-	private JTextField txtColonia;
-	private JTextField txtCiudad;
-	private JTextField txtCorreo;
-	private JTextField txtTelefono;
-
-	private Client clienteActual;
+	
+	
 	public void EditarCliente(List clientes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -5005,7 +5069,7 @@ public class HomeView {
 					String year = txtAño.getText().trim();
 
 					// Validar campos obligatorios
-					if (validateFields(firstName, firstLastName, rfc, email, phone, day, month, year)) {
+					if (validateFields(firstName, firstLastName, email, phone, day, month, year)) {
 						// Concatenar nombres completos
 						String fullName = buildFullName(firstName, secondName, firstLastName, secondLastName);
 
@@ -5063,6 +5127,7 @@ public class HomeView {
 		
 
 	}
+	
 	private void cargarDatosCliente(List<Client> clientes) {
 	    if (clientes != null && !clientes.isEmpty()) {
 	        // Tomar el primer cliente de la lista y almacenarlo
@@ -5078,7 +5143,6 @@ public class HomeView {
 	        }
 	        
 	        // Cargar RFC, teléfono y email
-	        if (clienteActual.rfc != null) txtRFC.setText(clienteActual.rfc);
 	        if (clienteActual.phone != null) txtTelefono.setText(clienteActual.phone);
 	        if (clienteActual.email != null) txtCorreo.setText(clienteActual.email);
 	        
@@ -5086,7 +5150,7 @@ public class HomeView {
 	    }
 	}
 	
-	private boolean validateFields(String firstName, String firstLastName, String rfc, String email, String phone,
+	private boolean validateFields(String firstName, String firstLastName, String email, String phone,
 			String day, String month, String year) {
 
 // Validar campos básicos
@@ -5096,12 +5160,7 @@ public class HomeView {
 			return false;
 		}
 
-// Validar RFC
-		if (rfc.isEmpty() || rfc.length() < 10) {
-			JOptionPane.showMessageDialog(null, "El RFC es obligatorio y debe tener al menos 10 caracteres.",
-					"RFC Inválido", JOptionPane.WARNING_MESSAGE);
-			return false;
-		}
+
 
 // Validar email
 		if (email.isEmpty() || !email.contains("@")) {

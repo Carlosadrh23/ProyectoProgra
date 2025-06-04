@@ -59,6 +59,7 @@ public class AltaDeClientes {
 	/**
 	 * Create the application.
 	 */
+	
 	public AltaDeClientes() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  

@@ -97,7 +97,11 @@ public class HomeController {
 	}
 	public void AltaDeClientes() 
 	{
-		vista.AltaDeClientes();
+		ClientsModel Cm = new ClientsModel();
+		
+		clients = Cm.getAll();
+
+		vista.AltaDeClientes(clients);
 	}
 	public void Añadirplatillo() 
 	{
