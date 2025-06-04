@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -748,6 +750,16 @@ public class HomeView {
 		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
+		//esto hace que solo se puedan teclear números
+		textField_1.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        if (!Character.isDigit(c)) {
+		            e.consume();
+		        }
+		    }
+		});
 
 		JButton btnNewButton_5 = new JButton("CANCELAR");
 		btnNewButton_5.setBackground(new Color(255, 255, 255));
@@ -8863,6 +8875,14 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+			}
+		});
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -8988,6 +9008,14 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+			}
+		});
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
