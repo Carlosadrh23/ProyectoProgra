@@ -1216,6 +1216,18 @@ public class HomeView {
 		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		btnNewButton_12.setIcon(new ImageIcon(imagen2));
 		btnNewButton_12.setIconTextGap(20); // espacio entre imagen y texto
+		
+		btnNewButton_12.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                frame.dispose();
+                HomeController hm = new HomeController();
+                hm.IngresarnuevaCuenta();
+            }
+        });
+		
 		panel_1.add(btnNewButton_12);
 		btnNewButton_12.setFocusPainted(false);
 		btnNewButton_12.setContentAreaFilled(true);
