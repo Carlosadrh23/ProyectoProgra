@@ -3634,16 +3634,7 @@ public class HomeView {
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 
-		btnNewButton_6.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				frame.dispose();
-				HomeController cc = new HomeController();
-				cc.EditarCliente();
-			}
-		});
+		
 
 		panel.add(btnNewButton_6);
 
@@ -3715,12 +3706,12 @@ public class HomeView {
 				// Obtener los datos de la fila seleccionada
 				int id = (int) modelo.getValueAt(filaSeleccionada, 0);
 				String nombre = (String) modelo.getValueAt(filaSeleccionada, 1);
-				String importe = (String) modelo.getValueAt(filaSeleccionada, 2);
+				String rfc = (String) modelo.getValueAt(filaSeleccionada, 2);
 
 				// Confirmar eliminación
 				int respuesta = JOptionPane.showConfirmDialog(frame,
 						"¿Estás seguro de que deseas eliminar el registro?\n\n" + "Id: " + id + "\n" + "Nombre: "
-								+ nombre + "\n" + "Importe: " + importe,
+								+ nombre + "\n" + "RFC: " + rfc,
 						"Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 				if (respuesta == JOptionPane.YES_OPTION) {
@@ -3763,11 +3754,50 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int filaSeleccionada = table.getSelectedRow(); // Usar 'table', no 'tabla'
+
+				// Verificar si hay una fila seleccionada
 				if (filaSeleccionada == -1) {
-					JOptionPane.showMessageDialog(frame, "Por favor, selecciona un registro para editar.",
+					JOptionPane.showMessageDialog(frame, "Por favor, selecciona un registro para eliminar.",
 							"Ningún registro seleccionado", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
+
+				// Obtener los datos de la fila seleccionada
+				int id = (int) modelo.getValueAt(filaSeleccionada, 0);
+				
+				// Confirmar eliminación
+				int respuesta = JOptionPane.showConfirmDialog(frame,
+						"¿Deseas actualizar los datos?",
+						"Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (respuesta == JOptionPane.YES_OPTION) {
+					try {
+						// Encontrar el cliente en la lista original para eliminarlo
+						Client clienteEditar = null;
+						for (Iterator iterator = clientes.iterator(); iterator.hasNext();) {
+							Client client = (Client) iterator.next();
+							if (client.id == id) {
+								clienteEditar = client;
+								break;
+							}
+						}
+
+						if (clienteEditar != null) {
+							// Eliminar de la lista
+							clientes.remove(clienteEditar);
+							frame.dispose();
+						HomeController hc = new HomeController();
+						hc.EditarCliente(id);
+							
+
+							
+						}
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(frame, "Error al eliminar el registro: " + ex.getMessage(),
+								"Error", JOptionPane.ERROR_MESSAGE);
+						ex.printStackTrace();
+					}
+				}
+				
 			}
 		});
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -4585,7 +4615,7 @@ public class HomeView {
 
 	}
 
-	public void EditarCliente(List clientes) {
+	public void EditarCliente(int idSeleccionada,List clientes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 5);// textfield redondeadas
@@ -4997,7 +5027,7 @@ public class HomeView {
 		panel_5.add(txtTelefono);
 		txtTelefono.setColumns(10);
 
-		cargarDatosCliente(clientes);
+		cargarDatosCliente(idSeleccionada,clientes);
 
 		JButton btnNewButton_6 = new JButton("CANCELAR");
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
@@ -5067,12 +5097,11 @@ public class HomeView {
 						// Concatenar dirección completa (calle + número)
 						String fullStreet = buildFullAddress(street, number);
 
-						// Obtener ID del cliente actual
-						int customerId = obtenerIdClienteActual();
+						
 
 						// Llamar a tu método updateCustomer con TODOS los parámetros requeridos
 						ClientsModel cm = new ClientsModel();
-						cm.updateCustomer(customerId, // int customerId
+						cm.updateCustomer(idSeleccionada, // int customerId
 								fullName, // String name
 								rfc, // String rfc
 								phone, // String phone
@@ -5116,33 +5145,53 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-
-	private void cargarDatosCliente(List<Client> clientes) {
-		if (clientes != null && !clientes.isEmpty()) {
-			// Tomar el primer cliente de la lista y almacenarlo
-			clienteActual = clientes.get(0);
-
-			// Cargar datos básicos desde el objeto Client
-			if (clienteActual.name != null) {
-				String[] nombres = clienteActual.name.split(" ");
-				if (nombres.length > 0)
-					txtPrimerNombre.setText(nombres[0]);
-				if (nombres.length > 1)
-					txtSegundoNombre.setText(nombres[1]);
-				if (nombres.length > 2)
-					txtPrimerApellido.setText(nombres[2]);
-				if (nombres.length > 3)
-					txtSegundoApellido.setText(nombres[3]);
-			}
-
-			// Cargar RFC, teléfono y email
-			if (clienteActual.phone != null)
-				txtTelefono.setText(clienteActual.phone);
-			if (clienteActual.email != null)
-				txtCorreo.setText(clienteActual.email);
-
-		}
+	private void cargarDatosCliente(int idSeleccionada, List<Client> clientes) {
+	    if (clientes != null && !clientes.isEmpty()) {
+	        // Buscar el cliente con el ID seleccionado
+	        Client clienteEncontrado = null;
+	        for (Client cliente : clientes) {
+	            if (cliente.id == idSeleccionada) { // Asumiendo que Client tiene un campo 'id'
+	                clienteEncontrado = cliente;
+	                break;
+	            }
+	        }
+  // Si se encontró el cliente, cargar sus datos
+	        if (clienteEncontrado != null) {
+	            clienteActual = clienteEncontrado;
+	            
+	            // Cargar datos básicos desde el objeto Client
+	            if (clienteActual.name != null) {
+	                String[] nombres = clienteActual.name.split(" ");
+	                if (nombres.length > 0)
+	                    txtPrimerNombre.setText(nombres[0]);
+	                if (nombres.length > 1)
+	                    txtSegundoNombre.setText(nombres[1]);
+	                if (nombres.length > 2)
+	                    txtPrimerApellido.setText(nombres[2]);
+	                if (nombres.length > 3)
+	                    txtSegundoApellido.setText(nombres[3]);
+	            }
+	            
+	            // Cargar RFC, teléfono y email
+	            if (clienteActual.rfc != null)
+	                txtRFC.setText(clienteActual.rfc);
+	            if (clienteActual.phone != null)
+	                txtTelefono.setText(clienteActual.phone);
+	            if (clienteActual.email != null)
+	                txtCorreo.setText(clienteActual.email);
+	                
+	           
+	                
+	        } else {
+	            // Si no se encuentra el cliente, mostrar mensaje de error
+	            JOptionPane.showMessageDialog(null, 
+	                "No se encontró el cliente con ID: " + idSeleccionada, 
+	                "Cliente no encontrado", 
+	                JOptionPane.WARNING_MESSAGE);
+	        }
+	    }
 	}
+	
 
 	private boolean validateFields(String firstName, String firstLastName, String email, String phone, String day,
 			String month, String year) {
@@ -5235,19 +5284,7 @@ public class HomeView {
 		return street + " No. " + number;
 	}
 
-	private int obtenerIdClienteActual() {
-
-		String idStr = JOptionPane.showInputDialog(null, "Ingrese el ID del cliente a actualizar:", "ID Cliente",
-				JOptionPane.QUESTION_MESSAGE);
-		try {
-			return Integer.parseInt(idStr);
-		} catch (NumberFormatException ex) {
-			JOptionPane.showMessageDialog(null, "ID inválido. Usando ID 1 por defecto.", "Advertencia",
-					JOptionPane.WARNING_MESSAGE);
-			return 1;
-		}
-	}
-
+	
 	private boolean validateFields(String firstName, String firstLastName, String rfc, String email, String phone) {
 		if (firstName.trim().isEmpty() || firstLastName.trim().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "El primer nombre y primer apellido son obligatorios.",

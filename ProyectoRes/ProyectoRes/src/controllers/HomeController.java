@@ -87,13 +87,13 @@ public class HomeController {
 
 		vista.Inventario(ingredientes);
 	}
-	public void EditarCliente() 
+	public void EditarCliente(int id) 
 	{
 		ClientsModel Cm = new ClientsModel();
 		
 		clients = Cm.getAll();
 
-		vista.EditarCliente(clients);
+		vista.EditarCliente(id,clients);
 	}
 	public void AltaDeClientes() 
 	{
