@@ -93,14 +93,34 @@ public void Login() {
         lblNewLabel_2.setIcon(new ImageIcon(imagen1));
 		panel_1.add(lblNewLabel_2);
 		
-		JTextField	txtAdministrador = new JTextField();
+		JTextField	txtAdministrador = new JTextField("Usuario");
 		txtAdministrador.setBounds(50, 67, 353, 50);
 		txtAdministrador.setFont(new Font("Inter", Font.PLAIN, 16));
 		txtAdministrador.setBackground(new Color(242, 255, 168));
+		txtAdministrador.setForeground(Color.GRAY);
 		panel_1.add(txtAdministrador);
 		txtAdministrador.setHorizontalAlignment(JTextField.CENTER);
 		txtAdministrador.setColumns(10);
-		txtAdministrador.setBorder(BorderFactory.createEmptyBorder());
+		
+		// HACE QUE SE BORRE EL BUSCAR AL ESCRIBIR EN EL TEXTFIELD
+		final String placeholder = "Usuario";
+		txtAdministrador.addFocusListener(new FocusAdapter() {
+
+			public void focusGained(FocusEvent e) {
+				if (txtAdministrador.getText().equals(placeholder)) {
+					txtAdministrador.setText("");
+					txtAdministrador.setForeground(Color.BLACK);
+				}
+			}
+
+			public void focusLost(FocusEvent e) {
+				if (txtAdministrador.getText().isEmpty()) {
+					txtAdministrador.setText(placeholder);
+					txtAdministrador.setForeground(Color.GRAY);
+				}
+			}
+		});
+
 		
 		
 		JLabel lblNewLabel_3 = new JLabel("");
@@ -118,6 +138,33 @@ public void Login() {
 		panel_1.add(passwordField);
 		passwordField.setColumns(10);
 		
+		final String passwordPlaceholder = "Contraseña";
+		passwordField.setText(passwordPlaceholder);
+		// esto hace que se pueda ver el texto tal cual en el passwordfield  le quita lo oculto
+		passwordField.setEchoChar((char) 0); 
+		passwordField.setForeground(Color.GRAY);
+		
+		passwordField.addFocusListener(new FocusAdapter() {
+		    public void focusGained(FocusEvent e) {
+		        if (String.valueOf(passwordField.getPassword()).equals(passwordPlaceholder)) {
+		            passwordField.setText("");
+		            //esto hace que se oculte el texto  con el * para no mostrar el texto en la contraseña al momento de ya escribir
+		            passwordField.setEchoChar('*'); 
+		            passwordField.setForeground(Color.BLACK);
+		        }
+		    }
+
+		    // si se sale del campo y no se escribio nada se vuelve a poner el placeholder
+		    public void focusLost(FocusEvent e) {
+		        if (String.valueOf(passwordField.getPassword()).isEmpty()) {
+		            passwordField.setText(passwordPlaceholder);
+		            // aqui igual hace que el texto del placeholder si se pueda ver y no este oculto 
+		            passwordField.setEchoChar((char) 0);
+		            passwordField.setForeground(Color.GRAY);
+		        }
+		    }
+		});
+		
 		JButton btnNewButton = new JButton("Iniciar sesión");
 		btnNewButton.setBounds(168, 280, 109, 50);
 		btnNewButton.setFont(new Font("Inter", Font.PLAIN, 12));
@@ -129,7 +176,7 @@ public void Login() {
 		lblNewLabel_4.setBounds(138, 350, 152, 16);
 		panel_1.add(lblNewLabel_4);
 		
-		JLabel enlace = new JLabel("<html><a href=''>Inicia sesión</a></html>");
+		JLabel enlace = new JLabel("<html><a href=''>Registrate</a></html>");
         enlace.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         enlace.setBounds(265, 350, 152, 16);
         // Acción al hacer clic
@@ -151,7 +198,7 @@ public void Login() {
 				Boolean flag1 = false, flag2 = false;
 				
 				
-				if( passText.equals("")  ) {
+				if( passText.equals("") || passText.equals(passwordPlaceholder) ) {
 					
 					passwordField.setBorder(BorderFactory.createLineBorder(Color.red,2));
 					
@@ -160,11 +207,11 @@ public void Login() {
 					passwordField.setBorder(BorderFactory.createLineBorder(Color.green,2));
 					flag1 = true;
 				}
-				if(txtAdministrador.getText().equals("")) {
+				if(txtAdministrador.getText().equals("") || txtAdministrador.getText().equals(placeholder)) {
 					txtAdministrador.setBorder(BorderFactory.createLineBorder(Color.red,2));
 				}else {
 					
-					txtAdministrador.setBorder(BorderFactory.createLineBorder(Color.red,2));
+					txtAdministrador.setBorder(BorderFactory.createLineBorder(Color.green,2));
 					flag2 = true;
 				}
 
@@ -194,6 +241,7 @@ public void Login() {
 		});
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		
 
 	}
 
@@ -247,9 +295,9 @@ public void Login() {
     lblNewLabel_2.setIcon(new ImageIcon(imagen1));
 	panel_1.add(lblNewLabel_2);
 	
-	JTextField	nombreField = new JTextField("Username");
+	JTextField	nombreField = new JTextField("Usuario");
 	nombreField.setBounds(50, 66, 353, 50);
-	nombreField.setForeground(new Color(192, 192, 192));
+	nombreField.setForeground(Color.GRAY);
 	nombreField.setFont(new Font("Inter", Font.PLAIN, 16));
 	nombreField.setBackground(new Color(242, 255, 168));
 	nombreField.setHorizontalAlignment(JTextField.CENTER);
@@ -257,7 +305,7 @@ public void Login() {
 	panel_1.add(nombreField);
 	
 	// HACE QUE SE BORRE EL BUSCAR AL ESCRIBIR EN EL TEXTFIELD
-			final String placeholder = "Username";
+			final String placeholder = "Usuario";
 			nombreField.addFocusListener(new FocusAdapter() {
 
 				public void focusGained(FocusEvent e) {
@@ -285,9 +333,9 @@ public void Login() {
     lblNewLabel_3.setIcon(new ImageIcon(imagen6));
 
 
-	JTextField	emailField = new JTextField("Email");
+	JTextField	emailField = new JTextField("correo electrónico");
 	emailField.setBounds(50, 136, 353, 50);
-	emailField.setForeground(new Color(192, 192, 192));
+	emailField.setForeground(Color.GRAY);
 	emailField.setFont(new Font("Inter", Font.PLAIN, 16));
 	emailField.setBackground(new Color(242, 255, 168));
 	panel_1.add(emailField);
@@ -295,7 +343,7 @@ public void Login() {
 	emailField.setColumns(10);
 	
 	// HACE QUE SE BORRE EL BUSCAR AL ESCRIBIR EN EL TEXTFIELD
-	final String placeholder2 = "Email";
+	final String placeholder2 = "correo electrónico";
 	emailField.addFocusListener(new FocusAdapter() {
 
 		public void focusGained(FocusEvent e) {
@@ -334,6 +382,33 @@ public void Login() {
 	passwordField1.setHorizontalAlignment(JTextField.CENTER);
 	panel_1.add(passwordField1);
 	passwordField1.setColumns(10);
+	
+	final String passwordPlaceholder = "Contraseña";
+	passwordField1.setText(passwordPlaceholder);
+	// esto hace que se pueda ver el texto tal cual en el passwordfield  le quita lo oculto
+	passwordField1.setEchoChar((char) 0); 
+	passwordField1.setForeground(Color.GRAY);
+	
+	passwordField1.addFocusListener(new FocusAdapter() {
+	    public void focusGained(FocusEvent e) {
+	        if (String.valueOf(passwordField1.getPassword()).equals(passwordPlaceholder)) {
+	            passwordField1.setText("");
+	            //esto hace que se oculte el texto  con el * para no mostrar el texto en la contraseña al momento de ya escribir
+	            passwordField1.setEchoChar('*'); 
+	            passwordField1.setForeground(Color.BLACK);
+	        }
+	    }
+
+	    // si se sale del campo y no se escribio nada se vuelve a poner el placeholder
+	    public void focusLost(FocusEvent e) {
+	        if (String.valueOf(passwordField1.getPassword()).isEmpty()) {
+	            passwordField1.setText(passwordPlaceholder);
+	            // aqui igual hace que el texto del placeholder si se pueda ver y no este oculto 
+	            passwordField1.setEchoChar((char) 0);
+	            passwordField1.setForeground(Color.GRAY);
+	        }
+	    }
+	});
 
 	JPasswordField cfrmPassField = new JPasswordField("");
 	cfrmPassField.setBounds(50, 269, 353, 50);
@@ -342,6 +417,34 @@ public void Login() {
 	cfrmPassField.setHorizontalAlignment(JTextField.CENTER);
 	panel_1.add(cfrmPassField);
 	cfrmPassField.setColumns(10);
+	
+	final String confirmPlaceholder = "Confirmar contraseña";
+	cfrmPassField.setText(confirmPlaceholder);
+	
+	// esto hace que se pueda ver el texto tal cual en el passwordfield  le quita lo oculto
+	cfrmPassField.setEchoChar((char) 0);
+	cfrmPassField.setForeground(Color.GRAY);
+	
+	cfrmPassField.addFocusListener(new FocusAdapter() {
+	    public void focusGained(FocusEvent e) {
+	        if (String.valueOf(cfrmPassField.getPassword()).equals(confirmPlaceholder)) {
+	            cfrmPassField.setText("");
+	            //esto hace que se oculte el texto  con el * para no mostrar el texto en la contraseña al momento de ya escribir
+	            cfrmPassField.setEchoChar('*'); 
+	            cfrmPassField.setForeground(Color.BLACK);
+	        }
+	    }
+
+	    // si se sale del campo y no se escribio nada se vuelve a poner el placeholder
+	    public void focusLost(FocusEvent e) {
+	        if (String.valueOf(cfrmPassField.getPassword()).isEmpty()) {
+	            cfrmPassField.setText(confirmPlaceholder);
+	            // aqui igual hace que el texto del placeholder si se pueda ver y no este oculto 
+	            cfrmPassField.setEchoChar((char) 0);
+	            cfrmPassField.setForeground(Color.GRAY);
+	        }
+	    }
+	});
 	
 	JButton btnNewButton = new JButton("Registrate");
 	btnNewButton.setBounds(168, 342, 107, 41);
@@ -363,27 +466,37 @@ public void Login() {
             Boolean passwordValido = false;
           
             // Validación del nombre
-            if(nombreField.getText().equals("")) {
+            if(nombreField.getText().equals("") || nombreField.getText().equals(placeholder)) {
                 nombreField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
             } else {
                 nombreField.setBorder(BorderFactory.createLineBorder(Color.green, 2));
                 nombreValido = true;
             }
             
-            // Validación del apellido
-            if(emailField.getText().equals("")) {
+            // Validación del email
+            if(emailField.getText().equals("") || emailField.getText().equals(placeholder2)) {
                 emailField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
             } else {
                 emailField.setBorder(BorderFactory.createLineBorder(Color.green, 2));
                 emailValido = true;
             }
             
-            // Validación del contraseña
-            if(passText.equals("") || !passText.equals(passCfrmText)) {
-            	passwordField1.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+            //validacion de contraseña
+            if (passText.equals("") || passText.equals(passwordPlaceholder)) {
+                passwordField1.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+                passwordValido = false;
             } else {
-            	passwordField1.setBorder(BorderFactory.createLineBorder(Color.green, 2));
-            	passwordValido = true;
+                passwordField1.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+            }
+
+            // validacion de confirmar contraseña
+            if (passCfrmText.equals("") || !passCfrmText.equals(passText)) {
+                cfrmPassField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+                passwordValido = false;
+            } else {
+                cfrmPassField.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+                
+                passwordValido = true;
             }
 
           
@@ -405,13 +518,13 @@ public void Login() {
 
         }
     });
-	JLabel lblNewLabel_4 = new JLabel("¿Aun no tienes una cuenta?");
-	lblNewLabel_4.setBounds(168, 385, 152, 16);
+	JLabel lblNewLabel_4 = new JLabel("¿Ya tienes una cuenta?");
+	lblNewLabel_4.setBounds(148, 390, 152, 16);
 	panel_1.add(lblNewLabel_4);
 	
-	JLabel enlace = new JLabel("<html><a href=''>Registrate</a></html>");
+	JLabel enlace = new JLabel("<html><a href=''>Inicia sesión</a></html>");
     enlace.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    enlace.setBounds(295, 385, 152, 16);
+    enlace.setBounds(275, 390, 152, 16);
     // Acción al hacer clic
     enlace.addMouseListener(new MouseAdapter() {
         @Override
