@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
+import javax.swing.AbstractCellEditor;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -48,6 +49,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -176,6 +179,74 @@ public class HomeView {
 			add(btnHistorial);
 
 		}
+	}
+	
+	class ButtonRenderer extends JButton implements TableCellRenderer {
+
+	    public ButtonRenderer() {
+			ImageIcon c = new ImageIcon(getClass().getResource("/img/borrar2.png"));
+	        Image imagen3 = c.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+	        setIcon(new ImageIcon(imagen3)); 
+	        setBorderPainted(false);
+	        setContentAreaFilled(false);
+	    }
+
+	    @Override
+	    public Component getTableCellRendererComponent(JTable table, Object value,
+	            boolean isSelected, boolean hasFocus, int row, int column) {
+	        return this;
+	    }
+	}
+	
+	class IconButtonEditor extends AbstractCellEditor implements TableCellEditor {
+	    protected JButton button;
+	    private JTable table;
+	    private DefaultTableModel model;
+
+	    public IconButtonEditor(DefaultTableModel model, JTable table) {
+
+	        this.model = model;
+	        this.table = table;
+
+	        button = new JButton();
+			ImageIcon c = new ImageIcon(getClass().getResource("/img/borrar2.png"));
+			Image imagen3 = c.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+			button.setIcon(new ImageIcon(imagen3));
+	        button.setBorderPainted(false);
+
+
+	        button.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                fireEditingStopped(); // Finaliza la edición
+	                int fila = table.getSelectedRow();
+
+	                if (fila != -1) {
+	                    int confirm = JOptionPane.showConfirmDialog(
+	                        table,
+	                        "¿Estás seguro de que quieres eliminar esta fila?",
+	                        "Confirmación",
+	                        JOptionPane.YES_NO_OPTION,
+	                        JOptionPane.QUESTION_MESSAGE
+	                    );
+
+	                    if (confirm == JOptionPane.YES_OPTION) {
+	                        model.removeRow(fila);
+	                    }
+	                }
+	            }
+	        });
+	    }
+
+	    @Override
+	    public Component getTableCellEditorComponent(JTable table, Object value,
+	            boolean isSelected, int row, int column) {
+	        return button;
+	    }
+
+	    @Override
+	    public Object getCellEditorValue() {
+	        return null;
+	    }
 	}
 
 	public void Comedor() {
@@ -1074,6 +1145,15 @@ public class HomeView {
 		btnNewButton_7.setBounds(540, 0, 276, 88);
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
+		btnNewButton_7.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				HomeController cc = new HomeController();
+				cc.SeleccionDePapas();
+			}
+		});
 		panel_1.add(btnNewButton_7);
 
 		JButton btnNewButton_8 = new JButton("BEBIDAS");
@@ -1216,6 +1296,17 @@ public class HomeView {
 		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 		btnNewButton_12.setIcon(new ImageIcon(imagen2));
 		btnNewButton_12.setIconTextGap(20); // espacio entre imagen y texto
+		btnNewButton_12.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                frame.dispose();
+                HomeController hm = new HomeController();
+                hm.IngresarnuevaCuenta();
+            }
+        });
+
 		panel_1.add(btnNewButton_12);
 		btnNewButton_12.setFocusPainted(false);
 		btnNewButton_12.setContentAreaFilled(true);
@@ -1792,31 +1883,70 @@ public class HomeView {
 			}
 		});
 
+
+
+		
+		String[] titulos = {"Descripción", "Cantidad", "U.M.", "Costo", ""};
+		DefaultTableModel modeloTabla = new DefaultTableModel(titulos, 0);   
+		
+		
+		JTable tabla = new JTable(modeloTabla);
+		tabla.getColumn("").setCellRenderer(new ButtonRenderer());
+		tabla.getColumn("").setCellEditor(new IconButtonEditor(modeloTabla, tabla));
+		tabla.setShowGrid(true);
+		tabla.setRowHeight(30);
+		tabla.getColumn("").setMaxWidth(50);
+		tabla.getTableHeader().setReorderingAllowed(false);
+
+		DefaultTableCellRenderer centerRenderer2 = new DefaultTableCellRenderer();
+		centerRenderer2.setHorizontalAlignment(SwingConstants.CENTER);
+		for (int i = 0; i < tabla.getColumnCount(); i++) {
+			if (!tabla.getColumnName(i).equals("")) {
+				tabla.getColumnModel().getColumn(i).setCellRenderer(centerRenderer2);
+			}
+		}
+		JScrollPane scroll = new JScrollPane(tabla);
+		scroll.setBounds(350, 30, 360, 255);                
+		panel_2.add(scroll);
+		
+
 		JButton btnNewButton_5 = new JButton("Añadir");
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_5.setBackground(new Color(117, 197, 188));
 		btnNewButton_5.setBounds(105, 97, 85, 30);
+		btnNewButton_5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			    String descripcion = TextField.getText().trim();
+			    String placeholder = "BUSCAR";
+
+			    // verifica que no este vacio o que no sea el placeholder
+			    if (descripcion.isEmpty() || descripcion.equals(placeholder)) {
+			        JOptionPane.showMessageDialog(frame,
+			                "Selecciona primero un ingrediente válido",
+			                "Aviso", JOptionPane.WARNING_MESSAGE);
+			        return;
+			    }
+
+
+			    String cantidad = "25";
+
+			    String um = "kg"; 
+
+			    String costo = "$70";
+
+			   
+			    modeloTabla.addRow(new Object[]{descripcion, cantidad, um, costo, ""});
+
+			    // se limpia el textfield de busqueda para poder buscar otro
+			    TextField.setText("");
+			}
+		});
 		panel_2.add(btnNewButton_5);
+		
 
-		JLabel lblNewLabel_1 = new JLabel("Descripción");
-		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(392, 36, 116, 13);
-		panel_2.add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("Cantidad");
-		lblNewLabel_2.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(498, 36, 85, 13);
-		panel_2.add(lblNewLabel_2);
-
-		JLabel lblNewLabel_3 = new JLabel("U.M.");
-		lblNewLabel_3.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_3.setBounds(588, 36, 45, 13);
-		panel_2.add(lblNewLabel_3);
-
-		JLabel lblNewLabel_4 = new JLabel("Costo");
-		lblNewLabel_4.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_4.setBounds(643, 36, 55, 13);
-		panel_2.add(lblNewLabel_4);
 
 		// boton cancelar
 		JButton btnNewButton_6 = new JButton("CANCELAR");
@@ -1855,6 +1985,16 @@ public class HomeView {
 		btnNewButton_7.setIcon(new ImageIcon(imagen1));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
+		btnNewButton_7.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.menu();
+			}
+		});
 		panel_1.add(btnNewButton_7);
 		frame.setVisible(true);
 
@@ -6786,6 +6926,16 @@ public class HomeView {
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/añadir.png"));
 		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_5.setIcon(new ImageIcon(imagen));
+		btnNewButton_5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.AltaDeClientes();
+			}
+		});
 		panel.add(btnNewButton_5);
 
 		// Botton editar
@@ -6802,6 +6952,16 @@ public class HomeView {
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lapiz.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_6.setIcon(new ImageIcon(imagen2));
+		btnNewButton_6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.EditarCliente();
+			}
+		});
 		panel.add(btnNewButton_6);
 
 		ImageIcon lupaIcon = new ImageIcon(getClass().getResource("/img/lupa.png"));
@@ -7904,37 +8064,22 @@ public class HomeView {
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 
-		JLabel lblNewLabel_1 = new JLabel("Descripción");
-		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(392, 36, 116, 13);
-		panel_2.add(lblNewLabel_1);
+		JTextField TextField = new JTextField("BUSCAR");
+		TextField.setBackground(new Color(237, 237, 237));
+		TextField.setFont(new Font("Inter", Font.BOLD, 10));
+		TextField.setForeground(Color.GRAY);
+		TextField.setBounds(35, 47, 223, 40);
+		panel_2.add(TextField);
+		TextField.setColumns(10);
 
-		JLabel lblNewLabel_2 = new JLabel("Cantidad");
-		lblNewLabel_2.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(498, 36, 85, 13);
-		panel_2.add(lblNewLabel_2);
 
-		JLabel lblNewLabel_3 = new JLabel("U.M.");
-		lblNewLabel_3.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_3.setBounds(588, 36, 45, 13);
-		panel_2.add(lblNewLabel_3);
-
-		JLabel lblNewLabel_4 = new JLabel("Costo");
-		lblNewLabel_4.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_4.setBounds(643, 36, 55, 13);
-		panel_2.add(lblNewLabel_4);
-
-		// Datos y columnas
 		String[] columnas = { "Código", "Descripción" };
-		String[][] datos = { { "040221", "Tocino" }, { "043216", "Tomate" }, { "041555", "Salsa tabasco" },
-				{ "041221", "Tomate" }, { "043851", "Tahini" },
-
-		};
-
-		// Tabla y scroll
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 76, 311, 149);
-		panel_2.add(scrollPane);
+		String[][] datos = { 
+				{ "047001", "Aceite de oliva" },
+				{ "047002", "Quinoa" },
+				{ "047003", "Champiñones" },
+				{ "047004", "Wasabi" }, 
+				{ "047005", "Miso" } };
 
 		JTable table = new JTable(datos, columnas) {
 			@Override
@@ -7948,14 +8093,12 @@ public class HomeView {
 		table.setGridColor(Color.BLACK);
 		table.getTableHeader().setReorderingAllowed(false);
 
-		// Centrado de celdas
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 		for (int i = 0; i < table.getColumnCount(); i++) {
 			table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		}
 
-		// Header personalizado
 		JTableHeader header = table.getTableHeader();
 		header.setFont(new Font("Inter", Font.BOLD, 14));
 		header.setDefaultRenderer(new DefaultTableCellRenderer() {
@@ -7970,34 +8113,130 @@ public class HomeView {
 			}
 		});
 
-		scrollPane.setViewportView(table);
+		// PRIMERO creamos el JScrollPane y JPopupMenu
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setPreferredSize(new Dimension(311, 149));
 
-		JTextField textField = new JTextField("Buscar");
-		textField.setBackground(new Color(237, 237, 237));
-		textField.setFont(new Font("Inter", Font.BOLD, 20));
-		textField.setForeground(Color.GRAY);
-		textField.setBounds(10, 36, 223, 40);
-		panel_2.add(textField);
-		textField.setColumns(10);
+		JPopupMenu popupMenu = new JPopupMenu();
+		popupMenu.add(scrollPane);
 
-		// HACE QUE SE BORRE EL BUSCAR AL ESCRIBIR EN EL TEXTFIELD
-		final String placeholder = "Buscar";
-		textField.addFocusListener(new FocusAdapter() {
+		// AHORA añadimos el MouseListener que puede referenciar al popupMenu
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
 
+				if (row >= 0) {
+					// para agarrar el texto dentro de descripcion
+					Object cellValue = table.getValueAt(row, 1);
+					String descripcion = cellValue != null ? cellValue.toString() : "";
+
+					// Limpiar el TextField si tiene el texto placeholder
+					if (TextField.getText().equals("BUSCAR")) {
+						TextField.setText("");
+						TextField.setForeground(Color.BLACK);
+					}
+
+					// Agregar la descripción al TextField
+					String textoActual = TextField.getText();
+					if (textoActual.isEmpty()) {
+						TextField.setText(descripcion);
+					} else {
+						TextField.setText(textoActual + " " + descripcion);
+					}
+
+					// Cerrar el popup después de seleccionar (CORREGIDO)
+					if (popupMenu.isVisible()) {
+						popupMenu.setVisible(false);
+					}
+				}
+			}
+		});
+
+		TextField.addFocusListener(new FocusAdapter() {
 			public void focusGained(FocusEvent e) {
-				if (textField.getText().equals(placeholder)) {
-					textField.setText("");
-					textField.setForeground(Color.BLACK);
+				if (TextField.getText().equals("BUSCAR")) {
+					TextField.setText("");
+					TextField.setForeground(Color.BLACK);
 				}
 			}
 
 			public void focusLost(FocusEvent e) {
-				if (textField.getText().isEmpty()) {
-					textField.setText(placeholder);
-					textField.setForeground(Color.GRAY);
+				if (TextField.getText().isEmpty()) {
+					TextField.setText("BUSCAR");
+					TextField.setForeground(Color.GRAY);
 				}
 			}
 		});
+
+		TextField.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				SwingUtilities.invokeLater(() -> {
+					popupMenu.show(TextField, 0, TextField.getHeight());
+				});
+			}
+		});
+		
+		
+		String[] titulos = {"Descripción", "Cantidad", "U.M.", "Costo", ""};
+		DefaultTableModel modeloTabla = new DefaultTableModel(titulos, 0);   
+		
+		
+		JTable tabla = new JTable(modeloTabla);
+		tabla.getColumn("").setCellRenderer(new ButtonRenderer());
+		tabla.getColumn("").setCellEditor(new IconButtonEditor(modeloTabla, tabla));
+		tabla.setShowGrid(true);
+		tabla.setRowHeight(30);
+		tabla.getColumn("").setMaxWidth(50);
+		tabla.getTableHeader().setReorderingAllowed(false);
+
+		DefaultTableCellRenderer centerRenderer2 = new DefaultTableCellRenderer();
+		centerRenderer2.setHorizontalAlignment(SwingConstants.CENTER);
+		for (int i = 0; i < tabla.getColumnCount(); i++) {
+			if (!tabla.getColumnName(i).equals("")) {
+				tabla.getColumnModel().getColumn(i).setCellRenderer(centerRenderer2);
+			}
+		}
+		JScrollPane scroll = new JScrollPane(tabla);
+		scroll.setBounds(350, 30, 360, 255);                
+		panel_2.add(scroll);
+		
+
+		JButton btnNewButton_5 = new JButton("Añadir");
+		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
+		btnNewButton_5.setBackground(new Color(117, 197, 188));
+		btnNewButton_5.setBounds(105, 97, 85, 30);
+		btnNewButton_5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			    String descripcion = TextField.getText().trim();
+			    String placeholder = "BUSCAR";
+
+			    // verifica que no este vacio o que no sea el placeholder
+			    if (descripcion.isEmpty() || descripcion.equals(placeholder)) {
+			        JOptionPane.showMessageDialog(frame,
+			                "Selecciona primero un ingrediente válido",
+			                "Aviso", JOptionPane.WARNING_MESSAGE);
+			        return;
+			    }
+
+
+			    String cantidad = "25";
+
+			    String um = "kg"; 
+
+			    String costo = "$70";
+
+			   
+			    modeloTabla.addRow(new Object[]{descripcion, cantidad, um, costo, ""});
+
+			    // se limpia el textfield de busqueda para poder buscar otro
+			    TextField.setText("");
+			}
+		});
+		panel_2.add(btnNewButton_5);
 
 		// Botón cancelar
 		JButton btnNewButton_6 = new JButton("CANCELAR");
@@ -8039,6 +8278,16 @@ public class HomeView {
 		btnNewButton_7.setIcon(new ImageIcon(imagen2));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
+		btnNewButton_7.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.menu();
+			}
+		});
 		panel_1.add(btnNewButton_7);
 		frame.setVisible(true);
 
@@ -8400,11 +8649,481 @@ public class HomeView {
 		frame.setVisible(true);
 	}
 
+	public void SeleccionDePapas(Consumer<JComponent> addScaled) {
+
+		JDialog frame = new JDialog();
+		frame.setAlwaysOnTop(true);
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 545, 320);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		frame.getContentPane();
+		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 545, 320);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+
+		JLabel lblNewLabel_1 = new JLabel("Seleccióne el tamaño");
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 20));
+		lblNewLabel_1.setBounds(162, 22, 262, 49);
+		panel.add(lblNewLabel_1);
+
+		JButton btnNewButton = new JButton("Chicas");
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBounds(47, 117, 98, 59);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionPapasChicas();
+			}
+		});
+		panel.add(btnNewButton);
+
+		JButton btnNewButton_1 = new JButton("Medianas");
+		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton_1.setBackground(new Color(255, 255, 255));
+		btnNewButton_1.setBounds(215, 117, 98, 59);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionPapasMedianas();
+			}
+		});
+		panel.add(btnNewButton_1);
+
+		JButton btnNewButton_2 = new JButton("Grandes");
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton_2.setBackground(new Color(255, 255, 255));
+		btnNewButton_2.setBounds(386, 117, 98, 59);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionPapasGrandes();
+			}
+		});
+		panel.add(btnNewButton_2);
+
+		JButton btnNewButton_3 = new JButton("CANCELAR");
+		btnNewButton_3.setBackground(new Color(255, 255, 255));
+		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 10));
+		btnNewButton_3.setVerticalTextPosition(SwingConstants.BOTTOM); // ESTE ES PARA PONER EL TEXTO EN LA PARTE DE
+																		// ABAJO de la imagen
+		btnNewButton_3.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_3.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_3.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_3.setIconTextGap(1);
+		btnNewButton_3.setBounds(220, 224, 92, 49);
+		ImageIcon d = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen4 = d.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_3.setIcon(new ImageIcon(imagen4));
+		panel.add(btnNewButton_3);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+
+
+		frame.setVisible(true);
+
+	}
+	
+	public void SeleccionPapasChicas(Consumer<JComponent> addScaled) {
+
+		JDialog frame = new JDialog();
+		frame.setAlwaysOnTop(true);
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 545, 320);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		frame.getContentPane();
+		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 545, 320);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Papas chicas");
+		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 18));
+		lblNewLabel.setBounds(215, 10, 281, 30);
+		panel.add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("Seleccióna la cantidad");
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(193, 83, 161, 13);
+		panel.add(lblNewLabel_1);
+
+		final int[] cantidad = { 1 };
+
+		// label de cantidad
+		JLabel lblCantidad = new JLabel("1", SwingConstants.CENTER); // Centra el texto
+		lblCantidad.setFont(new Font("Inter", Font.BOLD, 15));
+		lblCantidad.setOpaque(true);
+		lblCantidad.setBackground(new Color(255, 255, 255));
+		lblCantidad.setBounds(235, 117, 68, 59);
+		panel.add(lblCantidad);
+
+		// boton -
+		JButton btnNewButton = new JButton("-");
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBounds(67, 117, 68, 59);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(true);
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (cantidad[0] > 1) {
+					cantidad[0]--;
+					lblCantidad.setText(String.valueOf(cantidad[0]));
+				}
+			}
+		});
+		panel.add(btnNewButton);
+
+		// boton *+*
+		JButton btnNewButton_2 = new JButton("+");
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton_2.setBackground(new Color(255, 255, 255));
+		btnNewButton_2.setBounds(406, 117, 68, 59);
+		btnNewButton_2.setFocusPainted(false);
+		btnNewButton_2.setContentAreaFilled(true);
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cantidad[0]++;
+				lblCantidad.setText(String.valueOf(cantidad[0]));
+			}
+		});
+		panel.add(btnNewButton_2);
+
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setBackground(new Color(255, 255, 255));
+		btnCancelar.setFont(new Font("Inter", Font.BOLD, 9));
+		btnCancelar.setFocusPainted(false);
+		btnCancelar.setContentAreaFilled(true);
+		btnCancelar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnCancelar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCancelar.setHorizontalAlignment(SwingConstants.CENTER);
+		btnCancelar.setVerticalAlignment(SwingConstants.CENTER);
+		btnCancelar.setIconTextGap(1);
+		btnCancelar.setBounds(146, 224, 92, 49);
+		btnCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionDePapas();
+			}
+		});
+
+		// imagen
+		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnCancelar.setIcon(new ImageIcon(imagen));
+		panel.add(btnCancelar);
+
+		JButton btnNewButton_4 = new JButton("ACEPTAR");
+		btnNewButton_4.setBackground(new Color(255, 255, 255));
+		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 9));
+		// QUITA las lineas que salen al picarle al boton
+		btnNewButton_4.setFocusPainted(false);
+		btnNewButton_4.setContentAreaFilled(true);
+		// TEXTO ABAJO DE LA IMAGEN
+		btnNewButton_4.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_4.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_4.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setIconTextGap(1);
+		btnNewButton_4.setBounds(295, 224, 92, 49);
+		// IMAGEN
+		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_4.setIcon(new ImageIcon(imagen2));
+		panel.add(btnNewButton_4);
+		frame.add(panel);
+		frame.setVisible(true);
+
+	}
+	
+	public void SeleccionPapasMedianas(Consumer<JComponent> addScaled) {
+
+		JDialog frame = new JDialog();
+		frame.setAlwaysOnTop(true);
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 545, 320);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		frame.getContentPane();
+		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 545, 320);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Papas medianas");
+		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 18));
+		lblNewLabel.setBounds(195, 10, 281, 30);
+		panel.add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("Seleccióna la cantidad");
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(193, 83, 161, 13);
+		panel.add(lblNewLabel_1);
+
+		final int[] cantidad = { 1 };
+
+		// label de cantidad
+		JLabel lblCantidad = new JLabel("1", SwingConstants.CENTER); // Centra el texto
+		lblCantidad.setFont(new Font("Inter", Font.BOLD, 15));
+		lblCantidad.setOpaque(true);
+		lblCantidad.setBackground(new Color(255, 255, 255));
+		lblCantidad.setBounds(235, 117, 68, 59);
+		panel.add(lblCantidad);
+
+		// boton -
+		JButton btnNewButton = new JButton("-");
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBounds(67, 117, 68, 59);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(true);
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (cantidad[0] > 1) {
+					cantidad[0]--;
+					lblCantidad.setText(String.valueOf(cantidad[0]));
+				}
+			}
+		});
+		panel.add(btnNewButton);
+
+		// boton *+*
+		JButton btnNewButton_2 = new JButton("+");
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton_2.setBackground(new Color(255, 255, 255));
+		btnNewButton_2.setBounds(406, 117, 68, 59);
+		btnNewButton_2.setFocusPainted(false);
+		btnNewButton_2.setContentAreaFilled(true);
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cantidad[0]++;
+				lblCantidad.setText(String.valueOf(cantidad[0]));
+			}
+		});
+		panel.add(btnNewButton_2);
+
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setBackground(new Color(255, 255, 255));
+		btnCancelar.setFont(new Font("Inter", Font.BOLD, 9));
+		btnCancelar.setFocusPainted(false);
+		btnCancelar.setContentAreaFilled(true);
+		btnCancelar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnCancelar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCancelar.setHorizontalAlignment(SwingConstants.CENTER);
+		btnCancelar.setVerticalAlignment(SwingConstants.CENTER);
+		btnCancelar.setIconTextGap(1);
+		btnCancelar.setBounds(146, 224, 92, 49);
+		btnCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionDePapas();
+			}
+		});
+
+		// imagen
+		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnCancelar.setIcon(new ImageIcon(imagen));
+		panel.add(btnCancelar);
+
+		JButton btnNewButton_4 = new JButton("ACEPTAR");
+		btnNewButton_4.setBackground(new Color(255, 255, 255));
+		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 9));
+		// QUITA las lineas que salen al picarle al boton
+		btnNewButton_4.setFocusPainted(false);
+		btnNewButton_4.setContentAreaFilled(true);
+		// TEXTO ABAJO DE LA IMAGEN
+		btnNewButton_4.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_4.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_4.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setIconTextGap(1);
+		btnNewButton_4.setBounds(295, 224, 92, 49);
+		// IMAGEN
+		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_4.setIcon(new ImageIcon(imagen2));
+		panel.add(btnNewButton_4);
+		frame.add(panel);
+		frame.setVisible(true);
+
+	}
+	
+	public void SeleccionPapasGrandes(Consumer<JComponent> addScaled) {
+
+		JDialog frame = new JDialog();
+		frame.setAlwaysOnTop(true);
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 545, 320);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		frame.getContentPane();
+		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 545, 320);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Papas grandes");
+		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 18));
+		lblNewLabel.setBounds(195, 10, 281, 30);
+		panel.add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("Seleccióna la cantidad");
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(193, 83, 161, 13);
+		panel.add(lblNewLabel_1);
+
+		final int[] cantidad = { 1 };
+
+		// label de cantidad
+		JLabel lblCantidad = new JLabel("1", SwingConstants.CENTER); // Centra el texto
+		lblCantidad.setFont(new Font("Inter", Font.BOLD, 15));
+		lblCantidad.setOpaque(true);
+		lblCantidad.setBackground(new Color(255, 255, 255));
+		lblCantidad.setBounds(235, 117, 68, 59);
+		panel.add(lblCantidad);
+
+		// boton -
+		JButton btnNewButton = new JButton("-");
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBounds(67, 117, 68, 59);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(true);
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (cantidad[0] > 1) {
+					cantidad[0]--;
+					lblCantidad.setText(String.valueOf(cantidad[0]));
+				}
+			}
+		});
+		panel.add(btnNewButton);
+
+		// boton *+*
+		JButton btnNewButton_2 = new JButton("+");
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton_2.setBackground(new Color(255, 255, 255));
+		btnNewButton_2.setBounds(406, 117, 68, 59);
+		btnNewButton_2.setFocusPainted(false);
+		btnNewButton_2.setContentAreaFilled(true);
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cantidad[0]++;
+				lblCantidad.setText(String.valueOf(cantidad[0]));
+			}
+		});
+		panel.add(btnNewButton_2);
+
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setBackground(new Color(255, 255, 255));
+		btnCancelar.setFont(new Font("Inter", Font.BOLD, 9));
+		btnCancelar.setFocusPainted(false);
+		btnCancelar.setContentAreaFilled(true);
+		btnCancelar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnCancelar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCancelar.setHorizontalAlignment(SwingConstants.CENTER);
+		btnCancelar.setVerticalAlignment(SwingConstants.CENTER);
+		btnCancelar.setIconTextGap(1);
+		btnCancelar.setBounds(146, 224, 92, 49);
+		btnCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionDePapas();
+			}
+		});
+
+		// imagen
+		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnCancelar.setIcon(new ImageIcon(imagen));
+		panel.add(btnCancelar);
+
+		JButton btnNewButton_4 = new JButton("ACEPTAR");
+		btnNewButton_4.setBackground(new Color(255, 255, 255));
+		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 9));
+		// QUITA las lineas que salen al picarle al boton
+		btnNewButton_4.setFocusPainted(false);
+		btnNewButton_4.setContentAreaFilled(true);
+		// TEXTO ABAJO DE LA IMAGEN
+		btnNewButton_4.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_4.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_4.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setIconTextGap(1);
+		btnNewButton_4.setBounds(295, 224, 92, 49);
+		// IMAGEN
+		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_4.setIcon(new ImageIcon(imagen2));
+		panel.add(btnNewButton_4);
+		frame.add(panel);
+		frame.setVisible(true);
+
+	}
+	
 	public void Ticket(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 404, 630);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		JPanel panel = new JPanel();

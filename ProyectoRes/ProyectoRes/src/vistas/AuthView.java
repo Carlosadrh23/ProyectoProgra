@@ -100,7 +100,7 @@ public void Login() {
 		panel_1.add(txtAdministrador);
 		txtAdministrador.setHorizontalAlignment(JTextField.CENTER);
 		txtAdministrador.setColumns(10);
-		txtAdministrador.setBorder(BorderFactory.createEmptyBorder());
+
 		
 		
 		JLabel lblNewLabel_3 = new JLabel("");
@@ -129,7 +129,7 @@ public void Login() {
 		lblNewLabel_4.setBounds(138, 350, 152, 16);
 		panel_1.add(lblNewLabel_4);
 		
-		JLabel enlace = new JLabel("<html><a href=''>Inicia sesión</a></html>");
+		JLabel enlace = new JLabel("<html><a href=''>Registrate</a></html>");
         enlace.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         enlace.setBounds(265, 350, 152, 16);
         // Acción al hacer clic
@@ -164,7 +164,7 @@ public void Login() {
 					txtAdministrador.setBorder(BorderFactory.createLineBorder(Color.red,2));
 				}else {
 					
-					txtAdministrador.setBorder(BorderFactory.createLineBorder(Color.red,2));
+					txtAdministrador.setBorder(BorderFactory.createLineBorder(Color.green,2));
 					flag2 = true;
 				}
 
@@ -363,27 +363,36 @@ public void Login() {
             Boolean passwordValido = false;
           
             // Validación del nombre
-            if(nombreField.getText().equals("")) {
+            if(nombreField.getText().equals("") || nombreField.getText().equals("Username")) {
                 nombreField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
             } else {
                 nombreField.setBorder(BorderFactory.createLineBorder(Color.green, 2));
                 nombreValido = true;
             }
             
-            // Validación del apellido
-            if(emailField.getText().equals("")) {
+            // Validación del email
+            if(emailField.getText().equals("") || emailField.getText().equals("Email")) {
                 emailField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
             } else {
                 emailField.setBorder(BorderFactory.createLineBorder(Color.green, 2));
                 emailValido = true;
             }
             
-            // Validación del contraseña
-            if(passText.equals("") || !passText.equals(passCfrmText)) {
-            	passwordField1.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+            if (passText.equals("")) {
+                passwordField1.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+                passwordValido = false;
             } else {
-            	passwordField1.setBorder(BorderFactory.createLineBorder(Color.green, 2));
-            	passwordValido = true;
+                passwordField1.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+            }
+
+            // Validación de la confirmación de contraseña (campo 2)
+            if (passCfrmText.equals("") || !passCfrmText.equals(passText)) {
+                cfrmPassField.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+                passwordValido = false;
+            } else {
+                cfrmPassField.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+                
+                passwordValido = true;
             }
 
           
@@ -405,13 +414,13 @@ public void Login() {
 
         }
     });
-	JLabel lblNewLabel_4 = new JLabel("¿Aun no tienes una cuenta?");
-	lblNewLabel_4.setBounds(168, 385, 152, 16);
+	JLabel lblNewLabel_4 = new JLabel("¿Ya tienes una cuenta?");
+	lblNewLabel_4.setBounds(148, 385, 152, 16);
 	panel_1.add(lblNewLabel_4);
 	
-	JLabel enlace = new JLabel("<html><a href=''>Registrate</a></html>");
+	JLabel enlace = new JLabel("<html><a href=''>Inicia sesión</a></html>");
     enlace.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    enlace.setBounds(295, 385, 152, 16);
+    enlace.setBounds(275, 385, 152, 16);
     // Acción al hacer clic
     enlace.addMouseListener(new MouseAdapter() {
         @Override
