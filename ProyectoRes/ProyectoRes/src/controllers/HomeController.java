@@ -141,6 +141,21 @@ public class HomeController {
 		vista.SeleccionDeBebida(null);
 	}
 	
+	public void SeleccionCocaCola() {
+		// TODO Auto-generated method stub
+		vista.SeleccionCocaCola(null);
+	}
+	
+	public void SeleccionSprite() {
+		// TODO Auto-generated method stub
+		vista.SeleccionSprite(null);
+	}
+	
+	public void SeleccionManzana() {
+		// TODO Auto-generated method stub
+		vista.SeleccionManzana(null);
+	}
+	
 	public void SeleccionDePapas() {
 		vista.SeleccionDePapas(null);
 	}
@@ -174,6 +189,14 @@ public class HomeController {
 	public void AlertaCuentaEliminada() {
 		// TODO Auto-generated method stub
 		vista.AlertaCuentaEliminada(null);
+	}
+	
+	public void AñadirFactura() {
+		vista.AñadirFactura();
+	}
+	
+	public void EditarFactura() {
+		vista.EditarFactura();
 	}
 	
 
