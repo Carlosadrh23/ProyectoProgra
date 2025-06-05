@@ -4784,7 +4784,6 @@ public class HomeView {
 		panel_2.add(lblNewLabel_2);
 
 		txtPrimerNombre = new JTextField();
-		txtPrimerNombre.setText("Erick");
 		txtPrimerNombre.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtPrimerNombre.setBackground(new Color(237, 237, 237));
 		txtPrimerNombre.setBounds(154, 41, 96, 21);
@@ -4797,7 +4796,6 @@ public class HomeView {
 		panel_2.add(lblNewLabel_3);
 
 		txtSegundoNombre = new JTextField();
-		txtSegundoNombre.setText("Daniel");
 		txtSegundoNombre.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtSegundoNombre.setBackground(new Color(237, 237, 237));
 		txtSegundoNombre.setBounds(154, 92, 96, 21);
@@ -4810,7 +4808,6 @@ public class HomeView {
 		panel_2.add(lblNewLabel_4);
 
 		txtPrimerApellido = new JTextField();
-		txtPrimerApellido.setText("González");
 		txtPrimerApellido.setBackground(new Color(237, 237, 237));
 		txtPrimerApellido.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtPrimerApellido.setBounds(154, 151, 96, 21);
@@ -4823,7 +4820,6 @@ public class HomeView {
 		panel_2.add(lblNewLabel_5);
 
 		txtSegundoApellido = new JTextField();
-		txtSegundoApellido.setText("Martínez");
 		txtSegundoApellido.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtSegundoApellido.setBackground(new Color(237, 237, 237));
 		txtSegundoApellido.setBounds(154, 209, 96, 21);
@@ -4849,7 +4845,6 @@ public class HomeView {
 		panel_3.add(lblNewLabel_7);
 
 		txtDia = new JTextField();
-		txtDia.setText("24");
 		txtDia.setBackground(new Color(237, 237, 237));
 		txtDia.setFont(new Font("Inter", Font.PLAIN, 11));
 		txtDia.setBounds(42, 30, 34, 19);
@@ -4862,7 +4857,6 @@ public class HomeView {
 		panel_3.add(lblNewLabel_8);
 
 		txtMes = new JTextField();
-		txtMes.setText("11");
 		txtMes.setFont(new Font("Inter", Font.PLAIN, 11));
 		txtMes.setBackground(new Color(237, 237, 237));
 		txtMes.setBounds(124, 30, 34, 19);
@@ -4875,7 +4869,6 @@ public class HomeView {
 		panel_3.add(lblNewLabel_9);
 
 		txtAño = new JTextField();
-		txtAño.setText("1998");
 		txtAño.setFont(new Font("Inter", Font.PLAIN, 11));
 		txtAño.setBackground(new Color(237, 237, 237));
 		txtAño.setBounds(220, 30, 45, 19);
@@ -4888,7 +4881,6 @@ public class HomeView {
 		panel_1.add(lblNewLabel_10);
 
 		txtRFC = new JTextField();
-		txtRFC.setText("EDGM119824HC1");
 		txtRFC.setBackground(new Color(237, 237, 237));
 		txtRFC.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtRFC.setBounds(91, 455, 174, 22);
@@ -4917,7 +4909,6 @@ public class HomeView {
 		txtCalle = new JTextField();
 		txtCalle.setBackground(new Color(237, 237, 237));
 		txtCalle.setBackground(new Color(237, 237, 237));
-		txtCalle.setText("Calle Oro");
 		txtCalle.setBackground(new Color(237, 237, 237));
 		txtCalle.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtCalle.setBounds(79, 30, 208, 26);
@@ -4930,7 +4921,6 @@ public class HomeView {
 		panel_4.add(lblNewLabel_13);
 
 		txtNumeroCalle = new JTextField();
-		txtNumeroCalle.setText("1946");
 		txtNumeroCalle.setBackground(new Color(237, 237, 237));
 		txtNumeroCalle.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtNumeroCalle.setBounds(39, 88, 62, 26);
@@ -4943,7 +4933,6 @@ public class HomeView {
 		panel_4.add(lblNewLabel_14);
 
 		txtCP = new JTextField();
-		txtCP.setText("23795");
 		txtCP.setBackground(new Color(237, 237, 237));
 		txtCP.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtCP.setBounds(190, 89, 62, 26);
@@ -4956,7 +4945,6 @@ public class HomeView {
 		panel_4.add(lblNewLabel_15);
 
 		txtColonia = new JTextField();
-		txtColonia.setText("Camino real");
 		txtColonia.setBackground(new Color(237, 237, 237));
 		txtColonia.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtColonia.setBounds(79, 150, 208, 26);
@@ -4971,7 +4959,6 @@ public class HomeView {
 		txtCiudad = new JTextField();
 		txtCiudad.setBackground(new Color(237, 237, 237));
 		txtCiudad.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtCiudad.setText("La paz");
 		txtCiudad.setBounds(67, 219, 62, 26);
 		panel_4.add(txtCiudad);
 		txtCiudad.setColumns(10);
@@ -5009,7 +4996,6 @@ public class HomeView {
 		txtCorreo = new JTextField();
 		txtCorreo.setBackground(new Color(237, 237, 237));
 		txtCorreo.setFont(new Font("Inter", Font.PLAIN, 14));
-		txtCorreo.setText("erick_11@uabcs.mx");
 		txtCorreo.setBounds(77, 30, 191, 19);
 		panel_5.add(txtCorreo);
 		txtCorreo.setColumns(10);
@@ -5021,7 +5007,6 @@ public class HomeView {
 
 		txtTelefono = new JTextField();
 		txtTelefono.setBackground(new Color(237, 237, 237));
-		txtTelefono.setText("6121887645");
 		txtTelefono.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtTelefono.setBounds(77, 75, 191, 19);
 		panel_5.add(txtTelefono);
@@ -5070,7 +5055,7 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					// Obtener valores de los campos de texto
-					String firstName = txtPrimerApellido.getText().trim();
+					String firstName = txtPrimerNombre.getText().trim();
 					String secondName = txtSegundoNombre.getText().trim();
 					String firstLastName = txtPrimerApellido.getText().trim();
 					String secondLastName = txtSegundoApellido.getText().trim();
@@ -5078,7 +5063,7 @@ public class HomeView {
 					String phone = txtTelefono.getText().trim();
 					String email = txtCorreo.getText().trim();
 					String street = txtCalle.getText().trim();
-					String number = txtNumeroCalle.getText().trim();
+					String numberStreet = txtNumeroCalle.getText().trim();
 					String neighborhood = txtColonia.getText().trim();
 					String city = txtCiudad.getText().trim();
 					String state = txtEstado.getText().trim();
@@ -5095,7 +5080,6 @@ public class HomeView {
 						String fullName = buildFullName(firstName, secondName, firstLastName, secondLastName);
 
 						// Concatenar dirección completa (calle + número)
-						String fullStreet = buildFullAddress(street, number);
 
 						
 
@@ -5106,7 +5090,8 @@ public class HomeView {
 								rfc, // String rfc
 								phone, // String phone
 								email, // String email
-								fullStreet, // String street
+								street, // String street
+								numberStreet,
 								neighborhood, // String neighborhood
 								city, // String city
 								state, // String state
@@ -5146,6 +5131,7 @@ public class HomeView {
 
 	}
 	private void cargarDatosCliente(int idSeleccionada, List<Client> clientes) {
+		
 	    if (clientes != null && !clientes.isEmpty()) {
 	        // Buscar el cliente con el ID seleccionado
 	        Client clienteEncontrado = null;
@@ -5179,9 +5165,41 @@ public class HomeView {
 	                txtTelefono.setText(clienteActual.phone);
 	            if (clienteActual.email != null)
 	                txtCorreo.setText(clienteActual.email);
-	                
-	           
-	                
+	            if (clienteActual.birth_date != null)
+	            {
+	            	System.out.println(clienteActual.birth_date);
+	            	if (clienteActual.birth_date == null || !clienteActual.birth_date.matches("\\d{4}-\\d{2}-\\d{2}")) {
+	                    System.out.println("Formato de fecha inválido. Debe ser YYYY-MM-DD.");
+	                    return;
+	                }
+	                String[] partes = clienteActual.birth_date.split("-");
+	                String año = partes[0];
+	                String mes = partes[1];
+	                String dia = partes[2];
+	            txtDia.setText(dia);
+	            txtMes.setText(mes);
+	            txtAño.setText(año);
+	            	}
+	            if (clienteActual.street != null)
+	            	txtCalle.setText(clienteActual.street);
+	            
+	            	 if (clienteActual.number_street != null)
+	 	            	txtNumeroCalle.setText(clienteActual.number_street);
+	            	 
+	            	 if (clienteActual.number_street != null)
+		 	            	txtNumeroCalle.setText(clienteActual.number_street);
+	            	 
+	            	 if (clienteActual.neighborhood != null)
+		 	            	txtColonia.setText(clienteActual.neighborhood);
+	            	 
+	            	 if (clienteActual.city != null)
+		 	            	txtCiudad.setText(clienteActual.city);
+	            	 
+	            	 if (clienteActual.state != null)
+		 	            	txtEstado.setText(clienteActual.state);
+	            	 
+	            	 if (clienteActual.postal_code != null)
+		 	            	txtCP.setText(clienteActual.postal_code);
 	        } else {
 	            // Si no se encuentra el cliente, mostrar mensaje de error
 	            JOptionPane.showMessageDialog(null, 
@@ -5269,20 +5287,7 @@ public class HomeView {
 		return fullName.toString().trim();
 	}
 
-	/**
-	 * Construye la dirección completa
-	 */
-	private String buildFullAddress(String street, String number) {
-		if (street.isEmpty()) {
-			return "";
-		}
-
-		if (number.isEmpty()) {
-			return street;
-		}
-
-		return street + " No. " + number;
-	}
+	
 
 	
 	private boolean validateFields(String firstName, String firstLastName, String rfc, String email, String phone) {

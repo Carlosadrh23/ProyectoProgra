@@ -20,7 +20,7 @@ public class ClientsModel {
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<Client> getAll() {
+	/*public List<Client> getAll() {
 		String query = "SELECT *, COALESCE(SUM(o.total), 0) AS IMPORTE FROM customers c \r\n"
 				+ "LEFT JOIN orders o ON c.customer_id = o.customer_id \r\n"
 				+ "GROUP BY c.customer_id";
@@ -36,9 +36,10 @@ public class ClientsModel {
 				String rfc = rs.getString("rfc");
 				String phone = rs.getString("phone");
 				String email = rs.getString("email");
+				 String birthDate = rs.getString("birth_date");
 				Float importe = rs.getFloat("IMPORTE");
-
-				clientes.add(new Client(id, name, rfc, phone, email, importe, null, null));
+					
+				clientes.add(new Client(id, name, rfc, phone, email, importe,birthDate ,null, null));
 			}
 
 		} catch (Exception e) {
@@ -46,6 +47,51 @@ public class ClientsModel {
 		}
 
 		return clientes;
+	}*/
+	public List<Client> getAll() {
+	    List<Client> clientes = new ArrayList<>();
+
+	    String query = "SELECT c.customer_id, c.name, c.rfc, c.phone, c.email,COALESCE(SUM(o.total), 0) AS IMPORTE ,c.birth_date, a.address_id, a.street, a.number_street, a.neighborhood, a.city, a.state, a.postal_code, a.country FROM restaurantedDB.customers c LEFT JOIN restaurantedDB.addresses a ON c.customer_id = a.customer_id LEFT JOIN orders o ON c.customer_id = o.customer_id GROUP BY \r\n"
+	    		+ "  c.customer_id, c.name, c.rfc, c.phone, c.email, c.birth_date,\r\n"
+	    		+ "  a.address_id, a.street, a.number_street, a.neighborhood, a.city, a.state, a.postal_code, a.country;";
+
+
+	    try (Connection conn = DriverManager.getConnection(
+	            "jdbc:mysql://pro.freedb.tech/restaurantedDB", 
+	            "admin", 
+	            "*e9EZn3Nr@KBrde");
+	         PreparedStatement stmt = conn.prepareStatement(query);
+	    		
+	         ResultSet rs = stmt.executeQuery()) {
+
+	        while (rs.next()) {
+	            int id = rs.getInt("customer_id");
+	            String name = rs.getString("name");
+	            String rfc = rs.getString("rfc");
+	            String phone = rs.getString("phone");
+	            String email = rs.getString("email");
+	            String birthDate = rs.getString("birth_date");
+				Float importe = rs.getFloat("IMPORTE");
+
+				 // Dirección
+	            int address_id = rs.getInt("address_id");
+	            String street = rs.getString("street");
+	            String numberStreet = rs.getString("number_street");
+	            String neighborhood = rs.getString("neighborhood");
+	            String city = rs.getString("city");
+	            String state = rs.getString("state");
+	            String postalCode = rs.getString("postal_code");
+	            String country = rs.getString("country");
+
+	            clientes.add(new Client(id, name, rfc, phone, email, importe, birthDate, null, null,
+	                    address_id, street, numberStreet, neighborhood, city, state, postalCode, country));
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return clientes;
 	}
 
 	public User get(int id_Target) {
@@ -337,21 +383,9 @@ public class ClientsModel {
 				postalCode, "México");
 	}
 
-//Método auxiliar para formatear fecha
-	private String formatBirthDate(String day, String month, String year) {
-		try {
-			int dayInt = Integer.parseInt(day.trim());
-			int monthInt = Integer.parseInt(month.trim());
-			int yearInt = Integer.parseInt(year.trim());
 
-// Formato MySQL: YYYY-MM-DD
-			return yearInt + "-" + String.format("%02d", monthInt) + "-" + String.format("%02d", dayInt);
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("Error en formato de fecha: " + e.getMessage());
-		}
-	}
-/*
-	public void updateCustomer(int customerId, String name, String rfc, String phone, String email, String street,
+
+	/*public void updateCustomer(int customerId, String name, String rfc, String phone, String email, String street,
 			String neighborhood, String city, String state, String postalCode, String country) {
 		String updateCustomerQuery = "UPDATE customers SET name = ?, rfc = ?, phone = ?, email = ?, updated_at = CURRENT_TIMESTAMP WHERE customer_id = ?";
 		String updateAddressQuery = "UPDATE addresses SET street = ?, neighborhood = ?, city = ?, state = ?, postal_code = ?, country = ? WHERE customer_id = ?";
@@ -412,12 +446,12 @@ public class ClientsModel {
 		}
 	}
      */
-	public void updateCustomer(int customerId, String name, String rfc, String phone, String email, String street,
+	public void updateCustomer(int customerId, String name, String rfc, String phone, String email, String street,String numberStreet,
 			String neighborhood, String city, String state, String postalCode, String country, String day, String month,
 			String year) {
 
 		String updateCustomerQuery = "UPDATE customers SET name = ?, rfc = ?, phone = ?, email = ?, birth_date = ?, updated_at = CURRENT_TIMESTAMP WHERE customer_id = ?";
-		String updateAddressQuery = "UPDATE addresses SET street = ?, neighborhood = ?, city = ?, state = ?, postal_code = ?, country = ? WHERE customer_id = ?";
+		String updateAddressQuery = "UPDATE addresses SET street = ?, number_street = ?, neighborhood = ?, city = ?, state = ?, postal_code = ?, country = ? WHERE customer_id = ?";
 
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
 				"*e9EZn3Nr@KBrde")) {
@@ -425,9 +459,11 @@ public class ClientsModel {
 			conn.setAutoCommit(false);
 
 			try {
-				// Crear fecha de nacimiento en formato YYYY-MM-DD
+				// Crear fecha de nacimiento en formato YYYY-MM-DD para mysql
 				String birthDate = year + "-" + String.format("%02d", Integer.parseInt(month)) + "-"
 						+ String.format("%02d", Integer.parseInt(day));
+
+
 
 				// Actualizar datos del cliente incluyendo fecha de nacimiento
 				PreparedStatement pstmt1 = conn.prepareStatement(updateCustomerQuery);
@@ -443,12 +479,13 @@ public class ClientsModel {
 				// Actualizar dirección del cliente
 				PreparedStatement pstmt2 = conn.prepareStatement(updateAddressQuery);
 				pstmt2.setString(1, street);
-				pstmt2.setString(2, neighborhood);
-				pstmt2.setString(3, city);
-				pstmt2.setString(4, state);
-				pstmt2.setString(5, postalCode);
-				pstmt2.setString(6, country);
-				pstmt2.setInt(7, customerId);
+				pstmt2.setString(2, numberStreet);
+				pstmt2.setString(3, neighborhood);
+				pstmt2.setString(4, city);
+				pstmt2.setString(5, state);
+				pstmt2.setString(6, postalCode);
+				pstmt2.setString(7, country);
+				pstmt2.setInt(8, customerId);
 
 				int addressRowsAffected = pstmt2.executeUpdate();
 
