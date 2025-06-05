@@ -27,7 +27,7 @@ Esto iniciará el proceso de instalación de la aplicación de restaurante.
 
 1. Ejecuta la aplicación desde el acceso directo creado o directamente desde el .jar principal si lo proporciona el instalador.
 
-2. Inicia sesion en el login 
+2. Inicia sesion en el login con:
 user "adm".
 contraseña "123".
 ## 🤝 Contribuciones
