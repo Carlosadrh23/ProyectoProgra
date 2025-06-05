@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -680,6 +682,17 @@ public class HomeView {
 		textField_1.setBounds(413, 92, 46, 19);
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
+		
+		textField_1.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        // Si no es un dígito y no es tecla de borrar, se consume (no se escribe)
+		        if (!Character.isDigit(c)) {
+		            e.consume();
+		        }
+		    }
+		});
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 
@@ -1078,6 +1091,15 @@ public class HomeView {
 		btnNewButton_7.setBounds(540, 0, 276, 88);
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
+		btnNewButton_7.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				HomeController cc = new HomeController();
+				cc.SeleccionDePapas();
+			}
+		});
 		panel_1.add(btnNewButton_7);
 
 		JButton btnNewButton_8 = new JButton("BEBIDAS");
@@ -3827,7 +3849,7 @@ public class HomeView {
 
 				// Verificar si hay una fila seleccionada
 				if (filaSeleccionada == -1) {
-					JOptionPane.showMessageDialog(frame, "Por favor, selecciona un registro para eliminar.",
+					JOptionPane.showMessageDialog(frame, "Por favor, selecciona un registro para editar.",
 							"Ningún registro seleccionado", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
@@ -4433,6 +4455,16 @@ public class HomeView {
 		txtAño.setFont(new Font("Inter", Font.PLAIN, 11));
 		txtAño.setBackground(new Color(237, 237, 237));
 		txtAño.setBounds(220, 30, 45, 19);
+		txtAño.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        // Si no es un dígito y no es tecla de borrar, se consume (no se escribe)
+		        if (!Character.isDigit(c)) {
+		            e.consume();
+		        }
+		    }
+		});
 		panel_3.add(txtAño);
 		txtAño.setColumns(10);
 
@@ -4472,6 +4504,16 @@ public class HomeView {
 		txtNumeroCalle.setBackground(new Color(237, 237, 237));
 		txtNumeroCalle.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtNumeroCalle.setBounds(39, 88, 62, 26);
+		txtNumeroCalle.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        // Si no es un dígito y no es tecla de borrar, se consume (no se escribe)
+		        if (!Character.isDigit(c)) {
+		            e.consume();
+		        }
+		    }
+		});
 		panel_4.add(txtNumeroCalle);
 		txtNumeroCalle.setColumns(10);
 
@@ -4557,6 +4599,16 @@ public class HomeView {
 		txtTelefono.setBackground(new Color(237, 237, 237));
 		txtTelefono.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtTelefono.setBounds(77, 75, 191, 19);
+		txtTelefono.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        // Si no es un dígito y no es tecla de borrar, se consume (no se escribe)
+		        if (!Character.isDigit(c)) {
+		            e.consume();
+		        }
+		    }
+		});
 		panel_5.add(txtTelefono);
 		txtTelefono.setColumns(10);
 
@@ -4923,6 +4975,16 @@ public class HomeView {
 		txtDia.setBackground(new Color(237, 237, 237));
 		txtDia.setFont(new Font("Inter", Font.PLAIN, 11));
 		txtDia.setBounds(42, 30, 34, 19);
+		txtDia.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        // Si no es un dígito y no es tecla de borrar, se consume (no se escribe)
+		        if (!Character.isDigit(c)) {
+		            e.consume();
+		        }
+		    }
+		});
 		panel_3.add(txtDia);
 		txtDia.setColumns(10);
 
@@ -4935,6 +4997,16 @@ public class HomeView {
 		txtMes.setFont(new Font("Inter", Font.PLAIN, 11));
 		txtMes.setBackground(new Color(237, 237, 237));
 		txtMes.setBounds(124, 30, 34, 19);
+		txtMes.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        // Si no es un dígito y no es tecla de borrar, se consume (no se escribe)
+		        if (!Character.isDigit(c)) {
+		            e.consume();
+		        }
+		    }
+		});
 		panel_3.add(txtMes);
 		txtMes.setColumns(10);
 
@@ -4947,6 +5019,16 @@ public class HomeView {
 		txtAño.setFont(new Font("Inter", Font.PLAIN, 11));
 		txtAño.setBackground(new Color(237, 237, 237));
 		txtAño.setBounds(220, 30, 45, 19);
+		txtAño.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        // Si no es un dígito y no es tecla de borrar, se consume (no se escribe)
+		        if (!Character.isDigit(c)) {
+		            e.consume();
+		        }
+		    }
+		});
 		panel_3.add(txtAño);
 		txtAño.setColumns(10);
 
@@ -4999,6 +5081,16 @@ public class HomeView {
 		txtNumeroCalle.setBackground(new Color(237, 237, 237));
 		txtNumeroCalle.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtNumeroCalle.setBounds(39, 88, 62, 26);
+		txtNumeroCalle.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        // Si no es un dígito y no es tecla de borrar, se consume (no se escribe)
+		        if (!Character.isDigit(c)) {
+		            e.consume();
+		        }
+		    }
+		});
 		panel_4.add(txtNumeroCalle);
 		txtNumeroCalle.setColumns(10);
 
@@ -5084,6 +5176,16 @@ public class HomeView {
 		txtTelefono.setBackground(new Color(237, 237, 237));
 		txtTelefono.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtTelefono.setBounds(77, 75, 191, 19);
+		txtTelefono.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        char c = e.getKeyChar();
+		        // Si no es un dígito y no es tecla de borrar, se consume (no se escribe)
+		        if (!Character.isDigit(c)) {
+		            e.consume();
+		        }
+		    }
+		});
 		panel_5.add(txtTelefono);
 		txtTelefono.setColumns(10);
 
@@ -8627,6 +8729,478 @@ public class HomeView {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+	
+	
+	public void SeleccionDePapas(Consumer<JComponent> addScaled) {
+
+		JDialog frame = new JDialog();
+		frame.setAlwaysOnTop(true);
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 545, 320);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		frame.getContentPane();
+		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 545, 320);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+
+		JLabel lblNewLabel_1 = new JLabel("Seleccióne el tamaño");
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 20));
+		lblNewLabel_1.setBounds(162, 22, 262, 49);
+		panel.add(lblNewLabel_1);
+
+		JButton btnNewButton = new JButton("Chicas");
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBounds(47, 117, 98, 59);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionPapasChicas();
+			}
+		});
+		panel.add(btnNewButton);
+
+		JButton btnNewButton_1 = new JButton("Medianas");
+		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton_1.setBackground(new Color(255, 255, 255));
+		btnNewButton_1.setBounds(215, 117, 98, 59);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionPapasMedianas();
+			}
+		});
+		panel.add(btnNewButton_1);
+
+		JButton btnNewButton_2 = new JButton("Grandes");
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton_2.setBackground(new Color(255, 255, 255));
+		btnNewButton_2.setBounds(386, 117, 98, 59);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionPapasGrandes();
+			}
+		});
+		panel.add(btnNewButton_2);
+
+		JButton btnNewButton_3 = new JButton("CANCELAR");
+		btnNewButton_3.setBackground(new Color(255, 255, 255));
+		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 10));
+		btnNewButton_3.setVerticalTextPosition(SwingConstants.BOTTOM); // ESTE ES PARA PONER EL TEXTO EN LA PARTE DE
+																		// ABAJO de la imagen
+		btnNewButton_3.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_3.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_3.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_3.setIconTextGap(1);
+		btnNewButton_3.setBounds(220, 224, 92, 49);
+		ImageIcon d = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen4 = d.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_3.setIcon(new ImageIcon(imagen4));
+		panel.add(btnNewButton_3);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+
+
+		frame.setVisible(true);
+
+	}
+	
+	public void SeleccionPapasChicas(Consumer<JComponent> addScaled) {
+
+		JDialog frame = new JDialog();
+		frame.setAlwaysOnTop(true);
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 545, 320);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		frame.getContentPane();
+		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 545, 320);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Papas chicas");
+		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 18));
+		lblNewLabel.setBounds(215, 10, 281, 30);
+		panel.add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("Seleccióna la cantidad");
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(193, 83, 161, 13);
+		panel.add(lblNewLabel_1);
+
+		final int[] cantidad = { 1 };
+
+		// label de cantidad
+		JLabel lblCantidad = new JLabel("1", SwingConstants.CENTER); // Centra el texto
+		lblCantidad.setFont(new Font("Inter", Font.BOLD, 15));
+		lblCantidad.setOpaque(true);
+		lblCantidad.setBackground(new Color(255, 255, 255));
+		lblCantidad.setBounds(235, 117, 68, 59);
+		panel.add(lblCantidad);
+
+		// boton -
+		JButton btnNewButton = new JButton("-");
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBounds(67, 117, 68, 59);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(true);
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (cantidad[0] > 1) {
+					cantidad[0]--;
+					lblCantidad.setText(String.valueOf(cantidad[0]));
+				}
+			}
+		});
+		panel.add(btnNewButton);
+
+		// boton *+*
+		JButton btnNewButton_2 = new JButton("+");
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton_2.setBackground(new Color(255, 255, 255));
+		btnNewButton_2.setBounds(406, 117, 68, 59);
+		btnNewButton_2.setFocusPainted(false);
+		btnNewButton_2.setContentAreaFilled(true);
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cantidad[0]++;
+				lblCantidad.setText(String.valueOf(cantidad[0]));
+			}
+		});
+		panel.add(btnNewButton_2);
+
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setBackground(new Color(255, 255, 255));
+		btnCancelar.setFont(new Font("Inter", Font.BOLD, 9));
+		btnCancelar.setFocusPainted(false);
+		btnCancelar.setContentAreaFilled(true);
+		btnCancelar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnCancelar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCancelar.setHorizontalAlignment(SwingConstants.CENTER);
+		btnCancelar.setVerticalAlignment(SwingConstants.CENTER);
+		btnCancelar.setIconTextGap(1);
+		btnCancelar.setBounds(146, 224, 92, 49);
+		btnCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionDePapas();
+			}
+		});
+
+		// imagen
+		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnCancelar.setIcon(new ImageIcon(imagen));
+		panel.add(btnCancelar);
+
+		JButton btnNewButton_4 = new JButton("ACEPTAR");
+		btnNewButton_4.setBackground(new Color(255, 255, 255));
+		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 9));
+		// QUITA las lineas que salen al picarle al boton
+		btnNewButton_4.setFocusPainted(false);
+		btnNewButton_4.setContentAreaFilled(true);
+		// TEXTO ABAJO DE LA IMAGEN
+		btnNewButton_4.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_4.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_4.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setIconTextGap(1);
+		btnNewButton_4.setBounds(295, 224, 92, 49);
+		// IMAGEN
+		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_4.setIcon(new ImageIcon(imagen2));
+		panel.add(btnNewButton_4);
+		frame.add(panel);
+		frame.setVisible(true);
+
+	}
+	
+	public void SeleccionPapasMedianas(Consumer<JComponent> addScaled) {
+
+		JDialog frame = new JDialog();
+		frame.setAlwaysOnTop(true);
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 545, 320);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		frame.getContentPane();
+		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 545, 320);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Papas medianas");
+		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 18));
+		lblNewLabel.setBounds(195, 10, 281, 30);
+		panel.add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("Seleccióna la cantidad");
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(193, 83, 161, 13);
+		panel.add(lblNewLabel_1);
+
+		final int[] cantidad = { 1 };
+
+		// label de cantidad
+		JLabel lblCantidad = new JLabel("1", SwingConstants.CENTER); // Centra el texto
+		lblCantidad.setFont(new Font("Inter", Font.BOLD, 15));
+		lblCantidad.setOpaque(true);
+		lblCantidad.setBackground(new Color(255, 255, 255));
+		lblCantidad.setBounds(235, 117, 68, 59);
+		panel.add(lblCantidad);
+
+		// boton -
+		JButton btnNewButton = new JButton("-");
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBounds(67, 117, 68, 59);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(true);
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (cantidad[0] > 1) {
+					cantidad[0]--;
+					lblCantidad.setText(String.valueOf(cantidad[0]));
+				}
+			}
+		});
+		panel.add(btnNewButton);
+
+		// boton *+*
+		JButton btnNewButton_2 = new JButton("+");
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton_2.setBackground(new Color(255, 255, 255));
+		btnNewButton_2.setBounds(406, 117, 68, 59);
+		btnNewButton_2.setFocusPainted(false);
+		btnNewButton_2.setContentAreaFilled(true);
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cantidad[0]++;
+				lblCantidad.setText(String.valueOf(cantidad[0]));
+			}
+		});
+		panel.add(btnNewButton_2);
+
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setBackground(new Color(255, 255, 255));
+		btnCancelar.setFont(new Font("Inter", Font.BOLD, 9));
+		btnCancelar.setFocusPainted(false);
+		btnCancelar.setContentAreaFilled(true);
+		btnCancelar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnCancelar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCancelar.setHorizontalAlignment(SwingConstants.CENTER);
+		btnCancelar.setVerticalAlignment(SwingConstants.CENTER);
+		btnCancelar.setIconTextGap(1);
+		btnCancelar.setBounds(146, 224, 92, 49);
+		btnCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionDePapas();
+			}
+		});
+
+		// imagen
+		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnCancelar.setIcon(new ImageIcon(imagen));
+		panel.add(btnCancelar);
+
+		JButton btnNewButton_4 = new JButton("ACEPTAR");
+		btnNewButton_4.setBackground(new Color(255, 255, 255));
+		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 9));
+		// QUITA las lineas que salen al picarle al boton
+		btnNewButton_4.setFocusPainted(false);
+		btnNewButton_4.setContentAreaFilled(true);
+		// TEXTO ABAJO DE LA IMAGEN
+		btnNewButton_4.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_4.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_4.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setIconTextGap(1);
+		btnNewButton_4.setBounds(295, 224, 92, 49);
+		// IMAGEN
+		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_4.setIcon(new ImageIcon(imagen2));
+		panel.add(btnNewButton_4);
+		frame.add(panel);
+		frame.setVisible(true);
+
+	}
+	
+	public void SeleccionPapasGrandes(Consumer<JComponent> addScaled) {
+
+		JDialog frame = new JDialog();
+		frame.setAlwaysOnTop(true);
+		frame.setResizable(false);
+		frame.setBounds(0, 0, 545, 320);
+		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		frame.getContentPane();
+		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 545, 320);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Papas grandes");
+		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 18));
+		lblNewLabel.setBounds(195, 10, 281, 30);
+		panel.add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("Seleccióna la cantidad");
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(193, 83, 161, 13);
+		panel.add(lblNewLabel_1);
+
+		final int[] cantidad = { 1 };
+
+		// label de cantidad
+		JLabel lblCantidad = new JLabel("1", SwingConstants.CENTER); // Centra el texto
+		lblCantidad.setFont(new Font("Inter", Font.BOLD, 15));
+		lblCantidad.setOpaque(true);
+		lblCantidad.setBackground(new Color(255, 255, 255));
+		lblCantidad.setBounds(235, 117, 68, 59);
+		panel.add(lblCantidad);
+
+		// boton -
+		JButton btnNewButton = new JButton("-");
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBounds(67, 117, 68, 59);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(true);
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (cantidad[0] > 1) {
+					cantidad[0]--;
+					lblCantidad.setText(String.valueOf(cantidad[0]));
+				}
+			}
+		});
+		panel.add(btnNewButton);
+
+		// boton *+*
+		JButton btnNewButton_2 = new JButton("+");
+		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton_2.setBackground(new Color(255, 255, 255));
+		btnNewButton_2.setBounds(406, 117, 68, 59);
+		btnNewButton_2.setFocusPainted(false);
+		btnNewButton_2.setContentAreaFilled(true);
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cantidad[0]++;
+				lblCantidad.setText(String.valueOf(cantidad[0]));
+			}
+		});
+		panel.add(btnNewButton_2);
+
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setBackground(new Color(255, 255, 255));
+		btnCancelar.setFont(new Font("Inter", Font.BOLD, 9));
+		btnCancelar.setFocusPainted(false);
+		btnCancelar.setContentAreaFilled(true);
+		btnCancelar.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnCancelar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCancelar.setHorizontalAlignment(SwingConstants.CENTER);
+		btnCancelar.setVerticalAlignment(SwingConstants.CENTER);
+		btnCancelar.setIconTextGap(1);
+		btnCancelar.setBounds(146, 224, 92, 49);
+		btnCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.SeleccionDePapas();
+			}
+		});
+
+		// imagen
+		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnCancelar.setIcon(new ImageIcon(imagen));
+		panel.add(btnCancelar);
+
+		JButton btnNewButton_4 = new JButton("ACEPTAR");
+		btnNewButton_4.setBackground(new Color(255, 255, 255));
+		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 9));
+		// QUITA las lineas que salen al picarle al boton
+		btnNewButton_4.setFocusPainted(false);
+		btnNewButton_4.setContentAreaFilled(true);
+		// TEXTO ABAJO DE LA IMAGEN
+		btnNewButton_4.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_4.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_4.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_4.setIconTextGap(1);
+		btnNewButton_4.setBounds(295, 224, 92, 49);
+		// IMAGEN
+		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		btnNewButton_4.setIcon(new ImageIcon(imagen2));
+		panel.add(btnNewButton_4);
+		frame.add(panel);
+		frame.setVisible(true);
+
+	}
+	
+	
 
 	public void Ticket(Consumer<JComponent> addScaled) {
 
