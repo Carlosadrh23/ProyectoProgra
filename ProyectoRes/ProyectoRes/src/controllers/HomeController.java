@@ -6,6 +6,8 @@ import vistas.HomeView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFrame;
+
 import models.Client;
 import models.Ingredient;
 import models.IngredientsModel;
@@ -206,6 +208,7 @@ public class HomeController {
 		vista.AlertaCuentaEliminada(null);
 	}
 	
+	
 	public void AñadirFactura() {
 		vista.AñadirFactura();
 	}
@@ -217,6 +220,10 @@ public class HomeController {
 	public void Añadirplatillo8() {
 		// TODO Auto-generated method stub
 		vista.AñadirPlatillo8();
+	}
+
+	public void AlertaCerrarSesion(JFrame ownerFrame) {
+		vista.AlertaCerrarSesion(ownerFrame);
 	}
 	
 

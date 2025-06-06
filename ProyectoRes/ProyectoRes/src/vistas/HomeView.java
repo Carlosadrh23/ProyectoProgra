@@ -171,9 +171,8 @@ public class HomeView {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					frame.dispose();
-					AuthController app = new AuthController();
-					app.login();
+					HomeController cc = new HomeController();
+					cc.AlertaCerrarSesion(ownerFrame);
 				}
 			});
 			add(btnHistorial);
@@ -1188,26 +1187,11 @@ public class HomeView {
 		lblTotalValor.setBounds(580, 464, 180, 30);
 		panel_1.add(lblTotalValor);
 
-		JButton btnNewButton_10 = new JButton("<html><div style='text-align:left;'>ENVIAR <br> PEDIDO</div></html>");
-		btnNewButton_10.setFont(new Font("Inter", Font.PLAIN, 10));
-		btnNewButton_10.setBackground(new Color(190, 190, 190));
-		btnNewButton_10.setBounds(215, 537, 120, 44);
-		// imagen a la izquierda y texto a la derecha
-		btnNewButton_10.setHorizontalTextPosition(SwingConstants.RIGHT);
-		btnNewButton_10.setVerticalTextPosition(SwingConstants.CENTER);
-		btnNewButton_10.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton_10.setIconTextGap(10); // espacio entre imagen y texto
-		ImageIcon p = new ImageIcon(getClass().getResource("/img/enviar.png"));
-		Image imagen = p.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-		btnNewButton_10.setIcon(new ImageIcon(imagen));
-		btnNewButton_10.setFocusPainted(false);
-		btnNewButton_10.setContentAreaFilled(true);
-		panel_1.add(btnNewButton_10);
 
 		JButton btnNewButton_11 = new JButton("CANCELAR");
 		btnNewButton_11.setFont(new Font("Inter", Font.PLAIN, 9));
 		btnNewButton_11.setBackground(new Color(190, 190, 190));
-		btnNewButton_11.setBounds(354, 537, 120, 44);
+		btnNewButton_11.setBounds(270, 537, 120, 44);
 		btnNewButton_11.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnNewButton_11.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_11.setHorizontalAlignment(SwingConstants.LEFT);
@@ -1235,7 +1219,7 @@ public class HomeView {
 				"<html><div style='text-align:center;'>ENVIAR Y<br> COBRAR<br></div></html>");
 		btnNewButton_12.setFont(new Font("Inter", Font.PLAIN, 9));
 		btnNewButton_12.setBackground(new Color(190, 190, 190));
-		btnNewButton_12.setBounds(501, 537, 120, 44);
+		btnNewButton_12.setBounds(415, 537, 120, 44);
 		btnNewButton_12.setHorizontalTextPosition(SwingConstants.RIGHT);
 		btnNewButton_12.setVerticalTextPosition(SwingConstants.CENTER);
 		btnNewButton_12.setHorizontalAlignment(SwingConstants.LEFT);
@@ -1797,20 +1781,10 @@ public class HomeView {
 					// para agarrar el texto dentro de descripcion
 					Object cellValue = table.getValueAt(row, 1);
 					String descripcion = cellValue != null ? cellValue.toString() : "";
-
-					// Limpiar el TextField si tiene el texto placeholder
-					if (TextField.getText().equals("BUSCAR")) {
-						TextField.setText("");
-						TextField.setForeground(Color.BLACK);
-					}
-
-					// Agregar la descripción al TextField
-					String textoActual = TextField.getText();
-					if (textoActual.isEmpty()) {
-						TextField.setText(descripcion);
-					} else {
-						TextField.setText(textoActual + " " + descripcion);
-					}
+					
+					// con esto es solo un ingrediente a la vez ya no se pueden poner varios y sobre escribirse 
+		            TextField.setText(descripcion);
+		            TextField.setForeground(Color.BLACK); 
 
 					
 					if (popupMenu.isVisible()) {
@@ -8212,19 +8186,9 @@ public class HomeView {
 					Object cellValue = table.getValueAt(row, 1);
 					String descripcion = cellValue != null ? cellValue.toString() : "";
 
-					// Limpiar el TextField si tiene el texto placeholder
-					if (TextField.getText().equals("BUSCAR")) {
-						TextField.setText("");
-						TextField.setForeground(Color.BLACK);
-					}
-
-					// Agregar la descripción al TextField
-					String textoActual = TextField.getText();
-					if (textoActual.isEmpty()) {
-						TextField.setText(descripcion);
-					} else {
-						TextField.setText(textoActual + " " + descripcion);
-					}
+					// con esto es solo un ingrediente a la vez ya no se pueden poner varios y sobre escribirse 
+		            TextField.setText(descripcion);
+		            TextField.setForeground(Color.BLACK); 
 
 					
 					if (popupMenu.isVisible()) {
@@ -8493,7 +8457,7 @@ public class HomeView {
 		btnNewButton_3.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_3.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_3.setIconTextGap(1);
-		btnNewButton_3.setBounds(146, 224, 92, 49);
+		btnNewButton_3.setBounds(220, 224, 92, 49);
 		ImageIcon d = new ImageIcon(getClass().getResource("/img/cancelar.png"));
 		Image imagen4 = d.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_3.setIcon(new ImageIcon(imagen4));
@@ -8505,26 +8469,7 @@ public class HomeView {
 			}
 		});
 
-		JButton btnNewButton_4 = new JButton("ACEPTAR");
-		btnNewButton_4.setBackground(new Color(255, 255, 255));
-		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 9));
-		btnNewButton_4.setVerticalTextPosition(SwingConstants.BOTTOM); // ESTE ES PARA PONER EL TEXTO EN LA PARTE DE
-																		// ABAJO de la imagen
-		btnNewButton_4.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnNewButton_4.setHorizontalAlignment(SwingConstants.CENTER);
-		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_4.setIconTextGap(1);
-		btnNewButton_4.setBounds(295, 224, 92, 49);
-		btnNewButton_4.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-			}
-		});
-		ImageIcon e = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-		Image imagen5 = e.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-		btnNewButton_4.setIcon(new ImageIcon(imagen5));
-		panel.add(btnNewButton_4);
+
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
@@ -10550,7 +10495,7 @@ public class HomeView {
 
 				Im.addIngredient(txtTocinoAhumado.getText(), selectedString, precio);*/
 
-				JOptionPane.showMessageDialog(null, "Ingrediente añadido correctamente");
+
 
 				frame.dispose();
 
@@ -10910,5 +10855,90 @@ public class HomeView {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	
+	}
+	
+	public void AlertaCerrarSesion(JFrame ventanaPrincipal) {
+
+		JDialog dialog = new JDialog();
+		dialog.setResizable(false);
+		dialog.setAlwaysOnTop(true);
+		dialog.setBounds(198, 76, 526, 320);
+		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		dialog.getContentPane();
+		dialog.setLayout(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 526, 291);
+		dialog.getContentPane();
+		dialog.add(panel);
+		panel.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(206, 58, 95, 89);
+		ImageIcon c = new ImageIcon(getClass().getResource("/img/alerta.png"));
+		Image imagen3 = c.getImage().getScaledInstance(90, 80, Image.SCALE_SMOOTH);
+		lblNewLabel.setIcon(new ImageIcon(imagen3));
+		panel.add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("¿Seguro que deseas cerrar la sesión?");
+		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 13));
+		lblNewLabel_1.setBounds(130, 158, 241, 23);
+		panel.add(lblNewLabel_1);
+
+		JLabel lblNewLabel_2 = new JLabel("Cerrar sesión");
+		lblNewLabel_2.setFont(new Font("Inter", Font.BOLD, 17));
+		lblNewLabel_2.setBounds(195, 10, 263, 23);
+		panel.add(lblNewLabel_2);
+
+		JButton btnNewButton = new JButton("CANCELAR");
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setFont(new Font("Inter", Font.BOLD, 9));
+		btnNewButton.setBounds(149, 208, 85, 57);
+		btnNewButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton.setIconTextGap(1);
+		ImageIcon a = new ImageIcon(getClass().getResource("/img/cancelar.png"));
+		Image imagen = a.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton.setIcon(new ImageIcon(imagen));
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(true);
+		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dialog.dispose();
+			}
+		});
+
+		JButton btnNewButton_1 = new JButton("ACEPTAR");
+		btnNewButton_1.setBackground(new Color(255, 255, 255));
+		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 9));
+		btnNewButton_1.setBounds(275, 209, 85, 57);
+		btnNewButton_1.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnNewButton_1.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_1.setHorizontalAlignment(SwingConstants.CENTER);
+		btnNewButton_1.setVerticalAlignment(SwingConstants.CENTER);
+		btnNewButton_1.setIconTextGap(1);
+		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
+		Image imagen2 = b.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_1.setIcon(new ImageIcon(imagen2));
+		btnNewButton_1.setFocusPainted(false);
+		btnNewButton_1.setContentAreaFilled(true);
+		panel.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dialog.dispose();
+				ventanaPrincipal.dispose();
+				AuthController app = new AuthController(); 
+				app.login();
+			}
+		});
+
+		dialog.setLocationRelativeTo(null);
+		dialog.setVisible(true);
 	}
 }
