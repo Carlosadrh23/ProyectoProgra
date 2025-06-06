@@ -3767,7 +3767,7 @@ public class HomeView {
 		for (Iterator iterator = clientes.iterator(); iterator.hasNext();) {
 			Client client = (Client) iterator.next();
 
-			Object[] fila = { client.id, client.name, client.rfc };
+			Object[] fila = { client.id, client.firstName+" "+client.secondName+" "+client.lastName+" "+client.secondLastName, client.rfc };
 			modelo.addRow(fila);
 		}
 
@@ -4688,6 +4688,7 @@ public class HomeView {
 					String phone = txtTelefono.getText().trim();
 					String email = txtCorreo.getText().trim();
 					String street = txtCalle.getText().trim();
+					String streetNumber = txtNumeroCalle.getText().trim();
 					String number = txtNumeroCalle.getText().trim();
 					String neighborhood = txtColonia.getText().trim();
 					String city = txtCiudad.getText().trim();
@@ -4704,11 +4705,11 @@ public class HomeView {
 					String month = txtMes.getText().trim();
 					String year = txtAño.getText().trim();
 
-					// Validar campos obligatorios
-
+					String birthDate = year + "-" + String.format("%02d", Integer.parseInt(month)) + "-"
+							+ String.format("%02d", Integer.parseInt(day));
 					ClientsModel cm = new ClientsModel();
-					cm.addClientFromForm(firstName, secondName, firstLastName, secondLastName, rfc, phone, email,
-							street, number, neighborhood, city, state, postalCode);
+					cm.addClientFromForm(firstName, secondName, firstLastName, secondLastName, rfc, phone, email,birthDate,
+							street, number, neighborhood, city, state, postalCode, streetNumber);
 
 					// Mostrar mensaje de éxito
 					JOptionPane.showMessageDialog(frame, "Cliente actualizado correctamente.", "Éxito",
@@ -5253,9 +5254,7 @@ public class HomeView {
 
 					// Validar campos obligatorios
 					if (validateFields(firstName, firstLastName, email, phone, day, month, year)) {
-						// Concatenar nombres completos
-						String fullName = buildFullName(firstName, secondName, firstLastName, secondLastName);
-
+					
 						// Concatenar dirección completa (calle + número)
 
 						
@@ -5263,7 +5262,10 @@ public class HomeView {
 						// Llamar a tu método updateCustomer con TODOS los parámetros requeridos
 						ClientsModel cm = new ClientsModel();
 						cm.updateCustomer(idSeleccionada, // int customerId
-								fullName, // String name
+								firstName, // String name
+								secondName,
+								firstLastName,
+								secondLastName,
 								rfc, // String rfc
 								phone, // String phone
 								email, // String email
@@ -5322,18 +5324,19 @@ public class HomeView {
 	        if (clienteEncontrado != null) {
 	            clienteActual = clienteEncontrado;
 	            
-	            // Cargar datos básicos desde el objeto Client
-	            if (clienteActual.name != null) {
-	                String[] nombres = clienteActual.name.split(" ");
-	                if (nombres.length > 0)
-	                    txtPrimerNombre.setText(nombres[0]);
-	                if (nombres.length > 1)
-	                    txtSegundoNombre.setText(nombres[1]);
-	                if (nombres.length > 2)
-	                    txtPrimerApellido.setText(nombres[2]);
-	                if (nombres.length > 3)
-	                    txtSegundoApellido.setText(nombres[3]);
-	            }
+	            	// Cargar datos básicos desde el objeto Client
+	            	if (clienteActual.firstName != null) 
+	                    txtPrimerNombre.setText(clienteActual.firstName);
+	            
+	            	if (clienteActual.firstName != null) 
+	                    txtSegundoNombre.setText(clienteActual.secondName);
+	                    
+	    	            if (clienteActual.firstName != null) 
+	                    txtPrimerApellido.setText(clienteActual.lastName);
+	                    
+	    	            if (clienteActual.firstName != null) 
+	                    txtSegundoApellido.setText(clienteActual.secondLastName);
+	    	            
 	            
 	            // Cargar RFC, teléfono y email
 	            if (clienteActual.rfc != null)
@@ -5384,9 +5387,9 @@ public class HomeView {
 	                "Cliente no encontrado", 
 	                JOptionPane.WARNING_MESSAGE);
 	        }
-	    }
-	}
+	            	}
 	
+	     }
 
 	private boolean validateFields(String firstName, String firstLastName, String email, String phone, String day,
 			String month, String year) {
@@ -5435,7 +5438,7 @@ public class HomeView {
 
 		return true;
 	}
-
+	        
 	private String buildFullName(String firstName, String secondName, String firstLastName, String secondLastName) {
 		StringBuilder fullName = new StringBuilder();
 
@@ -7070,7 +7073,7 @@ public class HomeView {
 		for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
 			Client client = (Client) iterator.next();
 
-			Object[] fila = { client.rfc, client.name, "$" + client.importe };
+			Object[] fila = { client.rfc, client.firstName+" "+client.secondName+" "+client.lastName+" "+client.secondLastName, "$" + client.importe };
 			modelo.addRow(fila);
 		}
 

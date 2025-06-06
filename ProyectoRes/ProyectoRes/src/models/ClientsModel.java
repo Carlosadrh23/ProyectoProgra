@@ -51,8 +51,8 @@ public class ClientsModel {
 	public List<Client> getAll() {
 	    List<Client> clientes = new ArrayList<>();
 
-	    String query = "SELECT c.customer_id, c.name, c.rfc, c.phone, c.email,COALESCE(SUM(o.total), 0) AS IMPORTE ,c.birth_date, a.address_id, a.street, a.number_street, a.neighborhood, a.city, a.state, a.postal_code, a.country FROM restaurantedDB.customers c LEFT JOIN restaurantedDB.addresses a ON c.customer_id = a.customer_id LEFT JOIN orders o ON c.customer_id = o.customer_id GROUP BY \r\n"
-	    		+ "  c.customer_id, c.name, c.rfc, c.phone, c.email, c.birth_date,\r\n"
+	    String query = "SELECT c.customer_id, c.first_name, c.second_name, c.lastname, c.second_lastname, c.rfc, c.phone, c.email,COALESCE(SUM(o.total), 0) AS IMPORTE ,c.birth_date, a.address_id, a.street, a.number_street, a.neighborhood, a.city, a.state, a.postal_code, a.country FROM restaurantedDB.customers c LEFT JOIN restaurantedDB.addresses a ON c.customer_id = a.customer_id LEFT JOIN orders o ON c.customer_id = o.customer_id GROUP BY \r\n"
+	    		+ "  c.customer_id, c.first_name, c.rfc, c.phone, c.email, c.birth_date,\r\n"
 	    		+ "  a.address_id, a.street, a.number_street, a.neighborhood, a.city, a.state, a.postal_code, a.country;";
 
 
@@ -66,7 +66,11 @@ public class ClientsModel {
 
 	        while (rs.next()) {
 	            int id = rs.getInt("customer_id");
-	            String name = rs.getString("name");
+	            String first_name = rs.getString("first_name");
+	            String second_name = rs.getString("second_name");
+	            String lastname = rs.getString("lastname");
+	            String second_lastname = rs.getString("second_lastname");
+
 	            String rfc = rs.getString("rfc");
 	            String phone = rs.getString("phone");
 	            String email = rs.getString("email");
@@ -83,7 +87,7 @@ public class ClientsModel {
 	            String postalCode = rs.getString("postal_code");
 	            String country = rs.getString("country");
 
-	            clientes.add(new Client(id, name, rfc, phone, email, importe, birthDate, null, null,
+	            clientes.add(new Client(id, first_name,second_name, lastname, second_lastname, rfc, phone, email, importe, birthDate, null, null,
 	                    address_id, street, numberStreet, neighborhood, city, state, postalCode, country));
 	        }
 
@@ -93,7 +97,7 @@ public class ClientsModel {
 
 	    return clientes;
 	}
-
+/*
 	public User get(int id_Target) {
 
 		String query = "select * from customers where user_id = " + id_Target;
@@ -134,7 +138,7 @@ public class ClientsModel {
 
 		return myuser;
 	}
-
+*/
 	public boolean remove(int id) {
 		Connection conn = null;
 		PreparedStatement stmt1 = null;
@@ -212,15 +216,15 @@ public class ClientsModel {
 		}
 	}
 
-	public void addClient(String name, String rfc, String phone, String email, String street, String neighborhood,
-			String city, String state, String postalCode, String country) {
+	public void addClient(String first_name, String second_name, String lastname, String second_lastname, String rfc, String phone, String email,String birth_date, String street, String neighborhood,
+			String city, String state, String postalCode, String country,String number_street) {
 
 // Query para insertar cliente 
-		String insertCustomerQuery = "INSERT INTO customers (name, rfc, phone, email) VALUES (?, ?, ?, ?)";
+		String insertCustomerQuery = "INSERT INTO customers (first_name, second_name, lastname,second_lastname,rfc, phone, email, birth_date) VALUES (?, ?, ?, ?,?,?, ?,?)";
 
 // Query para insertar dirección
-		String insertAddressQuery = "INSERT INTO addresses (customer_id, street, neighborhood, city, state, postal_code, country) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String insertAddressQuery = "INSERT INTO addresses (customer_id, street, neighborhood, city, state, postal_code, country,number_street) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?,?)";
 
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
 				"*e9EZn3Nr@KBrde")) {
@@ -232,10 +236,14 @@ public class ClientsModel {
 				// Insertar cliente
 				PreparedStatement customerStmt = conn.prepareStatement(insertCustomerQuery,
 						Statement.RETURN_GENERATED_KEYS);
-				customerStmt.setString(1, name);
-				customerStmt.setString(2, rfc.isEmpty() ? null : rfc); // RFC puede ser NULL
-				customerStmt.setString(3, phone.isEmpty() ? null : phone); // Phone puede ser NULL
-				customerStmt.setString(4, email);
+				customerStmt.setString(1, first_name);
+				customerStmt.setString(2, second_name);
+				customerStmt.setString(3, lastname);
+				customerStmt.setString(4, second_lastname);
+				customerStmt.setString(5, rfc.isEmpty() ? null : rfc); // RFC puede ser NULL
+				customerStmt.setString(6, phone.isEmpty() ? null : phone); // Phone puede ser NULL
+				customerStmt.setString(7, email);
+				customerStmt.setString(8, birth_date);
 
 				int rowsAffected = customerStmt.executeUpdate();
 
@@ -256,6 +264,7 @@ public class ClientsModel {
 						addressStmt.setString(6, postalCode.isEmpty() ? null : postalCode); // Postal code puede ser
 																							// NULL
 						addressStmt.setString(7, country);
+						addressStmt.setString(7, number_street);
 
 						addressStmt.executeUpdate();
 						addressStmt.close();
@@ -263,7 +272,7 @@ public class ClientsModel {
 						// Confirmar transacción
 						conn.commit();
 						System.out.println("Cliente agregado exitosamente con ID: " + customerId);
-						System.out.println("Nombre: " + name);
+						System.out.println("Nombre: " + first_name);
 						System.out.println("Email: " + email);
 						System.out.println("Dirección: " + street + ", " + city + ", " + country);
 					}
@@ -287,14 +296,24 @@ public class ClientsModel {
 	}
 
 //Método con validaciones
-	public void addClientWithValidations(String name, String rfc, String phone, String email, String street,
-			String neighborhood, String city, String state, String postalCode, String country) {
+	public void addClientWithValidations(String first_name, String second_name, String lastname, String second_lastname, String rfc, String phone, String email, String birth_date, String street,
+			String neighborhood, String city, String state, String postalCode, String country, String number_street) {
 
 // Validaciones básicas según la estructura de la BD
-		if (name == null || name.trim().isEmpty()) {
+		if (first_name == null || first_name.trim().isEmpty()) {
 			throw new IllegalArgumentException("El nombre es requerido");
 		}
-		if (name.length() > 100) {
+		if (first_name.length() > 100) {
+			throw new IllegalArgumentException("El nombre no puede exceder 100 caracteres");
+		}
+		if (second_name.length() > 100) {
+			throw new IllegalArgumentException("El nombre no puede exceder 100 caracteres");
+		}
+		if (lastname.length() > 100) {
+			
+			throw new IllegalArgumentException("El nombre no puede exceder 100 caracteres");
+		}
+		if (second_lastname.length() > 100) {
 			throw new IllegalArgumentException("El nombre no puede exceder 100 caracteres");
 		}
 		if (email == null || email.trim().isEmpty()) {
@@ -343,13 +362,13 @@ public class ClientsModel {
 		}
 
 // Llamar al método principal
-		addClient(name, rfc, phone, email, street, neighborhood, city, state, postalCode, country);
+		addClient(first_name, second_name, lastname, second_lastname, rfc, phone, email,birth_date, street, neighborhood, city, state, postalCode, country,number_street);
 	}
 
 //Método simplificado para usar con tu formulario
 	public void addClientFromForm(String firstName, String secondName, String firstLastName, String secondLastName,
-			String rfc, String phone, String email, String street, String number, String neighborhood, String city,
-			String state, String postalCode) {
+			String rfc, String phone, String email,String birth_date, String street, String number, String neighborhood, String city,
+			String state, String postalCode,String number_street) {
 
 // Construir nombre completo
 		StringBuilder fullName = new StringBuilder();
@@ -379,8 +398,8 @@ public class ClientsModel {
 		}
 
 // Llamar al método principal con país predeterminado
-		addClientWithValidations(fullName.toString(), rfc, phone, email, fullStreet, neighborhood, city, state,
-				postalCode, "México");
+		addClientWithValidations(firstName, secondName, firstLastName, secondLastName, rfc, phone, email, birth_date, fullStreet, neighborhood, city, state,
+				postalCode, "México",number_street);
 	}
 
 
@@ -446,11 +465,11 @@ public class ClientsModel {
 		}
 	}
      */
-	public void updateCustomer(int customerId, String name, String rfc, String phone, String email, String street,String numberStreet,
+	public void updateCustomer(int customerId,String first_name, String second_name, String lastname, String second_lastname, String rfc, String phone, String email, String street,String numberStreet,
 			String neighborhood, String city, String state, String postalCode, String country, String day, String month,
 			String year) {
 
-		String updateCustomerQuery = "UPDATE customers SET name = ?, rfc = ?, phone = ?, email = ?, birth_date = ?, updated_at = CURRENT_TIMESTAMP WHERE customer_id = ?";
+		String updateCustomerQuery = "UPDATE customers SET first_name = ?, second_name= ?, lastname = ?, second_lastname = ?, rfc = ?, phone = ?, email = ?, birth_date = ?, updated_at = CURRENT_TIMESTAMP WHERE customer_id = ?";
 		String updateAddressQuery = "UPDATE addresses SET street = ?, number_street = ?, neighborhood = ?, city = ?, state = ?, postal_code = ?, country = ? WHERE customer_id = ?";
 
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
@@ -467,12 +486,15 @@ public class ClientsModel {
 
 				// Actualizar datos del cliente incluyendo fecha de nacimiento
 				PreparedStatement pstmt1 = conn.prepareStatement(updateCustomerQuery);
-				pstmt1.setString(1, name);
-				pstmt1.setString(2, rfc);
-				pstmt1.setString(3, phone);
-				pstmt1.setString(4, email);
-				pstmt1.setString(5, birthDate);
-				pstmt1.setInt(6, customerId);
+				pstmt1.setString(1, first_name);
+				pstmt1.setString(2, second_name);
+				pstmt1.setString(3, lastname);
+				pstmt1.setString(4, second_lastname);
+				pstmt1.setString(5, rfc);
+				pstmt1.setString(6, phone);
+				pstmt1.setString(7, email);
+				pstmt1.setString(8, birthDate);
+				pstmt1.setInt(9, customerId);
 
 				int customerRowsAffected = pstmt1.executeUpdate();
 
