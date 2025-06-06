@@ -6846,7 +6846,7 @@ public class HomeView {
 
 	}
 
-	public void HistorialDeFacturacion(List clients) {
+	public void HistorialDeFacturacion(List clientes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 50);// textfield redondeadas
@@ -7025,16 +7025,7 @@ public class HomeView {
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
 		btnNewButton_6.setBounds(199, 150, 85, 49);
-		btnNewButton_6.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				frame.dispose();
-				HomeController hm = new HomeController();
-				hm.EditarFactura();
-			}
-		});
+		
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lapiz.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_6.setIcon(new ImageIcon(imagen2));
@@ -7062,6 +7053,7 @@ public class HomeView {
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
 		btnNewButton_7.setBounds(963, 150, 85, 49);
+		
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/borrar.png"));
 		Image imagen3 = c.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_7.setIcon(new ImageIcon(imagen3));
@@ -7070,7 +7062,7 @@ public class HomeView {
 		String[] columnas = { "RFC", "NOMBRE", "IMPORTE" };
 		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-		for (Iterator iterator = clients.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = clientes.iterator(); iterator.hasNext();) {
 			Client client = (Client) iterator.next();
 
 			Object[] fila = { client.rfc, client.firstName+" "+client.secondName+" "+client.lastName+" "+client.secondLastName, "$" + client.importe };
@@ -7113,7 +7105,116 @@ public class HomeView {
 				return label;
 			}
 		});
+		btnNewButton_7.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Obtener la fila seleccionada
+				int filaSeleccionada = table.getSelectedRow(); // Usar 'table', no 'tabla'
 
+				// Verificar si hay una fila seleccionada
+				if (filaSeleccionada == -1) {
+					JOptionPane.showMessageDialog(frame, "Por favor, selecciona un registro para eliminar.",
+							"Ningún registro seleccionado", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+
+				// Obtener los datos de la fila seleccionada
+				int id = (int) modelo.getValueAt(filaSeleccionada, 0);
+				String nombre = (String) modelo.getValueAt(filaSeleccionada, 1);
+				String rfc = (String) modelo.getValueAt(filaSeleccionada, 2);
+
+				// Confirmar eliminación
+				int respuesta = JOptionPane.showConfirmDialog(frame,
+						"¿Estás seguro de que deseas eliminar el registro?\n\n" + "Id: " + id + "\n" + "Nombre: "
+								+ nombre + "\n" + "RFC: " + rfc,
+						"Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				if (respuesta == JOptionPane.YES_OPTION) {
+					try {
+						// Encontrar el cliente en la lista original para eliminarlo
+						Client clienteAEliminar = null;
+						for (Iterator iterator = clientes.iterator(); iterator.hasNext();) {
+							Client client = (Client) iterator.next();
+							if (client.id == id) {
+								clienteAEliminar = client;
+								break;
+							}
+						}
+
+						if (clienteAEliminar != null) {
+							// Eliminar de la lista
+							clientes.remove(clienteAEliminar);
+
+							// Eliminar de la base de datos si es necesario
+							ClientsModel cm = new ClientsModel();
+							cm.remove(clienteAEliminar.id);
+
+							// Eliminar de la tabla visual
+							modelo.removeRow(filaSeleccionada);
+
+							// Mostrar mensaje de confirmación
+							JOptionPane.showMessageDialog(frame, "Registro eliminado exitosamente.",
+									"Eliminación exitosa", JOptionPane.INFORMATION_MESSAGE);
+						}
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(frame, "Error al eliminar el registro: " + ex.getMessage(),
+								"Error", JOptionPane.ERROR_MESSAGE);
+						ex.printStackTrace();
+					}
+				}
+			}
+		});
+		btnNewButton_6.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int filaSeleccionada = table.getSelectedRow(); // Usar 'table', no 'tabla'
+
+				// Verificar si hay una fila seleccionada
+				if (filaSeleccionada == -1) {
+					JOptionPane.showMessageDialog(frame, "Por favor, selecciona un registro para editar.",
+							"Ningún registro seleccionado", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+
+				// Obtener los datos de la fila seleccionada
+				int id = (int) modelo.getValueAt(filaSeleccionada, 0);
+				
+				// Confirmar eliminación
+				int respuesta = JOptionPane.showConfirmDialog(frame,
+						"¿Deseas actualizar los datos?",
+						"Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (respuesta == JOptionPane.YES_OPTION) {
+					try {
+						// Encontrar el cliente en la lista original para eliminarlo
+						Client clienteEditar = null;
+						for (Iterator iterator = clientes.iterator(); iterator.hasNext();) {
+							Client client = (Client) iterator.next();
+							if (client.id == id) {
+								clienteEditar = client;
+								break;
+							}
+						}
+
+						if (clienteEditar != null) {
+							// Eliminar de la lista
+							clientes.remove(clienteEditar);
+							frame.dispose();
+						HomeController hc = new HomeController();
+						hc.EditarCliente(id);
+							
+
+							
+						}
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(frame, "Error al eliminar el registro: " + ex.getMessage(),
+								"Error", JOptionPane.ERROR_MESSAGE);
+						ex.printStackTrace();
+					}
+				}
+				
+			}
+		});
 		// Scroll pane
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(167, 224, 744, 270); // ajusta dimensiones según tu layout

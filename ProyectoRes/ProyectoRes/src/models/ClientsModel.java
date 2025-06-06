@@ -228,10 +228,7 @@ public class ClientsModel {
 
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
 				"*e9EZn3Nr@KBrde")) {
-
-
 			conn.setAutoCommit(false);
-
 			try {
 				// Insertar cliente
 				PreparedStatement customerStmt = conn.prepareStatement(insertCustomerQuery,
@@ -257,14 +254,12 @@ public class ClientsModel {
 						PreparedStatement addressStmt = conn.prepareStatement(insertAddressQuery);
 						addressStmt.setInt(1, customerId);
 						addressStmt.setString(2, street);
-						addressStmt.setString(3, neighborhood.isEmpty() ? null : neighborhood); // Neighborhood puede
-																								// ser NULL
+						addressStmt.setString(3, neighborhood.isEmpty() ? null : neighborhood); // Neighborhood puede ser null																// ser NULL
 						addressStmt.setString(4, city);
 						addressStmt.setString(5, state.isEmpty() ? null : state); // State puede ser NULL
 						addressStmt.setString(6, postalCode.isEmpty() ? null : postalCode); // Postal code puede ser
-																							// NULL
 						addressStmt.setString(7, country);
-						addressStmt.setString(7, number_street);
+						addressStmt.setString(8, number_street);
 
 						addressStmt.executeUpdate();
 						addressStmt.close();
