@@ -213,6 +213,11 @@ public class HomeController {
 	public void EditarFactura() {
 		vista.EditarFactura();
 	}
+
+	public void Añadirplatillo8() {
+		// TODO Auto-generated method stub
+		vista.AñadirPlatillo8();
+	}
 	
 
 }

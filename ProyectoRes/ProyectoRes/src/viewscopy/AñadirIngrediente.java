@@ -197,88 +197,49 @@ public class AñadirIngrediente {
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Código de platillo:");
-		lblNewLabel_1.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(22, 31, 130, 22);
+		lblNewLabel_1.setFont(new Font("Inter", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(214, 20, 185, 43);
 		panel_2.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("ING0674");
-		lblNewLabel_2.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_2.setBounds(151, 31, 100, 22);
+		lblNewLabel_2.setFont(new Font("Inter", Font.PLAIN, 17));
+		lblNewLabel_2.setBounds(369, 30, 159, 22);
 		panel_2.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("IVA 16%");
-		lblNewLabel_3.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_3.setBounds(392, 31, 53, 19);
-		panel_2.add(lblNewLabel_3);
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("");
-		chckbxNewCheckBox.setBackground(new Color(255, 255, 255));
-		chckbxNewCheckBox.setBounds(451, 33, 21, 21);
-		panel_2.add(chckbxNewCheckBox);
-		
-		JLabel lblNewLabel_4 = new JLabel("IEPS");
-		lblNewLabel_4.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_4.setBounds(488, 31, 53, 22);
-		panel_2.add(lblNewLabel_4);
-		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("");
-		chckbxNewCheckBox_1.setBackground(new Color(255, 255, 255));
-		chckbxNewCheckBox_1.setBounds(525, 33, 26, 21);
-		panel_2.add(chckbxNewCheckBox_1);
-		
-		JLabel lblNewLabel_5 = new JLabel("Exenta IVA");
-		lblNewLabel_5.setFont(new Font("Inter", Font.PLAIN, 12));
-		lblNewLabel_5.setBounds(557, 33, 65, 20);
-		panel_2.add(lblNewLabel_5);
-		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("");
-		chckbxNewCheckBox_2.setBackground(new Color(255, 255, 255));
-		chckbxNewCheckBox_2.setBounds(628, 33, 26, 21);
-		panel_2.add(chckbxNewCheckBox_2);
-		
 		JLabel lblNewLabel_6 = new JLabel("Descripción:");
-		lblNewLabel_6.setFont(new Font("Inter", Font.PLAIN, 15));
-		lblNewLabel_6.setBounds(22, 82, 117, 13);
+		lblNewLabel_6.setFont(new Font("Inter", Font.PLAIN, 17));
+		lblNewLabel_6.setBounds(178, 113, 133, 22);
 		panel_2.add(lblNewLabel_6);
 		
 		txtTocinoAhumado = new JTextField();
 		txtTocinoAhumado.setText("Tocino ahumado");
-		txtTocinoAhumado.setFont(new Font("Inter", Font.PLAIN, 13));
+		txtTocinoAhumado.setFont(new Font("Inter", Font.PLAIN, 15));
 		txtTocinoAhumado.setBackground(new Color(237, 237, 237));
-		txtTocinoAhumado.setBounds(124, 81, 207, 19);
+		txtTocinoAhumado.setBounds(293, 106, 207, 38);
 		txtTocinoAhumado.setHorizontalAlignment(JTextField.CENTER);
 		panel_2.add(txtTocinoAhumado);
 		txtTocinoAhumado.setColumns(10);
 		
-		JLabel lblNewLabel_7 = new JLabel("Ensamble:");
-		lblNewLabel_7.setBackground(new Color(255, 255, 255));
-		lblNewLabel_7.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_7.setBounds(557, 85, 97, 20);
-		panel_2.add(lblNewLabel_7);
-		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("");
-		chckbxNewCheckBox_3.setBounds(628, 84, 26, 21);
-		panel_2.add(chckbxNewCheckBox_3);
-		
 		JLabel lblNewLabel_8 = new JLabel("U.M.");
-		lblNewLabel_8.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_8.setBounds(22, 140, 65, 28);
+		lblNewLabel_8.setFont(new Font("Inter", Font.PLAIN, 15));
+		lblNewLabel_8.setBounds(214, 186, 65, 28);
 		panel_2.add(lblNewLabel_8);
 		
 		
 		String[] unidades = {"KG", "CAJA C/6 PZ", "PZ"};
 		JComboBox<String> comboBox = new JComboBox<>(unidades);
-		comboBox.setBounds(62, 145, 90, 21);
+		comboBox.setFont(new Font("Inter", Font.PLAIN, 15));
+		comboBox.setBounds(254, 190, 99, 21);
 		panel_2.add(comboBox);
 		
 		JLabel lblNewLabel_9 = new JLabel("Costo:");
-		lblNewLabel_9.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_9.setBounds(217, 140, 53, 22);
+		lblNewLabel_9.setFont(new Font("Inter", Font.PLAIN, 15));
+		lblNewLabel_9.setBounds(397, 189, 66, 22);
 		panel_2.add(lblNewLabel_9);
 		
 		JLabel lblNewLabel_10 = new JLabel("$120");
-		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_10.setBounds(280, 140, 51, 22);
+		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 15));
+		lblNewLabel_10.setBounds(449, 189, 51, 22);
 		panel_2.add(lblNewLabel_10);
         
 

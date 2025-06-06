@@ -49,7 +49,7 @@ public class AñadirPlatillo8 {
 	/**
 	 * Create the application.
 	 */
-	public AñadirPlatillo8() {
+	public  AñadirPlatillo8() {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  
             UIManager.put("TextComponent.arc", 10);//textfield redondeadas
@@ -192,100 +192,60 @@ public class AñadirPlatillo8 {
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Código de platillo:");
-		lblNewLabel_1.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(22, 31, 130, 22);
+		lblNewLabel_1.setFont(new Font("Inter", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(214, 20, 185, 43);
 		panel_2.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("SKU08991");
-		lblNewLabel_2.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_2.setBounds(151, 31, 100, 22);
+		lblNewLabel_2.setFont(new Font("Inter", Font.PLAIN, 17));
+		lblNewLabel_2.setBounds(370, 30, 159, 22);
 		panel_2.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("IVA 16%");
-		lblNewLabel_3.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_3.setBounds(392, 31, 53, 19);
-		panel_2.add(lblNewLabel_3);
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("");
-		chckbxNewCheckBox.setBackground(new Color(255, 255, 255));
-		chckbxNewCheckBox.setBounds(451, 33, 21, 21);
-		panel_2.add(chckbxNewCheckBox);
-		
-		JLabel lblNewLabel_4 = new JLabel("IEPS");
-		lblNewLabel_4.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_4.setBounds(488, 31, 53, 22);
-		panel_2.add(lblNewLabel_4);
-		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("");
-		chckbxNewCheckBox_1.setBackground(new Color(255, 255, 255));
-		chckbxNewCheckBox_1.setBounds(525, 33, 26, 21);
-		panel_2.add(chckbxNewCheckBox_1);
-		
-		JLabel lblNewLabel_5 = new JLabel("Exenta IVA");
-		lblNewLabel_5.setFont(new Font("Inter", Font.PLAIN, 12));
-		lblNewLabel_5.setBounds(557, 33, 65, 20);
-		panel_2.add(lblNewLabel_5);
-		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("");
-		chckbxNewCheckBox_2.setBackground(new Color(255, 255, 255));
-		chckbxNewCheckBox_2.setBounds(628, 33, 26, 21);
-		panel_2.add(chckbxNewCheckBox_2);
-		
 		JLabel lblNewLabel_6 = new JLabel("Descripción:");
-		lblNewLabel_6.setFont(new Font("Inter", Font.PLAIN, 15));
-		lblNewLabel_6.setBounds(22, 82, 117, 13);
+		lblNewLabel_6.setFont(new Font("Inter", Font.PLAIN, 17));
+		lblNewLabel_6.setBounds(180, 103, 133, 22);
 		panel_2.add(lblNewLabel_6);
 		
 		txtTocinoAhumado = new JTextField();
 		txtTocinoAhumado.setText("Hotdog sencillo");
-		txtTocinoAhumado.setFont(new Font("Inter", Font.PLAIN, 13));
+		txtTocinoAhumado.setFont(new Font("Inter", Font.PLAIN, 15));
 		txtTocinoAhumado.setBackground(new Color(237, 237, 237));
-		txtTocinoAhumado.setBounds(124, 78, 207, 22);
+		txtTocinoAhumado.setBounds(292, 97, 207, 38);
 		txtTocinoAhumado.setHorizontalAlignment(JTextField.CENTER);
 		panel_2.add(txtTocinoAhumado);
 		txtTocinoAhumado.setColumns(10);
 		
-		JLabel lblNewLabel_7 = new JLabel("Ensamble:");
-		lblNewLabel_7.setBackground(new Color(255, 255, 255));
-		lblNewLabel_7.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_7.setBounds(557, 85, 97, 20);
-		panel_2.add(lblNewLabel_7);
-		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("");
-		chckbxNewCheckBox_3.setBounds(628, 84, 26, 21);
-		panel_2.add(chckbxNewCheckBox_3);
-		
 		JLabel lblNewLabel_8 = new JLabel("Costo:");
-		lblNewLabel_8.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_8.setBounds(36, 140, 65, 28);
+		lblNewLabel_8.setFont(new Font("Inter", Font.PLAIN, 15));
+		lblNewLabel_8.setBounds(142, 184, 65, 28);
 		panel_2.add(lblNewLabel_8);
 		
 		
 	
 		
 		JLabel lblNewLabel_9 = new JLabel("<html><div style='text-align:center;'>Precio de venta:<br><br></div></html>");
-		lblNewLabel_9.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_9.setBounds(235, 122, 53, 74);
+		lblNewLabel_9.setFont(new Font("Inter", Font.PLAIN, 15));
+		lblNewLabel_9.setBounds(277, 161, 108, 74);
 		panel_2.add(lblNewLabel_9);
 		
 		JLabel lblNewLabel_10 = new JLabel("25.02");
-		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_10.setBounds(88, 143, 51, 22);
+		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 15));
+		lblNewLabel_10.setBounds(195, 184, 59, 28);
 		panel_2.add(lblNewLabel_10);
 		
 		JLabel lblNewLabel_11 = new JLabel("$35.00");
-		lblNewLabel_11.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_11.setBounds(298, 139, 62, 31);
+		lblNewLabel_11.setFont(new Font("Inter", Font.PLAIN, 15));
+		lblNewLabel_11.setBounds(364, 183, 62, 31);
 		panel_2.add(lblNewLabel_11);
 		
 		JLabel lblNewLabel_12 = new JLabel("% Utilidad:");
-		lblNewLabel_12.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_12.setBounds(422, 149, 83, 13);
+		lblNewLabel_12.setFont(new Font("Inter", Font.PLAIN, 15));
+		lblNewLabel_12.setBounds(477, 187, 108, 22);
 		panel_2.add(lblNewLabel_12);
 		
 		JLabel lblNewLabel_13 = new JLabel("28.5142");
-		lblNewLabel_13.setFont(new Font("Inter", Font.PLAIN, 13));
-		lblNewLabel_13.setBounds(501, 149, 83, 13);
+		lblNewLabel_13.setFont(new Font("Inter", Font.PLAIN, 15));
+		lblNewLabel_13.setBounds(558, 192, 83, 13);
 		panel_2.add(lblNewLabel_13);
         
 

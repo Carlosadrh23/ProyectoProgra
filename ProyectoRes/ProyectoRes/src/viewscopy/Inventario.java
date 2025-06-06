@@ -22,6 +22,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Inventario {
 
@@ -151,18 +153,26 @@ public class Inventario {
 		panel.add(btnNewButton_6);
 		
 
-		ImageIcon lupaIcon = new ImageIcon("img/lupa.png");
-		Image lupaImg = lupaIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-
-		textField_1 = new Lupa(lupaImg);
-		textField_1.setBounds(357, 150, 263, 43);
+		textField_1 = new JTextField();
+		textField_1.setBounds(424, 148, 256, 49);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		textField_1.setColumns(10);
 		panel.add(textField_1);
 		
-	
+		JButton botonlupa = new JButton("");
+		botonlupa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		botonlupa.setBackground(new Color(190, 190, 190));
+		botonlupa.setBounds(354, 148, 73, 49);
+		ImageIcon k1 = new ImageIcon(getClass().getResource("/img/lupa.png"));
+		Image imagenlupa = k1.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		botonlupa.setIcon(new ImageIcon(imagenlupa));
+		panel.add(botonlupa);
+		
 		
 		JButton btnNewButton_7 = new JButton("BORRAR");
 		btnNewButton_7.setBackground(new Color(190, 190, 190));
@@ -231,7 +241,8 @@ public class Inventario {
 		});
 		//scroll la barra
 		scrollPane.setViewportView(table);
+		
+		
 	}
-
 	}
 
