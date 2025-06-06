@@ -1746,6 +1746,7 @@ public class HomeView {
 			Object[] fila = { ingredient.code, ingredient.name};
 			modelo.addRow(fila);
 		}
+		
 
 		JTable table = new JTable(modelo) {
 			@Override
@@ -1845,8 +1846,12 @@ public class HomeView {
 
 		String[] titulos = {"Descripción", "Cantidad", "U.M.", "Costo", ""};
 		
-		DefaultTableModel modeloTabla = new DefaultTableModel(titulos, 0);   
-		
+		DefaultTableModel modeloTabla = new DefaultTableModel(titulos, 0) {
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		        return column == 4; // hace que no sea editable el contenido
+		    }
+		};
 		
 		JTable tabla = new JTable(modeloTabla);
 		tabla.getColumn("").setCellRenderer(new ButtonRenderer());
@@ -8254,8 +8259,13 @@ public class HomeView {
 		});
 
 		String[] titulos = {"Descripción", "Cantidad", "U.M.", "Costo", ""};
-		DefaultTableModel modeloTabla = new DefaultTableModel(titulos, 0);   
 		
+		DefaultTableModel modeloTabla = new DefaultTableModel(titulos, 0) {
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		        return column == 4; // hace que no sea editable el contenido
+		    }
+		};
 		
 		JTable tabla = new JTable(modeloTabla);
 		tabla.getColumn("").setCellRenderer(new ButtonRenderer());
@@ -10665,6 +10675,16 @@ public class HomeView {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(50, 98, 115));
 		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController hm = new HomeController();
+				hm.abrirCuenta3();
+			}
+		});
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Ensamble");
@@ -10699,6 +10719,16 @@ public class HomeView {
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setBackground(new Color(50, 98, 115));
 		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Inventario();
+			}
+		});
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Clientes");
@@ -10849,6 +10879,16 @@ public class HomeView {
         btnNewButton_6.setIcon(new ImageIcon(imagen3));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
+		btnNewButton_6.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.Añadirplatillo();
+			}
+		});
 		panel_1.add(btnNewButton_6);
 		
 		//boton aceptar
