@@ -165,34 +165,80 @@ public class IngredientsModel {
 		return myuser;
 	}
 	
-	public boolean remove(int id) {
-		
-		String query = "DELETE FROM ingredients WHERE `users`.`user.id` ="+id;
-		Connection conn = null;
-		Statement stmt = null;
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-	        			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
-			stmt = conn.createStatement();
-			
-			stmt.executeUpdate(query);
-			
-			return true; 
-				
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				stmt.close();
-				conn.close();
-			} catch (Exception e) {}
-		}
-		
-		
-		return false;
-		
-	}
+public boolean remove(int ingredientId) {
+    Connection conn = null;
+    PreparedStatement stmt1 = null;
+    PreparedStatement stmt2 = null;
+    PreparedStatement stmt3 = null;
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
+                "*e9EZn3Nr@KBrde");
+        
+        // Start transaction
+        conn.setAutoCommit(false);
+        
+        // Primero elimina las referencias en dish_ingredients
+        String deleteDishIngredientsQuery = "DELETE FROM dish_ingredients WHERE ingredient_id = ?";
+        stmt1 = conn.prepareStatement(deleteDishIngredientsQuery);
+        stmt1.setInt(1, ingredientId);
+        stmt1.executeUpdate();
+        
+        // Segundo elimina las referencias en inventories
+        String deleteInventoriesQuery = "DELETE FROM inventories WHERE ingredient_id = ?";
+        stmt2 = conn.prepareStatement(deleteInventoriesQuery);
+        stmt2.setInt(1, ingredientId);
+        stmt2.executeUpdate();
+        
+        // Tercero elimina el ingrediente
+        String deleteIngredientQuery = "DELETE FROM ingredients WHERE ingredient_id = ?";
+        stmt3 = conn.prepareStatement(deleteIngredientQuery);
+        stmt3.setInt(1, ingredientId);
+        int rowsAffected = stmt3.executeUpdate();
+        
+        // Commit transaction
+        conn.commit();
+        return rowsAffected > 0;
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+        if (conn != null) {
+            try {
+                conn.rollback();
+            } catch (SQLException rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
+        }
+        return false;
+    } finally {
+        try {
+            if (stmt1 != null)
+                stmt1.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (stmt2 != null)
+                stmt2.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (stmt3 != null)
+                stmt3.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (conn != null) {
+                conn.setAutoCommit(true);
+                conn.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
 	 public String generateNextIngredientCode() throws SQLException {
 	        String sql = "SELECT COALESCE(MAX(ingredient_id), 0) + 1 as next_id FROM ingredients";

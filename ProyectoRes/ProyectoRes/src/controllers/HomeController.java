@@ -105,7 +105,20 @@ public class HomeController {
 	}
 	public void Añadirplatillo() 
 	{
-		vista.AñadirPlatillo();
+		IngredientsModel Im = new IngredientsModel();
+		
+		ingredientes = Im.getAll();
+
+
+		vista.AñadirPlatillo(ingredientes);
+	}
+	public void Añadirplatillo2() 
+		{	
+		IngredientsModel Im = new IngredientsModel();
+		
+		ingredientes = Im.getAll();
+
+		vista.AñadirPlatillo2();
 	}
 	public void AlmacenEditar() 
 	{
@@ -125,7 +138,9 @@ public class HomeController {
 		vista.BuscarPorProducto(null);
 	}
 	public void EditarMenu() {
-		vista.EditarMenu();
+		IngredientsModel Im = new IngredientsModel();
+		ingredientes = Im.getAll();
+		vista.EditarMenu(ingredientes);
 	}
 
 	public void SeleccionDeCantidadHamburguesa() {

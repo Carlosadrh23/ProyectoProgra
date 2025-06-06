@@ -108,7 +108,7 @@ public class DishesModel {
 	
 	public boolean remove(int id) {
 		
-		String query = "DELETE FROM ingredients WHERE `users`.`user.id` ="+id;
+		String query = "DELETE FROM dishes WHERE `dishes`.`dish_id` ="+id;
 		Connection conn = null;
 		Statement stmt = null;
 		try {
@@ -151,7 +151,7 @@ public class DishesModel {
 	    }
 }
 	public void update(int id, String name, String email, String password) {
-	    String query = "UPDATE ingredients SET username=?, email=?, password=? WHERE id=?";
+	    String query = "UPDATE dishes SET name=?, description=?, password=? WHERE id=?";
 	    
 	    try (Connection 			        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
 	         PreparedStatement pstmt = conn.prepareStatement(query)) {
