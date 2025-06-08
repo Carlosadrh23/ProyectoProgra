@@ -122,12 +122,7 @@ public class HomeController {
 
 		vista.AñadirPlatillo2();
 	}
-	public void AlmacenEditar() 
-	{
-		IngredientsModel Im = new IngredientsModel();
-		ingredientes = Im.getAll();
-		vista.AlmacenEditar(ingredientes);
-		}
+	
 	public void AñadirIngrediente() 
 	{
 		IngredientsModel Im = new IngredientsModel();
@@ -217,9 +212,9 @@ public class HomeController {
 		vista.EditarFactura();
 	}
 
-	public void Añadirplatillo8() {
+	public void Añadirplatillo8(float price) {
 		// TODO Auto-generated method stub
-		vista.AñadirPlatillo8();
+		vista.AñadirPlatillo8( price);
 	}
 
 	public void AlertaCerrarSesion(JFrame ownerFrame) {

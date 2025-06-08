@@ -20,8 +20,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import javax.swing.BorderFactory;
@@ -71,6 +74,7 @@ public class HomeView {
 	public HomeView() {
 
 	}
+	
 
 	public class EnsambledeplatilloyConsultarMenu extends JPanel {
 		private JFrame ownerFrame; // Variable para guardar la referencia al JFrame
@@ -1268,280 +1272,7 @@ public class HomeView {
 
 	}
 
-	public void AlmacenEditar(List ingredientes) {
-		try {
-			UIManager.setLookAndFeel(new FlatLightLaf());
-			UIManager.put("TextComponent.arc", 30);// textfield redondeadas
-			UIManager.put("Buttom.arc", 700); // Esquinas redondeadas
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		JFrame frame = new JFrame();
-		frame.setResizable(false);
-		frame.setAlwaysOnTop(true);
-		frame.setBounds(100, 100, 1150, 799);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 215));
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-
-		// boton de comedor
-		JButton btnNewButton = new JButton("Comedor");
-		btnNewButton.setBounds(0, 0, 234, 49);
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(50, 98, 115));
-		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
-		btnNewButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				frame.dispose();
-				HomeController hm = new HomeController();
-				hm.abrirCuenta3();
-			}
-		});
-		panel.add(btnNewButton);
-
-		JButton btnNewButton_1 = new JButton("Ensamble");
-		btnNewButton_1.setBounds(226, 0, 227, 49);
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(50, 98, 115));
-		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 15));
-		panel.add(btnNewButton_1);
-		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
-		JPanel panelContenido1 = new JPanel();
-		panelContenido1.setBounds(230, 49, 225, 65);
-		panelContenido1.setLayout(new BorderLayout());
-		panelContenido1.setVisible(false);
-		panelContenido1.setOpaque(false);
-		panel.add(panelContenido1);
-
-		btnNewButton_1.addActionListener(e -> {
-			if (panelContenido1.isVisible()) {
-				panelContenido1.setVisible(false);
-				panelContenido1.removeAll();
-			} else {
-				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
-				panelContenido1.setVisible(true);
-			}
-			panelContenido1.revalidate();
-			panelContenido1.repaint();
-		});
-
-		JButton btnNewButton_2 = new JButton("Inventario");
-		btnNewButton_2.setBounds(452, 0, 227, 49);
-		btnNewButton_2.setForeground(new Color(255, 255, 255));
-		btnNewButton_2.setBackground(new Color(50, 98, 115));
-		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
-		btnNewButton_2.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				frame.dispose();
-				HomeController cc = new HomeController();
-				cc.Inventario();
-			}
-		});
-		panel.add(btnNewButton_2);
-
-		JButton btnNewButton_3 = new JButton("Clientes");
-		btnNewButton_3.setBounds(677, 0, 234, 49);
-		btnNewButton_3.setForeground(new Color(255, 255, 255));
-		btnNewButton_3.setBackground(new Color(50, 98, 115));
-		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 15));
-		panel.add(btnNewButton_3);
-		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
-		JPanel panelContenido = new JPanel();
-		panelContenido.setBounds(677, 49, 234, 65);
-		panelContenido.setLayout(new BorderLayout());
-		panelContenido.setVisible(false);
-		panelContenido.setOpaque(false);
-		panel.add(panelContenido);
-
-		btnNewButton_3.addActionListener(e -> {
-			if (panelContenido.isVisible()) {
-				panelContenido.setVisible(false);
-				panelContenido.removeAll();
-			} else {
-				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
-				panelContenido.setVisible(true);
-			}
-			panelContenido.revalidate();
-			panelContenido.repaint();
-		});
-
-		JButton btnNewButton_4 = new JButton("Usuarios");
-		btnNewButton_4.setBounds(909, 0, 227, 49);
-		btnNewButton_4.setForeground(new Color(255, 255, 255));
-		btnNewButton_4.setBackground(new Color(50, 98, 115));
-		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 15));
-		panel.add(btnNewButton_4);
-		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN USUARIOS
-		JPanel panelContenido2 = new JPanel();
-		panelContenido2.setBounds(909, 49, 227, 49);
-		panelContenido2.setLayout(new BorderLayout());
-		panelContenido2.setVisible(false);
-		panelContenido2.setOpaque(false);
-		panel.add(panelContenido2);
-
-		btnNewButton_4.addActionListener(e -> {
-			if (panelContenido2.isVisible()) {
-				panelContenido2.setVisible(false);
-				panelContenido2.removeAll();
-			} else {
-				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
-				panelContenido2.setVisible(true);
-			}
-			panelContenido2.revalidate();
-			panelContenido2.repaint();
-		});
-
-		JLabel lblNewLabel = new JLabel("ALMACEN");
-		lblNewLabel.setBounds(517, 82, 256, 25);
-		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 20));
-		panel.add(lblNewLabel);
-
-		// Boton añadir
-		JButton btnNewButton_5 = new JButton("AÑADIR");
-		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
-		btnNewButton_5.setBackground(new Color(190, 190, 190));
-		btnNewButton_5.setBounds(80, 150, 85, 49);
-		btnNewButton_5.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnNewButton_5.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnNewButton_5.setHorizontalAlignment(SwingConstants.CENTER);
-		btnNewButton_5.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_5.setIconTextGap(1);
-		btnNewButton_5.setBounds(80, 150, 85, 49);
-		ImageIcon a5 = new ImageIcon(getClass().getResource("/img/añadir.png"));
-		Image imagen71 = a5.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-		btnNewButton_5.setIcon(new ImageIcon(imagen71));
-		panel.add(btnNewButton_5);
-		btnNewButton_5.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.AñadirIngrediente();
-			}
-		});
-
-		// Botton editar
-		JButton btnNewButton_6 = new JButton("EDITAR");
-		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 10));
-		btnNewButton_6.setBackground(new Color(190, 190, 190));
-		btnNewButton_6.setBounds(199, 150, 85, 49);
-		btnNewButton_6.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnNewButton_6.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnNewButton_6.setHorizontalAlignment(SwingConstants.CENTER);
-		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_6.setIconTextGap(1);
-		btnNewButton_6.setBounds(199, 150, 85, 49);
-		ImageIcon a = new ImageIcon(getClass().getResource("/img/lapiz.png"));
-		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-		btnNewButton_6.setIcon(new ImageIcon(imagen));
-		panel.add(btnNewButton_6);
-
-		JTextField textField_1 = new JTextField();
-		textField_1.setBounds(424, 148, 256, 49);
-		textField_1.setBackground(new Color(190, 190, 190));
-		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
-		textField_1.setHorizontalAlignment(JTextField.CENTER);
-		textField_1.setColumns(10);
-		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
-		panel.add(textField_1);
-		
-		JButton botonlupa = new JButton("");
-		botonlupa.setBackground(new Color(190, 190, 190));
-		botonlupa.setBounds(354, 148, 73, 49);
-		ImageIcon k1 = new ImageIcon(getClass().getResource("/img/lupa.png"));
-		Image imagenlupa = k1.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-		botonlupa.setIcon(new ImageIcon(imagenlupa));
-		panel.add(botonlupa);
-
-		JButton btnNewButton_7 = new JButton("BORRAR");
-		btnNewButton_7.setBackground(new Color(190, 190, 190));
-		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnNewButton_7.setBounds(963, 150, 85, 49);
-		btnNewButton_7.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnNewButton_7.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnNewButton_7.setHorizontalAlignment(SwingConstants.CENTER);
-		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_7.setIconTextGap(1);
-		btnNewButton_7.setBounds(963, 150, 85, 49);
-
-		ImageIcon b = new ImageIcon(getClass().getResource("/img/borrar.png"));
-		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-		btnNewButton_7.setIcon(new ImageIcon(imagen2));
-		panel.add(btnNewButton_7);
-
-		// crea la barra
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(140, 296, 795, 260);
-		panel.add(scrollPane);
-
-		String[] columnas = { "Código", "Descripción", "Existencia", "U.M.", "Costo" };
-		String[][] datos = { { "ING001", "Carne molida de res", "43", "KG", "$105" },
-				{ "ING002", "Pan para hamburguesa", "20", "paq c/8", "$75" },
-				{ "ING003", "Lechuga", "90", "Pieza", "$25" }, { "ING004", "Tomate", "25", "Kg", "$35" },
-				{ "ING005", "Cebolla", "25", "Kg", "$60" }, { "ING006", "Pepinillos", "15", "Kg", "$45" },
-				{ "ING007", "Papa blanca", "50", "Kg", "$45" },
-				{ "ING008", "Refresco Coca Cola Regular", "200", "L", "$19" } };
-
-		// Creamos la tabla permitiendo editar solo la columna "U.M."
-		JTable table = new JTable(datos, columnas) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return column == 3; // Solo se puede editar la columna "U.M."
-			}
-		};
-
-		// Editor de celda tipo JComboBox para la columna "U.M."
-		String[] unidades = { "Kg", "Pieza", "L", "paq c/8" };
-		JComboBox<String> comboBoxUM = new JComboBox<>(unidades);
-		table.getColumnModel().getColumn(3).setCellEditor(new javax.swing.DefaultCellEditor(comboBoxUM));
-
-		table.setRowSorter(null);
-		table.setFont(new Font("Inter", Font.PLAIN, 14));
-		table.setRowHeight(30);
-		table.setShowGrid(true);
-		table.setGridColor(Color.BLACK);
-		table.getTableHeader().setReorderingAllowed(false);
-
-		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-		for (int i = 0; i < table.getColumnCount(); i++) {
-			table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-		}
-
-		table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-					boolean hasFocus, int row, int column) {
-
-				JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row,
-						column);
-				label.setHorizontalAlignment(SwingConstants.CENTER);
-				label.setFont(new Font("Inter", Font.BOLD, 14));
-				label.setBackground(new Color(220, 220, 220));
-				label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-				return label;
-			}
-		});
-
-		scrollPane.setViewportView(table);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-
-	}
+	
 
 	public void AñadirPlatillo(List ingredientes) {
 		try {
@@ -1723,13 +1454,17 @@ public class HomeView {
 
 		String[] columnas = { "Código", "Descripción" };
 		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
+		Map<String, Ingredient> ingredientesMap = new HashMap<>();
 
 		for (Iterator iterator = ingredientes.iterator(); iterator.hasNext();) {
-			Ingredient ingredient = (Ingredient) iterator.next();
+		    Ingredient ingredient = (Ingredient) iterator.next();
 
-			Object[] fila = { ingredient.code, ingredient.name};
-			modelo.addRow(fila);
+		    Object[] fila = { ingredient.code, ingredient.name, ingredient.unit, ingredient.cost };
+		    modelo.addRow(fila);
+
+		    ingredientesMap.put(ingredient.name, ingredient); // clave = nombre
 		}
+
 		
 
 		JTable table = new JTable(modelo) {
@@ -1853,47 +1588,38 @@ public class HomeView {
 		btnNewButton_5.setBounds(105, 97, 85, 30);
 		panel_2.add(btnNewButton_5);
 		btnNewButton_5.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-			    String descripcion = TextField.getText().trim();
-			    String placeholder = "BUSCAR";
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        String descripcion = TextField.getText().trim();
+		        String placeholder = "BUSCAR";
 
-		JLabel lblNewLabel_1 = new JLabel("Descripción");
-		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(392, 36, 116, 13);
-		panel_2.add(lblNewLabel_1);
-			    // verifica que no este vacio o que no sea el placeholder
-			    if (descripcion.isEmpty() || descripcion.equals(placeholder)) {
-			        JOptionPane.showMessageDialog(frame,
-			                "Selecciona primero un ingrediente válido",
-			                "Aviso", JOptionPane.WARNING_MESSAGE);
-			        return;
-			    }
+		        if (descripcion.isEmpty() || descripcion.equals(placeholder)) {
+		            JOptionPane.showMessageDialog(frame,
+		                "Selecciona primero un ingrediente válido",
+		                "Aviso", JOptionPane.WARNING_MESSAGE);
+		            return;
+		        }
 
-		JLabel lblNewLabel_2 = new JLabel("Cantidad");
-		lblNewLabel_2.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(498, 36, 85, 13);
-		panel_2.add(lblNewLabel_2);
+		        Ingredient ingredienteSeleccionado = ingredientesMap.get(descripcion);
+		        if (ingredienteSeleccionado == null) {
+		            JOptionPane.showMessageDialog(frame,
+		                "Ingrediente no encontrado",
+		                "Error", JOptionPane.ERROR_MESSAGE);
+		            return;
+		        }
 
-		JLabel lblNewLabel_3 = new JLabel("U.M.");
-		lblNewLabel_3.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_3.setBounds(588, 36, 45, 13);
-		panel_2.add(lblNewLabel_3);
-			    String cantidad = "25";
+		        modeloTabla.addRow(new Object[]{
+		            ingredienteSeleccionado.name,
+		            "1", // campo para Cantidad (vacío inicialmente)
+		            ingredienteSeleccionado.unit,
+		            ingredienteSeleccionado.cost,
+		            "" // columna para el botón
+		        });
 
-			    String um = "kg"; 
-
-			    String costo = "$70";
-
-			   
-			    modeloTabla.addRow(new Object[]{descripcion, cantidad, um, costo, ""});
-
-			    // se limpia el textfield de busqueda para poder buscar otro
-			    TextField.setText("");
-			}
+		        TextField.setText("");
+		    }
 		});
+
 		panel_2.add(btnNewButton_5);
 
 		// boton cancelar
@@ -1932,9 +1658,26 @@ public class HomeView {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int filas = modelo.getRowCount();
+				int columnas = modelo.getColumnCount();
+
+				
+				
+				String[] descripciones = new String[filas];
+				
+
+				for (int i = 0; i < filas; i++) {
+				    descripciones[i] = modelo.getValueAt(i, 0).toString(); // Columna 0 = Descripción
+				}
+		
+
+				IngredientsModel im = new IngredientsModel();
+				float price =im.sumarPreciosPorCodigo(descripciones);
+
+
 				frame.dispose();
 				HomeController hm = new HomeController();
-				hm.Añadirplatillo8();
+				hm.Añadirplatillo8(price);
 			}
 		});
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
@@ -2071,7 +1814,7 @@ public class HomeView {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Añadir platillo");
+		JLabel lblNewLabel = new JLabel("Añadir platillo2222");
 		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 20));
 		lblNewLabel.setBounds(334, 23, 198, 25);
 		panel_1.add(lblNewLabel);
@@ -7438,31 +7181,6 @@ public class HomeView {
 			}
 		});
 
-		// Botton editar
-		JButton btnNewButton_6 = new JButton("EDITAR");
-		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 10));
-		btnNewButton_6.setBackground(new Color(190, 190, 190));
-		btnNewButton_6.setBounds(199, 150, 85, 49);
-		btnNewButton_6.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnNewButton_6.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnNewButton_6.setHorizontalAlignment(SwingConstants.CENTER);
-		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
-		btnNewButton_6.setIconTextGap(1);
-		btnNewButton_6.setBounds(199, 150, 85, 49);
-		ImageIcon b = new ImageIcon(getClass().getResource("/img/lapiz.png"));
-		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-		btnNewButton_6.setIcon(new ImageIcon(imagen2));
-		panel.add(btnNewButton_6);
-		btnNewButton_6.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				HomeController hc = new HomeController();
-				hc.AlmacenEditar();
-
-			}
-		});
 
 		JTextField textField_1 = new JTextField();
 		textField_1.setBounds(424, 148, 256, 49);
@@ -10375,8 +10093,10 @@ public class HomeView {
 		lblNewLabel_1.setFont(new Font("Inter", Font.PLAIN, 17));
 		lblNewLabel_1.setBounds(214, 20, 185, 43);
 		panel_2.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("ING0674");
+		IngredientsModel Im = new IngredientsModel();
+		String codigo;
+		codigo =Im.generateNextIngredientCode();
+		JLabel lblNewLabel_2 = new JLabel(codigo);
 		lblNewLabel_2.setFont(new Font("Inter", Font.PLAIN, 17));
 		lblNewLabel_2.setBounds(369, 30, 159, 22);
 		panel_2.add(lblNewLabel_2);
@@ -10399,44 +10119,21 @@ public class HomeView {
 		lblNewLabel_8.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_8.setBounds(214, 186, 65, 28);
 		panel_2.add(lblNewLabel_8);
+		String[] unidades = { "kg", "litro", "pieza" };
+
 		
-		String[] unidades = {"KG", "CAJA C/6 PZ", "PZ"};
 		JComboBox<String> comboBox = new JComboBox<>(unidades);
 		comboBox.setFont(new Font("Inter", Font.PLAIN, 13));
 		comboBox.setBounds(254, 190, 99, 21);
 		panel_2.add(comboBox);
 		
 		
-	/*String[] unidades = { "kg", "litro", "pieza" };
-
-		for (Iterator<Ingredient> iterator = ingredientes.iterator(); iterator.hasNext();) {
-			Ingredient ingredient = iterator.next();
-
-			// Buscar si la unidad existe en el array
-			String unitName = ingredient.unit;
-			boolean unitFound = false;
-
-			for (String unidad : unidades) {
-				if (unidad.equalsIgnoreCase(ingredient.unit)) {
-					unitName = unidad;
-					unitFound = true;
-					break;
-				}
-			}
-
-			// Si no se encuentra, usar valor por defecto
-			if (!unitFound) {
-				unitName = "Sin unidad";
-			}
-
-		}*/
-		
-		JLabel lblNewLabel_9 = new JLabel("Costo:");
+		JLabel lblNewLabel_9 = new JLabel("Costo:$");
 		lblNewLabel_9.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_9.setBounds(397, 189, 66, 22);
 		panel_2.add(lblNewLabel_9);
 		
-		JLabel lblNewLabel_10 = new JLabel("$120");
+		JTextField lblNewLabel_10 = new JTextField("0");
 		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_10.setBounds(449, 189, 51, 22);
 		panel_2.add(lblNewLabel_10);
@@ -10484,23 +10181,68 @@ public class HomeView {
 		btnNewButton_7.setIcon(new ImageIcon(imagen4));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
+		
 		btnNewButton_7.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-			/*	String selectedString = (String) comboBox.getSelectedItem();
-				IngredientsModel Im = new IngredientsModel();
-				Float precio = Float.parseFloat(lblNewLabel_10.getText().replace("$", ""));
 
-				Im.addIngredient(txtTocinoAhumado.getText(), selectedString, precio);*/
+				String selectedString = (String) comboBox.getSelectedItem();
+			IngredientsModel Im = new IngredientsModel();
+			Float precio = Float.parseFloat(lblNewLabel_10.getText().replace("$", ""));
+
+			Im.addIngredient(txtTocinoAhumado.getText(), selectedString, precio);
+			JDialog dialog = new JDialog(frame, "Éxito", true);
+			dialog.setLayout(new BorderLayout());
+			dialog.setUndecorated(true); // quita la barra superior para que parezca más moderno
+
+			// Panel principal con bordes redondeados si quieres
+			RoundedPanel contentPanel = new RoundedPanel(20);
+			contentPanel.setLayout(new BorderLayout());
+			contentPanel.setBackground(new Color(255, 255, 255));
+			contentPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+
+			// Mensaje
+			JLabel label = new JLabel("Ingrediente añadido correctamente", JLabel.CENTER);
+			label.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
+			label.setFont(new Font("SansSerif", Font.PLAIN, 14));
+
+			// Botón OK
+			JButton okButton = new JButton("OK");
+			okButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					dialog.dispose();
+					
+				}
+			} );
+			okButton.setFocusable(false);
+			okButton.setBackground(new Color(0x007BFF));
+			okButton.setForeground(Color.WHITE);
+			okButton.setFont(new Font("SansSerif", Font.BOLD, 13));
+			okButton.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
+
+			JPanel buttonPanel = new JPanel();
+			buttonPanel.setOpaque(false);
+			buttonPanel.add(okButton);
+			buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
+
+			// Agregar componentes
+			contentPanel.add(label, BorderLayout.CENTER);
+			contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+			dialog.add(contentPanel);
+
+			// Tamaño y posición
+			dialog.setSize(350, 150);
+			dialog.setLocationRelativeTo(frame);
+			dialog.setVisible(true);
 
 
+			frame.dispose();
 
-				frame.dispose();
-
-				HomeController hc = new HomeController();
-				hc.Inventario();
+			HomeController hc = new HomeController();
+			hc.Inventario();
 			}
 		});
 
@@ -10594,7 +10336,7 @@ public class HomeView {
 		dialog.setLocationRelativeTo(null);
 		dialog.setVisible(true);
 	}
-	public void AñadirPlatillo8() {
+	public void AñadirPlatillo8(float price) {
 		try {
             UIManager.setLookAndFeel(new FlatLightLaf());  
             UIManager.put("TextComponent.arc", 10);//textfield redondeadas
@@ -10738,7 +10480,7 @@ public class HomeView {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Añadir platillo");
+		JLabel lblNewLabel = new JLabel("Añadir platillo888");
 		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 20));
 		lblNewLabel.setBounds(334, 23, 198, 25);
 		panel_1.add(lblNewLabel);
@@ -10774,6 +10516,8 @@ public class HomeView {
 		panel_2.add(texto);
 		texto.setColumns(10);
 		
+	
+		
 		JLabel lblNewLabel_8 = new JLabel("Costo:");
 		lblNewLabel_8.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_8.setBounds(142, 184, 65, 28);
@@ -10785,17 +10529,18 @@ public class HomeView {
 		lblNewLabel_9.setBounds(277, 161, 108, 74);
 		panel_2.add(lblNewLabel_9);
 		
-		JLabel lblNewLabel_10 = new JLabel("25.02");
+		JLabel lblNewLabel_10 = new JLabel("$"+price);
 		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_10.setBounds(195, 184, 59, 28);
 		panel_2.add(lblNewLabel_10);
 		
-		JLabel lblNewLabel_11 = new JLabel("$35.00");
+		float precioVenta = price+100;
+		JLabel lblNewLabel_11 = new JLabel("$"+precioVenta);
 		lblNewLabel_11.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_11.setBounds(364, 183, 62, 31);
 		panel_2.add(lblNewLabel_11);
 		
-		JLabel lblNewLabel_12 = new JLabel("% Utilidad:");
+		/*JLabel lblNewLabel_12 = new JLabel("% Utilidad:");
 		lblNewLabel_12.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_12.setBounds(477, 187, 108, 22);
 		panel_2.add(lblNewLabel_12);
@@ -10804,7 +10549,7 @@ public class HomeView {
 		lblNewLabel_13.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_13.setBounds(558, 192, 83, 13);
 		panel_2.add(lblNewLabel_13);
-        
+        */
 
 		//boton cancelar
 		JButton btnNewButton_6 = new JButton("CANCELAR");
