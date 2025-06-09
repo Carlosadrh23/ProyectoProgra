@@ -19,6 +19,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +37,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -55,6 +58,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import controllers.AuthController;
 import controllers.HomeController;
@@ -753,179 +759,6 @@ public class HomeView {
 
 	}
 
-	public void AbrirCuenta2() {
-
-		JFrame frame = new JFrame();
-		frame.setAlwaysOnTop(false);
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 1150, 799);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-
-		// boton de comedor
-		JButton btnNewButton = new JButton("Comedor");
-		btnNewButton.setBounds(0, 0, 234, 49);
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(50, 98, 115));
-		btnNewButton.setFont(new Font("Inter", Font.BOLD, 15));
-		panel.add(btnNewButton);
-
-		JButton btnNewButton_1 = new JButton("Ensamble");
-		btnNewButton_1.setBounds(226, 0, 227, 49);
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(50, 98, 115));
-		btnNewButton_1.setFont(new Font("Inter", Font.BOLD, 15));
-		panel.add(btnNewButton_1);
-		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
-		JPanel panelContenido1 = new JPanel();
-		panelContenido1.setBounds(230, 49, 225, 65);
-		panelContenido1.setLayout(new BorderLayout());
-		panelContenido1.setVisible(false);
-		panelContenido1.setOpaque(false);
-		panel.add(panelContenido1);
-
-		btnNewButton_1.addActionListener(e -> {
-			if (panelContenido1.isVisible()) {
-				panelContenido1.setVisible(false);
-				panelContenido1.removeAll();
-			} else {
-				panelContenido1.removeAll();
-				panelContenido1.add(new EnsambledeplatilloyConsultarMenu(frame), BorderLayout.CENTER);
-				panelContenido1.setVisible(true);
-			}
-			panelContenido1.revalidate();
-			panelContenido1.repaint();
-		});
-
-		JButton btnNewButton_2 = new JButton("Inventario");
-		btnNewButton_2.setBounds(452, 0, 227, 49);
-		btnNewButton_2.setForeground(new Color(255, 255, 255));
-		btnNewButton_2.setBackground(new Color(50, 98, 115));
-		btnNewButton_2.setFont(new Font("Inter", Font.BOLD, 14));
-		btnNewButton_2.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				frame.dispose();
-				HomeController cc = new HomeController();
-				cc.Inventario();
-			}
-		});
-		panel.add(btnNewButton_2);
-
-		JButton btnNewButton_3 = new JButton("Clientes");
-		btnNewButton_3.setBounds(677, 0, 234, 49);
-		btnNewButton_3.setForeground(new Color(255, 255, 255));
-		btnNewButton_3.setBackground(new Color(50, 98, 115));
-		btnNewButton_3.setFont(new Font("Inter", Font.BOLD, 15));
-		panel.add(btnNewButton_3);
-		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN CLIENTES
-		JPanel panelContenido = new JPanel();
-		panelContenido.setBounds(677, 49, 234, 65);
-		panelContenido.setLayout(new BorderLayout());
-		panelContenido.setVisible(false);
-		panelContenido.setOpaque(false);
-		panel.add(panelContenido);
-
-		btnNewButton_3.addActionListener(e -> {
-			if (panelContenido.isVisible()) {
-				panelContenido.setVisible(false);
-				panelContenido.removeAll();
-			} else {
-				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
-				panelContenido.setVisible(true);
-			}
-			panelContenido.revalidate();
-			panelContenido.repaint();
-		});
-
-		JButton btnNewButton_4 = new JButton("Usuarios");
-		btnNewButton_4.setBounds(909, 0, 227, 49);
-		btnNewButton_4.setForeground(new Color(255, 255, 255));
-		btnNewButton_4.setBackground(new Color(50, 98, 115));
-		btnNewButton_4.setFont(new Font("Inter", Font.BOLD, 15));
-		panel.add(btnNewButton_4);
-		// PANEL DE CONTENIDO JUSTO DEBAJO DEL BOTÓN USUARIOS
-		JPanel panelContenido2 = new JPanel();
-		panelContenido2.setBounds(909, 49, 227, 49);
-		panelContenido2.setLayout(new BorderLayout());
-		panelContenido2.setVisible(false);
-		panelContenido2.setOpaque(false);
-		panel.add(panelContenido2);
-
-		btnNewButton_4.addActionListener(e -> {
-			if (panelContenido2.isVisible()) {
-				panelContenido2.setVisible(false);
-				panelContenido2.removeAll();
-			} else {
-				panelContenido2.removeAll();
-				panelContenido2.add(new UsuarioCerrarSesion(frame), BorderLayout.CENTER);
-				panelContenido2.setVisible(true);
-			}
-			panelContenido2.revalidate();
-			panelContenido2.repaint();
-		});
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBorder(new MatteBorder(0, 1, 0, 0, Color.BLACK));
-		panel_1.setBounds(315, 136, 838, 591);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-
-		JButton btnNewButton_5 = new JButton("HAMBURGUESAS");
-		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 17));
-		btnNewButton_5.setBackground(new Color(151, 216, 196));
-		btnNewButton_5.setBounds(0, 0, 281, 88);
-		panel_1.add(btnNewButton_5);
-
-		JButton btnNewButton_6 = new JButton("BONELESS");
-		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 17));
-		btnNewButton_6.setBackground(new Color(179, 140, 180));
-		btnNewButton_6.setBounds(280, 0, 260, 88);
-		panel_1.add(btnNewButton_6);
-
-		JButton btnNewButton_7 = new JButton("PAPAS");
-		btnNewButton_7.setFont(new Font("Inter", Font.BOLD, 17));
-		btnNewButton_7.setBackground(new Color(141, 178, 206));
-		btnNewButton_7.setBounds(540, 0, 276, 88);
-		panel_1.add(btnNewButton_7);
-
-		JButton btnNewButton_8 = new JButton("BEBIDAS");
-		btnNewButton_8.setFont(new Font("Inter", Font.BOLD, 17));
-		btnNewButton_8.setBackground(new Color(228, 87, 46));
-		btnNewButton_8.setBounds(0, 88, 281, 88);
-		panel_1.add(btnNewButton_8);
-
-		RoundedPanel panel_2 = new RoundedPanel(20);
-		panel_2.setBackground(new Color(217, 217, 217));
-		Border borde = BorderFactory.createLineBorder(Color.BLACK, 0);
-		panel_2.setBorder(borde);
-		panel_2.setBounds(56, 243, 704, 338);
-		panel_1.add(panel_2);
-		panel_2.setLayout(null);
-
-		JButton btnNewButton_13 = new JButton("Buscar por producto");
-		btnNewButton_13.setFont(new Font("Inter", Font.BOLD, 12));
-		btnNewButton_13.setHorizontalTextPosition(SwingConstants.RIGHT);
-		btnNewButton_13.setVerticalTextPosition(SwingConstants.CENTER);
-		btnNewButton_13.setIconTextGap(20);
-		btnNewButton_13.setBackground(new Color(217, 217, 217));
-		ImageIcon p = new ImageIcon(getClass().getResource("/img/lupa.png"));
-		Image imagen = p.getImage().getScaledInstance(50, 64, Image.SCALE_SMOOTH);
-		btnNewButton_13.setIcon(new ImageIcon(imagen));
-		btnNewButton_13.setBounds(36, 227, 227, 64);
-		panel.add(btnNewButton_13);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-
-	}
 
 	public void AbrirCuenta3(List dishes) {
 
@@ -6991,8 +6824,41 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				HomeController cc = new HomeController();
-				cc.Ticket();
+			    JFileChooser fileChooser = new JFileChooser();
+			    fileChooser.setDialogTitle("Guardar PDF como...");
+			    
+
+			    
+			    int userSelection = fileChooser.showSaveDialog(null);
+
+			    if (userSelection == JFileChooser.APPROVE_OPTION) {
+			        File archivoSeleccionado = fileChooser.getSelectedFile();
+			        
+			        // aqui se asegura de que termine en .pdf
+			        if (!archivoSeleccionado.getAbsolutePath().endsWith(".pdf")) {
+			            archivoSeleccionado = new File(archivoSeleccionado + ".pdf");
+			        }
+
+			        try {
+			            // Crear documento PDF
+			            Document document = new Document();
+			            PdfWriter.getInstance(document, new FileOutputStream(archivoSeleccionado));
+			            document.open();
+			            
+			        
+			            document.add(new Paragraph("Prueba de pdf"));
+			            
+			            document.close();
+
+			            JOptionPane.showMessageDialog(null, "PDF guardado exitosamente en:\n" + archivoSeleccionado);
+			        } catch (Exception ex) {
+			            ex.printStackTrace();
+			            JOptionPane.showMessageDialog(null, "Ocurrió un error al generar el PDF");
+			        }
+			    }
+				
+				/*HomeController cc = new HomeController();
+				cc.Ticket();*/
 			}
 		});
 		frame.setLocationRelativeTo(null);
@@ -9305,6 +9171,7 @@ public class HomeView {
 
 	}
 
+	//aqui este no se esta utilizando ya pero lo dejo aqui por si acaso se ocupa despues 
 	public void Ticket(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();

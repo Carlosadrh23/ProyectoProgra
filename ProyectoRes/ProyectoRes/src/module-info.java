@@ -9,6 +9,7 @@ module ProyectoRes {
     requires com.formdev.flatlaf;
     requires java.sql;
     requires jbcrypt;
+	requires itextpdf;
 
     exports controllers;
     exports models;
