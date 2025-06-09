@@ -1,6 +1,7 @@
 package viewscopy;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,6 +17,8 @@ import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class BuscarPorProducto {
 
@@ -76,7 +79,7 @@ public class BuscarPorProducto {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		textField_2 = new JTextField();
+		textField_2 = new JTextField("");
 		textField_2.setBackground(new Color(242, 255, 168));
 		textField_2.setBounds(20, 21, 202, 42);
 		panel.add(textField_2);
@@ -110,6 +113,30 @@ public class BuscarPorProducto {
         table.setGridColor(Color.BLACK);
 		table.getTableHeader().setReorderingAllowed(false);
 		
+		// MouseListener para detectar clics
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
+
+				if (row >= 0) {
+					
+					Object cellValue = table.getValueAt(row, 1);
+					String descripcion = cellValue != null ? cellValue.toString() : "";
+
+					// con esto es solo un ingrediente a la vez ya no se pueden poner varios y sobre
+					// escribirse
+					textField_2.setText(descripcion);
+					textField_2.setForeground(Color.BLACK);
+
+					Component popupMenu = null;
+					if (popupMenu.isVisible()) {
+						popupMenu.setVisible(false);
+					}
+				}
+			}
+		});
+
 
      
         // ScrollPane 
@@ -120,7 +147,7 @@ public class BuscarPorProducto {
         btnNewButton = new JButton("Cancelar");
         btnNewButton.setBackground(new Color(255, 0, 0));
         btnNewButton.setFont(new Font("Inter", Font.PLAIN, 10));
-        btnNewButton.setBounds(10, 248, 85, 21);
+        btnNewButton.setBounds(20, 248, 85, 21);
         panel.add(btnNewButton);
         
         btnNewButton_1 = new JButton("Aceptar");

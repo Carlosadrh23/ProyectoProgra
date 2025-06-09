@@ -224,19 +224,19 @@ public class AñadirPlatillo {
 			}
 		});
 
-		// NUEVO: Agregar MouseListener a la tabla para detectar clics
+		// MouseListener para detectar clics
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int row = table.rowAtPoint(e.getPoint());
 				
 				if (row >= 0) {
-					// Obtener siempre el valor de la columna "Descripción" (columna 1)
+					
 					Object cellValue = table.getValueAt(row, 1);
 					String descripcion = cellValue != null ? cellValue.toString() : "";
 					
-					// Limpiar el TextField si tiene el texto placeholder
-					if (TextField.getText().equals("BUSCAR")) {
+				
+					if (TextField.getText().equals("")) {
 						TextField.setText("");
 						TextField.setForeground(Color.BLACK);
 					}

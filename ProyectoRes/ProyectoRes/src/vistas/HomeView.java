@@ -74,7 +74,6 @@ public class HomeView {
 	public HomeView() {
 
 	}
-	
 
 	public class EnsambledeplatilloyConsultarMenu extends JPanel {
 		private JFrame ownerFrame; // Variable para guardar la referencia al JFrame
@@ -686,16 +685,16 @@ public class HomeView {
 		textField_1.setBounds(413, 92, 46, 19);
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
-		
+
 		textField_1.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
@@ -1096,7 +1095,7 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		btnNewButton_7.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -1191,7 +1190,6 @@ public class HomeView {
 		lblTotalValor.setBounds(580, 464, 180, 30);
 		panel_1.add(lblTotalValor);
 
-
 		JButton btnNewButton_11 = new JButton("CANCELAR");
 		btnNewButton_11.setFont(new Font("Inter", Font.PLAIN, 9));
 		btnNewButton_11.setBackground(new Color(190, 190, 190));
@@ -1245,7 +1243,6 @@ public class HomeView {
 			}
 		});
 
-
 		JButton btnNewButton_13 = new JButton("Buscar por producto");
 		btnNewButton_13.setFont(new Font("Inter", Font.BOLD, 12));
 		btnNewButton_13.setHorizontalTextPosition(SwingConstants.RIGHT);
@@ -1271,8 +1268,6 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-
-	
 
 	public void AñadirPlatillo(List ingredientes) {
 		try {
@@ -1457,15 +1452,13 @@ public class HomeView {
 		Map<String, Ingredient> ingredientesMap = new HashMap<>();
 
 		for (Iterator iterator = ingredientes.iterator(); iterator.hasNext();) {
-		    Ingredient ingredient = (Ingredient) iterator.next();
+			Ingredient ingredient = (Ingredient) iterator.next();
 
-		    Object[] fila = { ingredient.code, ingredient.name, ingredient.unit, ingredient.cost };
-		    modelo.addRow(fila);
+			Object[] fila = { ingredient.code, ingredient.name, ingredient.unit, ingredient.cost };
+			modelo.addRow(fila);
 
-		    ingredientesMap.put(ingredient.name, ingredient); // clave = nombre
+			ingredientesMap.put(ingredient.name, ingredient); // clave = nombre
 		}
-
-		
 
 		JTable table = new JTable(modelo) {
 			@Override
@@ -1499,29 +1492,29 @@ public class HomeView {
 			}
 		});
 
-		// PRIMERO creamos el JScrollPane y JPopupMenu
+	
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setPreferredSize(new Dimension(311, 149));
 
 		JPopupMenu popupMenu = new JPopupMenu();
 		popupMenu.add(scrollPane);
 
-		// AHORA añadimos el MouseListener que puede referenciar al popupMenu
+		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int row = table.rowAtPoint(e.getPoint());
 
 				if (row >= 0) {
-					// para agarrar el texto dentro de descripcion
+					
 					Object cellValue = table.getValueAt(row, 1);
 					String descripcion = cellValue != null ? cellValue.toString() : "";
-					
-					// con esto es solo un ingrediente a la vez ya no se pueden poner varios y sobre escribirse 
-		            TextField.setText(descripcion);
-		            TextField.setForeground(Color.BLACK); 
 
-					
+					// con esto es solo un ingrediente a la vez ya no se pueden poner varios y sobre
+					// escribirse
+					TextField.setText(descripcion);
+					TextField.setForeground(Color.BLACK);
+
 					if (popupMenu.isVisible()) {
 						popupMenu.setVisible(false);
 					}
@@ -1553,15 +1546,15 @@ public class HomeView {
 			}
 		});
 
-		String[] titulos = {"Descripción", "Cantidad", "U.M.", "Costo", ""};
-		
+		String[] titulos = { "Descripción", "Cantidad", "U.M.", "Costo", "" };
+
 		DefaultTableModel modeloTabla = new DefaultTableModel(titulos, 0) {
-		    @Override
-		    public boolean isCellEditable(int row, int column) {
-		        return column == 4; // hace que no sea editable el contenido
-		    }
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return column == 4; // hace que no sea editable el contenido
+			}
 		};
-		
+
 		JTable tabla = new JTable(modeloTabla);
 		tabla.getColumn("").setCellRenderer(new ButtonRenderer());
 		tabla.getColumn("").setCellEditor(new IconButtonEditor(modeloTabla, tabla));
@@ -1578,9 +1571,8 @@ public class HomeView {
 			}
 		}
 		JScrollPane scroll = new JScrollPane(tabla);
-		scroll.setBounds(350, 30, 360, 255);                
+		scroll.setBounds(350, 30, 360, 255);
 		panel_2.add(scroll);
-		
 
 		JButton btnNewButton_5 = new JButton("Añadir");
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
@@ -1588,36 +1580,31 @@ public class HomeView {
 		btnNewButton_5.setBounds(105, 97, 85, 30);
 		panel_2.add(btnNewButton_5);
 		btnNewButton_5.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        String descripcion = TextField.getText().trim();
-		        String placeholder = "BUSCAR";
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String descripcion = TextField.getText().trim();
+				String placeholder = "BUSCAR";
 
-		        if (descripcion.isEmpty() || descripcion.equals(placeholder)) {
-		            JOptionPane.showMessageDialog(frame,
-		                "Selecciona primero un ingrediente válido",
-		                "Aviso", JOptionPane.WARNING_MESSAGE);
-		            return;
-		        }
+				if (descripcion.isEmpty() || descripcion.equals(placeholder)) {
+					JOptionPane.showMessageDialog(frame, "Selecciona primero un ingrediente válido", "Aviso",
+							JOptionPane.WARNING_MESSAGE);
+					return;
+				}
 
-		        Ingredient ingredienteSeleccionado = ingredientesMap.get(descripcion);
-		        if (ingredienteSeleccionado == null) {
-		            JOptionPane.showMessageDialog(frame,
-		                "Ingrediente no encontrado",
-		                "Error", JOptionPane.ERROR_MESSAGE);
-		            return;
-		        }
+				Ingredient ingredienteSeleccionado = ingredientesMap.get(descripcion);
+				if (ingredienteSeleccionado == null) {
+					JOptionPane.showMessageDialog(frame, "Ingrediente no encontrado", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 
-		        modeloTabla.addRow(new Object[]{
-		            ingredienteSeleccionado.name,
-		            "1", // campo para Cantidad (vacío inicialmente)
-		            ingredienteSeleccionado.unit,
-		            ingredienteSeleccionado.cost,
-		            "" // columna para el botón
-		        });
+				modeloTabla.addRow(new Object[] { ingredienteSeleccionado.name, "1", // campo para Cantidad (vacío
+																						// inicialmente)
+						ingredienteSeleccionado.unit, ingredienteSeleccionado.cost, "" // columna para el botón
+				});
 
-		        TextField.setText("");
-		    }
+				TextField.setText("");
+			}
 		});
 
 		panel_2.add(btnNewButton_5);
@@ -1655,25 +1642,20 @@ public class HomeView {
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
 		btnNewButton_7.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int filas = modelo.getRowCount();
 				int columnas = modelo.getColumnCount();
 
-				
-				
 				String[] descripciones = new String[filas];
-				
 
 				for (int i = 0; i < filas; i++) {
-				    descripciones[i] = modelo.getValueAt(i, 0).toString(); // Columna 0 = Descripción
+					descripciones[i] = modelo.getValueAt(i, 0).toString(); // Columna 0 = Descripción
 				}
-		
 
 				IngredientsModel im = new IngredientsModel();
-				float price =im.sumarPreciosPorCodigo(descripciones);
-
+				float price = im.sumarPreciosPorCodigo(descripciones);
 
 				frame.dispose();
 				HomeController hm = new HomeController();
@@ -1690,26 +1672,27 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-	public void AñadirPlatillo2( ) {
+
+	public void AñadirPlatillo2() {
 		try {
-            UIManager.setLookAndFeel(new FlatLightLaf());  
-            UIManager.put("TextComponent.arc", 10);//textfield redondeadas
-            UIManager.put("Buttom.arc", 700); // Esquinas redondeadas
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-		
-		JFrame	frame = new JFrame();
+			UIManager.setLookAndFeel(new FlatLightLaf());
+			UIManager.put("TextComponent.arc", 10);// textfield redondeadas
+			UIManager.put("Buttom.arc", 700); // Esquinas redondeadas
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setAlwaysOnTop(true);
 		frame.setBounds(100, 100, 1150, 799);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 215));
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
+
 		// boton de comedor
 		JButton btnNewButton = new JButton("Comedor");
 		btnNewButton.setBounds(0, 0, 234, 49);
@@ -1810,59 +1793,56 @@ public class HomeView {
 		panel_1.setBackground(new Color(255, 255, 255));
 		panel_1.setBounds(167, 108, 798, 509);
 		Border borde = BorderFactory.createLineBorder(Color.BLACK, 0);
-        panel_1.setBorder(borde);
+		panel_1.setBorder(borde);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Añadir platillo2222");
 		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 20));
 		lblNewLabel.setBounds(334, 23, 198, 25);
 		panel_1.add(lblNewLabel);
-		
 
 		RoundedPanel panel_2 = new RoundedPanel(20);
 		panel_2.setBackground(new Color(255, 255, 255));
 		panel_2.setBounds(50, 73, 691, 318);
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Código de platillo:");
 		lblNewLabel_1.setFont(new Font("Inter", Font.PLAIN, 13));
 		lblNewLabel_1.setBounds(22, 31, 130, 22);
 		panel_2.add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("SKU08991");
 		lblNewLabel_2.setFont(new Font("Inter", Font.PLAIN, 13));
 		lblNewLabel_2.setBounds(151, 31, 100, 22);
 		panel_2.add(lblNewLabel_2);
-		
-		
-		
+
 		JCheckBox chckbxNewCheckBox = new JCheckBox("");
 		chckbxNewCheckBox.setBackground(new Color(255, 255, 255));
 		chckbxNewCheckBox.setBounds(451, 33, 21, 21);
 		panel_2.add(chckbxNewCheckBox);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("IEPS");
 		lblNewLabel_4.setFont(new Font("Inter", Font.PLAIN, 13));
 		lblNewLabel_4.setBounds(488, 31, 53, 22);
 		panel_2.add(lblNewLabel_4);
-		
+
 		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("");
 		chckbxNewCheckBox_1.setBackground(new Color(255, 255, 255));
 		chckbxNewCheckBox_1.setBounds(525, 33, 26, 21);
 		panel_2.add(chckbxNewCheckBox_1);
-		
+
 		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("");
 		chckbxNewCheckBox_2.setBackground(new Color(255, 255, 255));
 		chckbxNewCheckBox_2.setBounds(628, 33, 26, 21);
 		panel_2.add(chckbxNewCheckBox_2);
-		
+
 		JLabel lblNewLabel_6 = new JLabel("Descripción:");
 		lblNewLabel_6.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_6.setBounds(22, 82, 117, 13);
 		panel_2.add(lblNewLabel_6);
-		
+
 		JTextField txtTocinoAhumado = new JTextField();
 		txtTocinoAhumado.setText("Hotdog sencillo");
 		txtTocinoAhumado.setFont(new Font("Inter", Font.PLAIN, 13));
@@ -1871,39 +1851,39 @@ public class HomeView {
 		txtTocinoAhumado.setHorizontalAlignment(JTextField.CENTER);
 		panel_2.add(txtTocinoAhumado);
 		txtTocinoAhumado.setColumns(10);
-		
+
 		JLabel lblNewLabel_7 = new JLabel("Ensamble:");
 		lblNewLabel_7.setBackground(new Color(255, 255, 255));
 		lblNewLabel_7.setFont(new Font("Inter", Font.PLAIN, 13));
 		lblNewLabel_7.setBounds(557, 85, 97, 20);
 		panel_2.add(lblNewLabel_7);
-		
+
 		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("");
 		chckbxNewCheckBox_3.setBounds(628, 84, 26, 21);
 		panel_2.add(chckbxNewCheckBox_3);
-		
+
 		JLabel lblNewLabel_8 = new JLabel("Costo:");
 		lblNewLabel_8.setFont(new Font("Inter", Font.PLAIN, 13));
 		lblNewLabel_8.setBounds(36, 140, 65, 28);
 		panel_2.add(lblNewLabel_8);
-		
-	
-		JLabel lblNewLabel_9 = new JLabel("<html><div style='text-align:center;'>Precio de venta:<br><br></div></html>");
+
+		JLabel lblNewLabel_9 = new JLabel(
+				"<html><div style='text-align:center;'>Precio de venta:<br><br></div></html>");
 		lblNewLabel_9.setFont(new Font("Inter", Font.PLAIN, 13));
 		lblNewLabel_9.setBounds(235, 122, 53, 74);
 		panel_2.add(lblNewLabel_9);
-		
+
 		JLabel lblNewLabel_10 = new JLabel("$25.02");
 		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 13));
 		lblNewLabel_10.setBounds(88, 143, 51, 22);
 		panel_2.add(lblNewLabel_10);
-		
+
 		JLabel lblNewLabel_11 = new JLabel("$35.00");
 		lblNewLabel_11.setFont(new Font("Inter", Font.PLAIN, 13));
 		lblNewLabel_11.setBounds(298, 139, 62, 31);
 		panel_2.add(lblNewLabel_11);
 
-		//boton cancelar
+		// boton cancelar
 		JButton btnNewButton_6 = new JButton("CANCELAR");
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1917,13 +1897,13 @@ public class HomeView {
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen3));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_6);
-		
-		//boton aceptar
+
+		// boton aceptar
 		JButton btnNewButton_7 = new JButton("ACEPTAR");
 		btnNewButton_7.setFont(new Font("Inter", Font.BOLD, 9));
 		btnNewButton_7.setBounds(420, 422, 85, 60);
@@ -1933,23 +1913,13 @@ public class HomeView {
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
 		ImageIcon d = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen4 = d.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen4));
+		Image imagen4 = d.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen4));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
-		
-	
+
 	}
-
-
-
-	
-
-	
-
-
-
 
 	public void BuscarPorProducto(Consumer<JComponent> addScaled) {
 
@@ -2001,6 +1971,32 @@ public class HomeView {
 		table.setShowGrid(true);
 		table.setGridColor(Color.BLACK);
 		table.getTableHeader().setReorderingAllowed(false);
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		// MouseListener para detectar clics
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
+
+				if (row >= 0) {
+					
+					Object cellValue = table.getValueAt(row, 1);
+					String descripcion = cellValue != null ? cellValue.toString() : "";
+
+					// con esto es solo un ingrediente a la vez ya no se pueden poner varios y sobre
+					// escribirse
+					textField_2.setText(descripcion);
+					textField_2.setForeground(Color.BLACK);
+
+					
+					if (popupMenu.isVisible()) {
+						popupMenu.setVisible(false);
+					}
+				}
+			}
+		});
+
 
 		// Scroll
 		JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -2011,7 +2007,7 @@ public class HomeView {
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.setBackground(new Color(255, 0, 0));
 		btnNewButton.setFont(new Font("Inter", Font.PLAIN, 10));
-		btnNewButton.setBounds(10, 248, 85, 21);
+		btnNewButton.setBounds(20, 248, 85, 21);
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -2024,6 +2020,12 @@ public class HomeView {
 		btnNewButton_1.setBackground(new Color(32, 175, 44));
 		btnNewButton_1.setFont(new Font("Inter", Font.PLAIN, 10));
 		btnNewButton_1.setBounds(412, 248, 85, 21);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		panel.add(btnNewButton_1);
 
 		frame.setLocationRelativeTo(null);
@@ -2211,8 +2213,6 @@ public class HomeView {
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 
-		
-
 		panel.add(btnNewButton_6);
 
 		JTextField textField_1 = new JTextField();
@@ -2221,9 +2221,9 @@ public class HomeView {
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		textField_1.setColumns(10);
-		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
+		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
 		panel.add(textField_1);
-		
+
 		JButton botonlupa = new JButton("");
 		botonlupa.setBackground(new Color(190, 190, 190));
 		botonlupa.setBounds(354, 148, 73, 49);
@@ -2257,7 +2257,9 @@ public class HomeView {
 		for (Iterator iterator = clientes.iterator(); iterator.hasNext();) {
 			Client client = (Client) iterator.next();
 
-			Object[] fila = { client.id, client.firstName+" "+client.secondName+" "+client.lastName+" "+client.secondLastName, client.rfc };
+			Object[] fila = { client.id,
+					client.firstName + " " + client.secondName + " " + client.lastName + " " + client.secondLastName,
+					client.rfc };
 			modelo.addRow(fila);
 		}
 
@@ -2346,10 +2348,9 @@ public class HomeView {
 
 				// Obtener los datos de la fila seleccionada
 				int id = (int) modelo.getValueAt(filaSeleccionada, 0);
-				
+
 				// Confirmar eliminación
-				int respuesta = JOptionPane.showConfirmDialog(frame,
-						"¿Deseas actualizar los datos?",
+				int respuesta = JOptionPane.showConfirmDialog(frame, "¿Deseas actualizar los datos?",
 						"Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if (respuesta == JOptionPane.YES_OPTION) {
 					try {
@@ -2367,11 +2368,9 @@ public class HomeView {
 							// Eliminar de la lista
 							clientes.remove(clienteEditar);
 							frame.dispose();
-						HomeController hc = new HomeController();
-						hc.EditarCliente(id);
-							
+							HomeController hc = new HomeController();
+							hc.EditarCliente(id);
 
-							
 						}
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(frame, "Error al eliminar el registro: " + ex.getMessage(),
@@ -2379,7 +2378,7 @@ public class HomeView {
 						ex.printStackTrace();
 					}
 				}
-				
+
 			}
 		});
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -2946,14 +2945,14 @@ public class HomeView {
 		txtAño.setBackground(new Color(237, 237, 237));
 		txtAño.setBounds(220, 30, 45, 19);
 		txtAño.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_3.add(txtAño);
 		txtAño.setColumns(10);
@@ -2995,14 +2994,14 @@ public class HomeView {
 		txtNumeroCalle.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtNumeroCalle.setBounds(39, 88, 62, 26);
 		txtNumeroCalle.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_4.add(txtNumeroCalle);
 		txtNumeroCalle.setColumns(10);
@@ -3090,14 +3089,14 @@ public class HomeView {
 		txtTelefono.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtTelefono.setBounds(77, 75, 191, 19);
 		txtTelefono.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_5.add(txtTelefono);
 		txtTelefono.setColumns(10);
@@ -3198,8 +3197,8 @@ public class HomeView {
 					String birthDate = year + "-" + String.format("%02d", Integer.parseInt(month)) + "-"
 							+ String.format("%02d", Integer.parseInt(day));
 					ClientsModel cm = new ClientsModel();
-					cm.addClientFromForm(firstName, secondName, firstLastName, secondLastName, rfc, phone, email,birthDate,
-							street, number, neighborhood, city, state, postalCode, streetNumber);
+					cm.addClientFromForm(firstName, secondName, firstLastName, secondLastName, rfc, phone, email,
+							birthDate, street, number, neighborhood, city, state, postalCode, streetNumber);
 
 					// Mostrar mensaje de éxito
 					JOptionPane.showMessageDialog(frame, "Cliente actualizado correctamente.", "Éxito",
@@ -3233,7 +3232,7 @@ public class HomeView {
 
 	}
 
-	public void EditarCliente(int idSeleccionada,List clientes) {
+	public void EditarCliente(int idSeleccionada, List clientes) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 5);// textfield redondeadas
@@ -3467,14 +3466,14 @@ public class HomeView {
 		txtDia.setFont(new Font("Inter", Font.PLAIN, 11));
 		txtDia.setBounds(42, 30, 34, 19);
 		txtDia.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_3.add(txtDia);
 		txtDia.setColumns(10);
@@ -3489,14 +3488,14 @@ public class HomeView {
 		txtMes.setBackground(new Color(237, 237, 237));
 		txtMes.setBounds(124, 30, 34, 19);
 		txtMes.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_3.add(txtMes);
 		txtMes.setColumns(10);
@@ -3511,14 +3510,14 @@ public class HomeView {
 		txtAño.setBackground(new Color(237, 237, 237));
 		txtAño.setBounds(220, 30, 45, 19);
 		txtAño.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_3.add(txtAño);
 		txtAño.setColumns(10);
@@ -3573,14 +3572,14 @@ public class HomeView {
 		txtNumeroCalle.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtNumeroCalle.setBounds(39, 88, 62, 26);
 		txtNumeroCalle.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_4.add(txtNumeroCalle);
 		txtNumeroCalle.setColumns(10);
@@ -3668,19 +3667,19 @@ public class HomeView {
 		txtTelefono.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtTelefono.setBounds(77, 75, 191, 19);
 		txtTelefono.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_5.add(txtTelefono);
 		txtTelefono.setColumns(10);
 
-		cargarDatosCliente(idSeleccionada,clientes);
+		cargarDatosCliente(idSeleccionada, clientes);
 
 		JButton btnNewButton_6 = new JButton("CANCELAR");
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
@@ -3744,24 +3743,18 @@ public class HomeView {
 
 					// Validar campos obligatorios
 					if (validateFields(firstName, firstLastName, email, phone, day, month, year)) {
-					
-						// Concatenar dirección completa (calle + número)
 
-						
+						// Concatenar dirección completa (calle + número)
 
 						// Llamar a tu método updateCustomer con TODOS los parámetros requeridos
 						ClientsModel cm = new ClientsModel();
 						cm.updateCustomer(idSeleccionada, // int customerId
 								firstName, // String name
-								secondName,
-								firstLastName,
-								secondLastName,
-								rfc, // String rfc
+								secondName, firstLastName, secondLastName, rfc, // String rfc
 								phone, // String phone
 								email, // String email
 								street, // String street
-								numberStreet,
-								neighborhood, // String neighborhood
+								numberStreet, neighborhood, // String neighborhood
 								city, // String city
 								state, // String state
 								postalCode, // String postalCode
@@ -3799,87 +3792,84 @@ public class HomeView {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+
 	private void cargarDatosCliente(int idSeleccionada, List<Client> clientes) {
-		
-	    if (clientes != null && !clientes.isEmpty()) {
-	        // Buscar el cliente con el ID seleccionado
-	        Client clienteEncontrado = null;
-	        for (Client cliente : clientes) {
-	            if (cliente.id == idSeleccionada) { // Asumiendo que Client tiene un campo 'id'
-	                clienteEncontrado = cliente;
-	                break;
-	            }
-	        }
-  // Si se encontró el cliente, cargar sus datos
-	        if (clienteEncontrado != null) {
-	            clienteActual = clienteEncontrado;
-	            
-	            	// Cargar datos básicos desde el objeto Client
-	            	if (clienteActual.firstName != null) 
-	                    txtPrimerNombre.setText(clienteActual.firstName);
-	            
-	            	if (clienteActual.firstName != null) 
-	                    txtSegundoNombre.setText(clienteActual.secondName);
-	                    
-	    	            if (clienteActual.firstName != null) 
-	                    txtPrimerApellido.setText(clienteActual.lastName);
-	                    
-	    	            if (clienteActual.firstName != null) 
-	                    txtSegundoApellido.setText(clienteActual.secondLastName);
-	    	            
-	            
-	            // Cargar RFC, teléfono y email
-	            if (clienteActual.rfc != null)
-	                txtRFC.setText(clienteActual.rfc);
-	            if (clienteActual.phone != null)
-	                txtTelefono.setText(clienteActual.phone);
-	            if (clienteActual.email != null)
-	                txtCorreo.setText(clienteActual.email);
-	            if (clienteActual.birth_date != null)
-	            {
-	            	System.out.println(clienteActual.birth_date);
-	            	if (clienteActual.birth_date == null || !clienteActual.birth_date.matches("\\d{4}-\\d{2}-\\d{2}")) {
-	                    System.out.println("Formato de fecha inválido. Debe ser YYYY-MM-DD.");
-	                    return;
-	                }
-	                String[] partes = clienteActual.birth_date.split("-");
-	                String año = partes[0];
-	                String mes = partes[1];
-	                String dia = partes[2];
-	            txtDia.setText(dia);
-	            txtMes.setText(mes);
-	            txtAño.setText(año);
-	            	}
-	            if (clienteActual.street != null)
-	            	txtCalle.setText(clienteActual.street);
-	            
-	            	 if (clienteActual.number_street != null)
-	 	            	txtNumeroCalle.setText(clienteActual.number_street);
-	            	 
-	            	 if (clienteActual.number_street != null)
-		 	            	txtNumeroCalle.setText(clienteActual.number_street);
-	            	 
-	            	 if (clienteActual.neighborhood != null)
-		 	            	txtColonia.setText(clienteActual.neighborhood);
-	            	 
-	            	 if (clienteActual.city != null)
-		 	            	txtCiudad.setText(clienteActual.city);
-	            	 
-	            	 if (clienteActual.state != null)
-		 	            	txtEstado.setText(clienteActual.state);
-	            	 
-	            	 if (clienteActual.postal_code != null)
-		 	            	txtCP.setText(clienteActual.postal_code);
-	        } else {
-	            // Si no se encuentra el cliente, mostrar mensaje de error
-	            JOptionPane.showMessageDialog(null, 
-	                "No se encontró el cliente con ID: " + idSeleccionada, 
-	                "Cliente no encontrado", 
-	                JOptionPane.WARNING_MESSAGE);
-	        }
-	            	}
-	
-	     }
+
+		if (clientes != null && !clientes.isEmpty()) {
+			// Buscar el cliente con el ID seleccionado
+			Client clienteEncontrado = null;
+			for (Client cliente : clientes) {
+				if (cliente.id == idSeleccionada) { // Asumiendo que Client tiene un campo 'id'
+					clienteEncontrado = cliente;
+					break;
+				}
+			}
+			// Si se encontró el cliente, cargar sus datos
+			if (clienteEncontrado != null) {
+				clienteActual = clienteEncontrado;
+
+				// Cargar datos básicos desde el objeto Client
+				if (clienteActual.firstName != null)
+					txtPrimerNombre.setText(clienteActual.firstName);
+
+				if (clienteActual.firstName != null)
+					txtSegundoNombre.setText(clienteActual.secondName);
+
+				if (clienteActual.firstName != null)
+					txtPrimerApellido.setText(clienteActual.lastName);
+
+				if (clienteActual.firstName != null)
+					txtSegundoApellido.setText(clienteActual.secondLastName);
+
+				// Cargar RFC, teléfono y email
+				if (clienteActual.rfc != null)
+					txtRFC.setText(clienteActual.rfc);
+				if (clienteActual.phone != null)
+					txtTelefono.setText(clienteActual.phone);
+				if (clienteActual.email != null)
+					txtCorreo.setText(clienteActual.email);
+				if (clienteActual.birth_date != null) {
+					System.out.println(clienteActual.birth_date);
+					if (clienteActual.birth_date == null || !clienteActual.birth_date.matches("\\d{4}-\\d{2}-\\d{2}")) {
+						System.out.println("Formato de fecha inválido. Debe ser YYYY-MM-DD.");
+						return;
+					}
+					String[] partes = clienteActual.birth_date.split("-");
+					String año = partes[0];
+					String mes = partes[1];
+					String dia = partes[2];
+					txtDia.setText(dia);
+					txtMes.setText(mes);
+					txtAño.setText(año);
+				}
+				if (clienteActual.street != null)
+					txtCalle.setText(clienteActual.street);
+
+				if (clienteActual.number_street != null)
+					txtNumeroCalle.setText(clienteActual.number_street);
+
+				if (clienteActual.number_street != null)
+					txtNumeroCalle.setText(clienteActual.number_street);
+
+				if (clienteActual.neighborhood != null)
+					txtColonia.setText(clienteActual.neighborhood);
+
+				if (clienteActual.city != null)
+					txtCiudad.setText(clienteActual.city);
+
+				if (clienteActual.state != null)
+					txtEstado.setText(clienteActual.state);
+
+				if (clienteActual.postal_code != null)
+					txtCP.setText(clienteActual.postal_code);
+			} else {
+				// Si no se encuentra el cliente, mostrar mensaje de error
+				JOptionPane.showMessageDialog(null, "No se encontró el cliente con ID: " + idSeleccionada,
+						"Cliente no encontrado", JOptionPane.WARNING_MESSAGE);
+			}
+		}
+
+	}
 
 	private boolean validateFields(String firstName, String firstLastName, String email, String phone, String day,
 			String month, String year) {
@@ -3928,7 +3918,7 @@ public class HomeView {
 
 		return true;
 	}
-	        
+
 	private String buildFullName(String firstName, String secondName, String firstLastName, String secondLastName) {
 		StringBuilder fullName = new StringBuilder();
 
@@ -3957,9 +3947,6 @@ public class HomeView {
 		return fullName.toString().trim();
 	}
 
-	
-
-	
 	private boolean validateFields(String firstName, String firstLastName, String rfc, String email, String phone) {
 		if (firstName.trim().isEmpty() || firstLastName.trim().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "El primer nombre y primer apellido son obligatorios.",
@@ -5493,7 +5480,7 @@ public class HomeView {
 		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_5.setIcon(new ImageIcon(imagen));
 		btnNewButton_5.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -5515,7 +5502,7 @@ public class HomeView {
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
 		btnNewButton_6.setBounds(199, 150, 85, 49);
-		
+
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/lapiz.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_6.setIcon(new ImageIcon(imagen2));
@@ -5527,9 +5514,9 @@ public class HomeView {
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		textField_1.setColumns(10);
-		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
+		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
 		panel.add(textField_1);
-		
+
 		JButton botonlupa = new JButton("");
 		botonlupa.setBackground(new Color(190, 190, 190));
 		botonlupa.setBounds(354, 148, 73, 49);
@@ -5548,21 +5535,23 @@ public class HomeView {
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
 		btnNewButton_7.setBounds(963, 150, 85, 49);
-		
+
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/borrar.png"));
 		Image imagen3 = c.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_7.setIcon(new ImageIcon(imagen3));
 		panel.add(btnNewButton_7);
 
-		String[] columnas = { "ID CLIENTE","RFC", "NOMBRE", "IMPORTE" };
+		String[] columnas = { "ID CLIENTE", "RFC", "NOMBRE", "IMPORTE" };
 		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
 		for (Iterator iterator = clientes.iterator(); iterator.hasNext();) {
 			Client client = (Client) iterator.next();
 
-			Object[] fila = {client.id, client.rfc, client.firstName+" "+client.secondName+" "+client.lastName+" "+client.secondLastName, "$" + client.importe };
+			Object[] fila = { client.id, client.rfc,
+					client.firstName + " " + client.secondName + " " + client.lastName + " " + client.secondLastName,
+					"$" + client.importe };
 			modelo.addRow(fila);
-			
+
 		}
 
 		JTable table = new JTable(modelo) {
@@ -5675,10 +5664,9 @@ public class HomeView {
 
 				// Obtener los datos de la fila seleccionada
 				int id = (int) modelo.getValueAt(filaSeleccionada, 0);
-				
+
 				// Confirmar eliminación
-				int respuesta = JOptionPane.showConfirmDialog(frame,
-						"¿Deseas actualizar los datos?",
+				int respuesta = JOptionPane.showConfirmDialog(frame, "¿Deseas actualizar los datos?",
 						"Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if (respuesta == JOptionPane.YES_OPTION) {
 					try {
@@ -5696,11 +5684,9 @@ public class HomeView {
 							// Eliminar de la lista
 							clientes.remove(clienteEditar);
 							frame.dispose();
-						HomeController hc = new HomeController();
-						hc.EditarCliente(id);
-							
+							HomeController hc = new HomeController();
+							hc.EditarCliente(id);
 
-							
 						}
 					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(frame, "Error al eliminar el registro: " + ex.getMessage(),
@@ -5708,7 +5694,7 @@ public class HomeView {
 						ex.printStackTrace();
 					}
 				}
-				
+
 			}
 		});
 		// Scroll pane
@@ -5719,7 +5705,7 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-	
+
 	public void AñadirFactura() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -5954,14 +5940,14 @@ public class HomeView {
 		txtDia.setFont(new Font("Inter", Font.PLAIN, 11));
 		txtDia.setBounds(42, 30, 34, 19);
 		txtDia.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_3.add(txtDia);
 		txtDia.setColumns(10);
@@ -5976,14 +5962,14 @@ public class HomeView {
 		txtMes.setBackground(new Color(237, 237, 237));
 		txtMes.setBounds(124, 30, 34, 19);
 		txtMes.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_3.add(txtMes);
 		txtMes.setColumns(10);
@@ -5998,14 +5984,14 @@ public class HomeView {
 		txtAño.setBackground(new Color(237, 237, 237));
 		txtAño.setBounds(220, 30, 45, 19);
 		txtAño.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_3.add(txtAño);
 		txtAño.setColumns(10);
@@ -6060,14 +6046,14 @@ public class HomeView {
 		txtNumeroCalle.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtNumeroCalle.setBounds(39, 88, 62, 26);
 		txtNumeroCalle.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_4.add(txtNumeroCalle);
 		txtNumeroCalle.setColumns(10);
@@ -6155,18 +6141,18 @@ public class HomeView {
 		txtTelefono.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtTelefono.setBounds(77, 75, 191, 19);
 		txtTelefono.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_5.add(txtTelefono);
 		txtTelefono.setColumns(10);
-		
+
 		JButton btnNewButton_6 = new JButton("CANCELAR");
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
 		btnNewButton_6.setBounds(303, 486, 85, 60);
@@ -6208,14 +6194,14 @@ public class HomeView {
 		btnNewButton_7.setIcon(new ImageIcon(imagen2));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
-	
+
 		panel_1.add(btnNewButton_7);
-		
+
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-	
-	public void EditarFactura () {
+
+	public void EditarFactura() {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 5);// textfield redondeadas
@@ -6449,14 +6435,14 @@ public class HomeView {
 		txtDia.setFont(new Font("Inter", Font.PLAIN, 11));
 		txtDia.setBounds(42, 30, 34, 19);
 		txtDia.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_3.add(txtDia);
 		txtDia.setColumns(10);
@@ -6471,14 +6457,14 @@ public class HomeView {
 		txtMes.setBackground(new Color(237, 237, 237));
 		txtMes.setBounds(124, 30, 34, 19);
 		txtMes.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_3.add(txtMes);
 		txtMes.setColumns(10);
@@ -6493,14 +6479,14 @@ public class HomeView {
 		txtAño.setBackground(new Color(237, 237, 237));
 		txtAño.setBounds(220, 30, 45, 19);
 		txtAño.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_3.add(txtAño);
 		txtAño.setColumns(10);
@@ -6555,14 +6541,14 @@ public class HomeView {
 		txtNumeroCalle.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtNumeroCalle.setBounds(39, 88, 62, 26);
 		txtNumeroCalle.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_4.add(txtNumeroCalle);
 		txtNumeroCalle.setColumns(10);
@@ -6650,18 +6636,18 @@ public class HomeView {
 		txtTelefono.setFont(new Font("Inter", Font.PLAIN, 14));
 		txtTelefono.setBounds(77, 75, 191, 19);
 		txtTelefono.addKeyListener(new KeyAdapter() {
-		    @Override
-		    public void keyTyped(KeyEvent e) {
-		        char c = e.getKeyChar();
-		        // si no es un un numero no se puede escribir
-		        if (!Character.isDigit(c)) {
-		            e.consume();
-		        }
-		    }
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				// si no es un un numero no se puede escribir
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
 		});
 		panel_5.add(txtTelefono);
 		txtTelefono.setColumns(10);
-		
+
 		JButton btnNewButton_6 = new JButton("CANCELAR");
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 9));
 		btnNewButton_6.setBounds(303, 486, 85, 60);
@@ -6703,9 +6689,9 @@ public class HomeView {
 		btnNewButton_7.setIcon(new ImageIcon(imagen2));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
-	
+
 		panel_1.add(btnNewButton_7);
-		
+
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
@@ -7181,16 +7167,15 @@ public class HomeView {
 			}
 		});
 
-
 		JTextField textField_1 = new JTextField();
 		textField_1.setBounds(424, 148, 256, 49);
 		textField_1.setBackground(new Color(190, 190, 190));
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		textField_1.setColumns(10);
-		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
+		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
 		panel.add(textField_1);
-		
+
 		JButton botonlupa = new JButton("");
 		botonlupa.setBackground(new Color(190, 190, 190));
 		botonlupa.setBounds(354, 148, 73, 49);
@@ -7256,15 +7241,14 @@ public class HomeView {
 				return label;
 			}
 		});
-		
+
 		// crea la barra
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(140, 296, 795, 260);
 		panel.add(scrollPane);
 		// scroll la barra
 		scrollPane.setViewportView(table);
-		
-		
+
 		btnNewButton_7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -7529,9 +7513,9 @@ public class HomeView {
 		textField_1.setFont(new Font("Inter", Font.PLAIN, 16));
 		textField_1.setHorizontalAlignment(JTextField.CENTER);
 		textField_1.setColumns(10);
-		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
+		textField_1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
 		panel.add(textField_1);
-		
+
 		JButton botonlupa = new JButton("");
 		botonlupa.setBackground(new Color(190, 190, 190));
 		botonlupa.setBounds(354, 148, 73, 49);
@@ -7904,11 +7888,11 @@ public class HomeView {
 					Object cellValue = table.getValueAt(row, 1);
 					String descripcion = cellValue != null ? cellValue.toString() : "";
 
-					// con esto es solo un ingrediente a la vez ya no se pueden poner varios y sobre escribirse 
-		            TextField.setText(descripcion);
-		            TextField.setForeground(Color.BLACK); 
+					// con esto es solo un ingrediente a la vez ya no se pueden poner varios y sobre
+					// escribirse
+					TextField.setText(descripcion);
+					TextField.setForeground(Color.BLACK);
 
-					
 					if (popupMenu.isVisible()) {
 						popupMenu.setVisible(false);
 					}
@@ -7940,15 +7924,15 @@ public class HomeView {
 			}
 		});
 
-		String[] titulos = {"Descripción", "Cantidad", "U.M.", "Costo", ""};
-		
+		String[] titulos = { "Descripción", "Cantidad", "U.M.", "Costo", "" };
+
 		DefaultTableModel modeloTabla = new DefaultTableModel(titulos, 0) {
-		    @Override
-		    public boolean isCellEditable(int row, int column) {
-		        return column == 4; // hace que no sea editable el contenido
-		    }
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return column == 4; // hace que no sea editable el contenido
+			}
 		};
-		
+
 		JTable tabla = new JTable(modeloTabla);
 		tabla.getColumn("").setCellRenderer(new ButtonRenderer());
 		tabla.getColumn("").setCellEditor(new IconButtonEditor(modeloTabla, tabla));
@@ -7965,9 +7949,8 @@ public class HomeView {
 			}
 		}
 		JScrollPane scroll = new JScrollPane(tabla);
-		scroll.setBounds(350, 30, 360, 255);                
+		scroll.setBounds(350, 30, 360, 255);
 		panel_2.add(scroll);
-		
 
 		JButton btnNewButton_5 = new JButton("Añadir");
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
@@ -7975,45 +7958,43 @@ public class HomeView {
 		btnNewButton_5.setBounds(105, 97, 85, 30);
 		panel_2.add(btnNewButton_5);
 		btnNewButton_5.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			    String descripcion = TextField.getText().trim();
-			    String placeholder = "BUSCAR";
+				String descripcion = TextField.getText().trim();
+				String placeholder = "BUSCAR";
 
-		JLabel lblNewLabel_1 = new JLabel("Descripción");
-		lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(392, 36, 116, 13);
-		panel_2.add(lblNewLabel_1);
-			    // verifica que no este vacio o que no sea el placeholder
-			    if (descripcion.isEmpty() || descripcion.equals(placeholder)) {
-			        JOptionPane.showMessageDialog(frame,
-			                "Selecciona primero un ingrediente válido",
-			                "Aviso", JOptionPane.WARNING_MESSAGE);
-			        return;
-			    }
+				JLabel lblNewLabel_1 = new JLabel("Descripción");
+				lblNewLabel_1.setFont(new Font("Inter", Font.BOLD, 15));
+				lblNewLabel_1.setBounds(392, 36, 116, 13);
+				panel_2.add(lblNewLabel_1);
+				// verifica que no este vacio o que no sea el placeholder
+				if (descripcion.isEmpty() || descripcion.equals(placeholder)) {
+					JOptionPane.showMessageDialog(frame, "Selecciona primero un ingrediente válido", "Aviso",
+							JOptionPane.WARNING_MESSAGE);
+					return;
+				}
 
-		JLabel lblNewLabel_2 = new JLabel("Cantidad");
-		lblNewLabel_2.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(498, 36, 85, 13);
-		panel_2.add(lblNewLabel_2);
+				JLabel lblNewLabel_2 = new JLabel("Cantidad");
+				lblNewLabel_2.setFont(new Font("Inter", Font.BOLD, 15));
+				lblNewLabel_2.setBounds(498, 36, 85, 13);
+				panel_2.add(lblNewLabel_2);
 
-		JLabel lblNewLabel_3 = new JLabel("U.M.");
-		lblNewLabel_3.setFont(new Font("Inter", Font.BOLD, 15));
-		lblNewLabel_3.setBounds(588, 36, 45, 13);
-		panel_2.add(lblNewLabel_3);
-			    String cantidad = "25";
+				JLabel lblNewLabel_3 = new JLabel("U.M.");
+				lblNewLabel_3.setFont(new Font("Inter", Font.BOLD, 15));
+				lblNewLabel_3.setBounds(588, 36, 45, 13);
+				panel_2.add(lblNewLabel_3);
+				String cantidad = "25";
 
-			    String um = "kg"; 
+				String um = "kg";
 
-			    String costo = "$70";
+				String costo = "$70";
 
-			   
-			    modeloTabla.addRow(new Object[]{descripcion, cantidad, um, costo, ""});
+				modeloTabla.addRow(new Object[] { descripcion, cantidad, um, costo, "" });
 
-			    // se limpia el textfield de busqueda para poder buscar otro
-			    TextField.setText("");
+				// se limpia el textfield de busqueda para poder buscar otro
+				TextField.setText("");
 			}
 		});
 		panel_2.add(btnNewButton_5);
@@ -8117,7 +8098,7 @@ public class HomeView {
 		Image imagen = a.getImage().getScaledInstance(68, 59, Image.SCALE_SMOOTH);
 		btnNewButton.setIcon(new ImageIcon(imagen));
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -8136,7 +8117,7 @@ public class HomeView {
 		Image imagen2 = b.getImage().getScaledInstance(68, 59, Image.SCALE_SMOOTH);
 		btnNewButton_1.setIcon(new ImageIcon(imagen2));
 		btnNewButton_1.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -8155,7 +8136,7 @@ public class HomeView {
 		Image imagen3 = c.getImage().getScaledInstance(68, 59, Image.SCALE_SMOOTH);
 		btnNewButton_2.setIcon(new ImageIcon(imagen3));
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -8187,12 +8168,11 @@ public class HomeView {
 			}
 		});
 
-
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
 	}
-	
+
 	public void SeleccionCocaCola(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();
@@ -8307,6 +8287,12 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -8316,7 +8302,7 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-	
+
 	public void SeleccionSprite(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();
@@ -8431,6 +8417,12 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -8440,7 +8432,7 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-	
+
 	public void SeleccionManzana(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();
@@ -8555,6 +8547,12 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -8564,7 +8562,7 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-	
+
 	public void SeleccionDeCantidadHamburguesa(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();
@@ -8820,8 +8818,7 @@ public class HomeView {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-	
-	
+
 	public void SeleccionDePapas(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();
@@ -8849,7 +8846,7 @@ public class HomeView {
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setBounds(47, 117, 98, 59);
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -8865,7 +8862,7 @@ public class HomeView {
 		btnNewButton_1.setBackground(new Color(255, 255, 255));
 		btnNewButton_1.setBounds(215, 117, 98, 59);
 		btnNewButton_1.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -8881,7 +8878,7 @@ public class HomeView {
 		btnNewButton_2.setBackground(new Color(255, 255, 255));
 		btnNewButton_2.setBounds(386, 117, 98, 59);
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -8914,11 +8911,10 @@ public class HomeView {
 			}
 		});
 
-
 		frame.setVisible(true);
 
 	}
-	
+
 	public void SeleccionPapasChicas(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();
@@ -9033,6 +9029,12 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -9042,7 +9044,7 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-	
+
 	public void SeleccionPapasMedianas(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();
@@ -9157,6 +9159,12 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -9166,7 +9174,7 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-	
+
 	public void SeleccionPapasGrandes(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();
@@ -9281,6 +9289,12 @@ public class HomeView {
 		btnNewButton_4.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_4.setIconTextGap(1);
 		btnNewButton_4.setBounds(295, 224, 92, 49);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		// IMAGEN
 		ImageIcon b = new ImageIcon(getClass().getResource("/img/aceptar.png"));
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
@@ -9290,8 +9304,6 @@ public class HomeView {
 		frame.setVisible(true);
 
 	}
-	
-	
 
 	public void Ticket(Consumer<JComponent> addScaled) {
 
@@ -9336,8 +9348,7 @@ public class HomeView {
 		lblNewLabel_5.setBounds(20, 220, 85, 13);
 		panel.add(lblNewLabel_5);
 
-		JLabel lblNewLabel_6 = new JLabel(
-				"-----------------------------------------------------------------------");
+		JLabel lblNewLabel_6 = new JLabel("-----------------------------------------------------------------------");
 		lblNewLabel_6.setBounds(27, 253, 353, 13);
 		panel.add(lblNewLabel_6);
 
@@ -10095,17 +10106,17 @@ public class HomeView {
 		panel_2.add(lblNewLabel_1);
 		IngredientsModel Im = new IngredientsModel();
 		String codigo;
-		codigo =Im.generateNextIngredientCode();
+		codigo = Im.generateNextIngredientCode();
 		JLabel lblNewLabel_2 = new JLabel(codigo);
 		lblNewLabel_2.setFont(new Font("Inter", Font.PLAIN, 17));
 		lblNewLabel_2.setBounds(369, 30, 159, 22);
 		panel_2.add(lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_6 = new JLabel("Descripción:");
 		lblNewLabel_6.setFont(new Font("Inter", Font.PLAIN, 17));
 		lblNewLabel_6.setBounds(178, 113, 133, 22);
 		panel_2.add(lblNewLabel_6);
-		
+
 		JTextField txtTocinoAhumado = new JTextField();
 		txtTocinoAhumado.setText("Tocino ahumado");
 		txtTocinoAhumado.setFont(new Font("Inter", Font.PLAIN, 15));
@@ -10114,32 +10125,27 @@ public class HomeView {
 		txtTocinoAhumado.setHorizontalAlignment(JTextField.CENTER);
 		panel_2.add(txtTocinoAhumado);
 		txtTocinoAhumado.setColumns(10);
-		
+
 		JLabel lblNewLabel_8 = new JLabel("U.M.");
 		lblNewLabel_8.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_8.setBounds(214, 186, 65, 28);
 		panel_2.add(lblNewLabel_8);
 		String[] unidades = { "kg", "litro", "pieza" };
 
-		
 		JComboBox<String> comboBox = new JComboBox<>(unidades);
 		comboBox.setFont(new Font("Inter", Font.PLAIN, 13));
 		comboBox.setBounds(254, 190, 99, 21);
 		panel_2.add(comboBox);
-		
-		
+
 		JLabel lblNewLabel_9 = new JLabel("Costo:$");
 		lblNewLabel_9.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_9.setBounds(397, 189, 66, 22);
 		panel_2.add(lblNewLabel_9);
-		
+
 		JTextField lblNewLabel_10 = new JTextField("0");
 		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_10.setBounds(449, 189, 51, 22);
 		panel_2.add(lblNewLabel_10);
-
-		
-	
 
 		// boton cancelar
 		JButton btnNewButton_6 = new JButton("CANCELAR");
@@ -10159,8 +10165,10 @@ public class HomeView {
 		btnNewButton_6.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				/*String selectedString = (String) comboBox.getSelectedItem();
-				System.out.println(selectedString);*/
+				/*
+				 * String selectedString = (String) comboBox.getSelectedItem();
+				 * System.out.println(selectedString);
+				 */
 				frame.dispose();
 				HomeController hm = new HomeController();
 				hm.Inventario();
@@ -10181,68 +10189,67 @@ public class HomeView {
 		btnNewButton_7.setIcon(new ImageIcon(imagen4));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
-		
+
 		btnNewButton_7.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				String selectedString = (String) comboBox.getSelectedItem();
-			IngredientsModel Im = new IngredientsModel();
-			Float precio = Float.parseFloat(lblNewLabel_10.getText().replace("$", ""));
+				IngredientsModel Im = new IngredientsModel();
+				Float precio = Float.parseFloat(lblNewLabel_10.getText().replace("$", ""));
 
-			Im.addIngredient(txtTocinoAhumado.getText(), selectedString, precio);
-			JDialog dialog = new JDialog(frame, "Éxito", true);
-			dialog.setLayout(new BorderLayout());
-			dialog.setUndecorated(true); // quita la barra superior para que parezca más moderno
+				Im.addIngredient(txtTocinoAhumado.getText(), selectedString, precio);
+				JDialog dialog = new JDialog(frame, "Éxito", true);
+				dialog.setLayout(new BorderLayout());
+				dialog.setUndecorated(true); // quita la barra superior para que parezca más moderno
 
-			// Panel principal con bordes redondeados si quieres
-			RoundedPanel contentPanel = new RoundedPanel(20);
-			contentPanel.setLayout(new BorderLayout());
-			contentPanel.setBackground(new Color(255, 255, 255));
-			contentPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+				// Panel principal con bordes redondeados si quieres
+				RoundedPanel contentPanel = new RoundedPanel(20);
+				contentPanel.setLayout(new BorderLayout());
+				contentPanel.setBackground(new Color(255, 255, 255));
+				contentPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 
-			// Mensaje
-			JLabel label = new JLabel("Ingrediente añadido correctamente", JLabel.CENTER);
-			label.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
-			label.setFont(new Font("SansSerif", Font.PLAIN, 14));
+				// Mensaje
+				JLabel label = new JLabel("Ingrediente añadido correctamente", JLabel.CENTER);
+				label.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
+				label.setFont(new Font("SansSerif", Font.PLAIN, 14));
 
-			// Botón OK
-			JButton okButton = new JButton("OK");
-			okButton.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					dialog.dispose();
-					
-				}
-			} );
-			okButton.setFocusable(false);
-			okButton.setBackground(new Color(0x007BFF));
-			okButton.setForeground(Color.WHITE);
-			okButton.setFont(new Font("SansSerif", Font.BOLD, 13));
-			okButton.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
+				// Botón OK
+				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
 
-			JPanel buttonPanel = new JPanel();
-			buttonPanel.setOpaque(false);
-			buttonPanel.add(okButton);
-			buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						dialog.dispose();
 
-			// Agregar componentes
-			contentPanel.add(label, BorderLayout.CENTER);
-			contentPanel.add(buttonPanel, BorderLayout.SOUTH);
-			dialog.add(contentPanel);
+					}
+				});
+				okButton.setFocusable(false);
+				okButton.setBackground(new Color(0x007BFF));
+				okButton.setForeground(Color.WHITE);
+				okButton.setFont(new Font("SansSerif", Font.BOLD, 13));
+				okButton.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
 
-			// Tamaño y posición
-			dialog.setSize(350, 150);
-			dialog.setLocationRelativeTo(frame);
-			dialog.setVisible(true);
+				JPanel buttonPanel = new JPanel();
+				buttonPanel.setOpaque(false);
+				buttonPanel.add(okButton);
+				buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
 
+				// Agregar componentes
+				contentPanel.add(label, BorderLayout.CENTER);
+				contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+				dialog.add(contentPanel);
 
-			frame.dispose();
+				// Tamaño y posición
+				dialog.setSize(350, 150);
+				dialog.setLocationRelativeTo(frame);
+				dialog.setVisible(true);
 
-			HomeController hc = new HomeController();
-			hc.Inventario();
+				frame.dispose();
+
+				HomeController hc = new HomeController();
+				hc.Inventario();
 			}
 		});
 
@@ -10336,26 +10343,27 @@ public class HomeView {
 		dialog.setLocationRelativeTo(null);
 		dialog.setVisible(true);
 	}
+
 	public void AñadirPlatillo8(float price) {
 		try {
-            UIManager.setLookAndFeel(new FlatLightLaf());  
-            UIManager.put("TextComponent.arc", 10);//textfield redondeadas
-            UIManager.put("Buttom.arc", 700); // Esquinas redondeadas
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-		
+			UIManager.setLookAndFeel(new FlatLightLaf());
+			UIManager.put("TextComponent.arc", 10);// textfield redondeadas
+			UIManager.put("Buttom.arc", 700); // Esquinas redondeadas
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
 		frame.setAlwaysOnTop(true);
 		frame.setBounds(100, 100, 1150, 799);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 215));
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
+
 		// boton de comedor
 		JButton btnNewButton = new JButton("Comedor");
 		btnNewButton.setBounds(0, 0, 234, 49);
@@ -10438,7 +10446,7 @@ public class HomeView {
 				panelContenido.removeAll();
 			} else {
 				panelContenido.removeAll();
-				panelContenido.add(new HistorialyConsulta(frame),BorderLayout.CENTER);
+				panelContenido.add(new HistorialyConsulta(frame), BorderLayout.CENTER);
 				panelContenido.setVisible(true);
 			}
 			panelContenido.revalidate();
@@ -10476,37 +10484,36 @@ public class HomeView {
 		panel_1.setBackground(new Color(255, 255, 255));
 		panel_1.setBounds(167, 108, 798, 509);
 		Border borde = BorderFactory.createLineBorder(Color.BLACK, 0);
-        panel_1.setBorder(borde);
+		panel_1.setBorder(borde);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Añadir platillo888");
 		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 20));
 		lblNewLabel.setBounds(334, 23, 198, 25);
 		panel_1.add(lblNewLabel);
-		
 
 		RoundedPanel panel_2 = new RoundedPanel(20);
 		panel_2.setBackground(new Color(255, 255, 255));
 		panel_2.setBounds(50, 73, 691, 318);
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Código de platillo:");
 		lblNewLabel_1.setFont(new Font("Inter", Font.PLAIN, 17));
 		lblNewLabel_1.setBounds(214, 20, 185, 43);
 		panel_2.add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("SKU08991");
 		lblNewLabel_2.setFont(new Font("Inter", Font.PLAIN, 17));
 		lblNewLabel_2.setBounds(370, 30, 159, 22);
 		panel_2.add(lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_6 = new JLabel("Descripción:");
 		lblNewLabel_6.setFont(new Font("Inter", Font.PLAIN, 17));
 		lblNewLabel_6.setBounds(180, 103, 133, 22);
 		panel_2.add(lblNewLabel_6);
-		
+
 		JTextField texto = new JTextField();
 		texto.setText("Hotdog sencillo");
 		texto.setFont(new Font("Inter", Font.PLAIN, 15));
@@ -10515,43 +10522,40 @@ public class HomeView {
 		texto.setHorizontalAlignment(JTextField.CENTER);
 		panel_2.add(texto);
 		texto.setColumns(10);
-		
-	
-		
+
 		JLabel lblNewLabel_8 = new JLabel("Costo:");
 		lblNewLabel_8.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_8.setBounds(142, 184, 65, 28);
 		panel_2.add(lblNewLabel_8);
-	
-		
-		JLabel lblNewLabel_9 = new JLabel("<html><div style='text-align:center;'>Precio de venta:<br><br></div></html>");
+
+		JLabel lblNewLabel_9 = new JLabel(
+				"<html><div style='text-align:center;'>Precio de venta:<br><br></div></html>");
 		lblNewLabel_9.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_9.setBounds(277, 161, 108, 74);
 		panel_2.add(lblNewLabel_9);
-		
-		JLabel lblNewLabel_10 = new JLabel("$"+price);
+
+		JLabel lblNewLabel_10 = new JLabel("$" + price);
 		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_10.setBounds(195, 184, 59, 28);
 		panel_2.add(lblNewLabel_10);
-		
-		float precioVenta = price+100;
-		JLabel lblNewLabel_11 = new JLabel("$"+precioVenta);
+
+		float precioVenta = price + 100;
+		JLabel lblNewLabel_11 = new JLabel("$" + precioVenta);
 		lblNewLabel_11.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_11.setBounds(364, 183, 62, 31);
 		panel_2.add(lblNewLabel_11);
-		
-		/*JLabel lblNewLabel_12 = new JLabel("% Utilidad:");
-		lblNewLabel_12.setFont(new Font("Inter", Font.PLAIN, 15));
-		lblNewLabel_12.setBounds(477, 187, 108, 22);
-		panel_2.add(lblNewLabel_12);
-		
-		JLabel lblNewLabel_13 = new JLabel("28.5142");
-		lblNewLabel_13.setFont(new Font("Inter", Font.PLAIN, 15));
-		lblNewLabel_13.setBounds(558, 192, 83, 13);
-		panel_2.add(lblNewLabel_13);
-        */
 
-		//boton cancelar
+		/*
+		 * JLabel lblNewLabel_12 = new JLabel("% Utilidad:"); lblNewLabel_12.setFont(new
+		 * Font("Inter", Font.PLAIN, 15)); lblNewLabel_12.setBounds(477, 187, 108, 22);
+		 * panel_2.add(lblNewLabel_12);
+		 * 
+		 * JLabel lblNewLabel_13 = new JLabel("28.5142"); lblNewLabel_13.setFont(new
+		 * Font("Inter", Font.PLAIN, 15)); lblNewLabel_13.setBounds(558, 192, 83, 13);
+		 * panel_2.add(lblNewLabel_13);
+		 */
+
+		// boton cancelar
 		JButton btnNewButton_6 = new JButton("CANCELAR");
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -10565,8 +10569,8 @@ public class HomeView {
 		btnNewButton_6.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_6.setIconTextGap(1);
 		ImageIcon c = new ImageIcon(getClass().getResource("/img/cancelar.png"));
-        Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_6.setIcon(new ImageIcon(imagen3));
+		Image imagen3 = c.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_6.setIcon(new ImageIcon(imagen3));
 		btnNewButton_6.setFocusPainted(false);
 		btnNewButton_6.setContentAreaFilled(true);
 		btnNewButton_6.addActionListener(new ActionListener() {
@@ -10580,8 +10584,8 @@ public class HomeView {
 			}
 		});
 		panel_1.add(btnNewButton_6);
-		
-		//boton aceptar
+
+		// boton aceptar
 		JButton btnNewButton_7 = new JButton("ACEPTAR");
 		btnNewButton_7.setFont(new Font("Inter", Font.BOLD, 9));
 		btnNewButton_7.setBounds(420, 422, 85, 60);
@@ -10591,17 +10595,17 @@ public class HomeView {
 		btnNewButton_7.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_7.setIconTextGap(1);
 		ImageIcon d = new ImageIcon(getClass().getResource("/img/aceptar.png"));
-        Image imagen4 = d.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        btnNewButton_7.setIcon(new ImageIcon(imagen4));
+		Image imagen4 = d.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+		btnNewButton_7.setIcon(new ImageIcon(imagen4));
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
-		
+
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-	
+
 	}
-	
+
 	public void AlertaCerrarSesion(JFrame ventanaPrincipal) {
 
 		JDialog dialog = new JDialog();
@@ -10678,7 +10682,7 @@ public class HomeView {
 			public void actionPerformed(ActionEvent e) {
 				dialog.dispose();
 				ventanaPrincipal.dispose();
-				AuthController app = new AuthController(); 
+				AuthController app = new AuthController();
 				app.login();
 			}
 		});
