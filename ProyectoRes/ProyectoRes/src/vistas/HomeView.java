@@ -19,8 +19,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +35,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -58,9 +55,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 
 import controllers.AuthController;
 import controllers.HomeController;
@@ -6824,38 +6818,7 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-			    JFileChooser fileChooser = new JFileChooser();
-			    fileChooser.setDialogTitle("Guardar PDF como...");
-			    
-
-			    
-			    int userSelection = fileChooser.showSaveDialog(null);
-
-			    if (userSelection == JFileChooser.APPROVE_OPTION) {
-			        File archivoSeleccionado = fileChooser.getSelectedFile();
-			        
-			        // aqui se asegura de que termine en .pdf
-			        if (!archivoSeleccionado.getAbsolutePath().endsWith(".pdf")) {
-			            archivoSeleccionado = new File(archivoSeleccionado + ".pdf");
-			        }
-
-			        try {
-			            // Crear documento PDF
-			            Document document = new Document();
-			            PdfWriter.getInstance(document, new FileOutputStream(archivoSeleccionado));
-			            document.open();
-			            
-			        
-			            document.add(new Paragraph("Prueba de pdf"));
-			            
-			            document.close();
-
-			            JOptionPane.showMessageDialog(null, "PDF guardado exitosamente en:\n" + archivoSeleccionado);
-			        } catch (Exception ex) {
-			            ex.printStackTrace();
-			            JOptionPane.showMessageDialog(null, "Ocurrió un error al generar el PDF");
-			        }
-			    }
+				GenerarPdf.generarPdf();	
 				
 				/*HomeController cc = new HomeController();
 				cc.Ticket();*/

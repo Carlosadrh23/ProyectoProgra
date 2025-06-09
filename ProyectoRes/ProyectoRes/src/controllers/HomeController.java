@@ -37,10 +37,7 @@ public class HomeController {
 		vista.AbrirCuenta();
 	}
 	
-	/*public void abrirCuenta2()
-	{
-		vista.AbrirCuenta2();
-	}*/
+
 	public void abrirCuenta3()
 	{
 		DishesModel Dm = new DishesModel();
