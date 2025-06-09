@@ -6975,13 +6975,12 @@ public class HomeView {
 		JButton btnNewButton_5 = new JButton("AÑADIR");
 		btnNewButton_5.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_5.setBackground(new Color(190, 190, 190));
-		btnNewButton_5.setBounds(80, 150, 85, 49);
+		btnNewButton_5.setBounds(137, 150, 85, 49);
 		btnNewButton_5.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewButton_5.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewButton_5.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewButton_5.setVerticalAlignment(SwingConstants.CENTER);
 		btnNewButton_5.setIconTextGap(1);
-		btnNewButton_5.setBounds(80, 150, 85, 49);
 		ImageIcon a = new ImageIcon(getClass().getResource("/img/añadir.png"));
 		Image imagen = a.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_5.setIcon(new ImageIcon(imagen));
@@ -9974,7 +9973,8 @@ public class HomeView {
 
 		JTextField lblNewLabel_10 = new JTextField("0");
 		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 15));
-		lblNewLabel_10.setBounds(449, 189, 51, 22);
+		lblNewLabel_10.setBounds(458, 189, 57, 22);
+		lblNewLabel_10.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
 		panel_2.add(lblNewLabel_10);
 
 		// boton cancelar
