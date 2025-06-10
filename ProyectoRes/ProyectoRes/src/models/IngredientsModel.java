@@ -67,7 +67,7 @@ public class IngredientsModel {
 	    public float sumarPreciosPorCodigo(String[] codes)  {
 	    	
 	    	String placeholders = String.join(",", Collections.nCopies(codes.length, "?"));
-	    	String sql = "SELECT SUM(price) AS total_price FROM ingredients WHERE code IN (" + placeholders + ")";
+	    	String sql = "SELECT SUM(price) AS total_price FROM ingredients WHERE name IN (" + placeholders + ")";
 	    	
 
 	        try (Connection conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
@@ -89,6 +89,51 @@ public class IngredientsModel {
 	        return 0f; 
 	    }
 	
+	        public List<Ingredient> getIngredientsForDish(String nombre) {
+	            List<Ingredient> ingredientes = new ArrayList<>();
+
+	            String sql = """
+	            	    SELECT 
+	            	        i.ingredient_id, 
+	            	        i.code, 
+	            	        i.name, 
+	            	        di.quantity_per_dish, 
+	            	        i.unit, 
+	            	        i.price
+	            	    FROM dish_ingredients di
+	            	    JOIN ingredients i ON di.ingredient_id = i.ingredient_id
+	            	    JOIN dishes d ON di.dish_id = d.dish_id
+	            	    WHERE d.name = ?
+	            	""";
+
+
+	            try (Connection conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
+						"*e9EZn3Nr@KBrde");
+	            		PreparedStatement stmt = conn.prepareStatement(sql)) {
+	                stmt.setString(1, nombre);
+	                ResultSet rs = stmt.executeQuery();
+
+	                while (rs.next()) {
+	                    int id = rs.getInt("ingredient_id");
+	                    String code = rs.getString("code");
+	                    String name = rs.getString("name");
+	                    int quantity = rs.getInt("quantity_per_dish");
+	                    String unit = rs.getString("unit");
+	                    float cost = rs.getFloat("price");
+
+	                    Ingredient ingredient = new Ingredient(id, code, name, quantity, unit, cost);
+	                    ingredientes.add(ingredient);
+	                }
+
+	            } catch (SQLException e) {
+	                e.printStackTrace(); // Puedes reemplazar con logs
+	            }
+
+	            return ingredientes;
+	        }
+	    
+	   
+
 	// SELECT unit AS unidad,COUNT(*) AS cantidad_de_ingredientes FROM ingredients
 	// GROUP BY unit;
 	public List getUnits() {
@@ -326,27 +371,55 @@ public class IngredientsModel {
 		}
 	}
 
-	public void update(int id, String name, String email, String password) {
-		String query = "UPDATE ingredients SET username=?, email=?, password=? WHERE id=?";
+	public boolean updateIngredients(int id , List<IngredientsInDish> ingredients) {
+	    PreparedStatement deleteStmt = null;
+	    PreparedStatement insertStmt = null;
+	    Connection conn = null;
+	    String deleteSQL = "DELETE FROM dish_ingredients WHERE dish,id = ?";
+	    String insertSQL = "INSERT INTO dish_ingredients (dish_id, ingredient_id, quantity, unit, cost) VALUES (?, ?, ?, ?, ?)";
 
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
-				"*e9EZn3Nr@KBrde"); PreparedStatement pstmt = conn.prepareStatement(query)) {
+	    try {
+	    	 conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
+					"*e9EZn3Nr@KBrde");
+	        conn.setAutoCommit(false); // importante: transacción
 
-			pstmt.setString(1, name);
-			pstmt.setString(2, email);
-			pstmt.setString(3, password);
-			pstmt.setInt(4, id);
+	        // 1. Eliminar ingredientes anteriores
+	        deleteStmt = conn.prepareStatement(deleteSQL);
+	        deleteStmt.setInt(1, id);
+	        deleteStmt.executeUpdate();
 
-			int rowsAffected = pstmt.executeUpdate();
-			if (rowsAffected > 0) {
-				System.out.println("Usuario actualizado correctamente.");
-			} else {
-				System.out.println("No se encontró el usuario con ID: " + id);
-			}
+	        // 2. Insertar los nuevos ingredientes
+	        insertStmt = conn.prepareStatement(insertSQL);
+	        for (IngredientsInDish ing : ingredients) {
+	            insertStmt.setInt(1, id);
+	            insertStmt.setString(2, ing.getIngredientId());
+	            insertStmt.setDouble(3, ing.getQuantity());
+	            insertStmt.setString(4, ing.getUnit());
+	            insertStmt.setDouble(5, ing.getCost());
+	            insertStmt.addBatch();
+	        }
+	        insertStmt.executeBatch();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	        conn.commit();
+	        return true;
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        if (conn != null) {
+	            try { conn.rollback(); } catch (SQLException ex) { ex.printStackTrace(); }
+	        }
+	        return false;
+
+	    } finally {
+	        try {
+	            if (deleteStmt != null) deleteStmt.close();
+	            if (insertStmt != null) insertStmt.close();
+	            if (conn != null) conn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
+
 
 }

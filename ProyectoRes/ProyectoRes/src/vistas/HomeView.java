@@ -45,6 +45,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -53,6 +54,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableRowSorter;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -63,6 +65,7 @@ import models.ClientsModel;
 import models.Dish;
 import models.DishesModel;
 import models.Ingredient;
+import models.IngredientsInDish;
 import models.IngredientsModel;
 import models.UsersModel;
 import viewscopy.EnsambledeplatilloyConsultarMenu;
@@ -74,6 +77,31 @@ public class HomeView {
 	public HomeView() {
 
 	}
+	public class OrderItem {
+	    private final int    id;
+	    private final String code;
+	    private final String name;
+	    private final double price;
+	    private int          quantity;
+
+	    public OrderItem(int id, String code, String name, double price, int quantity) {
+	        this.id       = id;
+	        this.code     = code;
+	        this.name     = name;
+	        this.price    = price;
+	        this.quantity = quantity;
+	    }
+
+	    /* getters & setters */
+	    public int    getId()       { return id; }
+	    public String getCode()     { return code; }
+	    public String getName()     { return name; }
+	    public double getPrice()    { return price; }
+	    public int    getQuantity() { return quantity; }
+	    public void   addOne()      { quantity++; }
+	}
+
+	List<OrderItem> currentOrder = new ArrayList<>();
 
 	public class EnsambledeplatilloyConsultarMenu extends JPanel {
 		private JFrame ownerFrame; // Variable para guardar la referencia al JFrame
@@ -753,8 +781,10 @@ public class HomeView {
 
 	}
 
-
-	public void AbrirCuenta3(List dishes) {
+	public void AbrirCuenta3(List<Dish> dishes) {
+		for (Dish dish : dishes) {
+	        currentOrder.add(new OrderItem(dish.id, dish.code, dish.name, dish.price, 1));
+	    }
 
 		JFrame frame = new JFrame();
 		frame.setAlwaysOnTop(false);
@@ -945,18 +975,22 @@ public class HomeView {
 
 				HomeController cc = new HomeController();
 				cc.SeleccionDeBebida();
+				
 			}
 		});
 
 		String[] columnas = { "Cantidad", "Código", "Descripción", "Precio" };
 		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
-		for (Iterator iterator = dishes.iterator(); iterator.hasNext();) {
-			Dish dish = (Dish) iterator.next();
-
-			Object[] fila = { dish.id, dish.code, dish.name, "$" + dish.price };
-			modelo.addRow(fila);
-		}
+		 for (OrderItem item : currentOrder) {
+		        Object[] fila = { 
+		            item.getQuantity(), 
+		            item.getCode(), 
+		            item.getName(), 
+		            "$" + item.getPrice()
+		        };
+		        modelo.addRow(fila);
+		    }
 
 		JTable table = new JTable(modelo) {
 			@Override
@@ -1093,7 +1127,8 @@ public class HomeView {
 		});
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-
+		   
+		
 	}
 
 	public void AñadirPlatillo(List ingredientes) {
@@ -1319,21 +1354,19 @@ public class HomeView {
 			}
 		});
 
-	
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setPreferredSize(new Dimension(311, 149));
 
 		JPopupMenu popupMenu = new JPopupMenu();
 		popupMenu.add(scrollPane);
 
-		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int row = table.rowAtPoint(e.getPoint());
 
 				if (row >= 0) {
-					
+
 					Object cellValue = table.getValueAt(row, 1);
 					String descripcion = cellValue != null ? cellValue.toString() : "";
 
@@ -1472,13 +1505,13 @@ public class HomeView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int filas = modelo.getRowCount();
-				int columnas = modelo.getColumnCount();
+				int filas = modeloTabla.getRowCount();
 
 				String[] descripciones = new String[filas];
 
 				for (int i = 0; i < filas; i++) {
-					descripciones[i] = modelo.getValueAt(i, 0).toString(); // Columna 0 = Descripción
+					descripciones[i] = modeloTabla.getValueAt(i, 0).toString(); // Columna 0 = Descripción
+					System.out.println(descripciones[i] = modeloTabla.getValueAt(i, 0).toString());
 				}
 
 				IngredientsModel im = new IngredientsModel();
@@ -1798,7 +1831,7 @@ public class HomeView {
 		table.setShowGrid(true);
 		table.setGridColor(Color.BLACK);
 		table.getTableHeader().setReorderingAllowed(false);
-		
+
 		JPopupMenu popupMenu = new JPopupMenu();
 		// MouseListener para detectar clics
 		table.addMouseListener(new MouseAdapter() {
@@ -1807,7 +1840,7 @@ public class HomeView {
 				int row = table.rowAtPoint(e.getPoint());
 
 				if (row >= 0) {
-					
+
 					Object cellValue = table.getValueAt(row, 1);
 					String descripcion = cellValue != null ? cellValue.toString() : "";
 
@@ -1816,14 +1849,12 @@ public class HomeView {
 					textField_2.setText(descripcion);
 					textField_2.setForeground(Color.BLACK);
 
-					
 					if (popupMenu.isVisible()) {
 						popupMenu.setVisible(false);
 					}
 				}
 			}
 		});
-
 
 		// Scroll
 		JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -2096,6 +2127,20 @@ public class HomeView {
 				return false;
 			}
 		};
+
+		TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
+		table.setRowSorter(sorter);
+		botonlupa.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        String textoBusqueda = textField_1.getText().trim();
+		        if (textoBusqueda.length() == 0) {
+		            sorter.setRowFilter(null); // Muestra todo si está vacío
+		        } else {
+		            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textoBusqueda)); // (?i) = ignora mayúsculas
+		        }
+		    }
+		});
 		table.setFont(new Font("Inter", Font.PLAIN, 14)); // son para la fuente , mostrar las lineas , color y al
 		table.setRowHeight(30);
 		table.setShowGrid(true);
@@ -5417,6 +5462,20 @@ public class HomeView {
 				return label;
 			}
 		});
+
+		TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
+		table.setRowSorter(sorter);
+		botonlupa.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        String textoBusqueda = textField_1.getText().trim();
+		        if (textoBusqueda.length() == 0) {
+		            sorter.setRowFilter(null); // Muestra todo si está vacío
+		        } else {
+		            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textoBusqueda)); // (?i) = ignora mayúsculas
+		        }
+		    }
+		});
 		btnNewButton_7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -6683,7 +6742,17 @@ public class HomeView {
 
 		// Columnas y modelo de la tabla
 		String[] columnas = { "Cantidad", "Código", "Descripción", "Precio" };
-		DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
+
+		for (Iterator iterator = dishes.iterator(); iterator.hasNext();) {
+			Dish dish = (Dish) iterator.next();
+
+			Object[] fila = { 1,dish.code, dish.name, "$" + dish.price };
+			modelo.addRow(fila);
+		}
+		
+
+
 		JTable table = new JTable(modelo) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -6723,8 +6792,7 @@ public class HomeView {
 		scrollPane.setBounds(41, 82, 719, 420);
 		panel_1.add(scrollPane);
 
-		modelo.addRow(new Object[] { "1", "SKU09", "Hamburguesa clásica ", "$150" });
-		modelo.addRow(new Object[] { "1", "SKU10", "Hamburguesa clásica ", "$150" });
+		
 
 		Border cellBorder = BorderFactory.createLineBorder(Color.BLACK);
 
@@ -6818,10 +6886,11 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				GenerarPdf.generarPdf();	
-				
-				/*HomeController cc = new HomeController();
-				cc.Ticket();*/
+				GenerarPdf.generarPdf();
+
+				/*
+				 * HomeController cc = new HomeController(); cc.Ticket();
+				 */
 			}
 		});
 		frame.setLocationRelativeTo(null);
@@ -7043,6 +7112,19 @@ public class HomeView {
 			}
 		};
 
+		TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
+		table.setRowSorter(sorter);
+		botonlupa.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        String textoBusqueda = textField_1.getText().trim();
+		        if (textoBusqueda.length() == 0) {
+		            sorter.setRowFilter(null); // Muestra todo si está vacío
+		        } else {
+		            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textoBusqueda)); // (?i) = ignora mayúsculas
+		        }
+		    }
+		});
 		table.setFont(new Font("Inter", Font.PLAIN, 14)); // son para la fuente , mostrar las lineas , color y al
 		table.setRowHeight(30);
 		table.setShowGrid(true);
@@ -7308,7 +7390,7 @@ public class HomeView {
 		});
 		panel.add(btnNewButton_5);
 
-		JButton btnNewButton_6 = new JButton("EDITAR");
+		/*JButton btnNewButton_6 = new JButton("EDITAR");
 		btnNewButton_6.setFont(new Font("Inter", Font.BOLD, 10));
 		btnNewButton_6.setBackground(new Color(190, 190, 190));
 		btnNewButton_6.setBounds(199, 150, 85, 49);
@@ -7322,19 +7404,8 @@ public class HomeView {
 		Image imagen2 = b.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		btnNewButton_6.setIcon(new ImageIcon(imagen2));
 
-		btnNewButton_6.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				frame.dispose();
-				HomeController cc = new HomeController();
-				cc.EditarMenu();
-			}
-		});
-
 		panel.add(btnNewButton_6);
-
+*/
 		JTextField textField_1 = new JTextField();
 		textField_1.setBounds(424, 148, 256, 49);
 		textField_1.setBackground(new Color(190, 190, 190));
@@ -7371,7 +7442,7 @@ public class HomeView {
 		scrollPane.setBounds(140, 296, 795, 260);
 		panel.add(scrollPane);
 
-		String[] columnas = { "ID paltillo", "Descripción", "Precio" };
+		String[] columnas = { "ID platillo", "Descripción", "Precio" };
 		DefaultTableModel modelo = new DefaultTableModel(columnas, 0); // 0 = sin filas al inicio
 
 		for (Iterator iterator = dishes.iterator(); iterator.hasNext();) {
@@ -7380,6 +7451,8 @@ public class HomeView {
 			Object[] fila = { dish.id, dish.name, "$" + dish.price };
 			modelo.addRow(fila);
 		}
+		
+
 
 		JTable table = new JTable(modelo) {
 			@Override
@@ -7387,6 +7460,21 @@ public class HomeView {
 				return false;
 			}
 		};
+		
+		
+		TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
+		table.setRowSorter(sorter);
+		botonlupa.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        String textoBusqueda = textField_1.getText().trim();
+		        if (textoBusqueda.length() == 0) {
+		            sorter.setRowFilter(null); // Muestra todo si está vacío
+		        } else {
+		            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textoBusqueda)); // (?i) = ignora mayúsculas
+		        }
+		    }
+		});
 		table.setFont(new Font("Inter", Font.PLAIN, 14)); // son para la fuente , mostrar las lineas , color y al
 		table.setRowHeight(30);
 		table.setShowGrid(true);
@@ -7413,6 +7501,42 @@ public class HomeView {
 				return label;
 			}
 		});
+
+	/*	btnNewButton_6.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Obtener valores de los campos de texto
+				int filaSeleccionada = table.getSelectedRow(); // Usar 'table', no 'tabla'
+
+				// Verificar si hay una fila seleccionada
+				if (filaSeleccionada == -1) {
+					JOptionPane.showMessageDialog(frame, "Por favor, selecciona un registro para eliminar.",
+							"Ningún registro seleccionado", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+
+				// Obtener los datos de la fila seleccionada
+				int id = (int) modelo.getValueAt(filaSeleccionada, 0);
+				String nombre = (String) modelo.getValueAt(filaSeleccionada, 1);
+				String precio = (String) modelo.getValueAt(filaSeleccionada, 2);
+
+				// Confirmar eliminación
+				int respuesta = JOptionPane.showConfirmDialog(frame,
+						"¿Estás seguro de que deseas eliminar el registro?\n\n" + "Id: " + id + "\n" + "Nombre: "
+								+ nombre + "\n" + "RFC: " + precio,
+						"Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				// Mostrar mensaje de éxito
+				JOptionPane.showMessageDialog(frame, "Cliente actualizado correctamente.", "Éxito",
+						JOptionPane.INFORMATION_MESSAGE);
+
+				// Cerrar ventana actual y volver a la consulta
+				frame.dispose();
+				HomeController cc = new HomeController();
+				cc.EditarMenu(nombre);
+
+			}
+		});*/
 		btnNewButton_7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -7427,7 +7551,7 @@ public class HomeView {
 				}
 
 				// Obtener los datos de la fila seleccionada
-				int id = (int) modelo.getValueAt(filaSeleccionada, 0);
+				Integer id = (Integer) modelo.getValueAt(filaSeleccionada, 0);
 				String nombre = (String) modelo.getValueAt(filaSeleccionada, 1);
 				String rfc = (String) modelo.getValueAt(filaSeleccionada, 2);
 
@@ -7454,8 +7578,8 @@ public class HomeView {
 							dishes.remove(clienteAEliminar);
 
 							// Eliminar de la base de datos si es necesario
-							DishesModel dm = new DishesModel();
-							dm.remove(clienteAEliminar.id);
+							DishesModel im = new DishesModel();
+							im.remove(clienteAEliminar.id);
 
 							// Eliminar de la tabla visual
 							modelo.removeRow(filaSeleccionada);
@@ -7479,7 +7603,7 @@ public class HomeView {
 
 	}
 
-	public void EditarMenu(List ingredientes) {
+	public void EditarMenu(String nombre, List ingredientes, List seleccionados) {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			UIManager.put("TextComponent.arc", 10);// textfield redondeadas
@@ -7623,9 +7747,9 @@ public class HomeView {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Editar platillo");
+		JLabel lblNewLabel = new JLabel("Editar platillo " + nombre);
 		lblNewLabel.setFont(new Font("Inter", Font.BOLD, 20));
-		lblNewLabel.setBounds(326, 21, 198, 25);
+		lblNewLabel.setBounds(326, 21, 350, 25);
 		panel_1.add(lblNewLabel);
 
 		// segundo panel , el roundpanel espara hacer las esquinas redondas
@@ -7751,15 +7875,21 @@ public class HomeView {
 				});
 			}
 		});
-
 		String[] titulos = { "Descripción", "Cantidad", "U.M.", "Costo", "" };
+		DefaultTableModel modeloTabla = new DefaultTableModel(titulos, 0);
+		List<Ingredient> ingredientesDelPlatillo = new ArrayList<>();
 
-		DefaultTableModel modeloTabla = new DefaultTableModel(titulos, 0) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return column == 4; // hace que no sea editable el contenido
-			}
-		};
+		Map<String, Ingredient> ingredientesMap = new HashMap<>();
+		IngredientsModel im = new IngredientsModel();
+		List<Ingredient> Seleccionados = im.getIngredientsForDish(nombre);
+		for (Iterator iterator = Seleccionados.iterator(); iterator.hasNext();) {
+			Ingredient ingredient = (Ingredient) iterator.next();
+
+			Object[] fila = { ingredient.name, 1, ingredient.unit, ingredient.cost };
+			modeloTabla.addRow(fila);
+
+			ingredientesMap.put(ingredient.name, ingredient); // clave = nombre
+		}
 
 		JTable tabla = new JTable(modeloTabla);
 		tabla.getColumn("").setCellRenderer(new ButtonRenderer());
@@ -7819,7 +7949,7 @@ public class HomeView {
 
 				String costo = "$70";
 
-				modeloTabla.addRow(new Object[] { descripcion, cantidad, um, costo, "" });
+				modeloTabla.addRow(new Object[] { descripcion, 1, um, costo, "" });
 
 				// se limpia el textfield de busqueda para poder buscar otro
 				TextField.setText("");
@@ -7865,10 +7995,65 @@ public class HomeView {
 		btnNewButton_7.setFocusPainted(false);
 		btnNewButton_7.setContentAreaFilled(true);
 		panel_1.add(btnNewButton_7);
+	/*
+		btnNewButton_7.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        DefaultTableModel modeloFinal = modeloTabla;
+		        int filas = modeloFinal.getRowCount();
+		        List<IngredientsInDish> ingredientes = new ArrayList<>();
+
+		        for (int i = 0; i < filas; i++) {
+		            String ingredientId = modeloFinal.getValueAt(i, 0).toString(); // ID (ej. ING009)
+		            System.out.println("ingredientId "+ingredientId);
+		            System.out.println("cantidad "+modeloFinal.getValueAt(i, 1));
+		            System.out.println("unidad "+modeloFinal.getValueAt(i, 2).toString());
+		            System.out.println("costo "+modeloFinal.getValueAt(i, 3));
+
+		            double cantidad =1;
+		            
+		            String unidad = modeloFinal.getValueAt(i, 2).toString();
+		            String costo =  modeloFinal.getValueAt(i, 3).toString();
+
+		            IngredientsInDish ingrediente = new IngredientsInDish();
+		            ingrediente.setIngredientId(ingredientId);
+		            ingrediente.setQuantity(cantidad);
+		            ingrediente.setUnit(unidad);
+		           
+		            Float costo2 = convertirCosto(costo);
+		            ingrediente.setCost(costo2);
+
+		            ingredientes.add(ingrediente);
+		        }
+
+		        // <-- asegúrate de tener el ID del platillo
+		        IngredientsModel im = new IngredientsModel();
+		        
+		        boolean exito = im.updateIngredients(nombre, ingredientes);
+
+		        if (exito) {
+		            JOptionPane.showMessageDialog(null, "Platillo actualizado con éxito.");
+		            frame.dispose();
+		            new HomeController().menu();
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Error al actualizar los ingredientes.");
+		        }
+		    }
+		}); 
+	*/
+
+
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
 	}
+	public Float convertirCosto(String costoConSimbolo) {
+	    // Remover el símbolo $ usando replace
+	    String costoSinSimbolo = costoConSimbolo.replace("$", "");
+	    
+	    // Convertir el String a float
+	    return Float.parseFloat(costoSinSimbolo);
+	}
+
 
 	class RoundedPanel extends JPanel {
 		private int cornerRadius;
@@ -8119,6 +8304,8 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				DishesModel dm = new DishesModel();
+				dm.addDish("Coca Cola 355 ml", (float) 25,3);
 			}
 		});
 		// IMAGEN
@@ -8249,6 +8436,8 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				DishesModel dm = new DishesModel();
+				dm.addDish("Sprite 355 ml", (float) 25,3);
 			}
 		});
 		// IMAGEN
@@ -8379,6 +8568,8 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				DishesModel dm = new DishesModel();
+				dm.addDish("Sidral Mundet 355 ml", (float) 25,3);
 			}
 		});
 		// IMAGEN
@@ -8507,6 +8698,8 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				DishesModel dm = new DishesModel();
+				dm.addDish("Hamburguesa", (float) 120,3);
 			}
 		});
 		// IMAGEN
@@ -8609,6 +8802,7 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				
 			}
 		});
 
@@ -8635,6 +8829,8 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				DishesModel dm = new DishesModel();
+				dm.addDish("Boneless", (float) 110,1);
 			}
 		});
 		// IMAGEN
@@ -8861,6 +9057,8 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				DishesModel dm = new DishesModel();
+				dm.addDish("Papas Chicas", (float) 40,2);
 			}
 		});
 		// IMAGEN
@@ -8991,6 +9189,8 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				DishesModel dm = new DishesModel();
+				dm.addDish("Papas Medianas", (float) 55,2);
 			}
 		});
 		// IMAGEN
@@ -9121,6 +9321,8 @@ public class HomeView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				DishesModel dm = new DishesModel();
+				dm.addDish("Papas Grandes", (float) 60,2);
 			}
 		});
 		// IMAGEN
@@ -9133,7 +9335,8 @@ public class HomeView {
 
 	}
 
-	//aqui este no se esta utilizando ya pero lo dejo aqui por si acaso se ocupa despues 
+	// aqui este no se esta utilizando ya pero lo dejo aqui por si acaso se ocupa
+	// despues
 	public void Ticket(Consumer<JComponent> addScaled) {
 
 		JDialog frame = new JDialog();
@@ -9974,7 +10177,7 @@ public class HomeView {
 		JTextField lblNewLabel_10 = new JTextField("0");
 		lblNewLabel_10.setFont(new Font("Inter", Font.PLAIN, 15));
 		lblNewLabel_10.setBounds(458, 189, 57, 22);
-		lblNewLabel_10.setBorder(BorderFactory.createLineBorder(Color.BLACK,0));
+		lblNewLabel_10.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
 		panel_2.add(lblNewLabel_10);
 
 		// boton cancelar

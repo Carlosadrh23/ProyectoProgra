@@ -9,58 +9,48 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 import javax.swing.JOptionPane;
+import org.mindrot.jbcrypt.BCrypt;
+import java.sql.*;
 
 public class AuthModel {
 
 	public AuthModel() {
-		
-	}	       
 
-	
-	
-public boolean login(String username, String password) {
-	String query = "SELECT * FROM users WHERE username = ? AND password = ?";
-    Connection conn = null;
-    PreparedStatement stmt = null;
-    ResultSet rs = null;
+	}
 
-    try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin", "*e9EZn3Nr@KBrde");
+	public boolean login(String username, char[] password) {
 
-        stmt = conn.prepareStatement(query);
-        stmt.setString(1, username);
-        stmt.setString(2, password);
+		final String sql = "SELECT password FROM users WHERE username = ?";
 
-        rs = stmt.executeQuery();
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://pro.freedb.tech/restaurantedDB", "admin",
+				"*e9EZn3Nr@KBrde"); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        if (rs.next()) {
-            String storedHash = rs.getString("password");
-            
-            // Verificar la contraseña ingresada contra el hash almacenado
-                return true; // Login exitoso
-            
-        }
+			ps.setString(1, username);
+			try (ResultSet rs = ps.executeQuery()) {
 
-    } catch (Exception e) {
-        e.printStackTrace();
-    } finally {
-        try {
-            if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
-            if (conn != null) conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+				if (rs.next()) {
+					String storedHash = rs.getString("password");
 
-    return false; // Login fallido
-}
+					// convierte el char[] a String solo para la verificación
+					String plain = new String(password);
+					boolean ok = BCrypt.checkpw(plain, storedHash);
+
+					Arrays.fill(password, '\0'); // borra el array por seguridad
+					plain = null; // ayuda al GC
+
+					return ok; // true si coinciden
+				}
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace(); // en producción envíalo a un logger
+		}
+
+		return false; // usuario inexistente o contraseña incorrecta
+	}
 
 }
-		  
-
-

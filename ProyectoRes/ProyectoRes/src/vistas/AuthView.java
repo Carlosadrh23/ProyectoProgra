@@ -11,6 +11,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -22,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
@@ -218,7 +221,9 @@ public void Login() {
 				if(flag1  && flag2) {
 					
 					AuthModel am = new AuthModel();
-					boolean is_login = am.login(txtAdministrador.getText(),passText);
+					char[] password = passwordField.getPassword();
+
+					boolean is_login = am.login(txtAdministrador.getText(),password);
 					
 					if(is_login) {
 						JOptionPane.showMessageDialog(null, "Bienvenido.");
@@ -501,12 +506,16 @@ public void Login() {
 
           
             
-            // Si todos los campos son válidos
             if(nombreValido && emailValido && passwordValido) {
-                // Aquí iría el código para guardar el usuario en la base de datos
             
             	UsersModel um = new UsersModel();
-				um.addUser(nombreField.getText().toString(), emailField.getText(), passText);
+            	char[] passChars = passwordField1.getPassword();          
+            	String plain = new String(passChars);
+            	String hashed = BCrypt.hashpw(plain, BCrypt.gensalt(12)); 
+
+            	Arrays.fill(passChars, '\0');        
+
+            	um.addUser(nombreField.getText(), emailField.getText(), hashed);
 					
                 JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
                 

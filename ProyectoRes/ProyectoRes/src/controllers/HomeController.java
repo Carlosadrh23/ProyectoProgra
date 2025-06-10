@@ -2,6 +2,7 @@ package controllers;
 
 
 import vistas.HomeView;
+import vistas.HomeView.OrderItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class HomeController {
 	
 	private HomeView vista;
 	private List<Ingredient> ingredientes = new ArrayList<>();
+	private List<Ingredient> Seleccionados = new ArrayList<>();
 	private List<Client> clients = new ArrayList<>();
 	private List<Dish> dishes = new ArrayList<>();
 
@@ -131,10 +133,11 @@ public class HomeController {
 	{
 		vista.BuscarPorProducto(null);
 	}
-	public void EditarMenu() {
+	public void EditarMenu(String nombre) {
 		IngredientsModel Im = new IngredientsModel();
 		ingredientes = Im.getAll();
-		vista.EditarMenu(ingredientes);
+		Seleccionados = Im.getIngredientsForDish(nombre);
+		vista.EditarMenu(nombre,ingredientes,Seleccionados);
 	}
 
 	public void SeleccionDeCantidadHamburguesa() {

@@ -22,5 +22,13 @@ public class Ingredient {
 		this.cost = cost;
 		
 	}
-
+	public Ingredient(String code, String name, String unit,Float cost) {
+		this.id = id;
+		this.code = code;
+		this.name = name;
+		this.quantity = quantity;
+		this.unit = unit;
+		this.cost = cost;
+		
+	}
 }
