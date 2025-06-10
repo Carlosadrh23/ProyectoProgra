@@ -113,14 +113,7 @@ public class HomeController {
 
 		vista.AñadirPlatillo(ingredientes);
 	}
-	public void Añadirplatillo2() 
-		{	
-		IngredientsModel Im = new IngredientsModel();
-		
-		ingredientes = Im.getAll();
 
-		vista.AñadirPlatillo2();
-	}
 	
 	public void AñadirIngrediente() 
 	{
